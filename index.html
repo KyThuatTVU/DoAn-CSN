@@ -9,6 +9,7 @@
     <!-- Link to Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
         <!-- Thêm CSS cho Slick Slider -->
@@ -212,7 +213,7 @@
     <nav class="bg-[#704539] text-white flex flex-wrap sm:flex-nowrap items-center justify-between px-4 sm:px-6 py-4">
     <!-- Logo -->
     <div class="w-full sm:w-auto flex justify-center sm:justify-start mb-4 sm:mb-0">
-        <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font"> <a href="trangchu.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a></h1>
+        <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font"> <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a></h1>
     </div>
 
     <!-- Navigation Links -->
@@ -234,9 +235,7 @@
         </div>
 
         <!-- Language Option -->
-        <div class="text-[#D8B899] font-bold custom-font">
-        <a href="#">EN</a>
-        </div>
+        
     </div>
     </nav>
 
@@ -244,9 +243,9 @@
     <!-- Slideshow Container -->
     <!-- Slider chứa các ảnh -->
     <div class="slider">
-        <div><img src="https://nhahangvian.com/wp-content/uploads/2024/07/Michelin-SlideShow.jpg" alt="Image 1"></div>
-        <div><img src="https://nhahangvian.com/wp-content/uploads/2024/01/Slideshow-02-FINAL-scaled.jpg" alt="Image 2"></div>
-        <div><img src="https://nhahangvian.com/wp-content/uploads/2024/01/Slideshow-01-FINAL-scaled.jpg" alt="Image 3"></div>
+        <div><img src="img/nen1.jpg" alt="Image 1"></div>
+        <div><img src="img/nen2.jpg" alt="Image 2"></div>
+        <div><img src="img/nen3.jpg" alt="Image 3"></div>
     </div>
 
     <!-- Thêm thư viện jQuery và Slick Slider -->
@@ -273,16 +272,17 @@
             </div>
 
             <!-- Image on the right -->
-            <div class="col-lg-6 about-image w-full lg:w-7/12 mt-1 lg:mt-0 ml-6">
+            <div class="col-lg-6 about-image w-full lg:w-7/12 mt-1 lg:mt-0 ml-0">
                 <div class="relative w-full pb-[58%] bg-cover bg-center rounded-md" style="background-image: url('img/hinhtruyenthong2.jpg');"></div>
             </div>
+            
         </div>
     </div>
     </div>
     
     <div class="am_thuc py-12 bg-orange-50">
     <h2 class="font-bold text-3xl sm:text-4xl text-[#D8B899] custom-font text-center mx-auto">
-        ẨM THỰC
+        ĐẶT SẢN PHƯƠNG NAM
         </h2><br>
     <div class="flex flex-wrap space-x-3 justify-between">
         <!-- Món ăn 1 -->
@@ -387,19 +387,20 @@
     </div>
     </div>
 
-    <footer class="bg-[#644741] text-white p-6">
-    <div class="container mx-auto flex flex-wrap">
+   <!-- Thêm icon Twitter và YouTube vào footer -->
+<footer class="bg-[#644741] text-white p-6">
+    <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
         <!-- Cột 1: 1 div chiếm 50% chiều rộng -->
-        <div class="w-full md:w-1/2">
+        <div class="w-full md:w-1/2 text-center md:text-left">
             <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">PHƯƠNG NAM – CƠM NGON TRÒN VỊ</h3>
             <p>Hotline: 0904 816 145</p>
             <p>Email: nhahangphuongnamn@gmail.com</p>
             <p>Địa chỉ: 500 Võ Văn Kiệt, Thành phố Trà Vinh, Trà Vinh</p>
             <p>(Có chỗ để xe ô tô)</p>
         </div>
-
+  
         <!-- Cột 2: 2 div chia đều 50% còn lại -->
-        <div class="w-full md:w-1/2 flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 flex flex-col md:flex-row text-center md:text-left mt-6 md:mt-0">
             <!-- Div 1 trong cột 2 -->
             <div class="w-full md:w-1/2 mb-4 md:mb-0">
                 <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Giờ mở cửa</h3>
@@ -407,10 +408,11 @@
                 <p>Chiều: 18h - 22h</p>
                 <p>Tất cả các ngày trong tuần</p>
             </div>
+  
             <!-- Div 2 trong cột 2 -->
             <div class="w-full md:w-1/2">
                 <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Mạng xã hội</h3>
-                <div class="flex space-x-4">
+                <div class="flex justify-center md:justify-start space-x-4">
                     <!-- Icon Facebook -->
                     <a href="https://www.facebook.com/Alodzo100tv" class="text-white text-2xl hover:text-[#dfc3aa]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
@@ -427,31 +429,31 @@
                     <!-- Icon Twitter -->
                     <a href="#twitter" class="text-white text-2xl hover:text-[#dfc3aa]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.38 1.85c-.35 0-.7-.02-1.04-.06a12.25 12.25 0 0 0 6.64 1.95c7.97 0 12.33-6.6 12.33-12.33 0-.19-.01-.39-.02-.58a8.84 8.84 0 0 0 2.18-2.25z"/>
+                            <path d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.35 1.84c-.35 0-.7-.02-1.04-.07A12.27 12.27 0 0 0 8 21c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56.83-.59 1.55-1.33 2.13-2.17z"/>
                         </svg>
                     </a>
-                    <!-- Icon Youtube -->
-                    <a href="https://www.youtube.com/@pt-canh8129/featured" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.54 6.42a2.783 2.783 0 0 0-1.955-1.958C18.826 4 12 4 12 4s-6.827 0-8.584.462A2.783 2.783 0 0 0 1.46 6.42C1 8.177 1 12 1 12s0 3.823.46 5.58a2.783 2.783 0 0 0 1.955 1.958C5.173 20 12 20 12 20s6.827 0 8.584-.462a2.783 2.783 0 0 0 1.955-1.958C23 15.823 23 12 23 12s0-3.823-.46-5.58zM9.75 15.018V8.982L15.5 12 9.75 15.018z"/>
-                        </svg>
-                    </a>
+                    <!-- Icon YouTube -->
+                    <!-- Sử dụng Font Awesome cho biểu tượng YouTube -->
+  <a href="https://www.youtube.com/@pt-canh8129/featured" class="text-white text-2xl hover:text-[#dfc3aa]">
+    <i class="fab fa-youtube h-8 w-8"></i>
+  </a>
+  
                 </div>
             </div>
         </div>
     </div>
-
+  
     <hr class="my-6 border-[#6e4f45]">
-
+  
     <!-- Dòng bản quyền -->
     <div class="text-center text-md">
-        <p>Copyright © 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
+        <p>&copy; 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
         <p>
             <a href="#" class="hover:underline">Bảo mật thông tin</a> <span class="text-[#6e4f45]">|</span>
             <a href="#" class="hover:underline">Liên hệ</a>
         </p>
     </div>
-    </footer>
+  </footer>
 
 
     <!-- Mã JavaScript kích hoạt slider -->
