@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
 
     <style>
       /* Áp dụng font Audiowide cho h1 */
@@ -25,38 +27,85 @@
       .custom-font {
             font-family: 'Audiowide', sans-serif;
         }
+          /* Modal Styles */
+          .modal {
+            display: none; /* Ẩn modal khi trang tải */
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* Khi modal mở, thêm nền đen */
+        .modal.show {
+            background-color: rgba(0, 0, 0, 0.7); /* Nền đen khi modal mở */
+        }
+        .album-image {
+            transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
+        }
+
     </style>
   </head>
   <body>
-     <!-- Navigation Bar -->
-     <nav class="bg-[#704539] text-white flex flex-wrap sm:flex-nowrap items-center justify-between px-4 sm:px-6 py-4">
-        <!-- Logo -->
-        <div class="w-full sm:w-auto flex justify-center sm:justify-start mb-4 sm:mb-0">
-          <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font"> <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a></h1>
-        </div>
+    <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+      <!-- Logo -->
+      <div class="flex items-center">
+          <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+              <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
+          </h1>
+      </div>
 
-        <!-- Navigation Links -->
-        <ul class="w-full sm:w-auto flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-center sm:text-left text-lg font-bold custom-font">
-            <li><a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a></li>
-            <li><a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a></li>
-            <li><a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a></li>
-            <li><a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a></li>
-            <li><a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a></li>
-        </ul>
+      <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+      <div class="sm:hidden">
+          <button id="menu-btn" class="text-white focus:outline-none">
+              <!-- Hamburger Icon -->
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+          </button>
+      </div>
 
-        <!-- Search Bar and Language Option -->
-        <div class="w-full sm:w-auto flex justify-center sm:justify-end items-center space-x-4 mt-4 sm:mt-0">
-            <!-- Search Bar -->
-            <div class="bg-[#D8B899] rounded-md px-4 py-1 w-full sm:w-auto">
-                <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full sm:w-auto">
-            </div>
+      <!-- Desktop Navigation Links -->
+      <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+          <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+          <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+          <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+          <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+          <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+      </div>
 
-            <!-- Language Option -->
-            <div class="text-[#D8B899] font-bold custom-font">
-                <a href="#">EN</a>
-            </div>
-        </div>
-    </nav>
+      <!-- Search Bar (Visible on Desktop) -->
+      <div class="hidden sm:flex items-center space-x-4">
+          <div class="bg-[#D8B899] rounded-md px-4 py-1">
+              <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+          </div>
+      </div>
+  </nav>
+
+  <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+  <div id="mobile-menu" class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+      <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+      <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+      <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+      <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+      <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+  </div>
+
+  <script>
+      // Toggle mobile menu visibility
+      document.getElementById('menu-btn').addEventListener('click', function() {
+          const mobileMenu = document.getElementById('mobile-menu');
+          mobileMenu.classList.toggle('hidden');
+      });
+  </script>
 
     
     <div class="container mx-auto py-8 bg-skin-tone rounded-lg shadow-lg">
@@ -64,12 +113,12 @@
         ALBUM ẢNH KHÔNG GIAN QUÁN
       </h1>
       <div class="grid grid-cols-4 gap-1"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
-        
+          
         <!-- Ảnh lớn bên trái -->
         <div class="col-span-2">
           <img
             alt="Front view of the restaurant"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="400"
             src="img/AB1.jpg"
             width="900"
@@ -80,28 +129,28 @@
         <div class="col-span-2 grid grid-cols-2 gap-2"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
           <img
             alt="Close-up of the restaurant's glass facade"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="500"
             src="img/AB2.jpg"
             width="600"
           />
           <img
             alt="People dining inside the restaurant"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="200"
             src="img/AB3.jpg"
             width="300"
           />
           <img
             alt="Interior view of the restaurant with hanging lights"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="200"
             src="img/AB4.jpg"
             width="300"
           />
           <img
             alt="Another interior view with a chandelier"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="200"
             src="img/AB5.jpg"
             width="300"
@@ -112,77 +161,144 @@
         <div class="col-span-4 grid grid-cols-5 gap-2"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
           <img
             alt="Various dishes served at the restaurant"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB6.jpg"
             width="200"
           />
           <img
             alt="Top view of people dining"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB7.jpg"
             width="200"
           />
           <img
             alt="Person eating at the restaurant"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB8.jpg"
             width="200"
           />
           <img
             alt="Group of people dining together"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB9.jpg"
             width="200"
           />
           <img
             alt="Another group of people dining"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB11.jpg"
             width="200"
           />
           <img
             alt="Restaurant's signboard"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB12.jpg"
             width="200"
           />
           <img
             alt="Interior view with hanging lights"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB14.jpg"
             width="200"
           />
           <img
             alt="People dining inside the restaurant"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB15.jpg"
             width="200"
           />
           <img
             alt="Group of people dining together"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB16.jpg"
             width="200"
           />
           <img
             alt="Another group of people dining"
-            class="w-full h-auto"
+            class="album-image w-full h-auto"
             height="150"
             src="img/AB17.jpg"
             width="200"
           />
         </div>
       </div>
-    </div>
+  </div>
+
+  <!-- Modal for Image -->
+  <div id="imageModal" class="modal flex">
+      <img id="modalImage" src="" alt="">
+  </div>
+
+  <script>
+      // Lấy tất cả các ảnh có lớp album-image
+      const images = document.querySelectorAll('.album-image');
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+
+      // Thêm sự kiện click cho mỗi hình ảnh
+      images.forEach(img => {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', () => {
+              modal.classList.add('show'); // Thêm lớp show để hiển thị nền đen
+              modal.classList.remove('hidden');
+              modalImg.src = img.src;
+              modalImg.alt = img.alt;
+              document.body.style.overflow = 'hidden';
+          });
+      });
+
+      // Hàm đóng modal
+      function closeModal() {
+          modal.classList.remove('show'); // Xóa lớp show khi đóng modal
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+      }
+
+      // Đóng modal khi click ra ngoài
+      modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+              closeModal();
+          }
+      });
+
+      // Đóng modal khi nhấn ESC
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+              closeModal();
+          }
+      });
+
+      // Hiệu ứng fade-in khi trang load
+      window.onload = () => {
+          gsap.from(".album-image", {
+              opacity: 0,
+              y: 50,               // Di chuyển lên
+              duration: 2,
+              stagger: 0.1,        // Thực hiện hiệu ứng tuần tự cho từng ảnh
+              ease: "power2.out"   // Hàm easing
+          });
+      };
+
+      images.forEach(image => {
+          image.addEventListener('mouseenter', () => {
+              image.style.transform = "scale(1.1)";  // Chỉ giữ hiệu ứng zoom
+          });
+
+          image.addEventListener('mouseleave', () => {
+              image.style.transform = "scale(1)";  // Reset lại kích thước
+          });
+      });
+  </script>
+
     
     <!-- Thêm icon Twitter và YouTube vào footer -->
 <footer class="bg-[#644741] text-white p-6">
@@ -258,44 +374,10 @@
             <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
         </div>
     </div>
-      <script>
-        // Lấy tất cả các hình ảnh trong grid
-        const images = document.querySelectorAll('.grid img');
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
+   
 
-        // Thêm sự kiện click cho mỗi hình ảnh
-        images.forEach(img => {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', () => {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                modalImg.src = img.src;
-                modalImg.alt = img.alt;
-                document.body.style.overflow = 'hidden';
-            });
-        });
 
-        // Hàm đóng modal
-        function closeModal() {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
 
-        // Đóng modal khi click ra ngoài
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
 
-        // Đóng modal khi nhấn ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
   </body>
 </html>

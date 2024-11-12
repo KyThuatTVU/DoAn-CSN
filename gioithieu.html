@@ -27,36 +27,57 @@
 
 <body class="font-sans">
 
-    <!-- Navigation Bar -->
-    <nav class="bg-[#704539] text-white flex flex-wrap sm:flex-nowrap items-center justify-between px-4 sm:px-6 py-4">
+    <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
         <!-- Logo -->
-        <div class="w-full sm:w-auto flex justify-center sm:justify-start mb-4 sm:mb-0">
-            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font"> <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a></h1>
+        <div class="flex items-center">
+            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+                <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
+            </h1>
         </div>
 
-        <!-- Navigation Links -->
-        <ul
-            class="w-full sm:w-auto flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-center sm:text-left text-lg font-bold custom-font">
-            <li><a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a></li>
-            <li><a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a></li>
-            <li><a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a></li>
-            <li><a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a></li>
-            <li><a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a></li>
-        </ul>
+        <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+        <div class="sm:hidden">
+            <button id="menu-btn" class="text-white focus:outline-none">
+                <!-- Hamburger Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
 
+        <!-- Desktop Navigation Links -->
+        <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+            <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+            <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+            <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+            <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+            <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+        </div>
 
-        <!-- Search Bar and Language Option -->
-        <div class="w-full sm:w-auto flex justify-center sm:justify-end items-center space-x-4 mt-4 sm:mt-0">
-            <!-- Search Bar -->
-            <div class="bg-[#D8B899] rounded-md px-4 py-1 w-full sm:w-auto">
-                <input type="text" placeholder="Tìm kiếm"
-                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full sm:w-auto">
+        <!-- Search Bar (Visible on Desktop) -->
+        <div class="hidden sm:flex items-center space-x-4">
+            <div class="bg-[#D8B899] rounded-md px-4 py-1">
+                <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
             </div>
-
-            <!-- Language Option -->
-           
         </div>
     </nav>
+
+    <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+    <div id="mobile-menu" class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+        <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+        <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+        <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+        <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+        <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+    </div>
+
+    <script>
+        // Toggle mobile menu visibility
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 
     <main id="main" class="full">
         <!-- Banner Section -->

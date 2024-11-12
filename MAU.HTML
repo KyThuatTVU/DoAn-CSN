@@ -4,20 +4,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date and Time Picker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+    <style>
+        /* Custom styles */
+        .body-bg {
+            background-color: #f4f4f4;
+        }
+        .custom-font {
+            font-family: 'Audiowide', sans-serif;
+        }
+        .album-image {
+            transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Ẩn modal khi trang tải */
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* Khi modal mở, thêm nền đen */
+        .modal.show {
+            background-color: rgba(0, 0, 0, 0.7); /* Nền đen khi modal mở */
+        }
+    </style>
 </head>
-<body>
+<body class="body-bg">
 
-    <!-- Ô chọn ngày và giờ -->
-    <label for="datetime">Chọn ngày và giờ:</label>
-    <input type="datetime-local" id="datetime" name="datetime" />
+    <div class="container mx-auto py-8 bg-skin-tone rounded-lg shadow-lg">
+        <h1 class="text-center text-3xl font-bold mb-8">
+          ALBUM ẢNH KHÔNG GIAN QUÁN
+        </h1>
+        <div class="grid grid-cols-4 gap-1"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
+          
+          <!-- Ảnh lớn bên trái -->
+          <div class="col-span-2">
+            <img
+              alt="Front view of the restaurant"
+              class="album-image w-full h-auto"
+              height="400"
+              src="img/AB1.jpg"
+              width="900"
+            />
+          </div>
+      
+          <!-- 4 ảnh nhỏ bên phải -->
+          <div class="col-span-2 grid grid-cols-2 gap-2"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
+            <img
+              alt="Close-up of the restaurant's glass facade"
+              class="album-image w-full h-auto"
+              height="500"
+              src="img/AB2.jpg"
+              width="600"
+            />
+            <img
+              alt="People dining inside the restaurant"
+              class="album-image w-full h-auto"
+              height="200"
+              src="img/AB3.jpg"
+              width="300"
+            />
+            <img
+              alt="Interior view of the restaurant with hanging lights"
+              class="album-image w-full h-auto"
+              height="200"
+              src="img/AB4.jpg"
+              width="300"
+            />
+            <img
+              alt="Another interior view with a chandelier"
+              class="album-image w-full h-auto"
+              height="200"
+              src="img/AB5.jpg"
+              width="300"
+            />
+          </div>
+      
+          <!-- Hàng 5 cột phía dưới -->
+          <div class="col-span-4 grid grid-cols-5 gap-2"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
+            <img
+              alt="Various dishes served at the restaurant"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB6.jpg"
+              width="200"
+            />
+            <img
+              alt="Top view of people dining"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB7.jpg"
+              width="200"
+            />
+            <img
+              alt="Person eating at the restaurant"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB8.jpg"
+              width="200"
+            />
+            <img
+              alt="Group of people dining together"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB9.jpg"
+              width="200"
+            />
+            <img
+              alt="Another group of people dining"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB11.jpg"
+              width="200"
+            />
+            <img
+              alt="Restaurant's signboard"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB12.jpg"
+              width="200"
+            />
+            <img
+              alt="Interior view with hanging lights"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB14.jpg"
+              width="200"
+            />
+            <img
+              alt="People dining inside the restaurant"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB15.jpg"
+              width="200"
+            />
+            <img
+              alt="Group of people dining together"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB16.jpg"
+              width="200"
+            />
+            <img
+              alt="Another group of people dining"
+              class="album-image w-full h-auto"
+              height="150"
+              src="img/AB17.jpg"
+              width="200"
+            />
+          </div>
+        </div>
+    </div>
 
-    <!-- Ô chọn ngày -->
-    <label for="date">Chọn ngày:</label>
-    <input type="date" id="date" name="date" />
+    <!-- Modal for Image -->
+    <div id="imageModal" class="modal flex">
+        <img id="modalImage" src="" alt="">
+    </div>
 
-    <!-- Ô chọn giờ -->
-    <label for="time">Chọn giờ:</label>
-    <input type="time" id="time" name="time" />
+    <script>
+        // Lấy tất cả các ảnh có lớp album-image
+        const images = document.querySelectorAll('.album-image');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        // Thêm sự kiện click cho mỗi hình ảnh
+        images.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                modal.classList.add('show'); // Thêm lớp show để hiển thị nền đen
+                modal.classList.remove('hidden');
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Hàm đóng modal
+        function closeModal() {
+            modal.classList.remove('show'); // Xóa lớp show khi đóng modal
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Đóng modal khi click ra ngoài
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Đóng modal khi nhấn ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Hiệu ứng fade-in khi trang load
+        window.onload = () => {
+            gsap.from(".album-image", {
+                opacity: 0,
+                y: 50,               // Di chuyển lên
+                duration: 2,
+                stagger: 0.1,        // Thực hiện hiệu ứng tuần tự cho từng ảnh
+                ease: "power2.out"   // Hàm easing
+            });
+        };
+
+        images.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                image.style.transform = "scale(1.1)";  // Chỉ giữ hiệu ứng zoom
+            });
+
+            image.addEventListener('mouseleave', () => {
+                image.style.transform = "scale(1)";  // Reset lại kích thước
+            });
+        });
+    </script>
 
 </body>
 </html>
