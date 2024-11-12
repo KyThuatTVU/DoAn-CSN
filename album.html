@@ -51,6 +51,15 @@
         .album-image {
             transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
         }
+        .album-image {
+    /* Remove hover transition effect */
+    transition: none;
+}
+.album-image:hover {
+    /* Ensure no scaling or style changes on hover */
+    transform: none;
+}
+
 
     </style>
   </head>
@@ -108,10 +117,22 @@
   </script>
 
     
-    <div class="container mx-auto py-8 bg-skin-tone rounded-lg shadow-lg">
-      <h1 class="text-center text-3xl font-bold mb-8">
-        ALBUM ẢNH KHÔNG GIAN QUÁN
-      </h1>
+<div class="h-96 bg-cover bg-center bg-no-repeat relative flex justify-center items-center"
+style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12/cau-long-bien.jpg')">
+<div class="absolute inset-0 bg-[#f0e2e0] opacity-40"></div>
+<div class="z-10 text-center text-white">
+    <!-- Title Section với class riêng -->
+    <h2 class="custom-title-h2 text-center text-4xl mb-4 font-[Audiowide] text-[#8B4513] font-bold">
+        <span>ALBUM KHÔNG GIAN NHÀ HÀNG PHƯƠNG NAM</span>
+    </h2>
+    <br>
+    <div class="text-xl text-[#8B4513] font-semibold">
+      KÍNH MỜI QUÝ KHÁCH XEM QUA!
+    </div>
+    
+</div>
+</div>
+
       <div class="grid grid-cols-4 gap-1"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
           
         <!-- Ảnh lớn bên trái -->

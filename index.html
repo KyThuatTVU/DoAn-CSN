@@ -11,6 +11,8 @@
     <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+
 
     <script src="https://cdn.tailwindcss.com"></script>
         <!-- Thêm CSS cho Slick Slider -->
@@ -302,6 +304,31 @@
         </div>
     </div>
     </div>
+
+    <script>
+        // GSAP animation script
+        gsap.registerPlugin(ScrollTrigger);
+    
+        gsap.fromTo(".about-content", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+              scrollTrigger: {
+                trigger: ".about-content",
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            });
+    
+        gsap.fromTo(".about-image", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+              scrollTrigger: {
+                trigger: ".about-image",
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            });
+    </script>
     
     <div class="am_thuc py-12 bg-orange-50">
         <h2 class="font-bold text-3xl sm:text-4xl text-[#D8B899] custom-font text-center mx-auto">
