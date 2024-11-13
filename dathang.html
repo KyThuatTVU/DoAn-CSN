@@ -134,9 +134,10 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="bookingtime" class="block text-lg font-semibold">Thời gian</label>
-                                <input type="text" id="bookingtime" name="bookingtime" placeholder="Giờ đặt bàn"
-                                    class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                                <input type="datetime-local" id="bookingtime" name="bookingtime" 
+                                       class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
                             </div>
+                            
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
                                     <label for="adults" class="block text-lg font-semibold">Người lớn</label>
@@ -152,37 +153,49 @@
                         </div>
                     </div>
 
-                    <!-- Thông tin người đặt -->
-                    <div class="mb-8">
-                        <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">THÔNG TIN NGƯỜI ĐẶT</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="fullname" class="block text-lg font-semibold">Họ tên</label>
-                                <input type="text" id="fullname" name="fullname" placeholder="Họ tên"
-                                    class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                    <form id="myForm" onsubmit="return validateForm()">
+                        <!-- Thông tin người đặt -->
+                        <div class="mb-8">
+                            <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">THÔNG TIN NGƯỜI ĐẶT</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="fullname" class="block text-lg font-semibold">Họ tên</label>
+                                    <input type="text" id="fullname" name="fullname" placeholder="Họ tên"
+                                        class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-lg font-semibold">Số điện thoại</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Số điện thoại"
+                                        class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400" required>
+                                </div>
                             </div>
-                            <div>
-                                <label for="phone" class="block text-lg font-semibold">Số điện thoại</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Số điện thoại"
-                                    class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                            <div class="mt-6">
+                                <label for="message" class="block text-lg font-semibold">Lưu ý</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Lưu ý"
+                                    class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"></textarea>
                             </div>
                         </div>
-                        <div class="mt-6">
-                            <label for="message" class="block text-lg font-semibold">Lưu ý</label>
-                            <textarea type="ghichu" id="message" name="message" rows="4" placeholder="Lưu ý"
-                                class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Submit Button -->
-                   
-                    </div><br>
-
-                   <div class="flex justify-center">
-                        <button ton class="bg-[#654321] text-white font-semibold uppercase tracking-wider px-6 py-3 rounded-lg" id="submitButton" type="submit">Xác nhận đặt bàn</button>
-                    </div>
                     
-                </form>
+                        <!-- Submit Button -->
+                        <div class="flex justify-center mt-4">
+                            <button class="bg-[#654321] text-white font-semibold uppercase tracking-wider px-6 py-3 rounded-lg" id="submitButton" type="submit">
+                                Xác nhận đặt bàn
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <script>
+                        function validateForm() {
+                            const phoneInput = document.getElementById("phone").value.trim();
+                            if (phoneInput === "") {
+                                alert("Vui lòng nhập số điện thoại.");
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+                    
+              
 
                 <div class="mt-8 text-center text-gray-500">
                     <p><em>Quý khách vui lòng đến trước thời gian đặt 15 phút để nhà hàng phục vụ quý khách được tốt nhất.</em></p>
