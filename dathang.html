@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Import Google Font Audiowide -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
+    <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .custom-font {
@@ -55,309 +55,334 @@
     </style>
 </head>
 
-<body> 
+<body>
     <div class="bg-white">
-  <!-- Navigation Bar -->
-  <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
-    <!-- Logo -->
-    <div class="flex items-center">
-        <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-            <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
-        </h1>
-    </div>
+        <!-- Navigation Bar -->
+        <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+                    <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
+                </h1>
+            </div>
 
-    <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
-    <div class="sm:hidden">
-        <button id="menu-btn" class="text-white focus:outline-none">
-            <!-- Hamburger Icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-    </div>
+            <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+            <div class="sm:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <!-- Hamburger Icon -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
 
-    <!-- Desktop Navigation Links -->
-    <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-        <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-        <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-        <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-        <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-        <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-    </div>
+            <!-- Desktop Navigation Links -->
+            <div id="nav-links"
+                class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+                <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+                <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+                <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+                <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+                <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+            </div>
 
-    <!-- Search Bar (Visible on Desktop) -->
-    <div class="hidden sm:flex items-center space-x-4">
-        <div class="bg-[#D8B899] rounded-md px-4 py-1">
-            <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+            <!-- Search Bar (Visible on Desktop) -->
+            <div class="hidden sm:flex items-center space-x-4">
+                <form id="searchForm" class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center"
+                    onsubmit="return handleSearch(event)">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm"
+                        class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+                    <button type="submit" class="search-icon ml-2">
+                        <i class="fas fa-search text-[#704539]"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+        <div id="mobile-menu"
+            class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+            <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+            <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+            <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+            <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+            <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
         </div>
-    </div>
-</nav>
 
-<!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
-<div id="mobile-menu" class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
-    <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
-    <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
-    <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
-    <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
-    <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
-</div>
+        <script>
+            // Toggle mobile menu visibility
+            document.getElementById('menu-btn').addEventListener('click', function () {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
 
-<script>
-    // Toggle mobile menu visibility
-    document.getElementById('menu-btn').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-  
-    <main class="full">
-        <!-- Banner Section -->
-        <div class="relative w-full bg-cover bg-center h-[400px]" style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12/cau-long-bien.jpg');">
-            <div class="absolute inset-0 bg-opacity-50 bg-[#fcecea]"></div> <!-- Nền của banner cũng đổi màu tương ứng -->
-            <div class="relative z-10 flex justify-center items-center h-full">
-                <div class="text-center custom-font">
-                    <!-- Thêm màu nâu đất cho chữ -->
-                    <h1 class="text-5xl font-bold mb-4 tracking-wider text-[#8B4513]">Đặt bàn</h1>
-                    <p class="text-xl text-[#8B4513]">Đặt bàn trước sẽ giúp quý khách lựa chọn được chỗ ngồi ưng ý và sự chuẩn bị chu đáo nhất.</p>
+        <main class="full">
+            <!-- Banner Section -->
+            <div class="relative w-full bg-cover bg-center h-[400px]"
+                style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12/cau-long-bien.jpg');">
+                <div class="absolute inset-0 bg-opacity-50 bg-[#fcecea]"></div>
+                <!-- Nền của banner cũng đổi màu tương ứng -->
+                <div class="relative z-10 flex justify-center items-center h-full">
+                    <div class="text-center custom-font">
+                        <!-- Thêm màu nâu đất cho chữ -->
+                        <h1 class="text-5xl font-bold mb-4 tracking-wider text-[#8B4513]">Đặt bàn</h1>
+                        <p class="text-xl text-[#8B4513]">Đặt bàn trước sẽ giúp quý khách lựa chọn được chỗ ngồi ưng ý
+                            và sự chuẩn bị chu đáo nhất.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Booking Form Section -->
-        <div class="py-10 px-4 bg-[#eeeee4]"> <!-- Thêm màu nền vàng cho phần đặt bàn -->
-            <div class="max-w-5xl mx-auto bg-white shadow-lg p-8 rounded-lg">
-                <form action="#" method="post">
-                    <!-- Thời gian đặt bàn -->
-                    <div class="mb-8">
-                        
-                        <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">THỜI GIAN ĐẶT BÀN</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="bookingtime" class="block text-lg font-semibold">Thời gian</label>
-                                <input type="datetime-local" id="bookingtime" name="bookingtime" 
-                                       class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
-                            </div>
-                            
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <label for="adults" class="block text-lg font-semibold">Người lớn</label>
-                                    <input type="number" id="adults" name="adults" value="2" min="1" max="50"
-                                        class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
-                                </div>
-                                <div>
-                                    <label for="children" class="block text-lg font-semibold">Trẻ em</label>
-                                    <input type="number1" id="children" name="children" value="0" min="0" max="50"
-                                        class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form id="myForm" onsubmit="return validateForm()">
-                        <!-- Thông tin người đặt -->
+            <!-- Booking Form Section -->
+            <div class="py-10 px-4 bg-[#eeeee4]"> <!-- Thêm màu nền vàng cho phần đặt bàn -->
+                <div class="max-w-5xl mx-auto bg-white shadow-lg p-8 rounded-lg">
+                    <form action="#" method="post">
+                        <!-- Thời gian đặt bàn -->
                         <div class="mb-8">
-                            <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">THÔNG TIN NGƯỜI ĐẶT</h2>
+
+                            <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">THỜI GIAN ĐẶT BÀN</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label for="fullname" class="block text-lg font-semibold">Họ tên</label>
-                                    <input type="text" id="fullname" name="fullname" placeholder="Họ tên"
+                                    <label for="bookingtime" class="block text-lg font-semibold">Thời gian</label>
+                                    <input type="datetime-local" id="bookingtime" name="bookingtime"
                                         class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
                                 </div>
-                                <div>
-                                    <label for="phone" class="block text-lg font-semibold">Số điện thoại</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="Số điện thoại"
-                                        class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400" required>
+
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="adults" class="block text-lg font-semibold">Người lớn</label>
+                                        <input type="number" id="adults" name="adults" value="2" min="1" max="50"
+                                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                                    </div>
+                                    <div>
+                                        <label for="children" class="block text-lg font-semibold">Trẻ em</label>
+                                        <input type="number1" id="children" name="children" value="0" min="0" max="50"
+                                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mt-6">
-                                <label for="message" class="block text-lg font-semibold">Lưu ý</label>
-                                <textarea id="message" name="message" rows="4" placeholder="Lưu ý"
-                                    class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"></textarea>
+                        </div>
+
+                        <form id="myForm" onsubmit="return validateForm()">
+                            <!-- Thông tin người đặt -->
+                            <div class="mb-8">
+                                <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">THÔNG TIN NGƯỜI ĐẶT</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="fullname" class="block text-lg font-semibold">Họ tên</label>
+                                        <input type="text" id="fullname" name="fullname" placeholder="Họ tên"
+                                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-lg font-semibold">Số điện thoại</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="Số điện thoại"
+                                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <label for="message" class="block text-lg font-semibold">Lưu ý</label>
+                                    <textarea id="message" name="message" rows="4" placeholder="Lưu ý"
+                                        class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"></textarea>
+                                </div>
                             </div>
-                        </div>
-                    
-                        <!-- Submit Button -->
-                        <div class="flex justify-center mt-4">
-                            <button class="bg-[#654321] text-white font-semibold uppercase tracking-wider px-6 py-3 rounded-lg" id="submitButton" type="submit">
-                                Xác nhận đặt bàn
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <script>
-                        function validateForm() {
-                            const phoneInput = document.getElementById("phone").value.trim();
-                            if (phoneInput === "") {
-                                alert("Vui lòng nhập số điện thoại.");
-                                return false;
+
+                            <!-- Submit Button -->
+                            <div class="flex justify-center mt-4">
+                                <button
+                                    class="bg-[#654321] text-white font-semibold uppercase tracking-wider px-6 py-3 rounded-lg"
+                                    id="submitButton" type="submit">
+                                    Xác nhận đặt bàn
+                                </button>
+                            </div>
+                        </form>
+
+                        <script>
+                            function validateForm() {
+                                const phoneInput = document.getElementById("phone").value.trim();
+                                if (phoneInput === "") {
+                                    alert("Vui lòng nhập số điện thoại.");
+                                    return false;
+                                }
+                                return true;
                             }
-                            return true;
-                        }
-                    </script>
-                    
-              
+                        </script>
 
-                <div class="mt-8 text-center text-gray-500">
-                    <p><em>Quý khách vui lòng đến trước thời gian đặt 15 phút để nhà hàng phục vụ quý khách được tốt nhất.</em></p>
-                    <p><em>Cảm ơn quý khách!</em></p>
+
+
+                        <div class="mt-8 text-center text-gray-500">
+                            <p><em>Quý khách vui lòng đến trước thời gian đặt 15 phút để nhà hàng phục vụ quý khách được
+                                    tốt nhất.</em></p>
+                            <p><em>Cảm ơn quý khách!</em></p>
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Thêm icon Twitter và YouTube vào footer -->
+    <footer class="bg-[#644741] text-white p-6">
+        <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
+            <!-- Cột 1: 1 div chiếm 50% chiều rộng -->
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">PHƯƠNG NAM – CƠM NGON TRÒN VỊ</h3>
+                <p>Hotline: 0904 816 145</p>
+                <p>Email: nhahangphuongnamn@gmail.com</p>
+                <p>Địa chỉ: 500 Võ Văn Kiệt, Thành phố Trà Vinh, Trà Vinh</p>
+                <p>(Có chỗ để xe ô tô)</p>
+            </div>
+
+            <!-- Cột 2: 2 div chia đều 50% còn lại -->
+            <div class="w-full md:w-1/2 flex flex-col md:flex-row text-center md:text-left mt-6 md:mt-0">
+                <!-- Div 1 trong cột 2 -->
+                <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                    <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Giờ mở cửa</h3>
+                    <p>Sáng: 10h-14h</p>
+                    <p>Chiều: 18h - 22h</p>
+                    <p>Tất cả các ngày trong tuần</p>
+                </div>
+
+                <!-- Div 2 trong cột 2 -->
+                <div class="w-full md:w-1/2">
+                    <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Mạng xã hội</h3>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <!-- Icon Facebook -->
+                        <a href="https://www.facebook.com/Alodzo100tv" class="text-white text-2xl hover:text-[#dfc3aa]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12C22 5.372 17.627 1 11 1S1 5.372 1 12c0 5.296 3.688 9.683 8.437 10.729v-7.581H6.172v-3.148h3.265V9.398c0-3.18 1.895-4.927 4.774-4.927 1.385 0 2.837.25 2.837.25v3.121h-1.597c-1.575 0-2.068.978-2.068 1.979v2.359h3.513l-.561 3.148h-2.952v7.581C18.313 21.683 22 17.296 22 12z" />
+                            </svg>
+                        </a>
+                        <!-- Icon Instagram -->
+                        <a href="#instagram" class="text-white text-2xl hover:text-[#dfc3aa]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.316 3.608 1.29.975.975 1.228 2.242 1.29 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.316 2.633-1.29 3.608-.975.975-2.242 1.228-3.608 1.29-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.316-3.608-1.29-.975-.975-1.228-2.242-1.29-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.849c.062-1.366.316-2.633 1.29-3.608.975-.975 2.242-1.228 3.608-1.29C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.688 0 8.287.014 7.052.072c-1.566.073-2.97.39-4.133 1.552C1.757 2.784 1.44 4.188 1.367 5.754.922 7.284.922 8.688.922 12s.014 4.287.072 5.522c.073 1.566.39 2.97 1.552 4.133 1.163 1.163 2.567 1.479 4.133 1.552 1.235.058 1.636.072 4.948.072s3.713-.014 4.948-.072c1.566-.073 2.97-.39 4.133-1.552 1.163-1.163 1.479-2.567 1.552-4.133.058-1.235.072-1.636.072-4.948s-.014-3.713-.072-4.948c-.073-1.566-.39-2.97-1.552-4.133C19.87.39 18.466.073 16.9.072 15.665.014 15.264 0 12 0z" />
+                                <path
+                                    d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4.003 4.003 0 0 1 8 12a4.003 4.003 0 0 1 4-4 4.003 4.003 0 0 1 4 4 4.003 4.003 0 0 1-4 4zm6.406-10.845a1.44 1.44 0 1 1 0-2.879 1.44 1.44 0 0 1 0 2.879z" />
+                            </svg>
+                        </a>
+                        <!-- Icon Twitter -->
+                        <a href="#twitter" class="text-white text-2xl hover:text-[#dfc3aa]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.35 1.84c-.35 0-.7-.02-1.04-.07A12.27 12.27 0 0 0 8 21c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56.83-.59 1.55-1.33 2.13-2.17z" />
+                            </svg>
+                        </a>
+                        <!-- Icon YouTube -->
+                        <!-- Sử dụng Font Awesome cho biểu tượng YouTube -->
+                        <a href="https://www.youtube.com/@pt-canh8129/featured"
+                            class="text-white text-2xl hover:text-[#dfc3aa]">
+                            <i class="fab fa-youtube h-8 w-8"></i>
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
-</div>
 
-  <!-- Thêm icon Twitter và YouTube vào footer -->
-  <footer class="bg-[#644741] text-white p-6">
-    <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
-        <!-- Cột 1: 1 div chiếm 50% chiều rộng -->
-        <div class="w-full md:w-1/2 text-center md:text-left">
-            <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">PHƯƠNG NAM – CƠM NGON TRÒN VỊ</h3>
-            <p>Hotline: 0904 816 145</p>
-            <p>Email: nhahangphuongnamn@gmail.com</p>
-            <p>Địa chỉ: 500 Võ Văn Kiệt, Thành phố Trà Vinh, Trà Vinh</p>
-            <p>(Có chỗ để xe ô tô)</p>
+        <hr class="my-6 border-[#6e4f45]">
+
+        <!-- Dòng bản quyền -->
+        <div class="text-center text-md">
+            <p>&copy; 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
+            <p>
+                <a href="#" class="hover:underline">Bảo mật thông tin</a> <span class="text-[#6e4f45]">|</span>
+                <a href="#" class="hover:underline">Liên hệ</a>
+            </p>
         </div>
-  
-        <!-- Cột 2: 2 div chia đều 50% còn lại -->
-        <div class="w-full md:w-1/2 flex flex-col md:flex-row text-center md:text-left mt-6 md:mt-0">
-            <!-- Div 1 trong cột 2 -->
-            <div class="w-full md:w-1/2 mb-4 md:mb-0">
-                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Giờ mở cửa</h3>
-                <p>Sáng: 10h-14h</p>
-                <p>Chiều: 18h - 22h</p>
-                <p>Tất cả các ngày trong tuần</p>
-            </div>
-  
-            <!-- Div 2 trong cột 2 -->
-            <div class="w-full md:w-1/2">
-                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Mạng xã hội</h3>
-                <div class="flex justify-center md:justify-start space-x-4">
-                    <!-- Icon Facebook -->
-                    <a href="https://www.facebook.com/Alodzo100tv" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22 12C22 5.372 17.627 1 11 1S1 5.372 1 12c0 5.296 3.688 9.683 8.437 10.729v-7.581H6.172v-3.148h3.265V9.398c0-3.18 1.895-4.927 4.774-4.927 1.385 0 2.837.25 2.837.25v3.121h-1.597c-1.575 0-2.068.978-2.068 1.979v2.359h3.513l-.561 3.148h-2.952v7.581C18.313 21.683 22 17.296 22 12z"/>
-                        </svg>
-                    </a>
-                    <!-- Icon Instagram -->
-                    <a href="#instagram" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.316 3.608 1.29.975.975 1.228 2.242 1.29 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.316 2.633-1.29 3.608-.975.975-2.242 1.228-3.608 1.29-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.316-3.608-1.29-.975-.975-1.228-2.242-1.29-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.849c.062-1.366.316-2.633 1.29-3.608.975-.975 2.242-1.228 3.608-1.29C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.688 0 8.287.014 7.052.072c-1.566.073-2.97.39-4.133 1.552C1.757 2.784 1.44 4.188 1.367 5.754.922 7.284.922 8.688.922 12s.014 4.287.072 5.522c.073 1.566.39 2.97 1.552 4.133 1.163 1.163 2.567 1.479 4.133 1.552 1.235.058 1.636.072 4.948.072s3.713-.014 4.948-.072c1.566-.073 2.97-.39 4.133-1.552 1.163-1.163 1.479-2.567 1.552-4.133.058-1.235.072-1.636.072-4.948s-.014-3.713-.072-4.948c-.073-1.566-.39-2.97-1.552-4.133C19.87.39 18.466.073 16.9.072 15.665.014 15.264 0 12 0z"/>
-                            <path d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4.003 4.003 0 0 1 8 12a4.003 4.003 0 0 1 4-4 4.003 4.003 0 0 1 4 4 4.003 4.003 0 0 1-4 4zm6.406-10.845a1.44 1.44 0 1 1 0-2.879 1.44 1.44 0 0 1 0 2.879z"/>
-                        </svg>
-                    </a>
-                    <!-- Icon Twitter -->
-                    <a href="#twitter" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.35 1.84c-.35 0-.7-.02-1.04-.07A12.27 12.27 0 0 0 8 21c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56.83-.59 1.55-1.33 2.13-2.17z"/>
-                        </svg>
-                    </a>
-                    <!-- Icon YouTube -->
-                    <!-- Sử dụng Font Awesome cho biểu tượng YouTube -->
-  <a href="https://www.youtube.com/@pt-canh8129/featured" class="text-white text-2xl hover:text-[#dfc3aa]">
-    <i class="fab fa-youtube h-8 w-8"></i>
-  </a>
-  
-                </div>
-            </div>
+    </footer>
+
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Xác nhận đặt bàn</h2>
+            <p>Chúng tôi sẽ liên hệ bạn sau vài phút.</p>
+            <button id="closeModal"
+                class="mt-4 bg-[#654321] text-white font-semibold uppercase tracking-wider px-6 py-3 rounded-lg">Đóng</button>
         </div>
     </div>
-  
-    <hr class="my-6 border-[#6e4f45]">
-  
-    <!-- Dòng bản quyền -->
-    <div class="text-center text-md">
-        <p>&copy; 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
-        <p>
-            <a href="#" class="hover:underline">Bảo mật thông tin</a> <span class="text-[#6e4f45]">|</span>
-            <a href="#" class="hover:underline">Liên hệ</a>
-        </p>
-    </div>
-  </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+            const text = document.getElementById("bookingtime");
+            const number = document.getElementById("adults");
+            const number1 = document.getElementById("children");
+            const text1 = document.getElementById("fullname");
+            const tel = document.getElementById("phone");
+            const message = document.getElementById("message");
+            const submit = document.getElementById("submitButton");
 
-  <div id="confirmationModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 class="text-2xl font-bold mb-4">Xác nhận đặt bàn</h2>
-        <p>Chúng tôi sẽ liên hệ bạn sau vài phút.</p>
-        <button id="closeModal"
-            class="mt-4 bg-[#654321] text-white font-semibold uppercase tracking-wider px-6 py-3 rounded-lg">Đóng</button>
-    </div>
-</div>
+            const modal = document.getElementById("confirmationModal");
+            const closeBtn = document.querySelector(".close");
+            const closeModalBtn = document.getElementById("closeModal");
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const form = document.querySelector("form");
-        const text = document.getElementById("bookingtime");
-        const number = document.getElementById("adults");
-        const number1 = document.getElementById("children");
-        const text1 = document.getElementById("fullname");
-        const tel = document.getElementById("phone");
-        const message = document.getElementById("message");
-        const submit = document.getElementById("submitButton");
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-        const modal = document.getElementById("confirmationModal");
-        const closeBtn = document.querySelector(".close");
-        const closeModalBtn = document.getElementById("closeModal");
+                const data = {
+                    text: text.value,
+                    number: number.value,
+                    number1: number1.value,
+                    text1: text1.value,
+                    tel: tel.value,
+                    message: message.value,
+                };
 
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
+                // Gửi dữ liệu qua Google Form
+                await postGoogle(data);
 
-            const data = {
-                text: text.value,
-                number: number.value,
-                number1: number1.value,
-                text1: text1.value,
-                tel: tel.value,
-                message: message.value,
-            };
+                // Hiển thị modal thay vì alert
+                modal.style.display = "block";
+            });
 
-            // Gửi dữ liệu qua Google Form
-            await postGoogle(data);
-
-            // Hiển thị modal thay vì alert
-            modal.style.display = "block";
-        });
-
-        // Đóng modal khi nhấn nút đóng hoặc bên ngoài modal
-        closeBtn.onclick = () => {
-            modal.style.display = "none";
-            window.location.reload();
-        }
-
-        closeModalBtn.onclick = () => {
-            modal.style.display = "none";
-            window.location.reload();
-        }
-
-        window.onclick = (event) => {
-            if (event.target == modal) {
+            // Đóng modal khi nhấn nút đóng hoặc bên ngoài modal
+            closeBtn.onclick = () => {
                 modal.style.display = "none";
                 window.location.reload();
             }
-        }
 
-        async function postGoogle(data) {
-            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSf6maf_iMHmdujQx_lsRAfkNEj3ZGpMr4OBYqPFrhB77D-2cA/formResponse";
-            const formData = new FormData();
+            closeModalBtn.onclick = () => {
+                modal.style.display = "none";
+                window.location.reload();
+            }
 
-            // Tương ứng với từng mục trong Google Form của bạn
-            formData.append("entry.2119961391", data.text);      // Giờ đặt bàn
-            formData.append("entry.852598343", data.number);     // Số người lớn
-            formData.append("entry.2137123538", data.number1);   // Số trẻ em
-            formData.append("entry.447825034", data.text1);      // Họ tên
-            formData.append("entry.790116958", data.tel);        // Số điện thoại
-            formData.append("entry.1495677001", data.message);   // Lưu ý
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    window.location.reload();
+                }
+            }
 
-            // Gửi yêu cầu POST đến Google Forms
-            await fetch(formURL, {
-                method: "POST",
-                body: formData,
-                mode: 'no-cors'
-            });
-        }
-    });
-</script>
+            async function postGoogle(data) {
+                const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSf6maf_iMHmdujQx_lsRAfkNEj3ZGpMr4OBYqPFrhB77D-2cA/formResponse";
+                const formData = new FormData();
+
+                // Tương ứng với từng mục trong Google Form của bạn
+                formData.append("entry.2119961391", data.text);      // Giờ đặt bàn
+                formData.append("entry.852598343", data.number);     // Số người lớn
+                formData.append("entry.2137123538", data.number1);   // Số trẻ em
+                formData.append("entry.447825034", data.text1);      // Họ tên
+                formData.append("entry.790116958", data.tel);        // Số điện thoại
+                formData.append("entry.1495677001", data.message);   // Lưu ý
+
+                // Gửi yêu cầu POST đến Google Forms
+                await fetch(formURL, {
+                    method: "POST",
+                    body: formData,
+                    mode: 'no-cors'
+                });
+            }
+        });
+    </script>
+    <script src="search.js" defer></script>
 </body>
 
 </html>

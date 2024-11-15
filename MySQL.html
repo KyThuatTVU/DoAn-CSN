@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm - Nhà Hàng Phương Nam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/Ảm hực.png" />
+    <style>
+        .custom-font {
+            font-family: 'Audiowide', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f3efe2]">
+    <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+                <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
+            </h1>
+        </div>
+
+        <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+        <div class="sm:hidden">
+            <button id="menu-btn" class="text-white focus:outline-none">
+                <!-- Hamburger Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div id="nav-links"
+            class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+            <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+            <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+            <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+            <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+            <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+        </div>
+
+        <!-- Search Bar (Visible on Desktop) -->
+        <div class="hidden sm:flex items-center space-x-4">
+            <form id="searchForm" class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center"
+                onsubmit="return handleSearch(event)">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm"
+                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+                <button type="submit" class="search-icon ml-2">
+                    <i class="fas fa-search text-[#704539]"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+    <div id="mobile-menu"
+        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+        <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+        <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+        <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+        <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+        <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+    </div>
+
+    <div id="search-results" class="container mx-auto p-4">
+        <h2 class="text-2xl font-bold mb-4 text-[#704539] custom-font">Kết quả tìm kiếm</h2>
+        <div class="search-results-content">
+            <!-- Kết quả tìm kiếm sẽ được hiển thị ở đây -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQuery = urlParams.get('search');
+
+                if (searchQuery) {
+                    const decodedQuery = decodeURIComponent(searchQuery);
+                    const resultContainer = document.querySelector('.search-results-content');
+
+                    // Hiển thị trạng thái đang tải
+                    resultContainer.innerHTML = `
+                        <div class="text-center py-8">
+                            <p class="text-lg text-gray-600">Đang tìm kiếm...</p>
+                        </div>
+                    `;
+
+                    // Gọi API với timeout
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 10000); // timeout sau 10 giây
+
+                    const response = await fetch(
+                        `https://amthucphuongnam.onrender.com/api/thucdon/timkiem?keyword=${encodeURIComponent(decodedQuery)}`,
+                        {
+                            signal: controller.signal,
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    );
+
+                    clearTimeout(timeoutId);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data.length > 0) {
+                        // Nhóm món ăn theo loại
+                        const groupedByType = data.reduce((acc, item) => {
+                            if (!acc[item.loaiMon]) {
+                                acc[item.loaiMon] = [];
+                            }
+                            acc[item.loaiMon].push(item);
+                            return acc;
+                        }, {});
+
+                        // Hiển thị kết quả
+                        let html = `<p class="mb-4 text-[#704539]">Tìm thấy ${data.length} kết quả cho "${decodedQuery}"</p>`;
+
+                        for (const [loaiMon, monAn] of Object.entries(groupedByType)) {
+                            html += `
+                                <div class="mb-6">
+                                    <h3 class="text-xl font-bold mb-3 text-[#8b5e34]">${loaiMon}</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            `;
+
+                            monAn.forEach(item => {
+                                html += `
+                                    <div class="bg-white p-4 rounded-lg shadow-md">
+                                        <h4 class="font-semibold text-[#6e453b]">${item.tenMonAn}</h4>
+                                        <div class="mt-2 text-gray-600">
+                                            ${item.giaVua ? `<p>Giá vừa: ${item.giaVua}.000đ</p>` : ''}
+                                            ${item.giaNho ? `<p>Giá nhỏ: ${item.giaNho}.000đ</p>` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            html += `
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        resultContainer.innerHTML = html;
+                    } else {
+                        resultContainer.innerHTML = `
+                            <div class="text-center py-8">
+                                <p class="text-lg text-gray-600">Không tìm thấy kết quả nào cho "${decodedQuery}"</p>
+                                <p class="mt-2">Vui lòng thử lại với từ khóa khác</p>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const resultContainer = document.querySelector('.search-results-content');
+                resultContainer.innerHTML = `
+                    <div class="text-center py-8">
+                        <p class="text-lg text-red-600">Đã có lỗi xảy ra khi tìm kiếm.</p>
+                        <p class="mt-2 text-gray-600">Vui lòng thử lại sau hoặc kiểm tra kết nối mạng của bạn.</p>
+                        <button onclick="window.location.reload()" class="mt-4 bg-[#704539] text-white px-4 py-2 rounded-md hover:bg-[#8b5e34]">
+                            Thử lại
+                        </button>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>
