@@ -43,14 +43,17 @@
         <div class="sm:hidden">
             <button id="menu-btn" class="text-white focus:outline-none">
                 <!-- Hamburger Icon -->
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
                 </svg>
             </button>
         </div>
 
         <!-- Desktop Navigation Links -->
-        <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+        <div id="nav-links"
+            class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
             <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
             <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
             <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
@@ -60,14 +63,28 @@
 
         <!-- Search Bar (Visible on Desktop) -->
         <div class="hidden sm:flex items-center space-x-4">
-            <div class="bg-[#D8B899] rounded-md px-4 py-1">
-                <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+            <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center">
+                <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+                <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
-    <div id="mobile-menu" class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+    <div id="mobile-menu"
+        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+
+        <!-- Mobile Search Bar -->
+        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+            <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+                class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+            <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
         <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
         <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
         <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
@@ -75,12 +92,73 @@
         <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
     </div>
 
+
     <script>
         // Toggle mobile menu visibility
-        document.getElementById('menu-btn').addEventListener('click', function() {
+        document.getElementById('menu-btn').addEventListener('click', function () {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
+    </script>
+    <script>
+        function handleSearch(inputId) {
+            const query = document.getElementById(inputId).value.trim();
+            if (query) {
+                // Chuyển hướng đến trang PHP tìm kiếm với query string
+                window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+            } else {
+                alert("Vui lòng nhập từ khóa tìm kiếm!");
+            }
+        }
+
+        // Xử lý sự kiện click nút tìm kiếm
+        document.getElementById('desktop-search-btn').addEventListener('click', function () {
+            handleSearch('desktop-search');
+        });
+
+        document.getElementById('mobile-search-btn').addEventListener('click', function () {
+            handleSearch('mobile-search');
+        });
+
+        // Xử lý sự kiện nhấn Enter
+        ['desktop-search', 'mobile-search'].forEach((id) => {
+            document.getElementById(id).addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    handleSearch(id);
+                }
+            });
+        });
+    </script>
+    <script>
+
+        function handleSearch(inputId) {
+            const query = document.getElementById(inputId).value.trim();
+            if (query) {
+                // Redirect to PHP search page with query string
+                window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+            } else {
+                alert("Vui lòng nhập từ khóa tìm kiếm!");
+            }
+        }
+
+
+        document.getElementById('desktop-search-btn').addEventListener('click', function () {
+            handleSearch('desktop-search');
+        });
+
+        document.getElementById('mobile-search-btn').addEventListener('click', function () {
+            handleSearch('mobile-search');
+        });
+
+        // Handle Enter key press
+        ['desktop-search', 'mobile-search'].forEach((id) => {
+            document.getElementById(id).addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    handleSearch(id);
+                }
+            });
+        });
+
     </script>
 
     <main id="main" class="full">

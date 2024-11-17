@@ -13,20 +13,23 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-$search = '';  // Khởi tạo biến $search
+// ... existing database connection code ...
 
-// Kiểm tra xem có từ khóa tìm kiếm không
-if (isset($_GET['search'])) {
-    $search = $_GET['search'];  // Lấy từ khóa tìm kiếm từ form
+$search = '';
 
-    // Tránh SQL Injection bằng cách sử dụng prepared statements
+// Kiểm tra và lấy từ khóa tìm kiếm từ URL
+if (isset($_GET['keyword'])) {
+    $search = $_GET['keyword'];  // Lấy từ khóa từ query parameter 'keyword'
+
+    // Tránh SQL Injection bằng prepared statement
     $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don WHERE ten_mon_an LIKE ?");
-    $searchTerm = "%" . $search . "%"; // Thêm ký tự % để tìm kiếm chứa từ khóa
+    $searchTerm = "%" . $search . "%";
     $stmt->bind_param("s", $searchTerm);
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $result = null;
+    // Nếu không có từ khóa, hiển thị tất cả món ăn
+    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don");
 }
 
 $conn->close();
@@ -84,12 +87,13 @@ $conn->close();
 
       <!-- Search Bar (Visible on Desktop) -->
       <div class="hidden sm:flex items-center space-x-4">
-        <form action="" method="GET" class="flex items-center space-x-4">
-          <div class="bg-[#D8B899] rounded-md px-4 py-1">
-            <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-          </div>
-          <button type="submit" class="bg-[#704539] text-white rounded px-4 py-1">Tìm kiếm</button>
-        </form>
+<form action="" method="GET" class="flex items-center space-x-4">
+    <div class="bg-[#D8B899] rounded-md px-4 py-1">
+        <input type="text" name="keyword" value="<?php echo htmlspecialchars($search); ?>" 
+               placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+    </div>
+    <button type="submit" class="bg-[#704539] text-white rounded px-4 py-1">Tìm kiếm</button>
+</form>
       </div>
     </nav>
     <div id="mobile-menu" class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
