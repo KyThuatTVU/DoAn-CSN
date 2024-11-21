@@ -1,15 +1,16 @@
 <?php
 // Kết nối cơ sở dữ liệu
-$servername = "localhost"; // Tên máy chủ
-$username = "root";        // Tên người dùng MySQL
-$password = "";            // Mật khẩu MySQL
-$dbname = "cua_hang";      // Tên cơ sở dữ liệu
+$servername = "localhost"; // Tên máy chủ (thường là localhost)
+$username = "lbfhcaxb_cua_hang";        // Tên người dùng MySQL (thường là root)
+$password = "Q4dmJ2FKnDxJVFwgwMdz";            // Mật khẩu của người dùng MySQL
+$dbname = "lbfhcaxb_cua_hang";  // Tên cơ sở dữ liệu bạn muốn kết nối
+
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Kiểm tra kết nối
-if ($conn->connect_error) {
+if ($conn->connect_error) {=
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 

@@ -1,9 +1,9 @@
 <?php
 // Thông tin cấu hình kết nối
 $servername = "localhost"; // Tên máy chủ (thường là localhost)
-$username = "root";        // Tên người dùng MySQL (thường là root)
-$password = "";            // Mật khẩu của người dùng MySQL
-$dbname = "cua_hang";  // Tên cơ sở dữ liệu bạn muốn kết nối
+$username = "lbfhcaxb_cua_hang";        // Tên người dùng MySQL (thường là root)
+$password = "Q4dmJ2FKnDxJVFwgwMdz";            // Mật khẩu của người dùng MySQL
+$dbname = "lbfhcaxb_cua_hang";  // Tên cơ sở dữ liệu bạn muốn kết nối
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
