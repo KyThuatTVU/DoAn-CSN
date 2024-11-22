@@ -1,124 +1,37 @@
-<nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
-    <!-- Logo -->
-    <div class="flex items-center">
-        <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-            <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
-        </h1>
-    </div>
+<?php
+// Kết nối cơ sở dữ liệu
+$servername = "localhost"; // Tên máy chủ (thường là localhost)
+$username = "lbfhcaxb_cua_hang";        // Tên người dùng MySQL (thường là root)
+$password = "Q4dmJ2FKnDxJVFwgwMdz";            // Mật khẩu của người dùng MySQL
+$dbname = "lbfhcaxb_cua_hang";  // Tên cơ sở dữ liệu bạn muốn kết nối
 
-    <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
-    <div class="sm:hidden">
-        <button id="menu-btn" class="text-white focus:outline-none">
-            <!-- Hamburger Icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-    </div>
 
-    <!-- Desktop Navigation Links -->
-    <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-        <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-        <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-        <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-        <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-        <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-    </div>
+// Tạo kết nối
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    <!-- Search Bar (Visible on Desktop) -->
-    <div class="hidden sm:flex items-center space-x-4">
-        <input 
-            type="text" 
-            id="desktop-search" 
-            placeholder="Tìm kiếm"
-            class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font px-4 py-2 border border-[#D8B899] rounded-l-md"
-            required
-        />
-        <button 
-            type="button" 
-            id="desktop-search-btn"
-            class="bg-[#D8B899] text-[#704539] px-4 py-2 rounded-r-md font-bold hover:bg-[#704539] hover:text-[#D8B899]">
-            Tìm kiếm
-        </button>
-    </div>
-</nav>
+// Kiểm tra kết nối
+if ($conn->connect_error) {=
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
 
-<!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
-<div id="mobile-menu" class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
-    <!-- Mobile Search Bar -->
-    <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4">
-        <input type="text" id="mobile-search" placeholder="Tìm kiếm" class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-    </div>
-    <button 
-        type="button" 
-        id="mobile-search-btn"
-        class="bg-[#D8B899] text-[#704539] px-4 py-2 rounded-r-md font-bold hover:bg-[#704539] hover:text-[#D8B899]">
-        Tìm kiếm
-    </button>
-</div>
+// ... existing database connection code ...
 
-<!-- Search Results -->
-<div id="search-results" class="hidden bg-white text-[#704539] border border-[#D8B899] mt-4 px-4 py-2 rounded-md"></div>
+$search = '';
 
-<script>
-    // Hàm tìm kiếm sử dụng AJAX (fetch API)
-    function search(query) {
-        // Gửi yêu cầu đến KQSQL.php với từ khóa tìm kiếm
-        fetch('KQSQL.php?keyword=' + encodeURIComponent(query))
-            .then(response => response.json())  // Giả sử dữ liệu trả về là JSON
-            .then(data => {
-                // Kiểm tra nếu có kết quả tìm kiếm
-                if (data.length > 0) {
-                    let resultHTML = '<ul>';
-                    data.forEach(item => {
-                        resultHTML += `<li>${item.name} - ${item.description}</li>`; // Hiển thị kết quả tìm kiếm
-                    });
-                    resultHTML += '</ul>';
-                    document.getElementById('search-results').innerHTML = resultHTML;  // Hiển thị kết quả
-                    document.getElementById('search-results').classList.remove('hidden'); // Hiển thị phần kết quả
-                } else {
-                    document.getElementById('search-results').innerHTML = '<p>Không tìm thấy kết quả phù hợp.</p>';
-                    document.getElementById('search-results').classList.remove('hidden'); // Hiển thị phần kết quả
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching search results:', error);
-                document.getElementById('search-results').innerHTML = '<p>Đã xảy ra lỗi, vui lòng thử lại sau.</p>';
-                document.getElementById('search-results').classList.remove('hidden'); // Hiển thị phần kết quả
-            });
-    }
+// Kiểm tra và lấy từ khóa tìm kiếm từ URL
+if (isset($_GET['keyword'])) {
+    $search = $_GET['keyword'];  // Lấy từ khóa từ query parameter 'keyword'
 
-    // Handle search button click for desktop
-    document.getElementById('desktop-search-btn').addEventListener('click', function () {
-        const query = document.getElementById('desktop-search').value.trim();
-        if (query) {
-            search(query); // Call AJAX search
-        } else {
-            alert("Vui lòng nhập từ khóa tìm kiếm!");
-        }
-    });
+    // Tránh SQL Injection bằng prepared statement
+    $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don WHERE ten_mon_an LIKE ?");
+    $searchTerm = "%" . $search . "%";
+    $stmt->bind_param("s", $searchTerm);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    // Nếu không có từ khóa, hiển thị tất cả món ăn
+    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don");
+}
 
-    // Handle search button click for mobile
-    document.getElementById('mobile-search-btn').addEventListener('click', function () {
-        const query = document.getElementById('mobile-search').value.trim();
-        if (query) {
-            search(query); // Call AJAX search
-        } else {
-            alert("Vui lòng nhập từ khóa tìm kiếm!");
-        }
-    });
-
-    // Handle Enter key press for both desktop and mobile
-    ['desktop-search', 'mobile-search'].forEach((id) => {
-        document.getElementById(id).addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                const query = document.getElementById(id).value.trim();
-                if (query) {
-                    search(query); // Call AJAX search
-                } else {
-                    alert("Vui lòng nhập từ khóa tìm kiếm!");
-                }
-            }
-        });
-    });
-</script>
+$conn->close();
+?> 

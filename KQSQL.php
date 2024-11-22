@@ -1,45 +1,70 @@
+
 <?php
 // Kết nối cơ sở dữ liệu
 $servername = "localhost"; // Tên máy chủ (thường là localhost)
-$username = "lbfhcaxb_cua_hang";        // Tên người dùng MySQL (thường là root)
-$password = "Q4dmJ2FKnDxJVFwgwMdz";            // Mật khẩu của người dùng MySQL
-$dbname = "lbfhcaxb_cua_hang";  // Tên cơ sở dữ liệu bạn muốn kết nối
-
+$username = "lbfhcaxb_cua_hang"; // Tên người dùng MySQL
+$password = "Q4dmJ2FKnDxJVFwgwMdz"; // Mật khẩu của người dùng MySQL
+$dbname = "lbfhcaxb_cua_hang"; // Tên cơ sở dữ liệu bạn muốn kết nối
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Kiểm tra kết nối
-if ($conn->connect_error) {=
+if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// ... existing database connection code ...
-
 $search = '';
+$result = null; // Khởi tạo giá trị mặc định cho $result
 
 // Kiểm tra và lấy từ khóa tìm kiếm từ URL
-if (isset($_GET['keyword'])) {
-    $search = $_GET['keyword'];  // Lấy từ khóa từ query parameter 'keyword'
+if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+    $search = trim($_GET['keyword']); // Lấy từ khóa từ query parameter 'keyword' và loại bỏ khoảng trắng thừa
 
     // Tránh SQL Injection bằng prepared statement
-    $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don WHERE ten_mon_an LIKE ?");
-    $searchTerm = "%" . $search . "%";
-    $stmt->bind_param("s", $searchTerm);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho, mo_ta 
+                            FROM thuc_don 
+                            WHERE ten_mon_an LIKE ? COLLATE utf8_general_ci"); // Áp dụng collate utf8_general_ci
+    if ($stmt) {
+        $searchTerm = "%" . $search . "%";
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } else {
+        die("Lỗi truy vấn: " . $conn->error);
+    }
 } else {
     // Nếu không có từ khóa, hiển thị tất cả món ăn
-    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don");
+    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho, mo_ta 
+                            FROM thuc_don 
+                            COLLATE utf8_general_ci"); // Áp dụng collate utf8_general_ci
+    if (!$result) {
+        die("Lỗi truy vấn: " . $conn->error);
+    }
+}
+
+// Hiển thị kết quả tìm kiếm
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<div>";
+        echo "<h3>" . $row['ten_mon_an'] . "</h3>"; // Tên món ăn
+        echo "<p><strong>Loại món:</strong> " . $row['loai_mon'] . "</p>"; // Loại món ăn (ví dụ: gà nướng, gà chiên, ...)
+        echo "<p><strong>Mô tả:</strong> " . $row['mo_ta'] . "</p>"; // Mô tả món ăn (nếu có)
+        echo "<p><strong>Giá:</strong> " . $row['gia_vua'] . " VND / " . $row['gia_nho'] . " VND</p>"; // Giá món ăn
+        echo "</div><hr>";
+    }
+} else {
+    echo "Không tìm thấy món ăn nào!";
 }
 
 $conn->close();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tìm kiếm - Nhà Hàng Phương Nam</title>
 
