@@ -120,7 +120,53 @@
         <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
         <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
+    <script>
+        window.addEventListener("load", function() {
+            // Hiệu ứng cho desktop navigation links khi trang tải
+            gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+            gsap.to("#nav-links a", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+                ease: "power3.out",
+                delay: 0.5 // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng cho mobile menu khi hiển thị
+            gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+            gsap.to("#mobile-menu", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.3, // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng khi hover trên các liên kết menu
+            gsap.utils.toArray("#nav-links a").forEach(link => {
+                // Lấy màu sắc ban đầu của liên kết
+                const defaultColor = getComputedStyle(link).color;
+    
+                link.addEventListener("mouseenter", () => {
+                    gsap.to(link, {
+                        scale: 1.1,
+                        color: "#D8B899", // Thay đổi màu khi hover
+                        duration: 0.3
+                    });
+                });
+                link.addEventListener("mouseleave", () => {
+                    gsap.to(link, {
+                        scale: 1,
+                        color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                        duration: 0.3
+                    });
+                });
+            });
+        });
+    </script>
 
     <script>
         // Toggle mobile menu visibility
@@ -208,58 +254,95 @@
 
 
 
-            <!-- Menu Images Section -->
-            <div class="py-3">
-                <div class="container mx-auto px-4">
-                    <!-- Grid layout with 2 columns -->
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Image 1 -->
-                        <div class="col-span-1">
-                            <img class="w-full h-auto object-cover cursor-pointer"
-                                src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-2-1280x1810.jpg"
-                                alt="Menu Image 1" onclick="openModal(this)" />
-                        </div>
-
-                        <!-- Image 2 -->
-                        <div class="col-span-1">
-                            <img class="w-full h-auto object-cover cursor-pointer"
-                                src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-3-1280x1810.jpg"
-                                alt="Menu Image 2" onclick="openModal(this)" />
-                        </div>
-
-                        <!-- Image 3 -->
-                        <div class="col-span-1">
-                            <img class="w-full h-auto object-cover cursor-pointer"
-                                src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-4-1280x1810.jpg"
-                                alt="Menu Image 3" onclick="openModal(this)" />
-                        </div>
-
-                        <!-- Image 4 -->
-                        <div class="col-span-1">
-                            <img class="w-full h-auto object-cover cursor-pointer"
-                                src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-5-1280x1810.jpg"
-                                alt="Menu Image 4" onclick="openModal(this)" />
-                        </div>
-
-                        <!-- Image 5 -->
-                        <div class="col-span-1">
-                            <img class="w-full h-auto object-cover cursor-pointer"
-                                src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-6-1280x1810.jpg"
-                                alt="Menu Image 5" onclick="openModal(this)" />
-                        </div>
-
-
-
-                    </div>
-                </div>
+           <!-- Menu Images Section -->
+<div class="py-3">
+    <div class="container mx-auto px-4">
+        <!-- Grid layout with 2 columns -->
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Image 1 -->
+            <div class="col-span-1">
+                <img class="w-full h-auto object-cover cursor-pointer"
+                    src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-2-1280x1810.jpg"
+                    alt="Menu Image 1" onclick="openModal(this, 0)" />
             </div>
 
-            <!-- Modal for viewing larger images -->
-            <div id="imageModal" class="modal">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <img class="modal-content" id="modalImage" />
+            <!-- Image 2 -->
+            <div class="col-span-1">
+                <img class="w-full h-auto object-cover cursor-pointer"
+                    src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-3-1280x1810.jpg"
+                    alt="Menu Image 2" onclick="openModal(this, 1)" />
+            </div>
+
+            <!-- Image 3 -->
+            <div class="col-span-1">
+                <img class="w-full h-auto object-cover cursor-pointer"
+                    src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-4-1280x1810.jpg"
+                    alt="Menu Image 3" onclick="openModal(this, 2)" />
+            </div>
+
+            <!-- Image 4 -->
+            <div class="col-span-1">
+                <img class="w-full h-auto object-cover cursor-pointer"
+                    src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-5-1280x1810.jpg"
+                    alt="Menu Image 4" onclick="openModal(this, 3)" />
+            </div>
+
+            <!-- Image 5 -->
+            <div class="col-span-1">
+                <img class="w-full h-auto object-cover cursor-pointer"
+                    src="https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-6-1280x1810.jpg"
+                    alt="Menu Image 5" onclick="openModal(this, 4)" />
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modal for viewing larger images -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="relative">
+        <span class="absolute top-0 right-0 text-white text-3xl cursor-pointer" onclick="closeModal()">&times;</span>
+        <img class="modal-content max-w-full max-h-screen" id="modalImage" />
+        
+        <!-- Next and Previous buttons -->
+        <button class="absolute top-1/2 left-0 transform -translate-y-1/2 text-white text-3xl" onclick="changeImage(-1)">&#10094;</button>
+        <button class="absolute top-1/2 right-0 transform -translate-y-1/2 text-white text-3xl" onclick="changeImage(1)">&#10095;</button>
+    </div>
+</div>
+
+<script>
+    const images = [
+        "https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-2-1280x1810.jpg",
+        "https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-3-1280x1810.jpg",
+        "https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-4-1280x1810.jpg",
+        "https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-5-1280x1810.jpg",
+        "https://nhahangvian.com/wp-content/uploads/2024/05/MENU-VI-AN-Tieng-Viet-final11-hinh-anh-6-1280x1810.jpg"
+    ];
+
+    let currentIndex = 0;
+
+    // Open Modal with the clicked image
+    function openModal(element, index) {
+        currentIndex = index;
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        modalImage.src = images[index];
+        modal.classList.remove("hidden");
+    }
+
+    // Close Modal
+    function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.classList.add("hidden");
+    }
+
+    // Change Image in Modal
+    function changeImage(direction) {
+        currentIndex = (currentIndex + direction + images.length) % images.length; // Loop through the images
+        const modalImage = document.getElementById("modalImage");
+        modalImage.src = images[currentIndex];
+    }
+</script>
+
     </main>
 
     <!-- Thêm icon Twitter và YouTube vào footer -->

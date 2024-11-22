@@ -10,7 +10,7 @@
 
     <!-- Google Font: Audiowide -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="img/Phương Nam.png"/>
+    <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
@@ -93,10 +93,14 @@
 
       <!-- Search Bar (Visible on Desktop) -->
       <div class="hidden sm:flex items-center space-x-4">
-          <div class="bg-[#D8B899] rounded-md px-4 py-1">
-              <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-          </div>
-      </div>
+        <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center">
+            <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+                class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+            <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
   </nav>
 
   <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
@@ -107,7 +111,53 @@
       <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
       <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
+  <script>
+      window.addEventListener("load", function() {
+          // Hiệu ứng cho desktop navigation links khi trang tải
+          gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+          gsap.to("#nav-links a", {
+              opacity: 1,
+              y: 0,
+              duration: 1.5,
+              stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+              ease: "power3.out",
+              delay: 0.5 // Đợi một chút rồi mới thực hiện
+          });
+  
+          // Hiệu ứng cho mobile menu khi hiển thị
+          gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+          gsap.to("#mobile-menu", {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              delay: 0.3, // Đợi một chút rồi mới thực hiện
+          });
+  
+          // Hiệu ứng khi hover trên các liên kết menu
+          gsap.utils.toArray("#nav-links a").forEach(link => {
+              // Lấy màu sắc ban đầu của liên kết
+              const defaultColor = getComputedStyle(link).color;
+  
+              link.addEventListener("mouseenter", () => {
+                  gsap.to(link, {
+                      scale: 1.1,
+                      color: "#D8B899", // Thay đổi màu khi hover
+                      duration: 0.3
+                  });
+              });
+              link.addEventListener("mouseleave", () => {
+                  gsap.to(link, {
+                      scale: 1,
+                      color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                      duration: 0.3
+                  });
+              });
+          });
+      });
+  </script>
   <script>
       // Toggle mobile menu visibility
       document.getElementById('menu-btn').addEventListener('click', function() {
@@ -115,6 +165,66 @@
           mobileMenu.classList.toggle('hidden');
       });
   </script>
+   <script>
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Chuyển hướng đến trang PHP tìm kiếm với query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
+        }
+    }
+
+    // Xử lý sự kiện click nút tìm kiếm
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Xử lý sự kiện nhấn Enter
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
+        });
+    });
+</script>
+<script>
+
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Redirect to PHP search page with query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
+        }
+    }
+
+
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Handle Enter key press
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
+        });
+    });
+
+</script>
 
     
 <div class="h-96 bg-cover bg-center bg-no-repeat relative flex justify-center items-center"
@@ -133,131 +243,127 @@ style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12
 </div>
 </div>
 
-      <div class="grid grid-cols-4 gap-1"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
-          
-        <!-- Ảnh lớn bên trái -->
-        <div class="col-span-2">
-          <img
-            alt="Front view of the restaurant"
-            class="album-image w-full h-auto"
-            height="400"
-            src="img/AB1.jpg"
-            width="900"
-          />
-        </div>
-    
-        <!-- 4 ảnh nhỏ bên phải -->
-        <div class="col-span-2 grid grid-cols-2 gap-2"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
-          <img
-            alt="Close-up of the restaurant's glass facade"
-            class="album-image w-full h-auto"
-            height="500"
-            src="img/AB2.jpg"
-            width="600"
-          />
-          <img
-            alt="People dining inside the restaurant"
-            class="album-image w-full h-auto"
-            height="200"
-            src="img/AB3.jpg"
-            width="300"
-          />
-          <img
-            alt="Interior view of the restaurant with hanging lights"
-            class="album-image w-full h-auto"
-            height="200"
-            src="img/AB4.jpg"
-            width="300"
-          />
-          <img
-            alt="Another interior view with a chandelier"
-            class="album-image w-full h-auto"
-            height="200"
-            src="img/AB5.jpg"
-            width="300"
-          />
-        </div>
-    
-        <!-- Hàng 5 cột phía dưới -->
-        <div class="col-span-4 grid grid-cols-5 gap-2"> <!-- Giảm khoảng cách từ gap-4 xuống gap-2 -->
-          <img
-            alt="Various dishes served at the restaurant"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB6.jpg"
-            width="200"
-          />
-          <img
-            alt="Top view of people dining"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB7.jpg"
-            width="200"
-          />
-          <img
-            alt="Person eating at the restaurant"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB8.jpg"
-            width="200"
-          />
-          <img
-            alt="Group of people dining together"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB9.jpg"
-            width="200"
-          />
-          <img
-            alt="Another group of people dining"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB11.jpg"
-            width="200"
-          />
-          <img
-            alt="Restaurant's signboard"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB12.jpg"
-            width="200"
-          />
-          <img
-            alt="Interior view with hanging lights"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB14.jpg"
-            width="200"
-          />
-          <img
-            alt="People dining inside the restaurant"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB15.jpg"
-            width="200"
-          />
-          <img
-            alt="Group of people dining together"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB16.jpg"
-            width="200"
-          />
-          <img
-            alt="Another group of people dining"
-            class="album-image w-full h-auto"
-            height="150"
-            src="img/AB17.jpg"
-            width="200"
-          />
-        </div>
-      </div>
+<div class="grid grid-cols-4 gap-2">
+  <!-- Ảnh lớn bên trái -->
+  <div class="col-span-2">
+    <img
+      alt="Front view of the restaurant"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB1.jpg"
+      onclick="openModal('img/AB1.jpg')"
+    />
   </div>
 
-  <!-- Modal for Image -->
-  <div id="imageModal" class="modal flex">
-      <img id="modalImage" src="" alt="">
+  <!-- 4 ảnh nhỏ bên phải -->
+  <div class="col-span-2 grid grid-cols-2 gap-2">
+    <img
+      alt="Close-up of the restaurant's glass facade"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB2.jpg"
+      onclick="openModal('img/AB2.jpg')"
+    />
+    <img
+      alt="People dining inside the restaurant"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB3.jpg"
+      onclick="openModal('img/AB3.jpg')"
+    />
+    <img
+      alt="Interior view of the restaurant with hanging lights"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB4.jpg"
+      onclick="openModal('img/AB4.jpg')"
+    />
+    <img
+      alt="Another interior view with a chandelier"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB5.jpg"
+      onclick="openModal('img/AB5.jpg')"
+    />
   </div>
+
+  <!-- Hàng 5 cột phía dưới -->
+  <div class="col-span-4 grid grid-cols-5 gap-2">
+    <img
+      alt="Various dishes served at the restaurant"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB6.jpg"
+      onclick="openModal('img/AB6.jpg')"
+    />
+    <img
+      alt="Top view of people dining"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB7.jpg"
+      onclick="openModal('img/AB7.jpg')"
+    />
+    <img
+      alt="Person eating at the restaurant"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB8.jpg"
+      onclick="openModal('img/AB8.jpg')"
+    />
+    <img
+      alt="Group of people dining together"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB9.jpg"
+      onclick="openModal('img/AB9.jpg')"
+    />
+    <img
+      alt="Another group of people dining"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB11.jpg"
+      onclick="openModal('img/AB11.jpg')"
+    />
+    <img
+      alt="Restaurant's signboard"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB12.jpg"
+      onclick="openModal('img/AB12.jpg')"
+    />
+    <img
+      alt="Interior view with hanging lights"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB14.jpg"
+      onclick="openModal('img/AB14.jpg')"
+    />
+    <img
+      alt="People dining inside the restaurant"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB15.jpg"
+      onclick="openModal('img/AB15.jpg')"
+    />
+    <img
+      alt="Group of people dining together"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB16.jpg"
+      onclick="openModal('img/AB16.jpg')"
+    />
+    <img
+      alt="Another group of people dining"
+      class="album-image cursor-pointer w-full h-auto"
+      src="img/AB17.jpg"
+      onclick="openModal('img/AB17.jpg')"
+    />
+  </div>
+</div>
+
+<div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
+  <div class="relative">
+    <!-- Ảnh lớn -->
+    <img id="modalImage" class="max-w-full max-h-screen" src="" alt="">
+
+    <!-- Nút đóng -->
+    <span class="absolute top-2 right-4 text-white text-4xl cursor-pointer" onclick="closeModal()">×</span>
+
+    <!-- Nút trái -->
+    <button id="prevButton" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white text-3xl p-2 rounded-full focus:outline-none" onclick="prevImage()">‹</button>
+
+    <!-- Nút phải -->
+    <button id="nextButton" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white text-3xl p-2 rounded-full focus:outline-none" onclick="nextImage()">›</button>
+  </div>
+</div>
+
+
 
   <script>
       // Lấy tất cả các ảnh có lớp album-image
@@ -318,6 +424,61 @@ style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12
               image.style.transform = "scale(1)";  // Reset lại kích thước
           });
       });
+
+      // Mở Modal và hiển thị ảnh
+function openModal(imageSrc) {
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  modalImage.src = imageSrc;
+  modal.classList.remove('hidden');
+}
+
+// Đóng Modal
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.classList.add('hidden');
+}
+
+// Lấy danh sách ảnh
+const image = Array.from(document.querySelectorAll('.album-image'));
+let currentIndex = 0;
+
+// Mở modal với ảnh cụ thể
+function openModal(src) {
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  currentIndex = images.findIndex(image => image.src.endsWith(src.split('/').pop()));
+  modalImage.src = src;
+  modal.classList.remove('hidden');
+}
+
+// Đóng modal
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.classList.add('hidden');
+}
+
+// Chuyển sang ảnh trước
+function prevImage() {
+  if (currentIndex > 0) {
+    currentIndex--;
+  } else {
+    currentIndex = images.length - 1; // Quay lại ảnh cuối
+  }
+  document.getElementById('modalImage').src = images[currentIndex].src;
+}
+
+// Chuyển sang ảnh kế
+function nextImage() {
+  if (currentIndex < images.length - 1) {
+    currentIndex++;
+  } else {
+    currentIndex = 0; // Quay lại ảnh đầu
+  }
+  document.getElementById('modalImage').src = images[currentIndex].src;
+}
+
+
   </script>
 
     

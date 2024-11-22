@@ -91,7 +91,53 @@
         <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
         <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
+    <script>
+        window.addEventListener("load", function() {
+            // Hiệu ứng cho desktop navigation links khi trang tải
+            gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+            gsap.to("#nav-links a", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+                ease: "power3.out",
+                delay: 0.5 // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng cho mobile menu khi hiển thị
+            gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+            gsap.to("#mobile-menu", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.3, // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng khi hover trên các liên kết menu
+            gsap.utils.toArray("#nav-links a").forEach(link => {
+                // Lấy màu sắc ban đầu của liên kết
+                const defaultColor = getComputedStyle(link).color;
+    
+                link.addEventListener("mouseenter", () => {
+                    gsap.to(link, {
+                        scale: 1.1,
+                        color: "#D8B899", // Thay đổi màu khi hover
+                        duration: 0.3
+                    });
+                });
+                link.addEventListener("mouseleave", () => {
+                    gsap.to(link, {
+                        scale: 1,
+                        color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                        duration: 0.3
+                    });
+                });
+            });
+        });
+    </script>
 
     <script>
         // Toggle mobile menu visibility
@@ -249,8 +295,8 @@
             </h1>
         </header>
         <main class="w-full max-w-6xl">
-            <div class="grid grid-cols-3 gap-4">
-                <!-- Gallery Images -->
+            <!-- Gallery Images -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
                 <div class="col-span-3 gallery-image">
                     <img alt="Restaurant sign with the text 'Vị An - Cơm Ngon Tròn Vị'" class="w-full h-auto"
                          src="img/gioithieu3.jpg" />
@@ -299,20 +345,89 @@
         </main>
     </div>
     
-    <script>
-        // GSAP Animation for Gallery Images
-        gsap.from(".gallery-image", {
-            scrollTrigger: {
-                trigger: ".gallery-image",
-                start: "top 80%", // Trigger animation when images are near the viewport
-                toggleActions: "play none none reverse", // Plays on scroll, reverses on scroll up
-            },
-            opacity: 0,            // Start from transparent
-            y: 50,                 // Start with images 50px below their final position
-            duration: 1,           // Animation duration per image
-            stagger: 0.2           // Delay between images for staggered effect
-        });
-    </script>
+
+    <!-- Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="relative">
+            <!-- Close Button -->
+            <span class="absolute top-2 right-2 text-white text-3xl cursor-pointer" onclick="closeModal()">&times;</span>
+
+            <!-- Display the selected image -->
+            <img class="modal-content max-w-full max-h-screen" id="modalImage" />
+
+            <!-- Previous Button -->
+            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 text-white text-3xl px-4" onclick="changeImage(-1)">
+                &#10094;
+            </button>
+
+            <!-- Next Button -->
+            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 text-white text-3xl px-4" onclick="changeImage(1)">
+                &#10095;
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    // List of image URLs
+    const img = [
+        "img/gioithieu3.jpg",
+        "img/gioithieu4.jpg",
+        "img/gioithieu5.jpg",
+        "img/gioithieu6.jpg",
+        "img/gioithieu7.jpg",
+        "img/gioithieu8.jpg",
+        "img/gioithieu9.jpg",
+        "img/gioithieu10.jpg",
+        "img/gioithieu11.jpg",
+        "img/gioithieu12.jpg",
+        "img/gioithieu13.jpg"
+    ];
+
+    let currentIndex = 0;
+
+    // Open Modal and display the selected image
+    function openModal(index) {
+        currentIndex = index; // Set the current image index
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+
+        modalImage.src = img[currentIndex]; // Set the source of the modal image
+        modal.classList.remove("hidden"); // Show the modal
+    }
+
+    // Close Modal
+    function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.classList.add("hidden"); // Hide the modal
+    }
+
+    // Change Image
+    function changeImage(direction) {
+        // Update currentIndex with wrap-around
+        currentIndex = (currentIndex + direction + img.length) % img.length;
+
+        const modalImage = document.getElementById("modalImage");
+        modalImage.src = img[currentIndex]; // Update the modal image
+    }
+
+    // GSAP Animation for Gallery Images
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".gallery-image", {
+        scrollTrigger: {
+            trigger: ".gallery-image",
+            start: "top 80%", // Trigger animation when images are near the viewport
+            toggleActions: "play none none reverse" // Plays on scroll, reverses on scroll up
+        },
+        opacity: 0, // Start from transparent
+        y: 50, // Start with images 50px below their final position
+        duration: 1, // Animation duration per image
+        stagger: 0.2 // Delay between images for staggered effect
+    });
+</script>
+    
+    
     
     
  <!-- Thêm icon Twitter và YouTube vào footer -->

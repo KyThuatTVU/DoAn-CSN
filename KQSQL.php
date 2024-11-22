@@ -22,9 +22,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
     $search = trim($_GET['keyword']); // Lấy từ khóa từ query parameter 'keyword' và loại bỏ khoảng trắng thừa
 
     // Tránh SQL Injection bằng prepared statement
-    $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho, mo_ta 
-                            FROM thuc_don 
-                            WHERE ten_mon_an LIKE ? COLLATE utf8_general_ci"); // Áp dụng collate utf8_general_ci
+    $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don WHERE ten_mon_an LIKE ?");
     if ($stmt) {
         $searchTerm = "%" . $search . "%";
         $stmt->bind_param("s", $searchTerm);
@@ -35,31 +33,14 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
     }
 } else {
     // Nếu không có từ khóa, hiển thị tất cả món ăn
-    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho, mo_ta 
-                            FROM thuc_don 
-                            COLLATE utf8_general_ci"); // Áp dụng collate utf8_general_ci
+    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don");
     if (!$result) {
         die("Lỗi truy vấn: " . $conn->error);
     }
 }
 
-// Hiển thị kết quả tìm kiếm
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<div>";
-        echo "<h3>" . $row['ten_mon_an'] . "</h3>"; // Tên món ăn
-        echo "<p><strong>Loại món:</strong> " . $row['loai_mon'] . "</p>"; // Loại món ăn (ví dụ: gà nướng, gà chiên, ...)
-        echo "<p><strong>Mô tả:</strong> " . $row['mo_ta'] . "</p>"; // Mô tả món ăn (nếu có)
-        echo "<p><strong>Giá:</strong> " . $row['gia_vua'] . " VND / " . $row['gia_nho'] . " VND</p>"; // Giá món ăn
-        echo "</div><hr>";
-    }
-} else {
-    echo "Không tìm thấy món ăn nào!";
-}
-
-$conn->close();
+// Không đóng kết nối ngay tại đây vì cần dùng $result bên dưới
 ?>
-
 
 <!DOCTYPE html>
 <html lang="vi">

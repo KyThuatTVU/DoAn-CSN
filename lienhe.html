@@ -75,8 +75,12 @@
 
         <!-- Search Bar (Visible on Desktop) -->
         <div class="hidden sm:flex items-center space-x-4">
-            <div class="bg-[#D8B899] rounded-md px-4 py-1">
-                <input type="text" placeholder="Tìm kiếm" class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+            <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center">
+                <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+                <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -89,7 +93,53 @@
         <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
         <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
+    <script>
+        window.addEventListener("load", function() {
+            // Hiệu ứng cho desktop navigation links khi trang tải
+            gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+            gsap.to("#nav-links a", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+                ease: "power3.out",
+                delay: 0.5 // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng cho mobile menu khi hiển thị
+            gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+            gsap.to("#mobile-menu", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.3, // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng khi hover trên các liên kết menu
+            gsap.utils.toArray("#nav-links a").forEach(link => {
+                // Lấy màu sắc ban đầu của liên kết
+                const defaultColor = getComputedStyle(link).color;
+    
+                link.addEventListener("mouseenter", () => {
+                    gsap.to(link, {
+                        scale: 1.1,
+                        color: "#D8B899", // Thay đổi màu khi hover
+                        duration: 0.3
+                    });
+                });
+                link.addEventListener("mouseleave", () => {
+                    gsap.to(link, {
+                        scale: 1,
+                        color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                        duration: 0.3
+                    });
+                });
+            });
+        });
+    </script>
     <script>
         // Toggle mobile menu visibility
         document.getElementById('menu-btn').addEventListener('click', function() {
@@ -97,6 +147,67 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
+
+<script>
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Chuyển hướng đến trang PHP tìm kiếm với query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
+        }
+    }
+
+    // Xử lý sự kiện click nút tìm kiếm
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Xử lý sự kiện nhấn Enter
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
+        });
+    });
+</script>
+<script>
+
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Redirect to PHP search page with query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
+        }
+    }
+
+
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Handle Enter key press
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
+        });
+    });
+
+</script>
     <main id="main" class="full">
         <div class="full" id="main-content">
             <!-- Banner Section -->
