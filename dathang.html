@@ -234,16 +234,26 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
   
     <main class="full">
         <!-- Banner Section -->
-        <div class="relative w-full bg-cover bg-center h-[400px]" style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12/cau-long-bien.jpg');">
-            <div class="absolute inset-0 bg-opacity-50 bg-[#fcecea]"></div> <!-- Nền của banner cũng đổi màu tương ứng -->
-            <div class="relative z-10 flex justify-center items-center h-full">
-                <div class="text-center custom-font">
-                    <!-- Thêm màu nâu đất cho chữ -->
-                    <h1 class="text-5xl font-bold mb-4 tracking-wider text-[#8B4513]">Đặt bàn</h1>
-                    <p class="text-xl text-[#8B4513]">Đặt bàn trước sẽ giúp quý khách lựa chọn được chỗ ngồi ưng ý và sự chuẩn bị chu đáo nhất.</p>
-                </div>
-            </div>
-        </div>
+        <div class="h-96 bg-cover bg-center bg-no-repeat relative flex justify-center items-center" 
+        style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12/cau-long-bien.jpg')">
+     <!-- Lớp nền mờ -->
+     <div class="absolute inset-0 bg-[#f0e2e0] bg-opacity-70"></div>
+     
+     <!-- Nội dung chữ -->
+     <div class="z-10 text-center text-white px-4">
+       <!-- Tiêu đề -->
+       <h2 class="text-4xl md:text-5xl font-bold text-[#8B4513] drop-shadow-lg mb-4"
+           style="font-family: 'Audiowide', sans-serif;">
+        ĐẶT BÀN 
+       </h2>
+       <!-- Phần phụ đề -->
+       <p class="text-xl md:text-2xl font-semibold text-[#8B4513] drop-shadow-md"
+          style="font-family: 'Audiowide', sans-serif;">
+       ĐỂ QUÝ KHÁCH CÓ MỘT TRẢI NGHIỆM THẬT TỐT KHI ĐẾN QUÁN CỦA CHÚNG TÔI, MỜI QUÝ KHÁCH HÃY 
+       ĐẶT BÀN TRƯỚC ĐỂ CÓ VỊ TRÍ NGỒI VÀ      
+    TRANG TRÍ TIỆC THEO YÊU CẦU CỦA QUÝ KHÁCH!  </p>
+     </div>
+   </div>
 
         <!-- Booking Form Section -->
         <div class="py-10 px-4 bg-[#eeeee4]"> <!-- Thêm màu nền vàng cho phần đặt bàn -->
