@@ -243,7 +243,14 @@ style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12
 </div>
 </div>
 
+
 <div class="grid grid-cols-4 gap-2">
+   <!-- Phần 1: Trang trí tiệc -->
+   <div class="col-span-4 my-4 text-center">
+    <h2 class="text-brown-500 text-3xl md:text-5xl font-bold drop-shadow-md">
+      Trang trí tiệc
+    </h2>
+  </div>
   <!-- Ảnh lớn bên trái -->
   <div class="col-span-2">
     <img
@@ -282,7 +289,16 @@ style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12
     />
   </div>
 
-  <!-- Hàng 5 cột phía dưới -->
+  <!-- Phần 1: Trang trí tiệc -->
+
+<!-- Phần 2: Không gian sảnh lớn -->
+<div class="col-span-4 my-4 text-center">
+  <h2 class="text-brown-500 text-3xl md:text-5xl font-bold drop-shadow-md">
+    Không gian sảnh lớn
+  </h2>
+</div>
+
+  <!-- Hàng ảnh thứ 2 -->
   <div class="col-span-4 grid grid-cols-5 gap-2">
     <img
       alt="Various dishes served at the restaurant"
@@ -314,6 +330,18 @@ style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12
       src="img/AB11.jpg"
       onclick="openModal('img/AB11.jpg')"
     />
+  </div>
+  <!-- Phần 3: Không gian ngoài trời -->
+  <div class="col-span-4 my-4 text-center">
+    <h2 class="text-brown-500 text-3xl md:text-5xl font-bold drop-shadow-md">
+      Không gian ngoài trời
+    </h2>
+  </div>
+</div>
+
+  
+  <!-- Hàng ảnh thứ 3 -->
+  <div class="col-span-4 grid grid-cols-5 gap-2">
     <img
       alt="Restaurant's signboard"
       class="album-image cursor-pointer w-full h-auto"
@@ -345,141 +373,130 @@ style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12
       onclick="openModal('img/AB17.jpg')"
     />
   </div>
-</div>
 
+<script>
+  // Hover effect and animations
+  images.forEach(image => {
+    image.addEventListener("mouseenter", () => {
+      image.style.transform = "scale(1.1)";
+      image.style.transition = "transform 0.3s ease-in-out";
+    });
+
+    image.addEventListener("mouseleave", () => {
+      image.style.transform = "scale(1)";
+    });
+  });
+
+  // Animation for titles using GSAP
+  window.onload = () => {
+    gsap.from("h2", {
+      opacity: 0,
+      y: 20,
+      duration: 1.5,
+      stagger: 0.5,
+      ease: "power2.out",
+    });
+  };
+</script>
+
+<!-- Modal -->
 <div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
   <div class="relative">
-    <!-- Ảnh lớn -->
+    <!-- Large image in the modal -->
     <img id="modalImage" class="max-w-full max-h-screen" src="" alt="">
 
-    <!-- Nút đóng -->
+    <!-- Close button -->
     <span class="absolute top-2 right-4 text-white text-4xl cursor-pointer" onclick="closeModal()">×</span>
 
-    <!-- Nút trái -->
+    <!-- Previous button -->
     <button id="prevButton" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white text-3xl p-2 rounded-full focus:outline-none" onclick="prevImage()">‹</button>
 
-    <!-- Nút phải -->
+    <!-- Next button -->
     <button id="nextButton" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white text-3xl p-2 rounded-full focus:outline-none" onclick="nextImage()">›</button>
   </div>
 </div>
 
-
-
-  <script>
-      // Lấy tất cả các ảnh có lớp album-image
-      const images = document.querySelectorAll('.album-image');
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
-
-      // Thêm sự kiện click cho mỗi hình ảnh
-      images.forEach(img => {
-          img.style.cursor = 'pointer';
-          img.addEventListener('click', () => {
-              modal.classList.add('show'); // Thêm lớp show để hiển thị nền đen
-              modal.classList.remove('hidden');
-              modalImg.src = img.src;
-              modalImg.alt = img.alt;
-              document.body.style.overflow = 'hidden';
-          });
-      });
-
-      // Hàm đóng modal
-      function closeModal() {
-          modal.classList.remove('show'); // Xóa lớp show khi đóng modal
-          modal.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-      }
-
-      // Đóng modal khi click ra ngoài
-      modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-              closeModal();
-          }
-      });
-
-      // Đóng modal khi nhấn ESC
-      document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-              closeModal();
-          }
-      });
-
-      // Hiệu ứng fade-in khi trang load
-      window.onload = () => {
-          gsap.from(".album-image", {
-              opacity: 0,
-              y: 50,               // Di chuyển lên
-              duration: 2,
-              stagger: 0.1,        // Thực hiện hiệu ứng tuần tự cho từng ảnh
-              ease: "power2.out"   // Hàm easing
-          });
-      };
-
-      images.forEach(image => {
-          image.addEventListener('mouseenter', () => {
-              image.style.transform = "scale(1.1)";  // Chỉ giữ hiệu ứng zoom
-          });
-
-          image.addEventListener('mouseleave', () => {
-              image.style.transform = "scale(1)";  // Reset lại kích thước
-          });
-      });
-
-      // Mở Modal và hiển thị ảnh
-function openModal(imageSrc) {
+<script>
+  // Get all images with the album-image class
+  const images = Array.from(document.querySelectorAll('.album-image'));
   const modal = document.getElementById('imageModal');
-  const modalImage = document.getElementById('modalImage');
-  modalImage.src = imageSrc;
-  modal.classList.remove('hidden');
-}
+  const modalImg = document.getElementById('modalImage');
 
-// Đóng Modal
-function closeModal() {
-  const modal = document.getElementById('imageModal');
-  modal.classList.add('hidden');
-}
+  // Variable to store the current image index
+  let currentIndex = 0;
 
-// Lấy danh sách ảnh
-const image = Array.from(document.querySelectorAll('.album-image'));
-let currentIndex = 0;
-
-// Mở modal với ảnh cụ thể
-function openModal(src) {
-  const modal = document.getElementById('imageModal');
-  const modalImage = document.getElementById('modalImage');
-  currentIndex = images.findIndex(image => image.src.endsWith(src.split('/').pop()));
-  modalImage.src = src;
-  modal.classList.remove('hidden');
-}
-
-// Đóng modal
-function closeModal() {
-  const modal = document.getElementById('imageModal');
-  modal.classList.add('hidden');
-}
-
-// Chuyển sang ảnh trước
-function prevImage() {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = images.length - 1; // Quay lại ảnh cuối
+  // Function to open the modal with the specific image
+  function openModal(imageSrc) {
+    currentIndex = images.findIndex(image => image.src.endsWith(imageSrc.split('/').pop()));  // Find the index of the clicked image
+    modalImg.src = imageSrc;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';  // Disable scroll when modal is open
   }
-  document.getElementById('modalImage').src = images[currentIndex].src;
-}
 
-// Chuyển sang ảnh kế
-function nextImage() {
-  if (currentIndex < images.length - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0; // Quay lại ảnh đầu
+  // Function to close the modal
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';  // Enable scroll again
   }
-  document.getElementById('modalImage').src = images[currentIndex].src;
-}
 
+  // Function to go to the previous image in the modal
+  function prevImage() {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      currentIndex = images.length - 1;  // Loop back to the last image
+    }
+    modalImg.src = images[currentIndex].src;
+  }
 
-  </script>
+  // Function to go to the next image in the modal
+  function nextImage() {
+    if (currentIndex < images.length - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0;  // Loop back to the first image
+    }
+    modalImg.src = images[currentIndex].src;
+  }
+
+  // Close modal when clicking outside the image
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal when pressing ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Hover effect to zoom in on image
+  images.forEach(image => {
+    image.addEventListener('mouseenter', () => {
+      image.style.transform = "scale(1.1)";
+      image.style.transition = "transform 0.3s ease-in-out";
+    });
+
+    image.addEventListener('mouseleave', () => {
+      image.style.transform = "scale(1)";
+    });
+  });
+
+  // Fade-in effect when page loads
+  window.onload = () => {
+    gsap.from(".album-image", {
+      opacity: 0,
+      y: 50,               // Move up effect
+      duration: 2,
+      stagger: 0.1,        // Apply staggered effect to each image
+      ease: "power2.out"   // Easing function
+    });
+  };
+</script>
+
 
     
     <!-- Thêm icon Twitter và YouTube vào footer -->
