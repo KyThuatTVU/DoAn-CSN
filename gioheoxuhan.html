@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ẩm thực Phương Nam</title>
+<meta name="description" content="Nhà hàng Ẩm thực Phương Nam cung cấp các món ăn đặc trưng miền Nam, với không gian ấm cúng và phục vụ tận tình.">
+<meta name="keywords" content="Ẩm thực Phương Nam, nhà hàng Trà Vinh, món ăn miền Nam, nhà hàng đặc sản, đặt bàn Trà Vinh">
+
+
+<!-- Link to Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Tạo hiệu ứng cho chữ */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Hiệu ứng cho phần tử có lớp 'fade' */
+    .fade {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+     
+        /* Add custom font for the navbar text */
+        .custom-font {
+        font-family: 'Audiowide', sans-serif;
+        }
+    /* Hiệu ứng hover cho ảnh */
+    .image-hover:hover {
+      transform: scale(1.1) rotate(5deg);
+      transition: transform 0.3s ease;
+    }
+
+    /* Hiệu ứng slide-in từ dưới cho nội dung */
+    @keyframes slideIn {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Áp dụng hiệu ứng slideIn cho phần tử */
+    .slide-in {
+      animation: slideIn 1s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-white text-black">
+    <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+                <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
+            </h1>
+        </div>
+
+        <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+        <div class="sm:hidden">
+            <button id="menu-btn" class="text-white focus:outline-none">
+                <!-- Hamburger Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+     <!-- Desktop Navigation Links -->
+    <div id="nav-links"
+    class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+    <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+    <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+    <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+    <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+</div>
+
+<!-- Search Bar (Visible on Desktop) -->
+<div class="hidden sm:flex items-center space-x-4">
+    <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center">
+        <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+            class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+        <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</div>
+</nav>
+
+<!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+<div id="mobile-menu"
+class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+
+<!-- Mobile Search Bar -->
+<div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+    <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+        class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+    <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+<a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+<a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+<a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+<a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+<a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+<script>
+window.addEventListener("load", function() {
+    // Hiệu ứng cho desktop navigation links khi trang tải
+    gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+    gsap.to("#nav-links a", {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+        ease: "power3.out",
+        delay: 0.5 // Đợi một chút rồi mới thực hiện
+    });
+
+    // Hiệu ứng cho mobile menu khi hiển thị
+    gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+    gsap.to("#mobile-menu", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.3, // Đợi một chút rồi mới thực hiện
+    });
+
+    // Hiệu ứng khi hover trên các liên kết menu
+    gsap.utils.toArray("#nav-links a").forEach(link => {
+        // Lấy màu sắc ban đầu của liên kết
+        const defaultColor = getComputedStyle(link).color;
+
+        link.addEventListener("mouseenter", () => {
+            gsap.to(link, {
+                scale: 1.1,
+                color: "#D8B899", // Thay đổi màu khi hover
+                duration: 0.3
+            });
+        });
+        link.addEventListener("mouseleave", () => {
+            gsap.to(link, {
+                scale: 1,
+                color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                duration: 0.3
+            });
+        });
+    });
+});
+</script>
+
+<script>
+// Toggle mobile menu visibility
+document.getElementById('menu-btn').addEventListener('click', function () {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+});
+</script>
+<script>
+function handleSearch(inputId) {
+    const query = document.getElementById(inputId).value.trim();
+    if (query) {
+        // Chuyển hướng đến trang PHP tìm kiếm với query string
+        window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+    } else {
+        alert("Vui lòng nhập từ khóa tìm kiếm!");
+    }
+}
+
+// Xử lý sự kiện click nút tìm kiếm
+document.getElementById('desktop-search-btn').addEventListener('click', function () {
+    handleSearch('desktop-search');
+});
+
+document.getElementById('mobile-search-btn').addEventListener('click', function () {
+    handleSearch('mobile-search');
+});
+
+// Xử lý sự kiện nhấn Enter
+['desktop-search', 'mobile-search'].forEach((id) => {
+    document.getElementById(id).addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            handleSearch(id);
+        }
+    });
+});
+</script>
+<script>
+
+function handleSearch(inputId) {
+    const query = document.getElementById(inputId).value.trim();
+    if (query) {
+        // Redirect to PHP search page with query string
+        window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+    } else {
+        alert("Vui lòng nhập từ khóa tìm kiếm!");
+    }
+}
+
+
+document.getElementById('desktop-search-btn').addEventListener('click', function () {
+    handleSearch('desktop-search');
+});
+
+document.getElementById('mobile-search-btn').addEventListener('click', function () {
+    handleSearch('mobile-search');
+});
+
+// Handle Enter key press
+['desktop-search', 'mobile-search'].forEach((id) => {
+    document.getElementById(id).addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            handleSearch(id);
+        }
+    });
+});
+
+</script>
+
+  <div class="container mx-auto p-4 fade">
+    <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
+        <span class="block text-[#a0522d] font-[Cinzel]">GIÒ HEO</span>
+        <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">XỨ HÀN</span>
+      </h2>
+      
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+            <img 
+              alt="A dish of grilled chicken in bamboo tube served on a plate with vegetables and sauces" 
+              class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
+              src="https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/352398956_194909563548498_6262409885629189802_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH4qLblSPJyD7h17fCKO6Ts_MOEUAGaIP38w4RQAZog_TsWxfFMAk6SECk8UggYxDb2GIL6RjfDyzS5R9gucQ77&_nc_ohc=S6p7WSVk6YcQ7kNvgFri4eU&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=AEEqMZbNeMOmT3eO5VEIdZ2&oh=00_AYDqQcO6hFeDe9kW_Wf4A1KsNmETxzGG-qO35jjjEJdFZw&oe=674B4503"
+              width="800"
+            />
+          </div>
+          
+      <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Mô tả món ăn
+        </h2>
+        <p class="mb-4 text-[#000000]">
+            Giò heo xứ Hàn là một món ăn hấp dẫn, mang đậm hương vị đặc trưng của ẩm thực Hàn Quốc. Món ăn này được chế biến từ phần giò heo tươi ngon, nấu chín mềm với các gia vị đặc biệt như tỏi, tiêu, ớt, và các loại gia vị truyền thống của xứ Hàn. Món giò heo có lớp da giòn, thịt mềm, ngọt và thơm, được tẩm ướp đậm đà, ăn kèm với các loại rau sống và gia vị đặc trưng.
+        </p>
+        </p>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Nguyên liệu
+        </h2>
+        <ul class="list-disc list-inside mb-4 text-[#000000]">
+            <li><span class="font-bold text-[#a0522d]">Giò heo tươi</span></li>
+            <li><span class="font-bold text-[#a0522d]">Tỏi, hành, tiêu, ớt</span></li>
+            <li><span class="font-bold text-[#a0522d]">Gia vị Hàn Quốc</span>: sâm, tương, dầu mè</li>
+            <li><span class="font-bold text-[#a0522d]">Rau sống</span>: xà lách, ngò rí</li>
+            <li><span class="font-bold text-[#a0522d]">Mắm tôm hoặc nước mắm</span></li>
+        </ul>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Cách chế biến
+        </h2>
+        <ol class="list-decimal list-inside mb-4 text-[#000000]">
+            <li>Giò heo được rửa sạch, tẩm ướp gia vị, để thấm trong thời gian ngắn.</li>
+            <li>Nướng hoặc hầm giò heo cho đến khi thịt mềm, gia vị thấm đều.</li>
+            <li>Món ăn được bày biện với rau sống và các gia vị chấm kèm.</li>
+            <li>Thưởng thức món ăn khi còn nóng, với vị giòn của da, mềm ngọt của thịt và đậm đà từ gia vị.</li>
+        </ol>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Giá
+        </h2>
+        <p class="text-[#8a6e5a]">Giá: 220k</p>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-[#644741] text-white p-6">
+    <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
+        <!-- Cột 1: 1 div chiếm 50% chiều rộng -->
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">PHƯƠNG NAM – CƠM NGON TRÒN VỊ</h3>
+            <p>Hotline: 0904 816 145</p>
+            <p>Email: nhahangphuongnamn@gmail.com</p>
+            <p>Địa chỉ: 500 Võ Văn Kiệt, Thành phố Trà Vinh, Trà Vinh</p>
+            <p>(Có chỗ để xe ô tô)</p>
+        </div>
+  
+        <!-- Cột 2: 2 div chia đều 50% còn lại -->
+        <div class="w-full md:w-1/2 flex flex-col md:flex-row text-center md:text-left mt-6 md:mt-0">
+            <!-- Div 1 trong cột 2 -->
+            <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Giờ mở cửa</h3>
+                <p>Sáng: 10h-14h</p>
+                <p>Chiều: 18h - 22h</p>
+                <p>Tất cả các ngày trong tuần</p>
+            </div>
+  
+            <!-- Div 2 trong cột 2 -->
+            <div class="w-full md:w-1/2">
+                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Mạng xã hội</h3>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <!-- Icon Facebook -->
+                    <a href="https://www.facebook.com/Alodzo100tv" class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 12C22 5.372 17.627 1 11 1S1 5.372 1 12c0 5.296 3.688 9.683 8.437 10.729v-7.581H6.172v-3.148h3.265V9.398c0-3.18 1.895-4.927 4.774-4.927 1.385 0 2.837.25 2.837.25v3.121h-1.597c-1.575 0-2.068.978-2.068 1.979v2.359h3.513l-.561 3.148h-2.952v7.581C18.313 21.683 22 17.296 22 12z"/>
+                        </svg>
+                    </a>
+                    <!-- Icon Instagram -->
+                    <a href="#instagram" class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.316 3.608 1.29.975.975 1.228 2.242 1.29 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.316 2.633-1.29 3.608-.975.975-2.242 1.228-3.608 1.29-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.316-3.608-1.29-.975-.975-1.228-2.242-1.29-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.849c.062-1.366.316-2.633 1.29-3.608.975-.975 2.242-1.228 3.608-1.29C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.688 0 8.287.014 7.052.072c-1.566.073-2.97.39-4.133 1.552C1.757 2.784 1.44 4.188 1.367 5.754.922 7.284.922 8.688.922 12s.014 4.287.072 5.522c.073 1.566.39 2.97 1.552 4.133 1.163 1.163 2.567 1.479 4.133 1.552 1.235.058 1.636.072 4.948.072s3.713-.014 4.948-.072c1.566-.073 2.97-.39 4.133-1.552 1.163-1.163 1.479-2.567 1.552-4.133.058-1.235.072-1.636.072-4.948s-.014-3.713-.072-4.948c-.073-1.566-.39-2.97-1.552-4.133C19.87.39 18.466.073 16.9.072 15.665.014 15.264 0 12 0z"/>
+                            <path d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4.003 4.003 0 0 1 8 12a4.003 4.003 0 0 1 4-4 4.003 4.003 0 0 1 4 4 4.003 4.003 0 0 1-4 4zm6.406-10.845a1.44 1.44 0 1 1 0-2.879 1.44 1.44 0 0 1 0 2.879z"/>
+                        </svg>
+                    </a>
+                    <!-- Icon Twitter -->
+                    <a href="#twitter" class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.35 1.84c-.35 0-.7-.02-1.04-.07A12.27 12.27 0 0 0 8 21c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56.83-.59 1.55-1.33 2.13-2.17z"/>
+                        </svg>
+                    </a>
+                    <!-- Icon YouTube -->
+                    <!-- Sử dụng Font Awesome cho biểu tượng YouTube -->
+  <a href="https://www.youtube.com/@pt-canh8129/featured" class="text-white text-2xl hover:text-[#dfc3aa]">
+    <i class="fab fa-youtube h-8 w-8"></i>
+  </a>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <hr class="my-6 border-[#6e4f45]">
+  
+    <!-- Dòng bản quyền -->
+    <div class="text-center text-md">
+        <p>&copy; 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
+        <p>
+            <a href="#" class="hover:underline">Bảo mật thông tin</a> <span class="text-[#6e4f45]">|</span>
+            <a href="#" class="hover:underline">Liên hệ</a>
+        </p>
+    </div>
+  </footer>
+
+</body>
+</html>

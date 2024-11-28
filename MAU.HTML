@@ -1,37 +1,87 @@
-<?php
-// Kết nối cơ sở dữ liệu
-$servername = "localhost"; // Tên máy chủ (thường là localhost)
-$username = "lbfhcaxb_cua_hang";        // Tên người dùng MySQL (thường là root)
-$password = "Q4dmJ2FKnDxJVFwgwMdz";            // Mật khẩu của người dùng MySQL
-$dbname = "lbfhcaxb_cua_hang";  // Tên cơ sở dữ liệu bạn muốn kết nối
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ẩm Thực Phương Nam - Mô Tả Món Ăn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <!-- Header -->
+  <header class="bg-green-600 text-white py-4 shadow-md">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Ẩm Thực Phương Nam</h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="#" class="hover:text-gray-300">Trang Chủ</a></li>
+          <li><a href="#" class="hover:text-gray-300">Thực Đơn</a></li>
+          <li><a href="#" class="hover:text-gray-300">Liên Hệ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-6">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Món Ăn Nổi Bật</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Dish 1 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Lẩu Cá Bớp" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-gray-800">Lẩu Cá Bớp</h3>
+          <p class="text-gray-600 mt-2">Một món lẩu ngon với cá bớp tươi, rau xanh và nước lẩu đậm đà.</p>
+          <p class="text-green-600 font-bold mt-4">Giá: 200,000đ</p>
+        </div>
+      </div>
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+      <!-- Dish 2 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Bánh Xèo Miền Tây" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-gray-800">Bánh Xèo Miền Tây</h3>
+          <p class="text-gray-600 mt-2">Bánh xèo giòn rụm, nhân tôm thịt kèm nước mắm chua ngọt.</p>
+          <p class="text-green-600 font-bold mt-4">Giá: 50,000đ</p>
+        </div>
+      </div>
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {=
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+      <!-- Dish 3 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Gỏi Ngó Sen" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-gray-800">Gỏi Ngó Sen</h3>
+          <p class="text-gray-600 mt-2">Ngó sen giòn tươi kết hợp với tôm và thịt, nước trộn chua ngọt hấp dẫn.</p>
+          <p class="text-green-600 font-bold mt-4">Giá: 120,000đ</p>
+        </div>
+      </div>
 
-// ... existing database connection code ...
+      <!-- Dish 4 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Chả Cá Lã Vọng" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-gray-800">Chả Cá Lã Vọng</h3>
+          <p class="text-gray-600 mt-2">Chả cá thơm ngon, đậm vị Hà Nội truyền thống, kèm rau và bánh đa.</p>
+          <p class="text-green-600 font-bold mt-4">Giá: 150,000đ</p>
+        </div>
+      </div>
 
-$search = '';
+      <!-- Dish 5 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/300x200" alt="Cơm Tấm Sườn Bì" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-gray-800">Cơm Tấm Sườn Bì</h3>
+          <p class="text-gray-600 mt-2">Cơm tấm ăn kèm sườn nướng thơm lừng, bì dai giòn và chả trứng béo ngậy.</p>
+          <p class="text-green-600 font-bold mt-4">Giá: 45,000đ</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
-// Kiểm tra và lấy từ khóa tìm kiếm từ URL
-if (isset($_GET['keyword'])) {
-    $search = $_GET['keyword'];  // Lấy từ khóa từ query parameter 'keyword'
-
-    // Tránh SQL Injection bằng prepared statement
-    $stmt = $conn->prepare("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don WHERE ten_mon_an LIKE ?");
-    $searchTerm = "%" . $search . "%";
-    $stmt->bind_param("s", $searchTerm);
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    // Nếu không có từ khóa, hiển thị tất cả món ăn
-    $result = $conn->query("SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho FROM thuc_don");
-}
-
-$conn->close();
-?> 
+  <!-- Footer -->
+  <footer class="bg-green-600 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p class="text-sm">© 2024 Ẩm Thực Phương Nam. Mọi quyền được bảo lưu.</p>
+    </div>
+  </footer>
+</body>
+</html>
