@@ -470,7 +470,7 @@
             <!-- Món ăn 1 -->
             <div class="am_thuc_item text-center bg-white rounded-lg shadow-md p-6">
                 <div class="am_thuc_img mb-4 p-2 border-2 border-orange-300 rounded-lg">
-                    <img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-04.png" alt="Thịt rang cháy cạnh" class="w-full h-auto rounded-lg">
+                   <a href="thitrang.html" target="_blank"><img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-04.png" alt="Thịt rang cháy cạnh" class="w-full h-auto rounded-lg"></a>
                 </div>
                 <div class="am_thuc_content">
                     <h3 class="text-3xl font-extrabold text-[#8b5e34] leading-tight">Thịt rang cháy cạnh</h3>
@@ -482,7 +482,7 @@
             <!-- Món ăn 2 -->
             <div class="am_thuc_item text-center bg-white rounded-lg shadow-md p-6">
                 <div class="am_thuc_img mb-4 p-2 border-2 border-orange-300 rounded-lg">
-                    <img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-03.png" alt="Cá bống chiên giòn" class="w-full h-auto rounded-lg">
+                    <a href="cabong.html" target="_blank"><img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-03.png" alt="Cá bống chiên giòn" class="w-full h-auto rounded-lg"></a>
                 </div>
                 <div class="am_thuc_content">
                     <h3 class="text-3xl font-extrabold text-[#8b5e34] leading-tight">Cá bống chiên giòn</h3>
@@ -493,7 +493,7 @@
             <!-- Món ăn 3 -->
             <div class="am_thuc_item text-center bg-white rounded-lg shadow-md p-6">
                 <div class="am_thuc_img mb-4 p-2 border-2 border-orange-300 rounded-lg">
-                    <img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-01.png" alt="Thịt kho trứng cút" class="w-full h-auto rounded-lg">
+                    <a href="thitkho.html" target="_blank"><img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-01.png" alt="Thịt kho trứng cút" class="w-full h-auto rounded-lg"></a>
                 </div>
                 <div class="am_thuc_content">
                     <h3 class="text-3xl font-extrabold text-[#8b5e34] leading-tight">Thịt kho trứng cút</h3>
@@ -504,7 +504,7 @@
             <!-- Món ăn 4 -->
             <div class="am_thuc_item text-center bg-white rounded-lg shadow-md p-6">
                 <div class="am_thuc_img mb-4 p-2 border-2 border-orange-300 rounded-lg">
-                    <img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-02.png" alt="Canh cua mùng tơi" class="w-full h-auto rounded-lg">
+                    <a href="canhmongtoi.html" target="_blank">   <img src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-02.png" alt="Canh cua mùng tơi" class="w-full h-auto rounded-lg"></a>
                 </div>
                 <div class="am_thuc_content">
                     <h3 class="text-3xl font-extrabold text-[#8b5e34] leading-tight">Canh cua mùng tơi</h3>
@@ -515,46 +515,37 @@
     </div>
 
     <script>
-        // GSAP Animations
-        gsap.set(".am_thuc_img img", { opacity: 0, y: 50 });
-
-        // Create an intersection observer
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    gsap.to(entry.target, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 2,
-                        stagger: 0.2, // Add a delay between animations of each image
-                        ease: "power3.out"
-                    });
-                    observer.unobserve(entry.target);
-                }
+        // GSAP Animation Function
+        function applyAnimation(target) {
+            gsap.set(target, { opacity: 0, y: 50 });
+    
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        gsap.to(entry.target, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 2,
+                            stagger: 0.2, // Thời gian trễ giữa các phần tử
+                            ease: "power3.out"
+                        });
+                        observer.unobserve(entry.target); // Ngừng quan sát sau khi hiệu ứng hoàn thành
+                    }
+                });
+            }, {
+                threshold: 0.5 // Kích hoạt khi 50% phần tử vào khung nhìn
             });
-        }, {
-            threshold: 0.5 // Trigger animation when 50% of the element is in view
-        });
-
-        // Observe each image element
-        document.querySelectorAll(".am_thuc_img img").forEach(img => {
-            observer.observe(img);
-        });
+    
+            document.querySelectorAll(target).forEach(el => {
+                observer.observe(el);
+            });
+        }
+    
+        // Áp dụng hiệu ứng cho cả ảnh và nội dung
+        applyAnimation(".am_thuc_img img");
+        applyAnimation(".am_thuc_content");
     </script>
-<script>
-    gsap.fromTo(".am_thuc_content", 
-        { opacity: 0, x: -200 },  // Đặt x = -200 để chữ bắt đầu từ bên trái ngoài màn hình
-        { opacity: 1, x: 0, duration: 3, ease: "power3.out",  // Dịch chuyển đến x = 0 và opacity = 1
-            scrollTrigger: {
-                trigger: ".am_thuc_content",
-                start: "top 85%",
-                end: "bottom 15%",
-                scrub: true,
-                toggleActions: "play none none none"
-            }
-        });
-</script>
-
+    
 
 
 

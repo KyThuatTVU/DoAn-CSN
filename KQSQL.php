@@ -26,7 +26,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
     // Sử dụng prepared statement để tránh SQL Injection
     $stmt = $conn->prepare("
-        SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho
+        SELECT id, loai_mon, ten_mon_an, gia,dac_san,  hinh_anh
         FROM thuc_don
         WHERE loai_mon LIKE ?
         GROUP BY ten_mon_an
@@ -42,7 +42,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 } else {
     // Nếu không có từ khóa, hiển thị tất cả món ăn (loại bỏ trùng lặp)
     $result = $conn->query("
-        SELECT id, loai_mon, ten_mon_an, gia_vua, gia_nho
+        SELECT id, loai_mon, ten_mon_an, gia, dac_san,  hinh_anh
         FROM thuc_don
         GROUP BY ten_mon_an
     ");
@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <h2 class="text-2xl font-bold mb-6 text-center text-[#704539]">
         Kết quả tìm kiếm cho: "<span class="italic"><?php echo htmlspecialchars($search, ENT_QUOTES, 'UTF-8'); ?></span>"
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <?php while ($row = $result->fetch_assoc()): ?>
           <?php
           // Kiểm tra và sửa lỗi UTF-8 trên toàn bộ dữ liệu từ MySQL
@@ -297,17 +297,30 @@ document.addEventListener("DOMContentLoaded", () => {
               }
           }
           ?>
-          <div class="bg-[#D8B899] p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transform transition-transform duration-300 ease-in-out">
-            <h3 class="text-xl font-semibold text-[#704539] mb-2 fix-text">
-              <?php echo $row['ten_mon_an']; ?>
-            </h3>
-            <p class="text-sm text-gray-700 mb-4 fix-text">
-              <?php echo $row['loai_mon']; ?>
-            </p>
-            <div class="text-lg font-bold text-[#704539] space-y-2">
-              <div>Giá Vừa: <span class="text-[#C4581C]"><?php echo number_format($row['gia_vua']); ?>đ</span></div>
-              <div>Giá Nhỏ: <span class="text-[#C4581C]"><?php echo number_format($row['gia_nho']); ?>đ</span></div>
-            </div>
+          <div class="bg-[#D8B899] p-8 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transform transition-transform duration-300 ease-in-out">
+            <a href="chitiet.html?id=<?php echo $row['id']; ?>" class="block">
+              <?php 
+              // Kiểm tra và hiển thị hình ảnh món ăn
+              $imagePath = $row['hinh_anh'];
+              if (!empty($imagePath)) {
+                    echo "<img src='{$imagePath}' alt='{$row['ten_mon_an']}' class='w-full h-72 object-cover rounded-lg mb-4 hover:opacity-90 transition-opacity'>";
+              } else {
+                  echo "<div class='w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center'>
+                          <span class='text-gray-500'>Chưa có hình ảnh</span>
+                        </div>";
+              }
+              ?>
+              
+              <h3 class="text-xl font-semibold text-[#704539] mb-2 fix-text hover:text-[#C4581C] transition-colors">
+                <?php echo $row['ten_mon_an']; ?>
+              </h3>
+              <p class="text-sm text-gray-700 mb-4 fix-text">
+                <?php echo $row['loai_mon']; ?>
+              </p>
+              <div class="text-lg font-bold text-[#704539] space-y-2">
+                <div>Giá: <span class="text-[#C4581C]"><?php echo number_format($row['gia']); ?>đ</span></div>
+              </div>
+            </a>
           </div>
         <?php endwhile; ?>
       </div>

@@ -241,17 +241,25 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
 <div class="container mx-auto p-4 fade" id="hotpot-container"></div>
 
 <script>
-  // Lấy dữ liệu từ file JSON
-  fetch("data.json")
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("hotpot-container");
-      
+  // Lấy ID từ URL
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+
+// Lấy dữ liệu từ file JSON
+fetch("data.json")
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("hotpot-container");
+
+    // Tìm dữ liệu theo ID
+    const dish = data.find(item => item.id === parseInt(id));
+
+    if (dish) {
       // Render tiêu đề
       const titleHtml = `
         <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
-          <span class="block text-[#a0522d] font-[Cinzel]">${data.title.main}</span>
-          <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">${data.title.sub}</span>
+          <span class="block text-[#a0522d] font-[Cinzel]">${dish.title.main}</span>
+          <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">${dish.title.sub}</span>
         </h2>
       `;
 
@@ -259,9 +267,9 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
       const imageHtml = `
         <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
           <img 
-            alt="${data.image.alt}" 
+            alt="${dish.image.alt}" 
             class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
-            src="${data.image.src}" 
+            src="${dish.image.src}" 
             width="800"
           />
         </div>
@@ -271,18 +279,18 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
       const descriptionHtml = `
         <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
           <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-            ${data.description.title}
+            ${dish.description.title}
           </h2>
-          <p class="mb-4 text-[#000000]">${data.description.content}</p>
+          <p class="mb-4 text-[#000000]">${dish.description.content}</p>
       `;
 
       // Render nguyên liệu
       const ingredientsHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.ingredients.title}
+          ${dish.ingredients.title}
         </h2>
         <ul class="list-disc list-inside mb-4 text-[#000000]">
-          ${data.ingredients.items
+          ${dish.ingredients.items
             .map(
               ingredient => `
                 <li>
@@ -297,10 +305,10 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
       // Render cách chế biến
       const instructionsHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.instructions.title}
+          ${dish.instructions.title}
         </h2>
         <ol class="list-decimal list-inside mb-4 text-[#000000]">
-          ${data.instructions.steps
+          ${dish.instructions.steps
             .map(step => `<li>${step}</li>`)
             .join("")}
         </ol>
@@ -309,16 +317,24 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
       // Render giá
       const priceHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.price.title}
+          ${dish.price.title}
         </h2>
-        <p class="text-[#8a6e5a]">${data.price.content}</p>
+        <p class="text-[#8a6e5a]">${dish.price.content}</p>
       </div>
       `;
 
       // Gộp tất cả HTML lại
       container.innerHTML = titleHtml + `<div class="flex flex-wrap justify-center">` + imageHtml + descriptionHtml + ingredientsHtml + instructionsHtml + priceHtml + `</div>`;
-    });
+    } else {
+      container.innerHTML = `<h2 class="text-2xl font-bold text-center text-[#704539]">Không tìm thấy món ăn</h2>`;
+    }
+  })
+  .catch(error => {
+    console.error("Lỗi khi tải dữ liệu:", error);
+  });
+
 </script>
+
 
   
   <footer class="bg-[#644741] text-white p-6">

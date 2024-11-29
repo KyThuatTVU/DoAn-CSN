@@ -237,90 +237,58 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
 });
 
 </script>
-
-<div class="container mx-auto p-4 fade" id="hotpot-container"></div>
-
-<script>
-  // Lấy dữ liệu từ file JSON
-  fetch("data.json")
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("hotpot-container");
+<div class="container mx-auto p-4 fade">
+    <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
+      <span class="block text-[#a0522d] font-[Cinzel]">THỊT KHO</span>
+      <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">TRỨNG CÚT</span>
+    </h2>
+    
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+        <img 
+          alt="A delightful dish of braised pork belly with quail eggs in a savory caramelized sauce." 
+          class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
+          src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-01.png" 
+          width="800"
+        />
+      </div>
       
-      // Render tiêu đề
-      const titleHtml = `
-        <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
-          <span class="block text-[#a0522d] font-[Cinzel]">${data.title.main}</span>
-          <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">${data.title.sub}</span>
-        </h2>
-      `;
-
-      // Render hình ảnh
-      const imageHtml = `
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
-          <img 
-            alt="${data.image.alt}" 
-            class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
-            src="${data.image.src}" 
-            width="800"
-          />
-        </div>
-      `;
-
-      // Render mô tả
-      const descriptionHtml = `
-        <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
-          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-            ${data.description.title}
-          </h2>
-          <p class="mb-4 text-[#000000]">${data.description.content}</p>
-      `;
-
-      // Render nguyên liệu
-      const ingredientsHtml = `
+      <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.ingredients.title}
+          Mô tả món ăn
+        </h2>
+        <p class="mb-4 text-[#000000]">
+          **Thịt kho trứng cút** là món ăn truyền thống mang đậm hương vị Việt Nam. Thịt heo ba chỉ mềm mịn được kho cùng trứng cút, thấm đều trong nước màu nâu cánh gián đậm đà từ nước mắm và đường, mang lại vị ngọt mặn hài hòa. Đây là món ăn hoàn hảo khi ăn kèm cơm trắng, đặc biệt trong những bữa cơm gia đình ấm cúng.
+        </p>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Nguyên liệu
         </h2>
         <ul class="list-disc list-inside mb-4 text-[#000000]">
-          ${data.ingredients.items
-            .map(
-              ingredient => `
-                <li>
-                  <span class="font-bold text-[#a0522d]">${ingredient.name}</span>: ${ingredient.detail}
-                </li>
-              `
-            )
-            .join("")}
+          <li><span class="font-bold text-[#a0522d]">Thịt ba chỉ</span>: thái miếng vừa ăn</li>
+          <li><span class="font-bold text-[#a0522d]">Trứng cút</span>: luộc chín và bóc vỏ</li>
+          <li><span class="font-bold text-[#a0522d]">Nước mắm</span>: loại ngon</li>
+          <li><span class="font-bold text-[#a0522d]">Đường</span>, hành tím, tỏi băm</li>
+          <li><span class="font-bold text-[#a0522d]">Nước dừa</span>: tạo hương vị thơm ngon</li>
         </ul>
-      `;
-
-      // Render cách chế biến
-      const instructionsHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.instructions.title}
+          Cách chế biến
         </h2>
         <ol class="list-decimal list-inside mb-4 text-[#000000]">
-          ${data.instructions.steps
-            .map(step => `<li>${step}</li>`)
-            .join("")}
+          <li>Thịt ba chỉ rửa sạch, thái miếng vừa ăn, ướp với nước mắm, đường, tỏi, hành tím trong 15 phút.</li>
+          <li>Luộc chín trứng cút, bóc vỏ, để riêng.</li>
+          <li>Đun nóng đường để tạo nước màu, sau đó cho thịt vào đảo đều đến khi săn lại.</li>
+          <li>Thêm nước dừa và đun lửa nhỏ, nấu đến khi thịt mềm và thấm gia vị.</li>
+          <li>Cho trứng cút vào nồi, tiếp tục nấu thêm 10 phút, sau đó tắt bếp.</li>
+          <li>Dọn ra đĩa, rắc thêm chút hành lá và tiêu, thưởng thức với cơm trắng.</li>
         </ol>
-      `;
-
-      // Render giá
-      const priceHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.price.title}
+          Giá
         </h2>
-        <p class="text-[#8a6e5a]">${data.price.content}</p>
+        <p class="text-[#8a6e5a]">Giá: 220k</p>
       </div>
-      `;
+    </div>
+</div>
 
-      // Gộp tất cả HTML lại
-      container.innerHTML = titleHtml + `<div class="flex flex-wrap justify-center">` + imageHtml + descriptionHtml + ingredientsHtml + instructionsHtml + priceHtml + `</div>`;
-    });
-</script>
-
-  
   <footer class="bg-[#644741] text-white p-6">
     <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
         <!-- Cột 1: 1 div chiếm 50% chiều rộng -->

@@ -238,89 +238,58 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
 
 </script>
 
-<div class="container mx-auto p-4 fade" id="hotpot-container"></div>
-
-<script>
-  // Lấy dữ liệu từ file JSON
-  fetch("data.json")
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("hotpot-container");
+<div class="container mx-auto p-4 fade">
+    <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
+      <span class="block text-[#a0522d] font-[Cinzel]">CÁ BỐNG</span>
+      <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">CHIÊN GIÒN</span>
+    </h2>
+    
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+        <img 
+          alt="A delicious dish of crispy fried goby fish served with fresh herbs and sweet-sour dipping sauce." 
+          class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
+          src="https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-03.png" 
+          width="800"
+        />
+      </div>
       
-      // Render tiêu đề
-      const titleHtml = `
-        <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
-          <span class="block text-[#a0522d] font-[Cinzel]">${data.title.main}</span>
-          <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">${data.title.sub}</span>
-        </h2>
-      `;
-
-      // Render hình ảnh
-      const imageHtml = `
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
-          <img 
-            alt="${data.image.alt}" 
-            class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
-            src="${data.image.src}" 
-            width="800"
-          />
-        </div>
-      `;
-
-      // Render mô tả
-      const descriptionHtml = `
-        <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
-          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-            ${data.description.title}
-          </h2>
-          <p class="mb-4 text-[#000000]">${data.description.content}</p>
-      `;
-
-      // Render nguyên liệu
-      const ingredientsHtml = `
+      <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.ingredients.title}
+          Mô tả món ăn
+        </h2>
+        <p class="mb-4 text-[#000000]">
+          **Cá bống chiên giòn** là món ăn đặc trưng với hương vị giòn tan từ cá bống được chiên vàng óng, kết hợp cùng nước chấm chua ngọt và rau sống. Cá được lựa chọn kỹ lưỡng, tẩm bột mỏng trước khi chiên để giữ được vị ngọt tự nhiên và tạo lớp vỏ giòn rụm. Món ăn này thích hợp cho mọi bữa ăn, từ bữa cơm gia đình đến tiệc tùng với bạn bè.
+        </p>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Nguyên liệu
         </h2>
         <ul class="list-disc list-inside mb-4 text-[#000000]">
-          ${data.ingredients.items
-            .map(
-              ingredient => `
-                <li>
-                  <span class="font-bold text-[#a0522d]">${ingredient.name}</span>: ${ingredient.detail}
-                </li>
-              `
-            )
-            .join("")}
+          <li><span class="font-bold text-[#a0522d]">Cá bống tươi</span></li>
+          <li><span class="font-bold text-[#a0522d]">Bột chiên giòn</span>: loại nhẹ, không chứa gia vị</li>
+          <li><span class="font-bold text-[#a0522d]">Dầu ăn</span>: loại thực vật, không mùi</li>
+          <li><span class="font-bold text-[#a0522d]">Nước chấm</span>: nước mắm, đường, chanh, ớt</li>
+          <li><span class="font-bold text-[#a0522d]">Rau sống</span>: xà lách, rau thơm, húng quế</li>
         </ul>
-      `;
-
-      // Render cách chế biến
-      const instructionsHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.instructions.title}
+          Cách chế biến
         </h2>
         <ol class="list-decimal list-inside mb-4 text-[#000000]">
-          ${data.instructions.steps
-            .map(step => `<li>${step}</li>`)
-            .join("")}
+          <li>Rửa sạch cá bống, để ráo nước và ướp một chút muối trong 10 phút.</li>
+          <li>Nhúng cá vào bột chiên giòn đã pha với nước, sao cho bột phủ đều một lớp mỏng quanh cá.</li>
+          <li>Đun nóng dầu ăn trong chảo, chiên cá đến khi vàng giòn, vớt ra để ráo dầu.</li>
+          <li>Pha nước chấm chua ngọt từ nước mắm, đường, chanh, và ớt để ăn kèm cá.</li>
+          <li>Dọn cá ra đĩa cùng rau sống và nước chấm, thưởng thức khi còn nóng.</li>
         </ol>
-      `;
-
-      // Render giá
-      const priceHtml = `
         <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.price.title}
+          Giá
         </h2>
-        <p class="text-[#8a6e5a]">${data.price.content}</p>
+        <p class="text-[#8a6e5a]">Giá: 220k</p>
       </div>
-      `;
+    </div>
+</div>
 
-      // Gộp tất cả HTML lại
-      container.innerHTML = titleHtml + `<div class="flex flex-wrap justify-center">` + imageHtml + descriptionHtml + ingredientsHtml + instructionsHtml + priceHtml + `</div>`;
-    });
-</script>
 
-  
   <footer class="bg-[#644741] text-white p-6">
     <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
         <!-- Cột 1: 1 div chiếm 50% chiều rộng -->

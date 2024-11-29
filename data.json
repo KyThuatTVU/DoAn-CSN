@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "title": {
+          "main": "LẨU CÙ LAO",
+          "sub": "ĐẶC SẢN"
+        },
+        "image": {
+          "src": "https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/464304085_122120406788511615_7120356387430151944_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFbEIjC1CXjqt26xMcjdCKn5YWzTWWo7DzlhbNNZajsPHws_AJRwfamLmhyMSwIlg_jmgbifD-9XxUlBuKBRjig&_nc_ohc=3lwFWaIsGiwQ7kNvgENcff3&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AihGVKXRtBKTFBTOyX0Ajc_&oh=00_AYBwrlBFuxQlAaHzEa-k6nCogZ-9iai2seyD3dhIQEnw1w&oe=674B470A",
+          "alt": "Lẩu cù lao with a rich, flavorful broth, mixed with fresh vegetables, seafood, and meats"
+        },
+        "description": {
+          "title": "Mô tả món ăn",
+          "content": "**Lẩu cù lao** là món lẩu đặc trưng với nước dùng thơm ngon, được nấu từ hải sản tươi và các loại rau củ đặc trưng của miền sông nước. Món ăn mang đậm hương vị tự nhiên, kết hợp giữa hải sản tươi ngon như cá, tôm, cùng các loại thịt và rau thảo mộc, mang đến một trải nghiệm đậm đà và thanh mát."
+        },
+        "ingredients": {
+          "title": "Nguyên liệu",
+          "items": [
+            {"name": "Cá tươi", "detail": "thái miếng vừa ăn"},
+            {"name": "Tôm", "detail": "bóc vỏ, tươi ngon"},
+            {"name": "Thịt heo", "detail": "thái mỏng"},
+            {"name": "Nấm", "detail": "nấm rơm, nấm hương"},
+            {"name": "Rau củ", "detail": "rau muống, cải thảo, ngò gai"},
+            {"name": "Gia vị", "detail": "sả, ớt, chanh, nước mắm"}
+          ]
+        },
+        "instructions": {
+          "title": "Cách chế biến",
+          "steps": [
+            "Đun nước dùng với sả, ớt, chanh để tạo nên nước lẩu chua cay đặc trưng.",
+            "Cho tôm, cá và thịt heo vào nồi, đun sôi.",
+            "Thêm rau củ và nấm vào nồi, đun cho đến khi rau chín mềm nhưng vẫn giữ được độ tươi.",
+            "Cho gia vị vào để nước lẩu thêm đậm đà, nếm lại cho vừa ăn.",
+            "Ăn kèm với bún hoặc mì, thưởng thức ngay khi nước lẩu còn nóng."
+          ]
+        },
+        "price": {
+          "title": "Giá",
+          "content": "220k"
+        }
+      },
+      {
+        "id": 2,  
+        "title": {
+          "main": "LẨU THÁI",
+          "sub": "HẢI SẢN"
+        },
+        "image": {
+          "src": "https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/357113152_192717430434378_8540378839998607036_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEt_OncU5Abyx3sWWs0vtcK6bixDp1VYTDpuLEOnVVhMLQG9_c9eUpGkjtPYyTj5E2DKJRtLDgOnqqtOq99UOYr&_nc_ohc=VMeSyUjza-kQ7kNvgG0LFpP&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AEp8SP0zworVTtv3pN9k71T&oh=00_AYBPQtBAZziVkSOgc24KXMXePzZrCvMgnHjD8UydwA7ALQ&oe=674B4836",
+          "alt": "Thai hotpot with seafood and a rich, tangy broth, served with vegetables and herbs"
+        },
+        "description": {
+          "title": "Mô tả món ăn",
+          "content": "**Lẩu Thái hải sản** là món ăn nổi tiếng với hương vị chua cay đặc trưng của nước lẩu, kết hợp cùng các loại hải sản tươi ngon như tôm, mực, và cá. Món ăn này thường được ăn kèm với các loại rau củ tươi và nấm, mang đến một trải nghiệm ẩm thực phong phú và đậm đà."
+        },
+        "ingredients": {
+          "title": "Nguyên liệu",
+          "items": [
+            {"name": "Tôm", "detail": "tươi, bóc vỏ"},
+            {"name": "Mực", "detail": "thái khoanh"},
+            {"name": "Cá", "detail": "thái miếng vừa ăn"},
+            {"name": "Nấm", "detail": "nấm rơm, nấm hương"},
+            {"name": "Rau", "detail": "rau muống, cải thảo, ngò gai"},
+            {"name": "Gia vị", "detail": "sả, gừng, ớt, lá chanh, mắm, đường"}
+          ]
+        },
+        "instructions": {
+          "title": "Cách chế biến",
+          "steps": [
+            "Đun nước dùng với sả, gừng, và lá chanh để tạo hương vị thơm ngon đặc trưng của lẩu Thái.",
+            "Cho tôm, mực, cá vào nồi lẩu và đun sôi.",
+            "Thêm nấm và rau củ vào nồi, đun cho đến khi chín mềm.",
+            "Cho nước mắm, đường và ớt để tạo vị chua cay hấp dẫn cho nước lẩu.",
+            "Ăn kèm với bún hoặc mì và thưởng thức ngay khi nóng."
+          ]
+        },
+        "price": {
+          "title": "Giá",
+          "content": "220k"
+        }
+      }
+]
