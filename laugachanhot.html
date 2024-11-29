@@ -238,89 +238,51 @@ document.getElementById('mobile-search-btn').addEventListener('click', function 
 
 </script>
 
-<div class="container mx-auto p-4 fade" id="hotpot-container"></div>
-
-<script>
-  // Lấy dữ liệu từ file JSON
-  fetch("data.json")
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("hotpot-container");
-      
-      // Render tiêu đề
-      const titleHtml = `
-        <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
-          <span class="block text-[#a0522d] font-[Cinzel]">${data.title.main}</span>
-          <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">${data.title.sub}</span>
-        </h2>
-      `;
-
-      // Render hình ảnh
-      const imageHtml = `
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+<div class="container mx-auto p-4 fade">
+  <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
+      <span class="block text-[#a0522d] font-[Cinzel]">LẨU GÀ</span>
+      <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">CHANH ỚT</span>
+  </h2>
+  
+  <div class="flex flex-wrap justify-center">
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
           <img 
-            alt="${data.image.alt}" 
+            alt="A pot of chicken hotpot with chili and lime, served with fresh vegetables and noodles" 
             class="rounded-lg shadow-lg image-hover w-full h-[500px]" 
-            src="${data.image.src}" 
+            src="https://example.com/lau-ga-chanh-ot.jpg" 
             width="800"
           />
-        </div>
-      `;
-
-      // Render mô tả
-      const descriptionHtml = `
-        <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
-          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-            ${data.description.title}
-          </h2>
-          <p class="mb-4 text-[#000000]">${data.description.content}</p>
-      `;
-
-      // Render nguyên liệu
-      const ingredientsHtml = `
-        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.ingredients.title}
-        </h2>
-        <ul class="list-disc list-inside mb-4 text-[#000000]">
-          ${data.ingredients.items
-            .map(
-              ingredient => `
-                <li>
-                  <span class="font-bold text-[#a0522d]">${ingredient.name}</span>: ${ingredient.detail}
-                </li>
-              `
-            )
-            .join("")}
-        </ul>
-      `;
-
-      // Render cách chế biến
-      const instructionsHtml = `
-        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.instructions.title}
-        </h2>
-        <ol class="list-decimal list-inside mb-4 text-[#000000]">
-          ${data.instructions.steps
-            .map(step => `<li>${step}</li>`)
-            .join("")}
-        </ol>
-      `;
-
-      // Render giá
-      const priceHtml = `
-        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
-          ${data.price.title}
-        </h2>
-        <p class="text-[#8a6e5a]">${data.price.content}</p>
       </div>
-      `;
+      
+      <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
+          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">Mô tả món ăn</h2>
+          <p class="mb-4 text-[#000000]">
+              Lẩu gà chanh ớt là sự kết hợp hoàn hảo giữa vị chua thanh của chanh, cay nồng của ớt và thịt gà mềm ngọt. Món lẩu này mang đến hương vị đậm đà, dễ dàng chinh phục mọi thực khách.
+          </p>
+          
+          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">Nguyên liệu</h2>
+          <ul class="list-disc list-inside mb-4 text-[#000000]">
+              <li><span class="font-bold text-[#a0522d]">Gà tươi nguyên con</span></li>
+              <li><span class="font-bold text-[#a0522d]">Gia vị</span>: chanh, ớt, tỏi, hành tím, gừng</li>
+              <li><span class="font-bold text-[#a0522d]">Rau sống</span>: cải xanh, mồng tơi, rau thơm</li>
+              <li><span class="font-bold text-[#a0522d]">Bún hoặc mì</span></li>
+              <li><span class="font-bold text-[#a0522d]">Nước dùng</span>: hầm từ xương gà</li>
+          </ul>
+          
+          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">Cách chế biến</h2>
+          <ol class="list-decimal list-inside mb-4 text-[#000000]">
+              <li>Sơ chế gà sạch sẽ, chặt thành từng miếng vừa ăn.</li>
+              <li>Chuẩn bị nước dùng bằng cách hầm xương gà với gừng, hành tím.</li>
+              <li>Nêm nước dùng với gia vị, thêm nước cốt chanh và ớt tươi.</li>
+              <li>Thêm thịt gà vào nồi lẩu, đợi thịt chín rồi dùng kèm rau sống và bún.</li>
+          </ol>
+          
+          <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">Giá</h2>
+          <p class="text-[#8a6e5a]">Giá: 220k</p>
+      </div>
+  </div>
+</div>
 
-      // Gộp tất cả HTML lại
-      container.innerHTML = titleHtml + `<div class="flex flex-wrap justify-center">` + imageHtml + descriptionHtml + ingredientsHtml + instructionsHtml + priceHtml + `</div>`;
-    });
-</script>
-
-  
   <footer class="bg-[#644741] text-white p-6">
     <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
         <!-- Cột 1: 1 div chiếm 50% chiều rộng -->

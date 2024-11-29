@@ -78,5 +78,894 @@
           "title": "Giá",
           "content": "220k"
         }
+      },
+      
+        {
+          "id": 3, 
+          "title": {
+            "main": "GỎI BÒ",
+            "sub": "GIA TRUYỀN"
+          },
+          "image": {
+            "src": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/464862575_122121721982511615_3179077530512592399_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGA95_ZsKVY-MLS4hie0NnTUGwpTB_gwadQbClMH-DBp5P_TSdoGhjg0FTR3PLrAw7wgZ3ZckvtgHcpYeYKXK_C&_nc_ohc=_aa6Z5W7PA0Q7kNvgEDf4sD&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=AjMVetmr81UoMMJ4b-i3S34&oh=00_AYABWrIBtToo5K0l6YXjTl9t1pCoGt5w4tL1cSf_wNnQpg&oe=674B579B",
+            "alt": "Traditional Vietnamese beef salad with herbs and a tangy dressing"
+          },
+          "description": {
+            "title": "Mô tả món ăn",
+            "content": "**Gỏi bò gia truyền** là món ăn được lưu truyền qua nhiều thế hệ, kết hợp giữa thịt bò tươi mềm và các loại rau thơm. Điểm nhấn đặc biệt nằm ở nước mắm chua ngọt được pha chế theo công thức bí truyền, mang đến hương vị hài hòa, đậm đà khó quên."
+          },
+          "ingredients": {
+            "title": "Nguyên liệu",
+            "items": [
+              {"name": "Thịt bò tươi", "detail": "thái mỏng"},
+              {"name": "Rau thơm", "detail": "húng lủi, ngò rí"},
+              {"name": "Cà rốt và hành tây", "detail": "bào sợi"},
+              {"name": "Đậu phộng", "detail": "rang vàng"},
+              {"name": "Nước mắm", "detail": "pha chua ngọt"}
+            ]
+          },
+          "instructions": {
+            "title": "Cách chế biến",
+            "steps": [
+              "Luộc sơ thịt bò, sau đó thái mỏng.",
+              "Trộn cà rốt, hành tây với nước mắm chua ngọt, để ngấm.",
+              "Kết hợp thịt bò, rau thơm, và hỗn hợp rau củ, trộn đều.",
+              "Rắc đậu phộng rang và dùng ngay để giữ độ tươi ngon."
+            ]
+          },
+          "price": {
+            "title": "Giá",
+            "content": "119k"
+          }
+        },
+        {
+          "id": 4,
+          "title": {
+            "main": "LẨU GÀ",
+            "sub": "CHANH ỚT"
+          },
+          "image": {
+            "src": "https://example.com/lau-ga-chanh-ot.jpg",
+            "alt": "A pot of chicken hotpot with chili and lime, served with fresh vegetables and noodles"
+          },
+          "description": {
+            "title": "Mô tả món ăn",
+            "content": "Lẩu gà chanh ớt là sự kết hợp hoàn hảo giữa vị chua thanh của chanh, cay nồng của ớt và thịt gà mềm ngọt. Món lẩu này mang đến hương vị đậm đà, dễ dàng chinh phục mọi thực khách."
+          },
+          "ingredients": {
+            "title": "Nguyên liệu",
+            "items": [
+              {"name": "Gà tươi nguyên con", "detail": null},
+              {"name": "Gia vị", "detail": "chanh, ớt, tỏi, hành tím, gừng"},
+              {"name": "Rau sống", "detail": "cải xanh, mồng tơi, rau thơm"},
+              {"name": "Bún hoặc mì", "detail": null},
+              {"name": "Nước dùng", "detail": "hầm từ xương gà"}
+            ]
+          },
+          "instructions": {
+            "title": "Cách chế biến",
+            "steps": [
+              "Sơ chế gà sạch sẽ, chặt thành từng miếng vừa ăn.",
+              "Chuẩn bị nước dùng bằng cách hầm xương gà với gừng, hành tím.",
+              "Nêm nước dùng với gia vị, thêm nước cốt chanh và ớt tươi.",
+              "Thêm thịt gà vào nồi lẩu, đợi thịt chín rồi dùng kèm rau sống và bún."
+            ]
+          },
+          "price": {
+            "title": "Giá",
+            "content": "159k"
+          }
+        }, 
+        {
+          "id": 5,
+          "title": {
+              "main": "LẨU GÀ",
+              "sub": "DÀNH CHO 2 NGƯỜI"
+          },
+          "image": {
+              "src": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/460107141_463743369998448_9183498026915971673_n.jpg?stp=cp6_dst-jpg&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEELuv8tJFV5Wdpwi81cvHhbLNRtzNSdUtss1G3M1J1S6Sjz442VOeYkNQ6J-bFUo6V6T91wuJ1bUhkeKhrTWTs&_nc_ohc=t6c_StZSQ40Q7kNvgEPqzHf&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AJYLFAQT0bOSniKId_tnpvT&oh=00_AYB5b5c_6FnWQH7zaJIBHm6y-SLEJp0sBfBk06jpD3_TEw&oe=674B1E0F",
+              "alt": "Chicken hotpot served with fresh vegetables, mushrooms, and dipping sauce"
+          },
+          "description": {
+              "title": "Mô tả món ăn",
+              "content": "**Lẩu gà dành cho 2 người** là món ăn hoàn hảo để thưởng thức cùng bạn bè hoặc người thân. Với hương vị đậm đà từ nước lẩu nấu từ gà thả vườn, kết hợp cùng các loại rau tươi và nấm, món ăn này mang lại cảm giác ấm cúng và trọn vẹn."
+          },
+          "ingredients": {
+              "title": "Nguyên liệu",
+              "items": [
+                  {
+                      "name": "Gà thả vườn",
+                      "detail": "chặt miếng vừa ăn"
+                  },
+                  {
+                      "name": "Nấm",
+                      "detail": "nấm kim châm, nấm đông cô"
+                  },
+                  {
+                      "name": "Rau",
+                      "detail": "rau muống, cải thảo, ngò gai"
+                  },
+                  {
+                      "name": "Gia vị",
+                      "detail": "sả, gừng, ớt, tiêu"
+                  }
+              ]
+          },
+          "instructions": {
+              "title": "Cách chế biến",
+              "steps": [
+                  "Hầm gà với sả và gừng để tạo nước dùng ngọt thanh.",
+                  "Chuẩn bị các loại rau, nấm, và bày sẵn ra đĩa.",
+                  "Đun nước lẩu trên bếp, thêm gia vị cho vừa ăn.",
+                  "Thả gà và nấm vào nước lẩu, dùng kèm rau và bún hoặc mì."
+              ]
+          },
+          "price": {
+              "title": "Giá",
+              "content": "149k"
+          }
+      },
+      {
+        "id": 6,
+        "title": {
+            "main": "CHẢ GIÒ",
+            "sub": "GIA TRUYỀN"
+        },
+        "image": {
+            "src": "https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/458294374_454221684283950_8553891869567907607_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE87MBUu3tO-kefcDsfZkUYDP4lUhvCOQ8M_iVSG8I5D5qybNsuKrn1wZaSLlY_FV8A8p4PMp_KHIR0udhYdgeM&_nc_ohc=EinWYdeacV8Q7kNvgEoJSRN&_nc_zt=23&_nc_ht=scontent.fsgn2-5.fna&_nc_gid=AxxCTG7J-tdU0u7rPHIJ_hE&oh=00_AYD4KawnG5QdDBwXXXZu8yWJ0F0OLjTVhJcwDaH2lLSQpg&oe=674B22B4",
+            "alt": "Traditional spring rolls served with dipping sauce and fresh herbs"
+        },
+        "description": {
+            "title": "Mô tả món ăn",
+            "content": "Chả giò gia truyền là món ăn mang đậm hương vị truyền thống, kết hợp hoàn hảo giữa lớp vỏ vàng giòn rụm và nhân thịt thơm ngon. Với bí quyết chế biến riêng biệt, món chả giò không chỉ hấp dẫn mà còn lưu giữ tinh hoa ẩm thực gia đình qua nhiều thế hệ."
+        },
+        "ingredients": {
+            "title": "Nguyên liệu",
+            "items": [
+                {"name": "Vỏ bánh tráng", "detail": "mỏng và dai"},
+                {"name": "Nhân", "detail": "thịt heo, tôm, và nấm mèo"},
+                {"name": "Rau củ", "detail": "cà rốt, củ sắn"},
+                {"name": "Gia vị", "detail": "tiêu, nước mắm, hành tím"}
+            ]
+        },
+        "instructions": {
+            "title": "Cách chế biến",
+            "steps": [
+                "Trộn đều các nguyên liệu nhân gồm thịt, tôm, nấm mèo, và rau củ với gia vị.",
+                "Cuốn nhân vào bánh tráng thành từng cuộn nhỏ gọn.",
+                "Chiên chả giò trong dầu nóng đến khi vàng giòn.",
+                "Dọn ra đĩa, ăn kèm rau sống và nước mắm chua ngọt."
+            ]
+        },
+        "price": {
+            "title": "Giá",
+            "content": "199k"
+        }
+    },
+    {
+      "id": 7,
+      "title": {
+          "main": "GỎI KHOAI MÔN",
+          "sub": "HẢI SẢN"
+      },
+      "image": {
+          "src": "https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-6/461422950_470469762659142_1686706373293839384_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHuCQZ2AcOze_CaM08qcB6t5lv1TD_TEHvmW_VMP9MQe3jHT6h9GbhC2ddsSY_I40mrcxETlVDhyG2Akj_q2-wo&_nc_ohc=CT4OlkdKADsQ7kNvgEndOD0&_nc_zt=23&_nc_ht=scontent.fsgn2-3.fna&_nc_gid=AAsUphswtY9_pvKBXfJY-Rb&oh=00_AYAalBGFThgF2M-YEGbJ_77suLwYMd5aeEMVGkPZRwENfg&oe=674B2935",
+          "alt": "Seafood taro salad served with fresh herbs and dressing"
+      },
+      "description": {
+          "title": "Mô tả món ăn",
+          "content": "Gỏi khoai môn hải sản là món ăn kết hợp độc đáo giữa vị bùi béo của khoai môn và vị ngọt thanh của hải sản tươi. Món gỏi này không chỉ bắt mắt mà còn đem lại cảm giác hài hòa về hương vị, phù hợp trong các bữa tiệc gia đình hoặc chiêu đãi."
+      },
+      "ingredients": {
+          "title": "Nguyên liệu",
+          "items": [
+              {"name": "Khoai môn", "detail": "thái sợi"},
+              {"name": "Hải sản", "detail": "tôm, mực"},
+              {"name": "Rau thơm", "detail": "rau răm, ngò rí"},
+              {"name": "Gia vị", "detail": "nước mắm, đường, chanh, ớt"}
+          ]
+      },
+      "instructions": {
+          "title": "Cách chế biến",
+          "steps": [
+              "Khoai môn gọt vỏ, thái sợi và chiên giòn.",
+              "Luộc chín tôm và mực, thái vừa ăn.",
+              "Pha nước trộn gỏi gồm nước mắm, đường, nước cốt chanh, và ớt băm.",
+              "Trộn đều khoai môn chiên, hải sản, và rau thơm với nước mắm đã pha.",
+              "Dọn ra đĩa, rắc thêm đậu phộng rang và hành phi để tăng hương vị."
+          ]
+      },
+      "price": {
+          "title": "Giá",
+          "content": "119k"
       }
+  },
+
+  {
+    "id": 8,
+    "title": {
+        "main": "GỎI TÉP RONG",
+        "sub": "ĐIÊN ĐIỂN"
+    },
+    "image": {
+        "src": "https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/422676499_316575798048540_2473228850934134155_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHtfSGPLD2ssaSTOPIrFDIE7hWtCBBVPJPuFa0IEFU8k6OYp6wGpi3UE44sbuIjL_MxiDim2ZxuXR2aSiXX6_rN&_nc_ohc=bWS0k5fEeLsQ7kNvgEedWSu&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=AwAaEfVWTJCnamM-d4I0YW5&oh=00_AYDYIWCPHHeb6umLrZbVOgsnunT6ikPt_htV_Bd0XEbFrg&oe=674B3D93",
+        "alt": "A dish of shrimp salad with yellow flowers, herbs, and dressing"
+    },
+    "description": {
+        "title": "Mô tả món ăn",
+        "content": "Gỏi tép rong điên điển là món ăn dân dã đậm chất miền Tây Nam Bộ, nổi bật với vị ngọt thanh của tép rong kết hợp cùng hương thơm dịu dàng của bông điên điển. Món gỏi tươi mát, mang đến trải nghiệm ẩm thực khó quên."
+    },
+    "ingredients": {
+        "title": "Nguyên liệu",
+        "items": [
+            {"name": "Tép rong", "detail": "tươi sống"},
+            {"name": "Bông điên điển", "detail": "vàng tươi"},
+            {"name": "Rau thơm", "detail": "húng lủi, ngò gai"},
+            {"name": "Gia vị", "detail": "nước mắm, đường, tỏi, ớt"}
+        ]
+    },
+    "instructions": {
+        "title": "Cách chế biến",
+        "steps": [
+            "Rửa sạch tép rong, để ráo nước.",
+            "Chần bông điên điển qua nước sôi, giữ độ giòn và màu vàng tươi.",
+            "Pha nước trộn gỏi với nước mắm, đường, tỏi, và ớt băm nhỏ.",
+            "Trộn đều tép rong, bông điên điển và rau thơm cùng nước mắm đã pha.",
+            "Dọn ra đĩa, rắc thêm đậu phộng rang giã nhỏ và trang trí tùy thích."
+        ]
+    },
+    "price": {
+        "title": "Giá",
+        "content": "119k"
+    }
+},
+{
+  "id": 9,
+  "title": {
+      "main": "CHẢ CÁ THÁC LÁC",
+      "sub": "CỐM XANH"
+  },
+  "image": {
+      "src": "https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/416289743_305024819203638_8655986192779826015_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEbED1riIi7l1B-_Qjptqu8dqTG09IkQIx2pMbT0iRAjPEyWX20g1_FRntsMRjYLM4UGD0UP6W7lzuJMtGnmAyL&_nc_ohc=DneLpy7OzmMQ7kNvgGrlzf4&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=AgTq0q_LUkEx3QYlpL82s8L&oh=00_AYA-jVg2CykvYPpwvNcSvDCejOB8fkVMbb7Kt8TZtTKa4g&oe=674B4945",
+      "alt": "Green rice crusted fish cakes garnished with fresh herbs"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Chả cá thác lác cốm xanh là món ăn truyền thống, hòa quyện giữa vị ngọt dai của cá thác lác và hương thơm nhẹ nhàng từ cốm xanh. Miếng chả chiên giòn vàng, bên ngoài bao phủ lớp cốm xanh, tạo cảm giác vừa bắt mắt vừa hấp dẫn."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Cá thác lác", "detail": "xay nhuyễn"},
+          {"name": "Cốm xanh", "detail": "loại cốm tươi"},
+          {"name": "Gia vị", "detail": "muối, tiêu, nước mắm"},
+          {"name": "Phụ liệu", "detail": "hành lá, thì là"}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Trộn cá thác lác xay nhuyễn với hành lá, thì là và gia vị.",
+          "Vo cá thành từng viên tròn hoặc miếng dẹt vừa ăn.",
+          "Nhúng viên cá qua cốm xanh, đảm bảo cốm bám đều trên bề mặt.",
+          "Chiên cá trong chảo dầu nóng đến khi cốm chuyển màu vàng giòn.",
+          "Dọn ra đĩa, trang trí với rau sống và ăn kèm nước mắm chua ngọt."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "149k"
+  }
+},
+{
+  "id": 10,
+  "title": {
+      "main": "HÀU NƯỚNG",
+      "sub": "MỠ HÀNH"
+  },
+  "image": {
+      "src": "https://scontent.fhan3-3.fna.fbcdn.net/v/t39.30808-6/465146910_122122939724511615_4440018914368265318_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEdjf3yE5-FqXlxjrCjUcjd2eLro1W2UP7Z4uujVbZQ_ikElP9eH2woUcRCgth71JQtvyZpIAfM5ozJs2cTu4dH&_nc_ohc=aZPFvBi_ErkQ7kNvgFfEupB&_nc_zt=23&_nc_ht=scontent.fhan3-3.fna&_nc_gid=AHu1WqgojvkqGHTwc6k93MX&oh=00_AYBNmnJ4o0WhCFt_EBaxrmwTC5E_4PMbhX5SeuJFcBrovg&oe=674D7BF0",
+      "alt": "A plate of grilled oysters topped with scallions and peanuts"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Hàu nướng mỡ hành là món hải sản thơm ngon, bổ dưỡng, nổi bật với hàu tươi nướng chín vừa phải. Lớp mỡ hành béo ngậy kết hợp với đậu phộng giòn tan tạo nên hương vị khó quên, làm hài lòng cả những thực khách khó tính nhất."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Hàu", "detail": "hàu tươi"},
+          {"name": "Hành lá", "detail": "thái nhỏ"},
+          {"name": "Gia vị", "detail": "muối, tiêu, nước mắm"},
+          {"name": "Phụ liệu", "detail": "mỡ, đậu phộng rang"}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Rửa sạch hàu, tách vỏ, để ráo nước.",
+          "Trộn mỡ hành với một chút nước mắm, muối, và tiêu.",
+          "Cho hỗn hợp mỡ hành lên từng con hàu, nướng trên than hồng đến khi hàu chín và tỏa mùi thơm.",
+          "Rắc đậu phộng rang giã nhỏ lên trên hàu nướng.",
+          "Dọn ra đĩa, ăn kèm với nước chấm chua ngọt."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "120k"
+  }
+},
+{
+  "id": 11,
+  "title": {
+      "main": "CƠM CHIÊN",
+      "sub": "HẢI SẢN"
+  },
+  "image": {
+      "src": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/461420426_470469742659144_5687161530217914141_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGvVxh_EHiVdJGcmoAyKIqNj-ijJOr6LySP6KMk6vovJBVjXqwcMMrGzjZxprRIY97MoySNXAW3XC9w5vKcsMyV&_nc_ohc=B4GTg4I8xDEQ7kNvgH7Qoh7&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AvMiktZ3Q8ORye5n0U1H-UA&oh=00_AYBHUVlfU7_WCme4iruuwrRnpQxxDDuXT42Lv_mFau9IcA&oe=674B46E0",
+      "alt": "A plate of seafood fried rice garnished with herbs and lime"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Cơm chiên hải sản là sự kết hợp tuyệt vời giữa vị ngọt tự nhiên của tôm, mực, và hải sản tươi cùng cơm trắng dẻo mềm. Tất cả được chiên trên lửa lớn với hành, tỏi, và nước mắm, tạo nên hương vị đậm đà, hấp dẫn. Đây là món ăn dễ ăn, phù hợp cho mọi bữa ăn trong ngày."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Hải sản", "detail": "tôm, mực, nghêu"},
+          {"name": "Cơm", "detail": "cơm nguội"},
+          {"name": "Gia vị", "detail": "nước mắm, tiêu, hành, tỏi"},
+          {"name": "Rau", "detail": "hành lá, ngò"}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Rửa sạch hải sản, cắt nhỏ tôm và mực.",
+          "Phi thơm hành tỏi trên chảo nóng, sau đó xào hải sản đến khi chín.",
+          "Thêm cơm nguội, đảo đều tay trên lửa lớn, nêm gia vị vừa ăn.",
+          "Trộn đều hành lá và ngò trước khi tắt bếp.",
+          "Dọn ra đĩa, trang trí với rau và lát chanh."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "89k"
+  }
+},
+{
+  "id": 12,
+  "title": {
+      "main": "CƠM CHIÊN",
+      "sub": "CÁ MẶN"
+  },
+  "image": {
+      "src": "https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/357777624_207868328919288_5592352954535408204_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEoaBDEEwoR1NnyS2eUZjP7uGnWEzTomhi4adYTNOiaGNM4ANuhoqL09OFqrP19Hqy7a3saLLICs_9_goJXXQGD&_nc_ohc=B5Vglic5JxYQ7kNvgG7o_3X&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=Aqz7-FO9ymo-MHqZOE3lBo2&oh=00_AYDM70MOHcwLN2j3ldgr6NVep7yVjOaYzb0mE-jxzS8bIw&oe=674B3A69",
+      "alt": "A plate of salted fish fried rice garnished with herbs and vegetables"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Cơm chiên cá mặn là một món ăn đặc trưng, được yêu thích nhờ sự kết hợp độc đáo giữa cơm trắng và cá mặn xé nhỏ. Vị đậm đà của cá mặn hòa quyện cùng cơm dẻo, thêm chút hành phi thơm lừng và màu xanh của rau giúp món ăn trở nên hấp dẫn và khó cưỡng."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Cá mặn", "detail": "cá mặn khô xé nhỏ"},
+          {"name": "Cơm", "detail": "cơm nguội"},
+          {"name": "Gia vị", "detail": "hành phi, tiêu, nước mắm"},
+          {"name": "Rau", "detail": "hành lá, ngò"}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Rửa sạch cá mặn, ngâm nước để giảm độ mặn, sau đó xé nhỏ.",
+          "Phi hành thơm trên chảo nóng, cho cá mặn vào đảo đều.",
+          "Thêm cơm nguội, xào đều tay trên lửa lớn, nêm gia vị vừa ăn.",
+          "Rắc hành lá và tiêu lên cơm trước khi tắt bếp.",
+          "Dọn ra đĩa, trang trí với rau sống."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "89k"
+  }
+},
+{
+  "id": 13,
+  "title": {
+      "main": "TÔM THẺ",
+      "sub": "SỐT THÁI"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Tôm thẻ sốt Thái là sự kết hợp hoàn hảo giữa vị ngọt tự nhiên của tôm thẻ tươi và hương vị chua cay đặc trưng từ sốt Thái. Món ăn được chế biến công phu với các nguyên liệu tươi ngon, mang lại trải nghiệm ẩm thực độc đáo. Lớp sốt cay cay, chua chua thấm đều từng con tôm, tạo nên một món ăn đậm đà và đầy quyến rũ."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Tôm thẻ tươi", "detail": ""},
+          {"name": "Gia vị", "detail": "ớt, tỏi, nước mắm, chanh, đường"},
+          {"name": "Nước cốt me", "detail": ""},
+          {"name": "Rau thơm", "detail": "ngò rí, rau mùi"}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Rửa sạch tôm thẻ, lột vỏ chừa phần đuôi, để ráo.",
+          "Chuẩn bị sốt Thái: pha nước mắm, cốt me, đường, tỏi và ớt băm nhuyễn.",
+          "Đun nóng chảo, áp chảo tôm sơ qua cho săn, sau đó cho sốt vào đun nhỏ lửa để tôm thấm gia vị.",
+          "Bày tôm ra đĩa, rưới thêm sốt và trang trí với rau thơm."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "99k"
+  },
+
+  "image": {
+    "alt": "A dish of grilled chicken in bamboo tube served on a plate with vegetables and sauces",
+    "src": "https://luuanh.vercel.app/amthucphuongnam/tom.jpg"
+} 
+  
+},
+{
+  "id": 14,
+  "title": {
+      "main": "CUA",
+      "sub": "HẤP CÁCH THỦY"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Cua hấp cách thủy là món ăn giữ trọn vẹn hương vị tự nhiên và giá trị dinh dưỡng của cua biển tươi sống. Cua được hấp với nhiệt độ ổn định, kết hợp thêm gừng, sả để tăng hương thơm mà không làm mất đi vị ngọt thanh của thịt cua. Đây là món ăn lý tưởng cho các bữa tiệc sang trọng hoặc những dịp đặc biệt."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Cua biển tươi", "detail": ""},
+          {"name": "Gừng, sả", "detail": ""},
+          {"name": "Rau sống", "detail": "húng quế, xà lách"},
+          {"name": "Chấm muối tiêu chanh", "detail": ""}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Rửa sạch cua, để ráo nước.",
+          "Chuẩn bị nồi hấp với gừng và sả để tạo hương thơm.",
+          "Hấp cua với lửa lớn trong khoảng 15-20 phút cho đến khi cua chín đỏ và dậy mùi thơm.",
+          "Dọn cua kèm rau sống và muối tiêu chanh để thưởng thức."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "Theo thời giá"
+  },
+  "image": {
+      "alt": "A steamed crab dish served with fresh herbs and dipping sauce",
+      "src": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/462165693_477157025323749_1947437857556596803_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFwcAu2xThJLKVJkLTuRlvhDMKAwY5DyuEMwoDBjkPK4eoyD2VHWcaAI44j9gYmOVpCIauI_ZNNK0bPinaynBVn&_nc_ohc=v2rPA5KQReAQ7kNvgFq57c2&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=AXBd2rwaXSQ1TRj5cGP5SI7&oh=00_AYCGleUNaYt1ZjjFspvyR6cTKJUSVLMPTt7wxDHDdODCfQ&oe=674B581C"
+  }
+},
+{
+  "id": 15,
+  "title": {
+      "main": "ỐC BƯƠU",
+      "sub": "NƯỚNG TIÊU"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Ốc bươu nướng tiêu là món ăn mang đậm hương vị đồng quê Việt Nam, kết hợp giữa vị ngọt tự nhiên của ốc bươu và hương cay nồng từ tiêu xanh. Ốc được chế biến kỹ lưỡng, nướng trên lửa than hồng, giúp lớp tiêu phủ ngoài chín tới, tỏa mùi thơm hấp dẫn. Món ăn không chỉ ngon mà còn bổ dưỡng, phù hợp cho những bữa ăn gia đình hoặc tụ họp bạn bè."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Ốc bươu tươi", "detail": ""},
+          {"name": "Gia vị", "detail": "tiêu xanh, tỏi, ớt, hành tím, dầu ăn"},
+          {"name": "Rau sống", "detail": "húng quế, xà lách"},
+          {"name": "Chấm mắm tiêu chanh", "detail": ""}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Rửa sạch ốc, ngâm với nước vo gạo để loại bỏ đất cát.",
+          "Giã nhuyễn tiêu xanh, tỏi, ớt, thêm dầu ăn và gia vị.",
+          "Cho hỗn hợp gia vị vào từng con ốc, sau đó nướng trên bếp than cho đến khi ốc chín và dậy mùi thơm.",
+          "Dọn kèm rau sống và nước chấm tiêu chanh để tăng hương vị."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "Giá: 79k"
+  },
+  "image": {
+      "alt": "A dish of grilled snails with pepper seasoning, served with vegetables and sauce",
+      "src": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/462165693_477157025323749_1947437857556596803_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFwcAu2xThJLKVJkLTuRlvhDMKAwY5DyuEMwoDBjkPK4eoyD2VHWcaAI44j9gYmOVpCIauI_ZNNK0bPinaynBVn&_nc_ohc=v2rPA5KQReAQ7kNvgFq57c2&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=AXBd2rwaXSQ1TRj5cGP5SI7&oh=00_AYCGleUNaYt1ZjjFspvyR6cTKJUSVLMPTt7wxDHDdODCfQ&oe=674B581C"
+  }
+},
+{
+  "id": 16,
+  "title": {
+      "main": "GIÒ HEO",
+      "sub": "XỨ HÀN"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Giò heo xứ Hàn là một món ăn hấp dẫn, mang đậm hương vị đặc trưng của ẩm thực Hàn Quốc. Món ăn này được chế biến từ phần giò heo tươi ngon, nấu chín mềm với các gia vị đặc biệt như tỏi, tiêu, ớt, và các loại gia vị truyền thống của xứ Hàn. Món giò heo có lớp da giòn, thịt mềm, ngọt và thơm, được tẩm ướp đậm đà, ăn kèm với các loại rau sống và gia vị đặc trưng."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Giò heo tươi", "detail": ""},
+          {"name": "Tỏi, hành, tiêu, ớt", "detail": ""},
+          {"name": "Gia vị Hàn Quốc", "detail": "sâm, tương, dầu mè"},
+          {"name": "Rau sống", "detail": "xà lách, ngò rí"},
+          {"name": "Mắm tôm hoặc nước mắm", "detail": ""}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Giò heo được rửa sạch, tẩm ướp gia vị, để thấm trong thời gian ngắn.",
+          "Nướng hoặc hầm giò heo cho đến khi thịt mềm, gia vị thấm đều.",
+          "Món ăn được bày biện với rau sống và các gia vị chấm kèm.",
+          "Thưởng thức món ăn khi còn nóng, với vị giòn của da, mềm ngọt của thịt và đậm đà từ gia vị."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "Giá: 220k"
+  },
+  "image": {
+      "alt": "A dish of grilled chicken in bamboo tube served on a plate with vegetables and sauces",
+      "src": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/352398956_194909563548498_6262409885629189802_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH4qLblSPJyD7h17fCKO6Ts_MOEUAGaIP38w4RQAZog_TsWxfFMAk6SECk8UggYxDb2GIL6RjfDyzS5R9gucQ77&_nc_ohc=S6p7WSVk6YcQ7kNvgFri4eU&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=AEEqMZbNeMOmT3eO5VEIdZ2&oh=00_AYDqQcO6hFeDe9kW_Wf4A1KsNmETxzGG-qO35jjjEJdFZw&oe=674B4503"
+  }
+},
+{
+  "id": 17,
+  "title": {
+      "main": "GÀ HẤP MẮM NHỈ",
+      "sub": "Cơm lam"
+  },
+  "description": {
+      "title": "Mô tả món ăn",
+      "content": "Món gà hấp mắm nêm cơm lam là một đặc sản miền Trung, kết hợp giữa gà hấp với mắm nêm đậm đà và cơm lam thơm ngon. Gà được hấp chín mềm, hòa quyện với hương vị đặc trưng của mắm nêm, tạo nên một món ăn hấp dẫn và đầy đủ hương vị. Cơm lam ăn kèm với gà, đem lại một trải nghiệm ẩm thực đặc sắc của vùng đất miền Trung."
+  },
+  "ingredients": {
+      "title": "Nguyên liệu",
+      "items": [
+          {"name": "Gà", "detail": "gà ta, chọn phần ức hoặc đùi"},
+          {"name": "Mắm nêm", "detail": "mắm nêm nguyên chất, tỏi, ớt"},
+          {"name": "Gia vị", "detail": "muối, đường, tiêu, nước mắm"},
+          {"name": "Cơm lam", "detail": "gạo nếp, lá chuối tươi"}
+      ]
+  },
+  "instructions": {
+      "title": "Cách chế biến",
+      "steps": [
+          "Chuẩn bị gà: làm sạch, ướp gia vị và mắm nêm, để ngấm khoảng 30 phút.",
+          "Đun nước trong nồi, cho gà vào hấp trong khoảng 30 phút cho gà chín mềm.",
+          "Chuẩn bị cơm lam: cho gạo nếp vào ống tre, cuốn bằng lá chuối, đem nướng trên lửa than cho đến khi cơm chín.",
+          "Trình bày gà hấp mắm nêm lên đĩa, cùng với cơm lam và rau sống."
+      ]
+  },
+  "price": {
+      "title": "Giá",
+      "content": "Giá: 220k"
+  },
+  "image": {
+      "alt": "A dish of seafood stir-fried noodles with shrimp, squid, and vegetables",
+      "src": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/357736896_207868472252607_6906439648886191153_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH2bgneTzhaJehd5FzX_6bAlmOKrZ0xaWqWY4qtnTFpaqMYXaJmpuAT4mSQ4HsMblPXtcA2e_byh4i0yOq2z4gS&_nc_ohc=LCUURp6HrF8Q7kNvgH5faiJ&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=AxKW5eiuemVq-EUBMkRCB_x&oh=00_AYCFeHcb_FZRAYDp8VniF7Yo2LnnSrRCwaVCLnu_sHm2Rg&oe=674B3E97"
+  }
+},
+{
+  "id": 18,
+  "title": {
+    "main": "MÌ XÀO",
+    "sub": "HẢI SẢN"
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Món mì xào hải sản gồm các nguyên liệu tươi ngon như tôm, mực, và các loại rau củ được xào chung với mì tươi, tạo nên một món ăn thơm ngon, đậm đà. Mì được chế biến với gia vị đặc trưng, đảm bảo hương vị ngọt ngào của hải sản kết hợp với sợi mì mềm dai, mang đến cho thực khách một trải nghiệm thú vị."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {
+        "name": "Mì tươi",
+        "detail": ""
+      },
+      {
+        "name": "Hải sản tươi sống",
+        "detail": "tôm, mực, cua"
+      },
+      {
+        "name": "Rau củ",
+        "detail": "hành tây, cà rốt, bắp cải"
+      },
+      {
+        "name": "Gia vị",
+        "detail": "tỏi, hành, tiêu, dầu hào, xì dầu"
+      },
+      {
+        "name": "Trứng",
+        "detail": "trứng gà đánh tan"
+      }
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Chuẩn bị hải sản: tôm, mực làm sạch, cắt nhỏ. Rau củ gọt vỏ, thái sợi vừa ăn.",
+      "Đun nóng chảo, cho dầu ăn và xào hành, tỏi đến khi dậy mùi thơm.",
+      "Thêm hải sản vào xào cho đến khi chín, rồi cho mì vào xào chung.",
+      "Cho rau củ và gia vị vào, tiếp tục xào đến khi tất cả hòa quyện với nhau, trứng gà đánh tan cho vào xào cùng.",
+      "Trình bày mì xào hải sản ra đĩa, rắc thêm chút tiêu và hành lá lên trên để tăng thêm hương vị."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 99k"
+  },
+  "image": {
+    "alt": "A dish of seafood stir-fried noodles with shrimp, squid, and vegetables",
+    "src": "https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/465590445_122123103584511615_7753879584397480316_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGzFANugLcibZI0mhc-OxvGPfnRY4MFTQ49-dFjgwVNDgG-cnwsC6IGdEG94zdvuAU3meSumbHlB6PDbFNn1Px3&_nc_ohc=vwySUZKzcEYQ7kNvgFR43xJ&_nc_zt=23&_nc_ht=scontent.fsgn2-4.fna&_nc_gid=ADht9SIsDHUy5G5OxATa2qa&oh=00_AYD1yDQEDSj7sxWlo7-qKaeeQAHJzKH4ckmou-kYNlhS3A&oe=674B503C"
+  }
+},{
+  "id": 19,
+  "title": {
+    "main": "CÁ TAI TƯỢNG",
+    "sub": "CHIÊN XÙ"
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Món cá tai tượng chiên xù sẽ được đầu bếp chiên với nhiệt độ cao sẽ làm cho từng thớ thịt cá giòn tan ngay trong miệng, cá bắt lên còn tươi sống sơ chế kĩ lưỡng qua tay nghề của đầu bếp, sẽ cho ra món cá hấp dẫn."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {"name": "Cá tươi", "detail": ""},
+      {"name": "Gia vị", "detail": "tỏi, ớt, tiêu, ngũ vị hương, hành lá, đậu phộng"},
+      {"name": "Dầu", "detail": ""},
+      {"name": "Rau sống", "detail": "xà lách, rau thơm, bánh tráng ăn kèm"},
+      {"name": "Chấm mắm nêm", "detail": ""}
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Chuẩn bị cá.",
+      "Đặt cá vào trong chảo dầu nóng, chiên cho đến khi thịt chín vàng.",
+      "Chế biến rau sống và mắm để ăn kèm.",
+      "Thưởng thức món ăn khi còn nóng, vị thơm ngon và đậm đà."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 220k"
+  },
+  "image": {
+    "alt": "A dish of grilled chicken in bamboo tube served on a plate with vegetables and sauces",
+    "src": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/465582815_122123103644511615_856310274033785924_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEQfTD7hOB1b7zaMz9WiUAYHg6ZQ6_ik3keDplDr-KTeXw5aYPT-owCIEeEyAq7RbaHJYcRBn1tp-u2yvpeHdhG&_nc_ohc=iBbPSX13iYUQ7kNvgEwAX5s&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=ASAlxZahBRflk0fihG9dn76&oh=00_AYAezZnExHLnqRmW8TI8kLryUs2Ko5rhpY7-6GMBwbFiCA&oe=674B4515"
+  }
+}, 
+{
+  "id": 20,
+  "title": {
+    "main": "GÀ NƯỚNG",
+    "sub": "ỐNG TRE"
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Gà nướng ống tre là món ăn đặc sản với hương vị thơm ngon, đậm đà. Món ăn này được nướng trong ống tre, giúp thịt gà giữ được hương vị tự nhiên, mềm mại và thơm ngon. Sự kết hợp giữa gia vị và nguyên liệu tươi ngon tạo nên một món ăn đặc biệt không thể thiếu trong các bữa tiệc, lễ hội hoặc quây quần gia đình."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {"name": "Gà tươi", "detail": ""},
+      {"name": "Gia vị", "detail": "tỏi, ớt, tiêu, ngũ vị hương"},
+      {"name": "Ống tre", "detail": ""},
+      {"name": "Rau sống", "detail": "xà lách, rau thơm"},
+      {"name": "Chấm mắm nêm hoặc mắm tôm", "detail": ""}
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Chuẩn bị gà, tẩm ướp gia vị cho gà thấm đều.",
+      "Đặt gà vào trong ống tre, nướng trên than hoa cho đến khi thịt chín vàng.",
+      "Chế biến rau sống và mắm để ăn kèm.",
+      "Thưởng thức món ăn khi còn nóng, vị thơm ngon và đậm đà."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 119k"
+  },
+  "image": {
+    "alt": "A dish of grilled chicken in bamboo tube served on a plate with vegetables and sauces",
+    "src": "https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/462264805_122116023758511615_7199314374468293870_n.jpg?stp=cp6_dst-jpg&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHunmQgYyyDuhBvoxmfeLsRbzg2fDn5eqpvODZ8Ofl6qqk-QGA5PTzAdb-tVQrbN9pEb-aEbvAifHMJ3jJTNrMc&_nc_ohc=yoKJzBSv7HYQ7kNvgFSoHHk&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AGelRR7qSU4YIKFyYb9pmOq&oh=00_AYBcKwQJxyR2rC-_W-Rx-4XZEyroKq7kKpir7IJp_Y3tUw&oe=674B4122"
+  }
+},
+{
+  "id": 21,
+  "title": {
+    "main": "THỊT RANG",
+    "sub": "CHÁY"
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Thịt rang cháy là món ăn quen thuộc trong bữa cơm gia đình Việt Nam, kết hợp giữa hương vị đậm đà từ thịt heo và lớp cháy vàng thơm ngon. Thịt được tẩm ướp với nước mắm, đường và gia vị đặc trưng, sau đó rang cháy trên lửa vừa để tạo ra mùi thơm hấp dẫn. Món ăn này rất ngon khi dùng kèm cơm trắng và rau sống."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {"name": "Thịt ba chỉ tươi", "detail": ""},
+      {"name": "Gia vị", "detail": "nước mắm, đường, tỏi, hành tím"},
+      {"name": "Hành lá", "detail": "thái nhỏ"},
+      {"name": "Rau sống", "detail": "xà lách, dưa leo"}
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Thái thịt ba chỉ thành lát vừa ăn, rửa sạch và để ráo.",
+      "Tẩm ướp thịt với nước mắm, đường, tỏi băm, để thấm gia vị trong 15 phút.",
+      "Đun nóng chảo, thêm thịt và rang đều tay cho đến khi thịt chuyển màu vàng và dậy mùi thơm.",
+      "Thêm hành lá thái nhỏ và đảo thêm 1 phút trước khi tắt bếp."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 220k"
+  },
+  "image": {
+    "alt": "A savory dish of caramelized pork belly cooked to perfection, served with rice and herbs.",
+    "src": "https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-04.png"
+  }
+},
+{
+  "id": 22,
+  "title": {
+    "main": "CÁ BỐNG",
+    "sub": "CHIÊN GIÒN"
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Cá bống chiên giòn là món ăn đặc trưng với hương vị giòn tan từ cá bống được chiên vàng óng, kết hợp cùng nước chấm chua ngọt và rau sống. Cá được lựa chọn kỹ lưỡng, tẩm bột mỏng trước khi chiên để giữ được vị ngọt tự nhiên và tạo lớp vỏ giòn rụm. Món ăn này thích hợp cho mọi bữa ăn, từ bữa cơm gia đình đến tiệc tùng với bạn bè."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {"name": "Cá bống tươi", "detail": ""},
+      {"name": "Bột chiên giòn", "detail": "loại nhẹ, không chứa gia vị"},
+      {"name": "Dầu ăn", "detail": "loại thực vật, không mùi"},
+      {"name": "Nước chấm", "detail": "nước mắm, đường, chanh, ớt"},
+      {"name": "Rau sống", "detail": "xà lách, rau thơm, húng quế"}
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Rửa sạch cá bống, để ráo nước và ướp một chút muối trong 10 phút.",
+      "Nhúng cá vào bột chiên giòn đã pha với nước, sao cho bột phủ đều một lớp mỏng quanh cá.",
+      "Đun nóng dầu ăn trong chảo, chiên cá đến khi vàng giòn, vớt ra để ráo dầu.",
+      "Pha nước chấm chua ngọt từ nước mắm, đường, chanh, và ớt để ăn kèm cá.",
+      "Dọn cá ra đĩa cùng rau sống và nước chấm, thưởng thức khi còn nóng."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 220k"
+  },
+  "image": {
+    "alt": "A delicious dish of crispy fried goby fish served with fresh herbs and sweet-sour dipping sauce.",
+    "src": "https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-03.png"
+  }
+},
+{
+  "id": 23,
+  "title": {
+    "main": "Thịt kho trứng cút",
+    "sub": ""
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Thịt kho trứng cút là món ăn truyền thống mang đậm hương vị Việt Nam. Thịt heo ba chỉ mềm mịn được kho cùng trứng cút, thấm đều trong nước màu nâu cánh gián đậm đà từ nước mắm và đường, mang lại vị ngọt mặn hài hòa. Đây là món ăn hoàn hảo khi ăn kèm cơm trắng, đặc biệt trong những bữa cơm gia đình ấm cúng."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {"name": "Thịt ba chỉ", "detail": "thái miếng vừa ăn"},
+      {"name": "Trứng cút", "detail": "luộc chín và bóc vỏ"},
+      {"name": "Nước mắm", "detail": "loại ngon"},
+      {"name": "Đường", "detail": "hành tím, tỏi băm"},
+      {"name": "Nước dừa", "detail": "tạo hương vị thơm ngon"}
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Thịt ba chỉ rửa sạch, thái miếng vừa ăn, ướp với nước mắm, đường, tỏi, hành tím trong 15 phút.",
+      "Luộc chín trứng cút, bóc vỏ, để riêng.",
+      "Đun nóng đường để tạo nước màu, sau đó cho thịt vào đảo đều đến khi săn lại.",
+      "Thêm nước dừa và đun lửa nhỏ, nấu đến khi thịt mềm và thấm gia vị.",
+      "Cho trứng cút vào nồi, tiếp tục nấu thêm 10 phút, sau đó tắt bếp.",
+      "Dọn ra đĩa, rắc thêm chút hành lá và tiêu, thưởng thức với cơm trắng."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 220k"
+  },
+  "image": {
+    "alt": "A delicious dish of crispy fried goby fish served with fresh herbs and sweet-sour dipping sauce.",
+    "src": "https://luuanh.vercel.app/amthucphuongnam/thitkho.png"
+  }
+},
+{
+  "id": 24,
+  "title": {
+    "main": "Canh cua mồng tơi",
+    "sub": ""
+  },
+  "description": {
+    "title": "Mô tả món ăn",
+    "content": "Canh cua mồng tơi là một món ăn truyền thống đặc trưng của miền Bắc và miền Nam Việt Nam, với vị ngọt tự nhiên của cua đồng kết hợp với rau mồng tơi thanh mát. Món canh này có vị ngọt, mát, đặc biệt thích hợp để ăn trong những ngày hè nóng bức. Cua đồng được xay nhuyễn để lấy nước dùng, sau đó kết hợp với mồng tơi, tạo nên một món canh thanh nhẹ, bổ dưỡng. Gia vị mặn ngọt hòa quyện trong nước canh khiến món ăn thêm phần đậm đà, hấp dẫn."
+  },
+  "ingredients": {
+    "title": "Nguyên liệu",
+    "items": [
+      {"name": "Cua đồng", "detail": "rửa sạch, xay nhuyễn lấy nước dùng"},
+      {"name": "Mồng tơi", "detail": "rửa sạch, cắt khúc vừa ăn"},
+      {"name": "Nước mắm", "detail": "loại ngon"},
+      {"name": "Gia vị", "detail": "muối, đường, tiêu, hành tỏi băm"},
+      {"name": "Nước", "detail": "để nấu canh"}
+    ]
+  },
+  "instructions": {
+    "title": "Cách chế biến",
+    "steps": [
+      "Cua đồng rửa sạch, xay nhuyễn, lọc lấy nước dùng.",
+      "Đun nước cua với gia vị đến khi sôi, nêm nếm vừa ăn.",
+      "Cho mồng tơi vào nấu, đun đến khi mồng tơi chín mềm.",
+      "Khi canh sôi và có mùi thơm, tắt bếp và cho canh ra tô.",
+      "Thưởng thức canh cua mồng tơi nóng cùng cơm trắng."
+    ]
+  },
+  "price": {
+    "title": "Giá",
+    "content": "Giá: 220k"
+  },
+  "image": {
+    "alt": "A delicious dish of crispy fried goby fish served with fresh herbs and sweet-sour dipping sauce.",
+    "src": "https://nhahangvian.com/wp-content/uploads/2023/12/Anh-mon-an-03.png"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+
+
+      
+
 ]
