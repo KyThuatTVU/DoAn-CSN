@@ -85,7 +85,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
     <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
       <div class="flex items-center">
         <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-          <a href="index.html" target="_blank" class="hover:underline">PHƯƠNG NAM</a>
+          <a href="index.html" target="_self" class="hover:underline">PHƯƠNG NAM</a>
         </h1>
       </div>
       <div class="sm:hidden">
@@ -100,11 +100,11 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
           <!-- Desktop Navigation Links -->
           <div id="nav-links"
      class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-     <a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-     <a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-     <a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-     <a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-     <a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+     <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+     <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+     <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+     <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+     <a href="lienhe.html" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
  </div>
 
  <!-- Search Bar (Visible on Desktop) -->
@@ -131,11 +131,11 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
          <i class="fas fa-search"></i>
      </button>
  </div>
- <a href="gioithieu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
- <a href="menu.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
- <a href="dathang.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
- <a href="album.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
- <a href="lienhe.html" target="_blank" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+ <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+ <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+ <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+ <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+ <a href="lienhe.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
