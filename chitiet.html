@@ -403,6 +403,21 @@ fetch("data.json")
         </p>
     </div>
   </footer>
+  <script>
+    
+    // Animate about-image with infinite effect
+    gsap.fromTo(".container", 
+              { opacity: 0, y: 50 }, 
+              { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+                scrollTrigger: {
+                  trigger: ".container",
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                  onEnter: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                  onLeaveBack: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+                }
+              });
+  </script>
 
 </body>
 </html>

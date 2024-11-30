@@ -7,10 +7,13 @@
     <title>Ẩm thực Phương Nam</title>
     <meta name="description" content="Nhà hàng Ẩm thực Phương Nam cung cấp các món ăn đặc trưng miền Nam, với không gian ấm cúng và phục vụ tận tình.">
     <meta name="keywords" content="Ẩm thực Phương Nam, nhà hàng Trà Vinh, món ăn miền Nam, nhà hàng đặc sản, đặt bàn Trà Vinh">
+    <meta name="author" content="Ẩm thực Phương Nam">
 
 
     <!-- Link to Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
@@ -423,19 +426,19 @@
         <div class="row">
             <!-- Text content on the left -->
             <div class="col-lg-6 about-content max-w-lg mx-auto lg:mx-0 lg:w-5/12">
-                <h1 class="text-3xl text-[#6e453b] font-bold">Phương Nam - Cơm Ngon Tròn Vị!</h1>
-                <h2 class="text-xl text-[#5c3b2c] mt-2">Nhà hàng cơm Việt, quán cơm gia đình ngon tại Trà Vinh.</h2>
-                <p class="text-lg text-[#4d4d4d] mt-4 leading-relaxed">Tại <strong>Phương Nam</strong>, triết lý của chúng tôi rất đơn giản: chia sẻ hương vị và văn hóa thưởng thức cơm Việt tới tất cả mọi người. Chúng tôi làm điều này bằng việc sử dụng nguồn nguyên liệu tươi sạch nhất, và chế biến chúng qua đôi tay của những người đầu bếp tận tâm.</p>
-                <p class="text-lg text-[#4d4d4d] mt-4 leading-relaxed">Không gian tại nhà hàng cơm Phương Nam được lấy cảm hứng từ những giá trị truyền thống của Việt Nam kết hợp với những thứ hiện đại để tạo nên một cảm giác xưa cũ kết hợp cùng những thứ mới mẻ.</p>
-                <p class="text-lg text-[#4d4d4d] mt-4 leading-relaxed">Với chủ đạo là gỗ và cây, những thứ gắn liền nhất với thiên nhiên sẽ khiến trải nghiệm dùng bữa thực sự khác biệt!</p>
+                <h1 class="text-3xl text-[#6e453b] font-bold" style="font-family: 'Lora', serif;">Phương Nam - Ngon như Mẹ nấu!</h1>
+                <h2 class="text-xl text-[#5c3b2c] mt-2" style="font-family: 'Lora', serif;">Nhà hàng cơm Việt, quán cơm gia đình ngon tại Trà Vinh.</h2>
+                <p class="text-lg text-[#4d4d4d] mt-4 leading-relaxed" style="font-family: 'Lora', serif;">Tại <strong>Phương Nam</strong>, triết lý của chúng tôi rất đơn giản: chia sẻ hương vị và văn hóa thưởng thức cơm Việt tới tất cả mọi người. Chúng tôi làm điều này bằng việc sử dụng nguồn nguyên liệu tươi sạch nhất, và chế biến chúng qua đôi tay của những người đầu bếp tận tâm.</p>
+                <p class="text-lg text-[#4d4d4d] mt-4 leading-relaxed" style="font-family: 'Lora', serif;">Không gian tại nhà hàng cơm Phương Nam được lấy cảm hứng từ những giá trị truyền thống của Việt Nam kết hợp với những thứ hiện đại để tạo nên một cảm giác xưa cũ kết hợp cùng những thứ mới mẻ.</p>
+                <p class="text-lg text-[#4d4d4d] mt-4 leading-relaxed" style="font-family: 'Lora', serif;">Với chủ đạo là gỗ và cây, những thứ gắn liền nhất với thiên nhiên sẽ khiến trải nghiệm dùng bữa thực sự khác biệt!</p>
             </div>
-
+        
             <!-- Image on the right -->
-            <div class="col-lg-6 about-image w-full lg:w-7/12 mt-1 lg:mt-0 ml-0">
-                <div class="relative w-full pb-[58%] bg-cover bg-center rounded-md" style="background-image: url('img/hinhtruyenthong2.jpg');"></div>
+            <div class="col-lg-6 about-image w-full lg:w-5/12 mt-1 lg:mt-0 ml-8"> <!-- Giảm lg:w-7/12 thành lg:w-5/12 và thêm ml-4 để tạo margin -->
+                <div class="relative w-full pb-[48%] bg-cover bg-center rounded-md" style="background-image: url('img/hinhtruyenthong2.jpg');"></div>
             </div>
-            
         </div>
+        
     </div>
     </div>
 
@@ -523,39 +526,79 @@
         </div>
     </div>
 
+
     <script>
-        // GSAP Animation Function
-        function applyAnimation(target) {
-            gsap.set(target, { opacity: 0, y: 50 });
-    
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        gsap.to(entry.target, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 2,
-                            stagger: 0.2, // Thời gian trễ giữa các phần tử
-                            ease: "power3.out"
-                        });
-                        observer.unobserve(entry.target); // Ngừng quan sát sau khi hiệu ứng hoàn thành
-                    }
-                });
-            }, {
-                threshold: 0.5 // Kích hoạt khi 50% phần tử vào khung nhìn
+         // Animate about-image with infinite effect
+         gsap.fromTo(".am_thuc_img", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+              scrollTrigger: {
+                trigger: ".am_thuc_img",
+                start: "top 85%",
+                toggleActions: "play none none none",
+                onEnter: () => gsap.fromTo(".am_thuc_img", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                onLeaveBack: () => gsap.fromTo(".am_thuc_img", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+              }
             });
-    
-            document.querySelectorAll(target).forEach(el => {
-                observer.observe(el);
+
+             // Animate about-image with infinite effect
+        gsap.fromTo(".am_thuc_content", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+              scrollTrigger: {
+                trigger: ".am_thuc_content",
+                start: "top 85%",
+                toggleActions: "play none none none",
+                onEnter: () => gsap.fromTo(".am_thuc_content", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                onLeaveBack: () => gsap.fromTo(".am_thuc_content", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+              }
             });
-        }
-    
-        // Áp dụng hiệu ứng cho cả ảnh và nội dung
-        applyAnimation(".am_thuc_img img");
-        applyAnimation(".am_thuc_content");
+        
+    </script>
+     <!--phần 5-->
+    <div class="bg-[#dfd3c3] p-8">
+    <div class="container mx-auto">
+        <!-- Tiêu đề nằm chính giữa -->
+        <h2 class="font-bold text-3xl sm:text-4xl text-[#4E342E] custom-font text-center mx-auto">
+            KHÔNG GIAN NHÀ HÀNG
+        </h2><br>
+
+        <!-- Hình ảnh -->
+        <div class="slick-3 flex gap-8 justify-center items-center">
+            <!-- Hình ảnh 1 -->
+            <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
+                <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/468445613_122131874612511615_463748523128431631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHVvR6bNCp57g_qMVZjZPPvwbQky0szm1LBtCTLSzObUqusSExRpMseMTU5jicVLbDQE_NDWALf8Eq5g6LTVWV-&_nc_ohc=l0ISzUyTT6sQ7kNvgE_EEYL&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AKkO-mhaT86sILJunqJy0_i&oh=00_AYCb2voCYRwS_cCxmSPlm3HFOaPbU8MEucDVdjxWsM1HQw&oe=6750AE9C" alt="Canh cua mùng tơi 1">
+            </div>
+            <!-- Hình ảnh 2 -->
+            <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
+                <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/468518645_122131874138511615_8325878476265256575_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9YczvM2ekKlJLs2L9aiThWnSR40kG7PRadJHjSQbs9IGnTlRQfPV9TirCqfqfJS_C6hm9l3gPP1cdQcYFvkWl&_nc_ohc=6skGkGCwqFUQ7kNvgFz151w&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=AMCN9bE5a9Doen_6gEHPCwd&oh=00_AYDhvj4dDiBlHdJDeTuojb_nyO7U0aXEJTme1CF0rrjNEg&oe=6750AC8F" alt="Canh cua mùng tơi 2">
+            </div>
+            <!-- Hình ảnh 3 -->
+            <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
+                <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/465914579_122125272914511615_6009958091425179677_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEM82cV946zSviTeudJX6yiWE6gWbmXFe9YTqBZuZcV7w3LEclpEmLta-4luR7M845xx02OwSDudvDn0gw_FaRK&_nc_ohc=VumScNXP_PsQ7kNvgE368dY&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AhSpLSA6QPz5FGAD6-IKSFr&oh=00_AYBVaHR9H8ucRIhq67fBCT1ENeqvZRo00_lpHJ7WXQXPrg&oe=67508D6E" alt="Canh cua mùng tơi 3">
+            </div>
+        </div>
+        
+    </div>
+    </div>
+
+    <script>
+        
+        // Animate about-image with infinite effect
+        gsap.fromTo(".slick-3-item", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+              scrollTrigger: {
+                trigger: ".slick-3-item",
+                start: "top 85%",
+                toggleActions: "play none none none",
+                onEnter: () => gsap.fromTo(".slick-3-item", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                onLeaveBack: () => gsap.fromTo(".slick-3-item", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+              }
+            });
     </script>
     
-
+    
 
 
     <!--phần 6-->
@@ -587,7 +630,21 @@
     </div>
 </div>
 
-
+<script>
+    
+  // Animate about-image with infinite effect
+  gsap.fromTo(".relative", 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+              scrollTrigger: {
+                trigger: ".relative",
+                start: "top 85%",
+                toggleActions: "play none none none",
+                onEnter: () => gsap.fromTo(".relative", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                onLeaveBack: () => gsap.fromTo(".relative", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+              }
+            });
+</script>
 
    <!-- Thêm icon Twitter và YouTube vào footer -->
 <footer class="bg-[#644741] text-white p-6">
@@ -673,7 +730,27 @@
             adaptiveHeight: true    // Tự điều chỉnh chiều cao theo nội dung ảnh
         });
     });
+
+    
     </script>
+
+<script>
+    
+    // Animate about-image with infinite effect
+    gsap.fromTo(".container", 
+              { opacity: 0, y: 50 }, 
+              { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+                scrollTrigger: {
+                  trigger: ".container",
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                  onEnter: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                  onLeaveBack: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+                }
+              });
+  </script>
+
+
     </body>
 
     </html>

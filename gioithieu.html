@@ -243,7 +243,7 @@
 
                     <!-- Content Section -->
                     <div>
-                        <h2 class="text-[#6e453b] font-bold text-3xl">Phương Nam – Cơm ngon tròn vị</h2>
+                        <h2 class="text-[#6e453b] font-bold text-3xl">Phương Nam – Ngon như Mẹ nấu!</h2>
                         <h3 class="text-lg mt-2">Nhà hàng cơm Việt, quán cơm gia đình ngon tại Trà Vinh.</h3>
                         <p class="mt-4">
                             Tại <strong>Phương Nam</strong>, triết lý của chúng tôi rất đơn giản: chia sẻ hương vị và
@@ -550,6 +550,22 @@
             }
         });
     </script>
+
+<script>
+    
+    // Animate about-image with infinite effect
+    gsap.fromTo(".container", 
+              { opacity: 0, y: 50 }, 
+              { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+                scrollTrigger: {
+                  trigger: ".container",
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                  onEnter: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+                  onLeaveBack: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+                }
+              });
+  </script>
 </body>
 
 </html>
