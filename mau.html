@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.payment-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cart-summary {
+    margin-bottom: 20px;
+}
+
+.cart-summary h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.cart-summary ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-summary li {
+    margin: 5px 0;
+}
+
+.billing-info label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.billing-info input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.payment-method label {
+    display: block;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>Thanh Toán Đơn Hàng</h2>
+        <form id="payment-form">
+            <div class="cart-summary">
+                <h3>Giỏ hàng của bạn</h3>
+                <ul>
+                    <li>Sản phẩm 1: 100.000 VND</li>
+                    <li>Sản phẩm 2: 200.000 VND</li>
+                    <li><strong>Tổng cộng: 300.000 VND</strong></li>
+                </ul>
+            </div>
+
+            <div class="billing-info">
+                <label for="name">Họ tên:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="address">Địa chỉ giao hàng:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div class="payment-method">
+                <h4>Chọn phương thức thanh toán</h4>
+                <label>
+                    <input type="radio" name="payment-method" value="paypal" checked> PayPal
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="cod"> Thanh toán khi nhận hàng (COD)
+                </label>
+            </div>
+
+            <button type="submit">Thanh Toán</button>
+        </form>
+    </div>
+
+    <!-- Include PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+    <script src="script.js"></script>
+<script>document.getElementById('payment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+    if (paymentMethod === 'paypal') {
+        // Thanh toán qua PayPal
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '300000' // Tổng tiền
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Thanh toán thành công! Cảm ơn bạn, ' + details.payer.name.given_name);
+                    // Xử lý sau thanh toán thành công (Lưu đơn hàng, gửi email, v.v.)
+                });
+            },
+            onError: function(err) {
+                console.error('Có lỗi xảy ra: ', err);
+            }
+        }).render('body'); // Hiển thị nút PayPal
+    } else {
+        // Thanh toán khi nhận hàng (COD)
+        alert('Đơn hàng của bạn đã được đặt. Thanh toán khi nhận hàng.');
+        // Xử lý thanh toán COD (lưu đơn hàng, thông báo)
+    }
+});
+
+// Node.js - Express app
+
+const express = require('express');
+const paypal = require('paypal-rest-sdk');
+const bodyParser = require('body-parser');
+
+// Tạo ứng dụng Express
+const app = express();
+app.use(bodyParser.json());
+
+// Cấu hình PayPal SDK
+paypal.configure({
+  mode: 'sandbox', // Hoặc 'live' cho môi trường thực tế
+  client_id: 'YOUR_PAYPAL_CLIENT_ID',
+  client_secret: 'YOUR_PAYPAL_CLIENT_SECRET'
+});
+
+// Tạo đơn hàng
+app.post('/create-payment', (req, res) => {
+  const paymentData = {
+    intent: 'sale',
+    payer: {
+      payment_method: 'paypal'
+    },
+    transactions: [{
+      amount: {
+        total: '300000', // Tổng số tiền (đơn vị VND hoặc USD)
+        currency: 'VND'
+      },
+      description: 'Thanh toán đơn hàng của bạn'
+    }],
+    redirect_urls: {
+      return_url: 'http://localhost:3000/success',
+      cancel_url: 'http://localhost:3000/cancel'
+    }
+  };
+
+  paypal.payment.create(paymentData, function (error, payment) {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Lỗi khi tạo thanh toán');
+    } else {
+      for (let i = 0; i < payment.links.length; i++) {
+        if (payment.links[i].rel === 'approval_url') {
+          res.redirect(payment.links[i].href);
+        }
+      }
+    }
+  });
+});
+
+// Xử lý hoàn tất thanh toán
+app.get('/success', (req, res) => {
+  const paymentId = req.query.paymentId;
+  const payerId = req.query.PayerID;
+
+  const executePaymentJson = {
+    payer_id: payerId
+  };
+
+  paypal.payment.execute(paymentId, executePaymentJson, function (error, payment) {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Lỗi khi thực hiện thanh toán');
+    } else {
+      res.send('Thanh toán thành công');
+      // Lưu thông tin đơn hàng vào cơ sở dữ liệu
+    }
+  });
+});
+
+// Xử lý hủy thanh toán
+app.get('/cancel', (req, res) => {
+  res.send('Thanh toán bị hủy');
+});
+
+// Lắng nghe cổng
+app.listen(3000, () => {
+  console.log('Server đang chạy trên cổng 3000');
+});
+
+</script>
+
+    
+</body>
+</html>
