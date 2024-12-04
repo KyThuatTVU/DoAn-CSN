@@ -35,7 +35,7 @@
         <!-- Logo -->
         <div class="flex items-center">
             <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-                <a href="index.html" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+                <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
             </h1>
         </div>
 
@@ -43,54 +43,166 @@
         <div class="sm:hidden">
             <button id="menu-btn" class="text-white focus:outline-none">
                 <!-- Hamburger Icon -->
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
 
-        <!-- Desktop Navigation Links -->
-        <div id="nav-links"
-            class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-            <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-            <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-            <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-            <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-            <a href="lienhe.html" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-        </div>
+     <!-- Desktop Navigation Links -->
+    <div id="nav-links"
+    class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+    <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
 
-        <!-- Search Bar (Visible on Desktop) -->
-        <div class="hidden sm:flex items-center space-x-4">
-            <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center">
-                <input id="desktop-search" type="text" placeholder="Tìm kiếm"
-                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-                <button id="desktop-search-btn" class="ml-2 text-[#704539]">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+   
 
-    <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
-    <div id="mobile-menu"
-        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+</div>
+ <!-- User Authentication Buttons -->
+ <div id="auth-buttons" class="flex items-center space-x-4">
+    <!-- Login Button -->
+    <a href="login.php" id="login-btn"
+        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
+        Đăng nhập
+    </a>
+    <!-- Register Button -->
+    <a href="register.php" id="register-btn"
+        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
+        Đăng ký
+    </a>
+    <!-- Logout Button -->
+<div id="logout-btn" class="hidden flex items-center justify-between bg-[#f8f4f0] px-4 py-2 rounded-lg shadow-md space-x-6">
+    <!-- Tên người dùng -->
+    <p id="ten-nguoi-dung" class="text-md font-medium text-[#704539]">
+        Xin chào, <span class="font-bold">[Tên Người Dùng]</span>
+    </p>
+    <!-- Nút thoát -->
+    <button class="bg-red-500 text-white px-6 py-2 rounded-md font-bold hover:bg-red-600 transition-all duration-300">
+        Thoát
+    </button>
+</div>
 
-        <!-- Mobile Search Bar -->
-        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
-            <input id="mobile-search" type="text" placeholder="Tìm kiếm"
-                class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-            <button id="mobile-search-btn" class="ml-2 text-[#704539]">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
-        <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
-        <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
-        <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
-        <a href="lienhe.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+
+<!-- Search Bar (Visible on Desktop) -->
+<div class="hidden sm:flex items-center space-x-4">
+    <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
+        <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+            class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
+        <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
+</div>
+
+</nav>
+
+<!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+<div id="mobile-menu"
+    class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+
+    <!-- Mobile Search Bar -->
+    <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+        <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+            class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+        <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+
+    <!-- User Authentication Buttons -->
+    <div class="px-4 py-2">
+        <!-- Login and Register Buttons -->
+        <a href="login.php" id="mobile-login-btn"
+            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579] mb-2">
+            Đăng nhập
+        </a>
+        <a href="register.php" id="mobile-register-btn"
+            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579]">
+            Đăng ký
+        </a>
+    </div>
+
+    <!-- Logout Button (visible when user is logged in) -->
+    <div id="mobile-logout-btn" class="hidden px-4 py-2">
+        <button class="block w-full bg-red-500 text-white px-4 py-2 rounded-md font-bold hover:bg-red-600">
+            Thoát
+        </button>
+    </div>
+</div>
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+    const loginBtn = document.getElementById("login-btn");
+    const registerBtn = document.getElementById("register-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+    const userName = document.getElementById("ten-nguoi-dung");
+
+    function updateAuthButtons(isLoggedIn, userNames) {
+    if (isLoggedIn) {
+        // Nếu người dùng đã đăng nhập
+        loginBtn.classList.add("hidden");  // Ẩn nút đăng nhập
+        registerBtn.classList.add("hidden");  // Ẩn nút đăng ký
+        logoutBtn.classList.remove("hidden");  // Hiện nút thoát
+        userName.textContent = userNames;
+    } else {
+        // Nếu người dùng chưa đăng nhập
+        loginBtn.classList.remove("hidden");  // Hiện nút đăng nhập
+        registerBtn.classList.remove("hidden");  // Hiện nút đăng ký
+        logoutBtn.classList.add("hidden");  // Ẩn nút thoát
+    }
+}
+
+    // Gọi đến PHP để kiểm tra trạng thái đăng nhập
+    fetch('check.php')
+        .then(response => response.json())
+        .then(data => {
+            updateAuthButtons(data.isLoggedIn, data.username);
+        })
+        .catch(error => {
+            console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+        });
+
+    // Xử lý sự kiện nút đăng nhập (chuyển hướng)
+    loginBtn.addEventListener("click", (e) => {
+        if (!isLoggedIn) {
+            e.preventDefault(); // Ngăn mặc định của liên kết
+            window.location.href = "login.php";
+        }
+    });
+
+    // Xử lý sự kiện nút đăng ký (chuyển hướng)
+    registerBtn.addEventListener("click", (e) => {
+        e.preventDefault(); // Ngăn mặc định của liên kết
+        window.location.href = "register.php";
+    });
+
+    // Xử lý sự kiện nút thoát
+    logoutBtn.addEventListener("click", () => {
+        // Gọi đến PHP để kiểm tra trạng thái đăng nhập
+        fetch('dangxuat.php')
+            .then(response => response.json())
+            .then(data => {
+                alert("Bạn đã thoát!"+ data.success);
+            })
+            .catch(error => {
+                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+            });
+        updateAuthButtons();
+    });
+
+    // Cập nhật nút dựa trên trạng thái đăng nhập
+    updateAuthButtons();
+});
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
     <script>

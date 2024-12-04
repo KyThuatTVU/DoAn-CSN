@@ -46,11 +46,11 @@
 <body class="bg-skin-tone">
 
     
-    <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+<nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
         <!-- Logo -->
         <div class="flex items-center">
             <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-                <a href="index.html" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+                <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
             </h1>
         </div>
 
@@ -64,46 +64,160 @@
             </button>
         </div>
 
-        <!-- Desktop Navigation Links -->
-        <div id="nav-links"
-            class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-            <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-            <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-            <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-            <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-            <a href="lienhe.html" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-        </div>
+     <!-- Desktop Navigation Links -->
+    <div id="nav-links"
+    class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+    <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
 
-        <!-- Search Bar (Visible on Desktop) -->
-        <div class="hidden sm:flex items-center space-x-4">
-            <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center">
-                <input id="desktop-search" type="text" placeholder="Tìm kiếm"
-                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-                <button id="desktop-search-btn" class="ml-2 text-[#704539]">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+   
 
-    <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
-    <div id="mobile-menu"
-        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+</div>
+ <!-- User Authentication Buttons -->
+ <div id="auth-buttons" class="flex items-center space-x-4">
+    <!-- Login Button -->
+    <a href="login.php" id="login-btn"
+        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
+        Đăng nhập
+    </a>
+    <!-- Register Button -->
+    <a href="register.php" id="register-btn"
+        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
+        Đăng ký
+    </a>
+    <!-- Logout Button -->
+<div id="logout-btn" class="hidden flex items-center justify-between bg-[#f8f4f0] px-4 py-2 rounded-lg shadow-md space-x-6">
+    <!-- Tên người dùng -->
+    <p id="ten-nguoi-dung" class="text-md font-medium text-[#704539]">
+        Xin chào, <span class="font-bold">[Tên Người Dùng]</span>
+    </p>
+    <!-- Nút thoát -->
+    <button class="bg-red-500 text-white px-6 py-2 rounded-md font-bold hover:bg-red-600 transition-all duration-300">
+        Thoát
+    </button>
+</div>
 
-        <!-- Mobile Search Bar -->
-        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
-            <input id="mobile-search" type="text" placeholder="Tìm kiếm"
-                class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-            <button id="mobile-search-btn" class="ml-2 text-[#704539]">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
-        <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
-        <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
-        <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
-        <a href="lienhe.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+
+<!-- Search Bar (Visible on Desktop) -->
+<div class="hidden sm:flex items-center space-x-4">
+    <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
+        <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+            class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
+        <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
+</div>
+
+</nav>
+
+<!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+<div id="mobile-menu"
+    class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+
+    <!-- Mobile Search Bar -->
+    <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+        <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+            class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+        <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+
+    <!-- User Authentication Buttons -->
+    <div class="px-4 py-2">
+        <!-- Login and Register Buttons -->
+        <a href="login.php" id="mobile-login-btn"
+            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579] mb-2">
+            Đăng nhập
+        </a>
+        <a href="register.php" id="mobile-register-btn"
+            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579]">
+            Đăng ký
+        </a>
+    </div>
+
+    <!-- Logout Button (visible when user is logged in) -->
+    <div id="mobile-logout-btn" class="hidden px-4 py-2">
+        <button class="block w-full bg-red-500 text-white px-4 py-2 rounded-md font-bold hover:bg-red-600">
+            Thoát
+        </button>
+    </div>
+</div>
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+    const loginBtn = document.getElementById("login-btn");
+    const registerBtn = document.getElementById("register-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+    const userName = document.getElementById("ten-nguoi-dung");
+
+    function updateAuthButtons(isLoggedIn, userNames) {
+    if (isLoggedIn) {
+        // Nếu người dùng đã đăng nhập
+        loginBtn.classList.add("hidden");  // Ẩn nút đăng nhập
+        registerBtn.classList.add("hidden");  // Ẩn nút đăng ký
+        logoutBtn.classList.remove("hidden");  // Hiện nút thoát
+        userName.textContent = userNames;
+    } else {
+        // Nếu người dùng chưa đăng nhập
+        loginBtn.classList.remove("hidden");  // Hiện nút đăng nhập
+        registerBtn.classList.remove("hidden");  // Hiện nút đăng ký
+        logoutBtn.classList.add("hidden");  // Ẩn nút thoát
+    }
+}
+
+    // Gọi đến PHP để kiểm tra trạng thái đăng nhập
+    fetch('check.php')
+        .then(response => response.json())
+        .then(data => {
+            updateAuthButtons(data.isLoggedIn, data.username);
+        })
+        .catch(error => {
+            console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+        });
+
+    // Xử lý sự kiện nút đăng nhập (chuyển hướng)
+    loginBtn.addEventListener("click", (e) => {
+        if (!isLoggedIn) {
+            e.preventDefault(); // Ngăn mặc định của liên kết
+            window.location.href = "login.php";
+        }
+    });
+
+    // Xử lý sự kiện nút đăng ký (chuyển hướng)
+    registerBtn.addEventListener("click", (e) => {
+        e.preventDefault(); // Ngăn mặc định của liên kết
+        window.location.href = "register.php";
+    });
+
+    // Xử lý sự kiện nút thoát
+    logoutBtn.addEventListener("click", () => {
+        // Gọi đến PHP để kiểm tra trạng thái đăng nhập
+        fetch('dangxuat.php')
+            .then(response => response.json())
+            .then(data => {
+                alert("Bạn đã thoát!"+ data.success);
+            })
+            .catch(error => {
+                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+            });
+        updateAuthButtons();
+    });
+
+    // Cập nhật nút dựa trên trạng thái đăng nhập
+    updateAuthButtons();
+});
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
     <script>
@@ -219,45 +333,44 @@
         });
 
     </script>
-    <main id="main" class="full">
-        <div class="full" id="main-content">
-            <!-- Banner Section -->
-            <div class="h-96 bg-cover bg-center bg-no-repeat relative flex justify-center items-center" 
+   <main id="main" class="full">
+    <div class="full" id="main-content">
+        <!-- Banner Section -->
+        <div class="h-96 bg-cover bg-center bg-no-repeat relative flex justify-center items-center" 
             style="background-image: url('https://nhahangvian.com/wp-content/uploads/2023/12/cau-long-bien.jpg')">
-         <!-- Lớp nền mờ -->
-         <div class="absolute inset-0 bg-[#f0e2e0] bg-opacity-70"></div>
-         
-         <!-- Nội dung chữ -->
-         <div class="z-10 text-center text-white px-4">
-           <!-- Tiêu đề -->
-           <h2 class="text-4xl md:text-5xl font-bold text-[#8B4513] drop-shadow-lg mb-4"
-               style="font-family: 'Audiowide', sans-serif;">
-          LIÊN HỆ
-           </h2>
-           <!-- Phần phụ đề -->
-           <p class="text-xl md:text-2xl font-semibold text-[#8B4513] drop-shadow-md"
-              style="font-family: 'Audiowide', sans-serif;">
-           HÃY LIÊN HỆ CHÚNG TÔI ĐỂ BẠN CÓ MỘT TRẢI NGHIỆM TỐT NHẤT NHÉ!
-           </p>
-         </div>
-       </div>
-            <!-- Contact Section -->
-            <div class="section-gap full py-10 bg-[#f9f2ec]">
-                <div class="container mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       <!-- Contact Info -->
-<div class="p-6">
-    <h1 class="text-3xl font-bold mb-4">Phương Nam – Cơm ngon tròn vị</h1>
-    <p class="text-lg mb-2"><strong>SDT:</strong> 0904 816 145</p>
-    <p class="text-lg mb-2"><strong>Email:</strong> nhahangphuongnam@gmail.com</p>
-    <p class="text-lg mb-2"><strong>Địa chỉ:</strong> 500 Võ Văn Kiệt, Phường 1, TP Trà Vinh</p>
-    <p class="text-lg"><strong>(Có chỗ để xe ô tô)</strong></p>
-    <p class="text-lg mb-2"><strong>Website:</strong> https://amthucphuongnam.id.vn</p>
-</div>
+            <!-- Lớp nền mờ -->
+            <div class="absolute inset-0 bg-[#f0e2e0] bg-opacity-70"></div>
+            <!-- Nội dung chữ -->
+            <div class="z-10 text-center text-white px-4">
+                <!-- Tiêu đề -->
+                <h2 class="text-4xl md:text-5xl font-bold text-[#8B4513] drop-shadow-lg mb-4"
+                    style="font-family: 'Audiowide', sans-serif;">
+                    LIÊN HỆ
+                </h2>
+                <!-- Phần phụ đề -->
+                <p class="text-xl md:text-2xl font-semibold text-[#8B4513] drop-shadow-md"
+                    style="font-family: 'Audiowide', sans-serif;">
+                    HÃY LIÊN HỆ CHÚNG TÔI ĐỂ BẠN CÓ MỘT TRẢI NGHIỆM TỐT NHẤT NHÉ!
+                </p>
+            </div>
+        </div>
 
-                        <!-- Map Section -->
-                        <div class="p-6">
-                            <iframe 
+        <!-- Contact Section -->
+        <div class="section-gap full py-10 bg-[#f9f2ec]">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contact Info -->
+                    <div class="p-6">
+                        <h1 class="text-3xl font-bold mb-4">Phương Nam – Cơm ngon tròn vị</h1>
+                        <p class="text-lg mb-2"><strong>SDT:</strong> 0904 816 145</p>
+                        <p class="text-lg mb-2"><strong>Email:</strong> nhahangphuongnam@gmail.com</p>
+                        <p class="text-lg mb-2"><strong>Địa chỉ:</strong> 500 Võ Văn Kiệt, Phường 1, TP Trà Vinh</p>
+                        <p class="text-lg"><strong>(Có chỗ để xe ô tô)</strong></p>
+                        <p class="text-lg mb-2"><strong>Website:</strong> https://amthucphuongnam.id.vn</p>
+                    </div>
+                    <!-- Map Section -->
+                    <div class="p-6">
+                        <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3929.812701699307!2d106.32092667503049!3d9.949536290153308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwNTYnNTguMyJOIDEwNsKwMTknMjQuNiJF!5e0!3m2!1svi!2s!4v1730822640422!5m2!1svi!2s"
                             width="100%" 
                             height="400" 
@@ -266,32 +379,101 @@
                             allowfullscreen="" 
                             loading="lazy">
                         </iframe>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <style>
-            .text-shadow {
-                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            }
-            .text-brown {
-                color: #654321;
-            }
-        </style>
-        
-        
 
-                        <!-- Map Embed -->
-                       
-    
-    
-                    </div>
+        <!-- Feedback Form -->
+        <div class="max-w-2xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Gửi Đánh Giá</h1>
+            <form action="" method="POST" class="space-y-4">
+                <div>
+                    <label for="ten_khach_hang" class="block text-gray-700 font-medium mb-2">Tên khách hàng:</label>
+                    <input type="text" id="ten_khach_hang" name="ten_khach_hang" 
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        required>
                 </div>
-            </div>
+
+                <div>
+                    <label for="so_dien_thoai" class="block text-gray-700 font-medium mb-2">Số điện thoại:</label>
+                    <input type="text" id="so_dien_thoai" name="so_dien_thoai" 
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-gray-700 font-medium mb-2">Email:</label>
+                    <input type="email" id="email" name="email" 
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div>
+                    <label for="noi_dung_danh_gia" class="block text-gray-700 font-medium mb-2">Nội dung đánh giá:</label>
+                    <textarea id="noi_dung_danh_gia" name="noi_dung_danh_gia" rows="4" 
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" 
+                        required></textarea>
+                </div>
+
+                <div>
+                    <label for="diem_so" class="block text-gray-700 font-medium mb-2">Điểm số:</label>
+                    <select id="diem_so" name="diem_so" 
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" 
+                        required>
+                        <option value="1">1 - Rất tệ</option>
+                        <option value="2">2 - Tệ</option>
+                        <option value="3">3 - Trung bình</option>
+                        <option value="4">4 - Tốt</option>
+                        <option value="5">5 - Rất tốt</option>
+                    </select>
+                </div>
+
+                <button type="submit" name="submit" 
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg">
+                    Gửi đánh giá
+                </button>
+            </form>
         </div>
-    </main>
+    </div>
+</main>
+
+    
+    <?php
+// Kiểm tra phương thức POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Kết nối tới cơ sở dữ liệu
+    $conn = new mysqli('localhost', 'root', '', 'nha_hang');
+
+    // Kiểm tra kết nối
+    if ($conn->connect_error) {
+        die("Kết nối thất bại: " . $conn->connect_error);
+    }
+
+    // Lấy dữ liệu từ form
+    $ten_khach_hang = $conn->real_escape_string($_POST['ten_khach_hang']);
+    $so_dien_thoai = $conn->real_escape_string($_POST['so_dien_thoai']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $noi_dung_danh_gia = $conn->real_escape_string($_POST['noi_dung_danh_gia']);
+    $diem_so = (int)$_POST['diem_so'];
+
+    // Chèn dữ liệu vào bảng danh_gia
+    $sql = "INSERT INTO danh_gia (ten_khach_hang, so_dien_thoai, email, noi_dung_danh_gia, diem_so)
+            VALUES ('$ten_khach_hang', '$so_dien_thoai', '$email', '$noi_dung_danh_gia', $diem_so)";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<p style='text-align: center; color: green;'>Đánh giá của bạn đã được gửi thành công!</p>";
+    } else {
+        echo "<p style='text-align: center; color: red;'>Lỗi: " . $conn->error . "</p>";
+    }
+
+    // Đóng kết nối
+    $conn->close();
+
+    // Quay lại trang form
+    echo "<p style='text-align: center;'><a href='form_danh_gia.php'>Quay lại</a></p>";
+} else {
+    echo "Phương thức không hợp lệ.";
+}
+?>
 
     <!-- Thêm icon Twitter và YouTube vào footer -->
 <footer class="bg-[#644741] text-white p-6">
