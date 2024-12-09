@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -223,17 +223,39 @@
                     font-size: 4rem;
                 }
             }
+
+            /* Vị trí container */
+#buttons-container {
+    position: fixed;
+    bottom: 20px; /* Cách lề dưới */
+    right: 20px; /* Cách lề phải */
+    z-index: 9999; /* Đảm bảo luôn nổi trên các phần tử khác */
+}
+
+
     </style>
     </head>
 
     <body>
     <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
-        <!-- Logo -->
-        <div class="flex items-center">
-            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-                <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
-            </h1>
-        </div>
+    <div class="flex flex-col items-center">
+    <!-- Logo -->
+    <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+        <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+    </h1>
+    
+    <!-- Tên người dùng -->
+    <div id="auth-bar" class="hidden mt-4">
+        <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
+    </div>
+</div>
+
+
+<!-- User Authentication Bar -->
+<!-- User Authentication Bar -->
+
+
+
 
         <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
         <div class="sm:hidden">
@@ -254,37 +276,9 @@
     <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
     <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
 
-   
 
 </div>
- <!-- User Authentication Buttons -->
- <div id="auth-buttons" class="flex items-center space-x-4">
-    <!-- Login Button -->
-    <a href="login.php" id="login-btn"
-        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
-        Đăng nhập
-    </a>
-    <!-- Register Button -->
-    <a href="register.php" id="register-btn"
-        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
-        Đăng ký
-    </a>
-    <div id="logout-btn" class="hidden flex items-center justify-between bg-[#f8f4f0] px-4 py-2 rounded-lg shadow-md space-x-4 max-w-xs mx-auto">
-    <!-- Tên người dùng -->
-    <p id="ten-nguoi-dung" class="text-sm font-medium text-[#704539]">
-        Xin chào, <span class="font-bold">[Tên Người Dùng]</span>
-    </p>
-    
-    <!-- Nút thoát -->
-    <button class="bg-[#d3b8a3] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#b6937f] transition-all duration-300">
-        Thoát
-    </button>
-</div>
-
-
-
-
-
+ 
 <!-- Search Bar (Visible on Desktop) -->
 <div class="hidden sm:flex items-center space-x-4">
     <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
@@ -297,6 +291,109 @@
 </div>
 
 </nav>
+    <!-- Containe nút -->
+<div id="buttons-container" class="fixed bottom-5 right-5 flex flex-col items-center space-y-4">
+    <!-- Nút đăng nhập -->
+    <div id="login-button" class="relative group">
+        <a href="login.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-700 text-white overflow-hidden">
+            <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Đăng nhập" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Mời bạn đăng nhập
+        </span>
+    </div>
+
+    <!-- Nút đăng ký -->
+    <div id="signup-button" class="relative group">
+        <a href="register.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-700 text-white overflow-hidden">
+            <img src="https://png.pngtree.com/png-clipart/20231118/original/pngtree-subscribe-icon-contract-photo-png-image_13614905.png" alt="Đăng ký" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Mời bạn đăng ký
+        </span>
+    </div>
+
+    <!-- Nút đăng xuất -->
+    <div id="logout-button" class="relative group hidden">
+        <a href="index.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-red-500 to-red-700 text-white overflow-hidden">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828479.png" alt="Đăng xuất" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Đăng xuất
+        </span>
+    </div>
+</div>
+
+<style>
+    
+/* Hiệu ứng nút */
+.floating-btn {
+    position: relative;
+    width: 64px; /* Kích thước nút */
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+    animation: pulse 1.5s infinite; /* Hiệu ứng chớp */
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 205, 255, 0.8), 0 0 50px rgba(0, 205, 255, 0.5);
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: 80px; /* Hiển thị phía trên nút */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-btn:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginButton = document.getElementById('login-button');
+        const signupButton = document.getElementById('signup-button');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Kiểm tra trạng thái đăng nhập từ server
+        fetch('check.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLoggedIn) {
+                    loginButton.classList.add('hidden');
+                    signupButton.classList.add('hidden');
+                    logoutButton.classList.remove('hidden');
+                } else {
+                    loginButton.classList.remove('hidden');
+                    signupButton.classList.remove('hidden');
+                    logoutButton.classList.add('hidden');
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+            });
+    });
+</script>
+<link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
 
 <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
 <div id="mobile-menu"
@@ -318,47 +415,38 @@
     <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
     <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
 
-    <!-- User Authentication Buttons -->
-    <div class="px-4 py-2">
-        <!-- Login and Register Buttons -->
-        <a href="login.php" id="mobile-login-btn"
-            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579] mb-2">
-            Đăng nhập
-        </a>
-        <a href="register.php" id="mobile-register-btn"
-            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579]">
-            Đăng ký
-        </a>
-    </div>
-
-    <!-- Logout Button (visible when user is logged in) -->
-    <div id="mobile-logout-btn" class="hidden px-4 py-2">
-        <button class="block w-full bg-red-500 text-white px-4 py-2 rounded-md font-bold hover:bg-red-600">
-            Thoát
-        </button>
-    </div>
+  
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Các phần tử DOM
+    const loginBtn = document.getElementById("login-button");
+    const signupBtn = document.getElementById("signup-button");
+    const logoutBtn = document.getElementById("logout-button");
+    const userNameDisplay = document.getElementById("ten-nguoi-dung");
+    const authBar = document.getElementById('auth-bar');
+    const logo = document.querySelector('h1');
 
-<script>document.addEventListener("DOMContentLoaded", function () {
-    const loginBtn = document.getElementById("login-btn");
-    const registerBtn = document.getElementById("register-btn");
-    const logoutBtn = document.getElementById("logout-btn");
-    const userName = document.getElementById("ten-nguoi-dung");
-
-    function updateAuthButtons(isLoggedIn, userNames) {
-    if (isLoggedIn) {
-        // Nếu người dùng đã đăng nhập
-        loginBtn.classList.add("hidden");  // Ẩn nút đăng nhập
-        registerBtn.classList.add("hidden");  // Ẩn nút đăng ký
-        logoutBtn.classList.remove("hidden");  // Hiện nút thoát
-        userName.textContent = userNames;
-    } else {
-        // Nếu người dùng chưa đăng nhập
-        loginBtn.classList.remove("hidden");  // Hiện nút đăng nhập
-        registerBtn.classList.remove("hidden");  // Hiện nút đăng ký
-        logoutBtn.classList.add("hidden");  // Ẩn nút thoát
+    // Cập nhật giao diện dựa trên trạng thái đăng nhập
+    function updateAuthButtons(isLoggedIn, userName = '') {
+        if (isLoggedIn) {
+            // Nếu người dùng đã đăng nhập
+            userNameDisplay.textContent = userName; // Hiển thị tên người dùng
+            authBar.classList.remove('hidden');
+            logo.classList.add('mt-4'); // Dời logo xuống
+            loginBtn.classList.add("hidden");
+            signupBtn.classList.add("hidden");
+            logoutBtn.classList.remove("hidden");
+        } else {
+            // Nếu người dùng chưa đăng nhập
+            userNameDisplay.textContent = ''; // Ẩn tên người dùng
+            authBar.classList.add('hidden');
+            logo.classList.remove('mt-4');
+            loginBtn.classList.remove("hidden");
+            signupBtn.classList.remove("hidden");
+            logoutBtn.classList.add("hidden");
+        }
     }
-}
 
     // Gọi đến PHP để kiểm tra trạng thái đăng nhập
     fetch('check.php')
@@ -370,38 +458,35 @@
             console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
         });
 
-    // Xử lý sự kiện nút đăng nhập (chuyển hướng)
+    // Xử lý sự kiện nút đăng nhập
     loginBtn.addEventListener("click", (e) => {
-        if (!isLoggedIn) {
-            e.preventDefault(); // Ngăn mặc định của liên kết
-            window.location.href = "login.php";
-        }
+        window.location.href = "login.php";
     });
 
-    // Xử lý sự kiện nút đăng ký (chuyển hướng)
-    registerBtn.addEventListener("click", (e) => {
-        e.preventDefault(); // Ngăn mặc định của liên kết
+    // Xử lý sự kiện nút đăng ký
+    signupBtn.addEventListener("click", (e) => {
         window.location.href = "register.php";
     });
 
-    // Xử lý sự kiện nút thoát
+    // Xử lý sự kiện nút đăng xuất
     logoutBtn.addEventListener("click", () => {
-        // Gọi đến PHP để kiểm tra trạng thái đăng nhập
-        fetch('dangxuat.php')
+        fetch('dangxuat.php', { method: 'POST' })
             .then(response => response.json())
             .then(data => {
-                alert("Bạn đã thoát!"+ data.success);
+                if (data.success) {
+                    alert("Bạn đã thoát!");
+                    updateAuthButtons(false); // Cập nhật lại giao diện
+                } else {
+                    alert("Có lỗi xảy ra khi đăng xuất. Vui lòng thử lại.");
+                }
             })
             .catch(error => {
-                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+                console.error("Lỗi khi thoát:", error);
             });
-        updateAuthButtons();
     });
-
-    // Cập nhật nút dựa trên trạng thái đăng nhập
-    updateAuthButtons();
 });
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
 <script>
@@ -522,9 +607,9 @@
     <!-- Slideshow Container -->
     <!-- Slider chứa các ảnh -->
     <div class="slider">
-        <div><img src="img/nen2.jpg" alt="Image 1"></div>
+        <div><img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/469584981_1259008418754588_3390551051780092373_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=th3_IDa5gcUQ7kNvgE5vhsl&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AlvgttChi5DpdKhKI2S2mD_&oh=00_AYB0CmQzWiRMgAEqmwyDnGIuE1bB0XRmO1ur_p8gqDK4gw&oe=675B0506" alt="Image 1"></div>
         <div><img src="img/N1.jpeg" alt="Image 2"></div>
-        <div><img src="img/nen3.jpg" alt="Image 3"></div>
+        <div><img src="img/nen2.jpg" alt="Image 3"></div>
     </div>
 
     <!-- Thêm thư viện jQuery và Slick Slider -->
@@ -589,8 +674,68 @@
               }
             });
     </script>
-    
-    
+   
+   <div id="snow-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
+
+<script>
+    const snowContainer = document.getElementById('snow-container');
+
+    // Hàm tạo bông tuyết
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake', 'absolute', 'rounded-full', 'bg-white', 'opacity-80'); // Sử dụng Tailwind CSS cho bông tuyết
+
+        // Thiết lập vị trí, kích thước và tốc độ ngẫu nhiên
+        snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Vị trí ngẫu nhiên theo chiều ngang
+        snowflake.style.width = Math.random() * 5 + 5 + 'px'; // Kích thước: 5px - 10px
+        snowflake.style.height = snowflake.style.width; // Giữ tỷ lệ vuông cho hình tròn
+        snowflake.style.animationDuration = Math.random() * 5 + 3 + 's'; // Thời gian rơi: 3-8 giây
+        snowflake.style.animationDelay = Math.random() * 2 + 's'; // Trễ ngẫu nhiên
+
+        // Thêm bông tuyết vào container
+        snowContainer.appendChild(snowflake);
+
+        // Loại bỏ bông tuyết sau khi hoạt hình kết thúc
+        snowflake.addEventListener('animationend', () => {
+            snowflake.remove();
+        });
+    }
+
+    // Tạo bông tuyết ít hơn (5 bông mỗi lần)
+    let snowInterval = setInterval(() => {
+        for (let i = 0; i < 5; i++) { // Số lượng bông tuyết mỗi lần (ít hơn trước)
+            createSnowflake();
+        }
+    }, 400); // Khoảng thời gian tạo bông tuyết
+
+    // Ngừng hiệu ứng sau 5 giây
+    setTimeout(() => {
+        clearInterval(snowInterval); // Dừng tạo bông tuyết mới
+    }, 5000); // 5 giây
+
+</script>
+
+<style>
+    /* Tạo hiệu ứng rơi cho tuyết */
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0.3; /* Độ mờ giảm dần khi rơi xuống */
+        }
+    }
+
+    /* Áp dụng animation cho các bông tuyết */
+    .snowflake {
+        animation: fall linear infinite;
+    }
+</style>
+
+
+<link rel="stylesheet" href="styles.css">
     <div class="am_thuc py-12 bg-orange-50">
         <h2 class="font-bold text-3xl sm:text-4xl text-[#D8B899] custom-font text-center mx-auto">
             ĐẶT SẢN PHƯƠNG NAM
@@ -684,23 +829,23 @@
             <div class="slick-3 flex gap-8 justify-center items-center">
                 <!-- Hình ảnh 1 -->
                 <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
-                    <a href="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/468445613_122131874612511615_463748523128431631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHVvR6bNCp57g_qMVZjZPPvwbQky0szm1LBtCTLSzObUqusSExRpMseMTU5jicVLbDQE_NDWALf8Eq5g6LTVWV-&_nc_ohc=l0ISzUyTT6sQ7kNvgE_EEYL&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AKkO-mhaT86sILJunqJy0_i&oh=00_AYCb2voCYRwS_cCxmSPlm3HFOaPbU8MEucDVdjxWsM1HQw&oe=6750AE9C"
+                    <a href="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/468445613_122131874612511615_463748523128431631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHVvR6bNCp57g_qMVZjZPPvwbQky0szm1LBtCTLSzObUqusSExRpMseMTU5jicVLbDQE_NDWALf8Eq5g6LTVWV-&_nc_ohc=l0ISzUyTT6sQ7kNvgE_EEYL&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AKkO-mhaT86sILJunqJy0_i&oh=00_AYBVaHR9H8ucRIhq67fBCT1ENeqvZRo00_lpHJ7WXQXPrg&oe=6750AE9C"
                        data-lightbox="restaurant-gallery" data-title="Không gian nhà hàng 1">
-                        <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/468445613_122131874612511615_463748523128431631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHVvR6bNCp57g_qMVZjZPPvwbQky0szm1LBtCTLSzObUqusSExRpMseMTU5jicVLbDQE_NDWALf8Eq5g6LTVWV-&_nc_ohc=l0ISzUyTT6sQ7kNvgE_EEYL&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AKkO-mhaT86sILJunqJy0_i&oh=00_AYCb2voCYRwS_cCxmSPlm3HFOaPbU8MEucDVdjxWsM1HQw&oe=6750AE9C" alt="Không gian nhà hàng 1">
+                        <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/466258720_122126510462511615_3148896874661387414_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=nlhbTF2PGOoQ7kNvgFQAcUv&_nc_zt=23&_nc_ht=scontent.fsgn2-4.fna&_nc_gid=AxCu1DGMsaa-EneHu7edzyi&oh=00_AYCxOLpsaVvoFzylXqOvVi89NH1AxJL_LAnVoWsuved6Qg&oe=675AFD3C" alt="Không gian nhà hàng 1">
                     </a>
                 </div>
                 <!-- Hình ảnh 2 -->
                 <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
                     <a href="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/468518645_122131874138511615_8325878476265256575_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9YczvM2ekKlJLs2L9aiThWnSR40kG7PRadJHjSQbs9IGnTlRQfPV9TirCqfqfJS_C6hm9l3gPP1cdQcYFvkWl&_nc_ohc=6skGkGCwqFUQ7kNvgFz151w&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=AMCN9bE5a9Doen_6gEHPCwd&oh=00_AYDhvj4dDiBlHdJDeTuojb_nyO7U0aXEJTme1CF0rrjNEg&oe=6750AC8F"
                        data-lightbox="restaurant-gallery" data-title="Không gian nhà hàng 2">
-                        <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/468518645_122131874138511615_8325878476265256575_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9YczvM2ekKlJLs2L9aiThWnSR40kG7PRadJHjSQbs9IGnTlRQfPV9TirCqfqfJS_C6hm9l3gPP1cdQcYFvkWl&_nc_ohc=6skGkGCwqFUQ7kNvgFz151w&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=AMCN9bE5a9Doen_6gEHPCwd&oh=00_AYDhvj4dDiBlHdJDeTuojb_nyO7U0aXEJTme1CF0rrjNEg&oe=6750AC8F" alt="Không gian nhà hàng 2">
+                        <img class="w-full rounded-[25px]" src="https://luuanh.vercel.app/amthucphuongnam/Kg1.jpg" alt="Không gian nhà hàng 2">
                     </a>
                 </div>
                 <!-- Hình ảnh 3 -->
                 <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
                     <a href="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/465914579_122125272914511615_6009958091425179677_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEM82cV946zSviTeudJX6yiWE6gWbmXFe9YTqBZuZcV7w3LEclpEmLta-4luR7M845xx02OwSDudvDn0gw_FaRK&_nc_ohc=VumScNXP_PsQ7kNvgE368dY&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AhSpLSA6QPz5FGAD6-IKSFr&oh=00_AYBVaHR9H8ucRIhq67fBCT1ENeqvZRo00_lpHJ7WXQXPrg&oe=67508D6E"
                        data-lightbox="restaurant-gallery" data-title="Không gian nhà hàng 3">
-                        <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/465914579_122125272914511615_6009958091425179677_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEM82cV946zSviTeudJX6yiWE6gWbmXFe9YTqBZuZcV7w3LEclpEmLta-4luR7M845xx02OwSDudvDn0gw_FaRK&_nc_ohc=VumScNXP_PsQ7kNvgE368dY&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AhSpLSA6QPz5FGAD6-IKSFr&oh=00_AYBVaHR9H8ucRIhq67fBCT1ENeqvZRo00_lpHJ7WXQXPrg&oe=67508D6E" alt="Không gian nhà hàng 3">
+                        <img class="w-full rounded-[25px]" src="https://luuanh.vercel.app/amthucphuongnam/Kg2.jpg" alt="Không gian nhà hàng 3">
                     </a>
                 </div>
             </div>

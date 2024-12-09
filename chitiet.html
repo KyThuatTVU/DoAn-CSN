@@ -65,292 +65,371 @@
 </head>
 <body class="bg-white text-black">
   <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+    <div class="flex flex-col items-center">
     <!-- Logo -->
-    <div class="flex items-center">
-        <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-            <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
-        </h1>
+    <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+        <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+    </h1>
+    
+    <!-- Tên người dùng -->
+    <div id="auth-bar" class="hidden mt-4">
+        <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
     </div>
-
-    <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
-    <div class="sm:hidden">
-        <button id="menu-btn" class="text-white focus:outline-none">
-            <!-- Hamburger Icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-    </div>
-
- <!-- Desktop Navigation Links -->
-<div id="nav-links"
-class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-<a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-<a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-<a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-<a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-<a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-
-
-
-</div>
-<!-- User Authentication Buttons -->
-<div id="auth-buttons" class="flex items-center space-x-4">
-<!-- Login Button -->
-<a href="login.php" id="login-btn"
-    class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
-    Đăng nhập
-</a>
-<!-- Register Button -->
-<a href="register.php" id="register-btn"
-    class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
-    Đăng ký
-</a>
-<div id="logout-btn" class="hidden flex items-center justify-between bg-[#f8f4f0] px-4 py-2 rounded-lg shadow-md space-x-4 max-w-xs mx-auto">
-  <!-- Tên người dùng -->
-  <p id="ten-nguoi-dung" class="text-sm font-medium text-[#704539]">
-      Xin chào, <span class="font-bold">[Tên Người Dùng]</span>
-  </p>
-  
-  <!-- Nút thoát -->
-  <button class="bg-[#d3b8a3] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#b6937f] transition-all duration-300">
-      Thoát
-  </button>
 </div>
 
 
+<!-- User Authentication Bar -->
+<!-- User Authentication Bar -->
+
+
+
+
+        <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+        <div class="sm:hidden">
+            <button id="menu-btn" class="text-white focus:outline-none">
+                <!-- Hamburger Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+     <!-- Desktop Navigation Links -->
+    <div id="nav-links"
+    class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+    <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+
+
+</div>
+ 
 <!-- Search Bar (Visible on Desktop) -->
 <div class="hidden sm:flex items-center space-x-4">
-<div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
-    <input id="desktop-search" type="text" placeholder="Tìm kiếm"
-        class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
-    <button id="desktop-search-btn" class="ml-2 text-[#704539]">
-        <i class="fas fa-search"></i>
-    </button>
-</div>
+    <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
+        <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+            class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
+        <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
 </div>
 
 </nav>
+    <!-- Containe nút -->
+<div id="buttons-container" class="fixed bottom-5 right-5 flex flex-col items-center space-y-4">
+    <!-- Nút đăng nhập -->
+    <div id="login-button" class="relative group">
+        <a href="login.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-700 text-white overflow-hidden">
+            <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Đăng nhập" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Mời bạn đăng nhập
+        </span>
+    </div>
+
+    <!-- Nút đăng ký -->
+    <div id="signup-button" class="relative group">
+        <a href="register.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-700 text-white overflow-hidden">
+            <img src="https://png.pngtree.com/png-clipart/20231118/original/pngtree-subscribe-icon-contract-photo-png-image_13614905.png" alt="Đăng ký" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Mời bạn đăng ký
+        </span>
+    </div>
+
+    <!-- Nút đăng xuất -->
+    <div id="logout-button" class="relative group hidden">
+        <a href="index.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-red-500 to-red-700 text-white overflow-hidden">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828479.png" alt="Đăng xuất" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Đăng xuất
+        </span>
+    </div>
+</div>
+
+<style>
+    
+/* Hiệu ứng nút */
+.floating-btn {
+    position: relative;
+    width: 64px; /* Kích thước nút */
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+    animation: pulse 1.5s infinite; /* Hiệu ứng chớp */
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 205, 255, 0.8), 0 0 50px rgba(0, 205, 255, 0.5);
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: 80px; /* Hiển thị phía trên nút */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-btn:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginButton = document.getElementById('login-button');
+        const signupButton = document.getElementById('signup-button');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Kiểm tra trạng thái đăng nhập từ server
+        fetch('check.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLoggedIn) {
+                    loginButton.classList.add('hidden');
+                    signupButton.classList.add('hidden');
+                    logoutButton.classList.remove('hidden');
+                } else {
+                    loginButton.classList.remove('hidden');
+                    signupButton.classList.remove('hidden');
+                    logoutButton.classList.add('hidden');
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+            });
+    });
+</script>
+<link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
 
 <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
 <div id="mobile-menu"
-class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+    class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
 
-<!-- Mobile Search Bar -->
-<div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
-    <input id="mobile-search" type="text" placeholder="Tìm kiếm"
-        class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-    <button id="mobile-search-btn" class="ml-2 text-[#704539]">
-        <i class="fas fa-search"></i>
-    </button>
+    <!-- Mobile Search Bar -->
+    <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+        <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+            class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+        <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+
+  
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Các phần tử DOM
+    const loginBtn = document.getElementById("login-button");
+    const signupBtn = document.getElementById("signup-button");
+    const logoutBtn = document.getElementById("logout-button");
+    const userNameDisplay = document.getElementById("ten-nguoi-dung");
+    const authBar = document.getElementById('auth-bar');
+    const logo = document.querySelector('h1');
 
-<!-- Mobile Navigation Links -->
-<a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
-<a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
-<a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
-<a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
-<a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
-
-<!-- User Authentication Buttons -->
-<div class="px-4 py-2">
-    <!-- Login and Register Buttons -->
-    <a href="login.php" id="mobile-login-btn"
-        class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579] mb-2">
-        Đăng nhập
-    </a>
-    <a href="register.php" id="mobile-register-btn"
-        class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579]">
-        Đăng ký
-    </a>
-</div>
-
-<!-- Logout Button (visible when user is logged in) -->
-<div id="mobile-logout-btn" class="hidden px-4 py-2">
-    <button class="block w-full bg-red-500 text-white px-4 py-2 rounded-md font-bold hover:bg-red-600">
-        Thoát
-    </button>
-</div>
-</div>
-
-<script>document.addEventListener("DOMContentLoaded", function () {
-const loginBtn = document.getElementById("login-btn");
-const registerBtn = document.getElementById("register-btn");
-const logoutBtn = document.getElementById("logout-btn");
-const userName = document.getElementById("ten-nguoi-dung");
-
-function updateAuthButtons(isLoggedIn, userNames) {
-if (isLoggedIn) {
-    // Nếu người dùng đã đăng nhập
-    loginBtn.classList.add("hidden");  // Ẩn nút đăng nhập
-    registerBtn.classList.add("hidden");  // Ẩn nút đăng ký
-    logoutBtn.classList.remove("hidden");  // Hiện nút thoát
-    userName.textContent = userNames;
-} else {
-    // Nếu người dùng chưa đăng nhập
-    loginBtn.classList.remove("hidden");  // Hiện nút đăng nhập
-    registerBtn.classList.remove("hidden");  // Hiện nút đăng ký
-    logoutBtn.classList.add("hidden");  // Ẩn nút thoát
-}
-}
-
-// Gọi đến PHP để kiểm tra trạng thái đăng nhập
-fetch('check.php')
-    .then(response => response.json())
-    .then(data => {
-        updateAuthButtons(data.isLoggedIn, data.username);
-    })
-    .catch(error => {
-        console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
-    });
-
-// Xử lý sự kiện nút đăng nhập (chuyển hướng)
-loginBtn.addEventListener("click", (e) => {
-    if (!isLoggedIn) {
-        e.preventDefault(); // Ngăn mặc định của liên kết
-        window.location.href = "login.php";
+    // Cập nhật giao diện dựa trên trạng thái đăng nhập
+    function updateAuthButtons(isLoggedIn, userName = '') {
+        if (isLoggedIn) {
+            // Nếu người dùng đã đăng nhập
+            userNameDisplay.textContent = userName; // Hiển thị tên người dùng
+            authBar.classList.remove('hidden');
+            logo.classList.add('mt-4'); // Dời logo xuống
+            loginBtn.classList.add("hidden");
+            signupBtn.classList.add("hidden");
+            logoutBtn.classList.remove("hidden");
+        } else {
+            // Nếu người dùng chưa đăng nhập
+            userNameDisplay.textContent = ''; // Ẩn tên người dùng
+            authBar.classList.add('hidden');
+            logo.classList.remove('mt-4');
+            loginBtn.classList.remove("hidden");
+            signupBtn.classList.remove("hidden");
+            logoutBtn.classList.add("hidden");
+        }
     }
-});
 
-// Xử lý sự kiện nút đăng ký (chuyển hướng)
-registerBtn.addEventListener("click", (e) => {
-    e.preventDefault(); // Ngăn mặc định của liên kết
-    window.location.href = "register.php";
-});
-
-// Xử lý sự kiện nút thoát
-logoutBtn.addEventListener("click", () => {
     // Gọi đến PHP để kiểm tra trạng thái đăng nhập
-    fetch('dangxuat.php')
+    fetch('check.php')
         .then(response => response.json())
         .then(data => {
-            alert("Bạn đã thoát!"+ data.success);
+            updateAuthButtons(data.isLoggedIn, data.username);
         })
         .catch(error => {
             console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
         });
-    updateAuthButtons();
-});
 
-// Cập nhật nút dựa trên trạng thái đăng nhập
-updateAuthButtons();
+    // Xử lý sự kiện nút đăng nhập
+    loginBtn.addEventListener("click", (e) => {
+        window.location.href = "login.php";
+    });
+
+    // Xử lý sự kiện nút đăng ký
+    signupBtn.addEventListener("click", (e) => {
+        window.location.href = "register.php";
+    });
+
+    // Xử lý sự kiện nút đăng xuất
+    logoutBtn.addEventListener("click", () => {
+        fetch('dangxuat.php', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Bạn đã thoát!");
+                    updateAuthButtons(false); // Cập nhật lại giao diện
+                } else {
+                    alert("Có lỗi xảy ra khi đăng xuất. Vui lòng thử lại.");
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi thoát:", error);
+            });
+    });
 });
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
 <script>
-window.addEventListener("load", function() {
-    // Hiệu ứng cho desktop navigation links khi trang tải
-    gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
-    gsap.to("#nav-links a", {
-        opacity: 1,
-        y: 0,
-        duration: 1.5,
-        stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
-        ease: "power3.out",
-        delay: 0.5 // Đợi một chút rồi mới thực hiện
-    });
+    window.addEventListener("load", function() {
+        // Hiệu ứng cho desktop navigation links khi trang tải
+        gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+        gsap.to("#nav-links a", {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+            ease: "power3.out",
+            delay: 0.5 // Đợi một chút rồi mới thực hiện
+        });
 
-    // Hiệu ứng cho mobile menu khi hiển thị
-    gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
-    gsap.to("#mobile-menu", {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: 0.3, // Đợi một chút rồi mới thực hiện
-    });
+        // Hiệu ứng cho mobile menu khi hiển thị
+        gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+        gsap.to("#mobile-menu", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.3, // Đợi một chút rồi mới thực hiện
+        });
 
-    // Hiệu ứng khi hover trên các liên kết menu
-    gsap.utils.toArray("#nav-links a").forEach(link => {
-        // Lấy màu sắc ban đầu của liên kết
-        const defaultColor = getComputedStyle(link).color;
+        // Hiệu ứng khi hover trên các liên kết menu
+        gsap.utils.toArray("#nav-links a").forEach(link => {
+            // Lấy màu sắc ban đầu của liên kết
+            const defaultColor = getComputedStyle(link).color;
 
-        link.addEventListener("mouseenter", () => {
-            gsap.to(link, {
-                scale: 1.1,
-                color: "#D8B899", // Thay đổi màu khi hover
-                duration: 0.3
+            link.addEventListener("mouseenter", () => {
+                gsap.to(link, {
+                    scale: 1.1,
+                    color: "#D8B899", // Thay đổi màu khi hover
+                    duration: 0.3
+                });
+            });
+            link.addEventListener("mouseleave", () => {
+                gsap.to(link, {
+                    scale: 1,
+                    color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                    duration: 0.3
+                });
             });
         });
-        link.addEventListener("mouseleave", () => {
-            gsap.to(link, {
-                scale: 1,
-                color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
-                duration: 0.3
-            });
+    });
+</script>
+
+<script>
+    // Toggle mobile menu visibility
+    document.getElementById('menu-btn').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+<script>
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Chuyển hướng đến trang PHP tìm kiếm với query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
+        }
+    }
+
+    // Xử lý sự kiện click nút tìm kiếm
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Xử lý sự kiện nhấn Enter
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
         });
     });
-});
-</script>
-
-<script>
-// Toggle mobile menu visibility
-document.getElementById('menu-btn').addEventListener('click', function () {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-});
 </script>
 <script>
-function handleSearch(inputId) {
-    const query = document.getElementById(inputId).value.trim();
-    if (query) {
-        // Chuyển hướng đến trang PHP tìm kiếm với query string
-        window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
-    } else {
-        alert("Vui lòng nhập từ khóa tìm kiếm!");
-    }
-}
 
-// Xử lý sự kiện click nút tìm kiếm
-document.getElementById('desktop-search-btn').addEventListener('click', function () {
-    handleSearch('desktop-search');
-});
-
-document.getElementById('mobile-search-btn').addEventListener('click', function () {
-    handleSearch('mobile-search');
-});
-
-// Xử lý sự kiện nhấn Enter
-['desktop-search', 'mobile-search'].forEach((id) => {
-    document.getElementById(id).addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            handleSearch(id);
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Redirect to PHP search page with query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
         }
-    });
-});
-</script>
-<script>
-
-function handleSearch(inputId) {
-    const query = document.getElementById(inputId).value.trim();
-    if (query) {
-        // Redirect to PHP search page with query string
-        window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
-    } else {
-        alert("Vui lòng nhập từ khóa tìm kiếm!");
     }
-}
 
 
-document.getElementById('desktop-search-btn').addEventListener('click', function () {
-    handleSearch('desktop-search');
-});
-
-document.getElementById('mobile-search-btn').addEventListener('click', function () {
-    handleSearch('mobile-search');
-});
-
-// Handle Enter key press
-['desktop-search', 'mobile-search'].forEach((id) => {
-    document.getElementById(id).addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            handleSearch(id);
-        }
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
     });
-});
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Handle Enter key press
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
+        });
+    });
 
 </script>
+
 
 <div class="container mx-auto p-4 fade" id="hotpot-container"></div>
 

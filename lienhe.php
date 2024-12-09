@@ -41,18 +41,29 @@
         .custom-font {
             font-family: 'Audiowide', sans-serif;
         }
+        
     </style>
 </head>
 <body class="bg-skin-tone">
-
-    
 <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
-        <!-- Logo -->
-        <div class="flex items-center">
-            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-                <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
-            </h1>
-        </div>
+    <div class="flex flex-col items-center">
+    <!-- Logo -->
+    <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+        <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+    </h1>
+    
+    <!-- Tên người dùng -->
+    <div id="auth-bar" class="hidden mt-4">
+        <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
+    </div>
+</div>
+
+
+<!-- User Authentication Bar -->
+<!-- User Authentication Bar -->
+
+
+
 
         <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
         <div class="sm:hidden">
@@ -73,34 +84,9 @@
     <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
     <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
 
-   
 
 </div>
- <!-- User Authentication Buttons -->
- <div id="auth-buttons" class="flex items-center space-x-4">
-    <!-- Login Button -->
-    <a href="login.php" id="login-btn"
-        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
-        Đăng nhập
-    </a>
-    <!-- Register Button -->
-    <a href="register.php" id="register-btn"
-        class="bg-[#D8B899] text-[#704539] px-4 py-1 rounded-md font-bold hover:bg-[#b99579]">
-        Đăng ký
-    </a>
-    <div id="logout-btn" class="hidden flex items-center justify-between bg-[#f8f4f0] px-4 py-2 rounded-lg shadow-md space-x-4 max-w-xs mx-auto">
-    <!-- Tên người dùng -->
-    <p id="ten-nguoi-dung" class="text-sm font-medium text-[#704539]">
-        Xin chào, <span class="font-bold">[Tên Người Dùng]</span>
-    </p>
-    
-    <!-- Nút thoát -->
-    <button class="bg-[#d3b8a3] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#b6937f] transition-all duration-300">
-        Thoát
-    </button>
-</div>
-
-
+ 
 <!-- Search Bar (Visible on Desktop) -->
 <div class="hidden sm:flex items-center space-x-4">
     <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
@@ -113,6 +99,109 @@
 </div>
 
 </nav>
+    <!-- Containe nút -->
+<div id="buttons-container" class="fixed bottom-5 right-5 flex flex-col items-center space-y-4">
+    <!-- Nút đăng nhập -->
+    <div id="login-button" class="relative group">
+        <a href="login.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-700 text-white overflow-hidden">
+            <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Đăng nhập" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Mời bạn đăng nhập
+        </span>
+    </div>
+
+    <!-- Nút đăng ký -->
+    <div id="signup-button" class="relative group">
+        <a href="register.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-700 text-white overflow-hidden">
+            <img src="https://png.pngtree.com/png-clipart/20231118/original/pngtree-subscribe-icon-contract-photo-png-image_13614905.png" alt="Đăng ký" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Mời bạn đăng ký
+        </span>
+    </div>
+
+    <!-- Nút đăng xuất -->
+    <div id="logout-button" class="relative group hidden">
+        <a href="index.php" 
+           class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-red-500 to-red-700 text-white overflow-hidden">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828479.png" alt="Đăng xuất" class="button-image w-full h-full object-cover">
+        </a>
+        <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+            Đăng xuất
+        </span>
+    </div>
+</div>
+
+<style>
+    
+/* Hiệu ứng nút */
+.floating-btn {
+    position: relative;
+    width: 64px; /* Kích thước nút */
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+    animation: pulse 1.5s infinite; /* Hiệu ứng chớp */
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 205, 255, 0.8), 0 0 50px rgba(0, 205, 255, 0.5);
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: 80px; /* Hiển thị phía trên nút */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-btn:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginButton = document.getElementById('login-button');
+        const signupButton = document.getElementById('signup-button');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Kiểm tra trạng thái đăng nhập từ server
+        fetch('check.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLoggedIn) {
+                    loginButton.classList.add('hidden');
+                    signupButton.classList.add('hidden');
+                    logoutButton.classList.remove('hidden');
+                } else {
+                    loginButton.classList.remove('hidden');
+                    signupButton.classList.remove('hidden');
+                    logoutButton.classList.add('hidden');
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+            });
+    });
+</script>
+<link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
 
 <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
 <div id="mobile-menu"
@@ -134,47 +223,38 @@
     <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
     <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
 
-    <!-- User Authentication Buttons -->
-    <div class="px-4 py-2">
-        <!-- Login and Register Buttons -->
-        <a href="login.php" id="mobile-login-btn"
-            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579] mb-2">
-            Đăng nhập
-        </a>
-        <a href="register.php" id="mobile-register-btn"
-            class="block bg-[#D8B899] text-[#704539] px-4 py-2 rounded-md font-bold hover:bg-[#b99579]">
-            Đăng ký
-        </a>
-    </div>
-
-    <!-- Logout Button (visible when user is logged in) -->
-    <div id="mobile-logout-btn" class="hidden px-4 py-2">
-        <button class="block w-full bg-red-500 text-white px-4 py-2 rounded-md font-bold hover:bg-red-600">
-            Thoát
-        </button>
-    </div>
+  
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Các phần tử DOM
+    const loginBtn = document.getElementById("login-button");
+    const signupBtn = document.getElementById("signup-button");
+    const logoutBtn = document.getElementById("logout-button");
+    const userNameDisplay = document.getElementById("ten-nguoi-dung");
+    const authBar = document.getElementById('auth-bar');
+    const logo = document.querySelector('h1');
 
-<script>document.addEventListener("DOMContentLoaded", function () {
-    const loginBtn = document.getElementById("login-btn");
-    const registerBtn = document.getElementById("register-btn");
-    const logoutBtn = document.getElementById("logout-btn");
-    const userName = document.getElementById("ten-nguoi-dung");
-
-    function updateAuthButtons(isLoggedIn, userNames) {
-    if (isLoggedIn) {
-        // Nếu người dùng đã đăng nhập
-        loginBtn.classList.add("hidden");  // Ẩn nút đăng nhập
-        registerBtn.classList.add("hidden");  // Ẩn nút đăng ký
-        logoutBtn.classList.remove("hidden");  // Hiện nút thoát
-        userName.textContent = userNames;
-    } else {
-        // Nếu người dùng chưa đăng nhập
-        loginBtn.classList.remove("hidden");  // Hiện nút đăng nhập
-        registerBtn.classList.remove("hidden");  // Hiện nút đăng ký
-        logoutBtn.classList.add("hidden");  // Ẩn nút thoát
+    // Cập nhật giao diện dựa trên trạng thái đăng nhập
+    function updateAuthButtons(isLoggedIn, userName = '') {
+        if (isLoggedIn) {
+            // Nếu người dùng đã đăng nhập
+            userNameDisplay.textContent = userName; // Hiển thị tên người dùng
+            authBar.classList.remove('hidden');
+            logo.classList.add('mt-4'); // Dời logo xuống
+            loginBtn.classList.add("hidden");
+            signupBtn.classList.add("hidden");
+            logoutBtn.classList.remove("hidden");
+        } else {
+            // Nếu người dùng chưa đăng nhập
+            userNameDisplay.textContent = ''; // Ẩn tên người dùng
+            authBar.classList.add('hidden');
+            logo.classList.remove('mt-4');
+            loginBtn.classList.remove("hidden");
+            signupBtn.classList.remove("hidden");
+            logoutBtn.classList.add("hidden");
+        }
     }
-}
 
     // Gọi đến PHP để kiểm tra trạng thái đăng nhập
     fetch('check.php')
@@ -186,153 +266,151 @@
             console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
         });
 
-    // Xử lý sự kiện nút đăng nhập (chuyển hướng)
+    // Xử lý sự kiện nút đăng nhập
     loginBtn.addEventListener("click", (e) => {
-        if (!isLoggedIn) {
-            e.preventDefault(); // Ngăn mặc định của liên kết
-            window.location.href = "login.php";
-        }
+        window.location.href = "login.php";
     });
 
-    // Xử lý sự kiện nút đăng ký (chuyển hướng)
-    registerBtn.addEventListener("click", (e) => {
-        e.preventDefault(); // Ngăn mặc định của liên kết
+    // Xử lý sự kiện nút đăng ký
+    signupBtn.addEventListener("click", (e) => {
         window.location.href = "register.php";
     });
 
-    // Xử lý sự kiện nút thoát
+    // Xử lý sự kiện nút đăng xuất
     logoutBtn.addEventListener("click", () => {
-        // Gọi đến PHP để kiểm tra trạng thái đăng nhập
-        fetch('dangxuat.php')
+        fetch('dangxuat.php', { method: 'POST' })
             .then(response => response.json())
             .then(data => {
-                alert("Bạn đã thoát!"+ data.success);
+                if (data.success) {
+                    alert("Bạn đã thoát!");
+                    updateAuthButtons(false); // Cập nhật lại giao diện
+                } else {
+                    alert("Có lỗi xảy ra khi đăng xuất. Vui lòng thử lại.");
+                }
             })
             .catch(error => {
-                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+                console.error("Lỗi khi thoát:", error);
             });
-        updateAuthButtons();
     });
-
-    // Cập nhật nút dựa trên trạng thái đăng nhập
-    updateAuthButtons();
 });
 </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
-    <script>
-        window.addEventListener("load", function() {
-            // Hiệu ứng cho desktop navigation links khi trang tải
-            gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
-            gsap.to("#nav-links a", {
-                opacity: 1,
-                y: 0,
-                duration: 1.5,
-                stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
-                ease: "power3.out",
-                delay: 0.5 // Đợi một chút rồi mới thực hiện
-            });
-    
-            // Hiệu ứng cho mobile menu khi hiển thị
-            gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
-            gsap.to("#mobile-menu", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power3.out",
-                delay: 0.3, // Đợi một chút rồi mới thực hiện
-            });
-    
-            // Hiệu ứng khi hover trên các liên kết menu
-            gsap.utils.toArray("#nav-links a").forEach(link => {
-                // Lấy màu sắc ban đầu của liên kết
-                const defaultColor = getComputedStyle(link).color;
-    
-                link.addEventListener("mouseenter", () => {
-                    gsap.to(link, {
-                        scale: 1.1,
-                        color: "#D8B899", // Thay đổi màu khi hover
-                        duration: 0.3
-                    });
-                });
-                link.addEventListener("mouseleave", () => {
-                    gsap.to(link, {
-                        scale: 1,
-                        color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
-                        duration: 0.3
-                    });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+<script>
+    window.addEventListener("load", function() {
+        // Hiệu ứng cho desktop navigation links khi trang tải
+        gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+        gsap.to("#nav-links a", {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+            ease: "power3.out",
+            delay: 0.5 // Đợi một chút rồi mới thực hiện
+        });
+
+        // Hiệu ứng cho mobile menu khi hiển thị
+        gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+        gsap.to("#mobile-menu", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.3, // Đợi một chút rồi mới thực hiện
+        });
+
+        // Hiệu ứng khi hover trên các liên kết menu
+        gsap.utils.toArray("#nav-links a").forEach(link => {
+            // Lấy màu sắc ban đầu của liên kết
+            const defaultColor = getComputedStyle(link).color;
+
+            link.addEventListener("mouseenter", () => {
+                gsap.to(link, {
+                    scale: 1.1,
+                    color: "#D8B899", // Thay đổi màu khi hover
+                    duration: 0.3
                 });
             });
-        });
-    </script>
-
-    <script>
-        // Toggle mobile menu visibility
-        document.getElementById('menu-btn').addEventListener('click', function () {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
-    <script>
-        function handleSearch(inputId) {
-            const query = document.getElementById(inputId).value.trim();
-            if (query) {
-                // Chuyển hướng đến trang PHP tìm kiếm với query string
-                window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
-            } else {
-                alert("Vui lòng nhập từ khóa tìm kiếm!");
-            }
-        }
-
-        // Xử lý sự kiện click nút tìm kiếm
-        document.getElementById('desktop-search-btn').addEventListener('click', function () {
-            handleSearch('desktop-search');
-        });
-
-        document.getElementById('mobile-search-btn').addEventListener('click', function () {
-            handleSearch('mobile-search');
-        });
-
-        // Xử lý sự kiện nhấn Enter
-        ['desktop-search', 'mobile-search'].forEach((id) => {
-            document.getElementById(id).addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    handleSearch(id);
-                }
+            link.addEventListener("mouseleave", () => {
+                gsap.to(link, {
+                    scale: 1,
+                    color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                    duration: 0.3
+                });
             });
         });
-    </script>
-    <script>
+    });
+</script>
 
-        function handleSearch(inputId) {
-            const query = document.getElementById(inputId).value.trim();
-            if (query) {
-                // Redirect to PHP search page with query string
-                window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
-            } else {
-                alert("Vui lòng nhập từ khóa tìm kiếm!");
-            }
+<script>
+    // Toggle mobile menu visibility
+    document.getElementById('menu-btn').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+<script>
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Chuyển hướng đến trang PHP tìm kiếm với query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
         }
+    }
 
+    // Xử lý sự kiện click nút tìm kiếm
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
 
-        document.getElementById('desktop-search-btn').addEventListener('click', function () {
-            handleSearch('desktop-search');
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Xử lý sự kiện nhấn Enter
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
         });
+    });
+</script>
+<script>
 
-        document.getElementById('mobile-search-btn').addEventListener('click', function () {
-            handleSearch('mobile-search');
+    function handleSearch(inputId) {
+        const query = document.getElementById(inputId).value.trim();
+        if (query) {
+            // Redirect to PHP search page with query string
+            window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+        } else {
+            alert("Vui lòng nhập từ khóa tìm kiếm!");
+        }
+    }
+
+
+    document.getElementById('desktop-search-btn').addEventListener('click', function () {
+        handleSearch('desktop-search');
+    });
+
+    document.getElementById('mobile-search-btn').addEventListener('click', function () {
+        handleSearch('mobile-search');
+    });
+
+    // Handle Enter key press
+    ['desktop-search', 'mobile-search'].forEach((id) => {
+        document.getElementById(id).addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                handleSearch(id);
+            }
         });
+    });
 
-        // Handle Enter key press
-        ['desktop-search', 'mobile-search'].forEach((id) => {
-            document.getElementById(id).addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    handleSearch(id);
-                }
-            });
-        });
+</script>
 
-    </script>
    <main id="main" class="full">
     <div class="full" id="main-content">
         <!-- Banner Section -->
@@ -383,70 +461,96 @@
                 </div>
             </div>
         </div>
+<!-- Feedback Form -->
+<div class="min-h-screen bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center">
+    <div class="max-w-7xl w-full p-8 bg-white rounded-lg shadow-xl opacity-0" id="feedback-form">
+        <h1 class="text-4xl font-semibold text-center text-gray-800 mb-8" id="form-title">Gửi Đánh Giá</h1>
+        <form action="" method="POST" class="space-y-6">
+            <div>
+                <label for="ten_khach_hang" class="block text-gray-700 font-medium mb-2">Tên khách hàng:</label>
+                <input type="text" id="ten_khach_hang" name="ten_khach_hang"
+                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required>
+            </div>
 
-        <!-- Feedback Form -->
-        <div class="max-w-2xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
-            <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Gửi Đánh Giá</h1>
-            <form action="" method="POST" class="space-y-4">
-                <div>
-                    <label for="ten_khach_hang" class="block text-gray-700 font-medium mb-2">Tên khách hàng:</label>
-                    <input type="text" id="ten_khach_hang" name="ten_khach_hang" 
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                        required>
-                </div>
+            <div>
+                <label for="so_dien_thoai" class="block text-gray-700 font-medium mb-2">Số điện thoại:</label>
+                <input type="text" id="so_dien_thoai" name="so_dien_thoai"
+                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
 
-                <div>
-                    <label for="so_dien_thoai" class="block text-gray-700 font-medium mb-2">Số điện thoại:</label>
-                    <input type="text" id="so_dien_thoai" name="so_dien_thoai" 
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
+            <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2">Email:</label>
+                <input type="email" id="email" name="email"
+                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
 
-                <div>
-                    <label for="email" class="block text-gray-700 font-medium mb-2">Email:</label>
-                    <input type="email" id="email" name="email" 
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
+            <div>
+                <label for="noi_dung_danh_gia" class="block text-gray-700 font-medium mb-2">Nội dung đánh giá:</label>
+                <textarea id="noi_dung_danh_gia" name="noi_dung_danh_gia" rows="4"
+                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+            </div>
 
-                <div>
-                    <label for="noi_dung_danh_gia" class="block text-gray-700 font-medium mb-2">Nội dung đánh giá:</label>
-                    <textarea id="noi_dung_danh_gia" name="noi_dung_danh_gia" rows="4" 
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                        required></textarea>
-                </div>
+            <div>
+                <label for="diem_so" class="block text-gray-700 font-medium mb-2">Điểm số:</label>
+                <select id="diem_so" name="diem_so"
+                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <option value="1">1 - Rất tệ</option>
+                    <option value="2">2 - Tệ</option>
+                    <option value="3">3 - Trung bình</option>
+                    <option value="4">4 - Tốt</option>
+                    <option value="5">5 - Rất tốt</option>
+                </select>
+            </div>
 
-                <div>
-                    <label for="diem_so" class="block text-gray-700 font-medium mb-2">Điểm số:</label>
-                    <select id="diem_so" name="diem_so" 
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                        required>
-                        <option value="1">1 - Rất tệ</option>
-                        <option value="2">2 - Tệ</option>
-                        <option value="3">3 - Trung bình</option>
-                        <option value="4">4 - Tốt</option>
-                        <option value="5">5 - Rất tốt</option>
-                    </select>
-                </div>
-
-                <button type="submit" name="submit" 
-                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg">
-                    Gửi đánh giá
-                </button>
-            </form>
-        </div>
+            <button type="submit" name="submit"
+                class="w-full bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                Gửi đánh giá
+            </button>
+        </form>
     </div>
+</div>
+
+<script>
+    // GSAP Animation for form
+    gsap.to("#feedback-form", { 
+        opacity: 1, 
+        duration: 1, 
+        y: 0, 
+        ease: "power4.out",
+        delay: 0.5
+    });
+
+    // GSAP Animation for the title
+    gsap.from("#form-title", { 
+        opacity: 0, 
+        y: -50, 
+        duration: 1, 
+        ease: "bounce.out", 
+        delay: 0.5 
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
 </main>
 
     
-    <?php
+<?php
 // Kiểm tra phương thức POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Kết nối tới cơ sở dữ liệu
-    $conn = new mysqli('localhost', 'root', '', 'nha_hang');
-
-    // Kiểm tra kết nối
-    if ($conn->connect_error) {
-        die("Kết nối thất bại: " . $conn->connect_error);
-    }
+    $host = "localhost"; 
+    $user = "lbfhcaxb_user_management"; 
+    $pass = "qagRycB4YrPvCvsLx3qV"; 
+    $db = "lbfhcaxb_user_management"; 
+    
+    // Tạo kết nối
+    $conn = new mysqli($host, $user, $pass, $db);
+  
+    
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
 
     // Lấy dữ liệu từ form
     $ten_khach_hang = $conn->real_escape_string($_POST['ten_khach_hang']);
@@ -460,20 +564,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES ('$ten_khach_hang', '$so_dien_thoai', '$email', '$noi_dung_danh_gia', $diem_so)";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<p style='text-align: center; color: green;'>Đánh giá của bạn đã được gửi thành công!</p>";
+        echo "<script>
+            Swal.fire({
+                title: 'Cảm ơn bạn!',
+                text: 'Đánh giá của bạn đã được gửi thành công.',
+                icon: 'success',
+                confirmButtonText: 'Đóng'
+            }).then(function() {
+                window.location.href = 'index.php'; // Chuyển hướng đến trang chủ hoặc trang khác
+            });
+        </script>";
     } else {
         echo "<p style='text-align: center; color: red;'>Lỗi: " . $conn->error . "</p>";
     }
 
     // Đóng kết nối
     $conn->close();
-
-    // Quay lại trang form
-    echo "<p style='text-align: center;'><a href='form_danh_gia.php'>Quay lại</a></p>";
 } else {
     echo "Phương thức không hợp lệ.";
 }
 ?>
+
+
 
     <!-- Thêm icon Twitter và YouTube vào footer -->
 <footer class="bg-[#644741] text-white p-6">
