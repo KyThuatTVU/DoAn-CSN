@@ -607,7 +607,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <!-- Slideshow Container -->
     <!-- Slider chứa các ảnh -->
     <div class="slider">
-        <div><img src="http://127.0.0.1:5500/LuuAnh-main/LuuAnh-main/amthucphuongnam/Picture2.png" alt="Image 1"></div>
+        <div><img src="https://luuanh.vercel.app/amthucphuongnam/Picture2.png" alt="Image 1"></div>
         <div><img src="img/N1.jpeg" alt="Image 2"></div>
         <div><img src="img/nen2.jpg" alt="Image 3"></div>
     </div>
