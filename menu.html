@@ -118,7 +118,93 @@
             font-family: 'Audiowide', sans-serif;
         }
 
-        
+         /* Hiệu ứng nút */
+    .floating-btn {
+      position: relative;
+      width: 64px;
+      /* Kích thước nút */
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease-in-out;
+      animation: pulse 1.5s infinite;
+      /* Hiệu ứng chớp */
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 205, 255, 0.8), 0 0 50px rgba(0, 205, 255, 0.5);
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: absolute;
+      bottom: 80px;
+      /* Hiển thị phía trên nút */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .floating-btn:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #logout-button {
+      position: fixed;
+      /* Đảm bảo nút luôn nổi */
+      bottom: 20px;
+      /* Đặt vị trí ở góc dưới cùng màn hình */
+      right: 20px;
+      /* Căn lề phải */
+      z-index: 9999;
+      /* Giá trị rất cao để không bị ảnh che */
+    }
+
+    .album-image:hover {
+      z-index: 1;
+      /* Đảm bảo ảnh không tăng quá cao */
+    }
+
+    .album-image {
+      position: relative;
+      /* Cần relative để z-index hoạt động */
+      z-index: 1;
+      /* Giá trị mặc định thấp */
+    }
+
+    .album-image:hover {
+      z-index: 5;
+      /* Đủ cao để hiển thị nổi, nhưng thấp hơn nút logout */
+    }
+
+    #buttons-container {
+      z-index: 50;
+      /* Tăng z-index cho container chứa các nút */
+    }
+
+    .floating-btn {
+      z-index: 50;
+      /* Đảm bảo nút luôn hiển thị trên cùng */
+    }
+
+    .album-image {
+      z-index: 1;
+      /* Giảm z-index của ảnh album */
+      position: relative;
+    }
+
+    .album-image:hover {
+      z-index: 2;
+      /* Khi hover vẫn tăng lên nhưng thấp hơn các nút */
+    }
     </style>
 </head>
 

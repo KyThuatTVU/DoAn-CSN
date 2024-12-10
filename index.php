@@ -675,63 +675,74 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     </script>
    
-   <div id="snow-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
+   <div id="flower-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
+   <div id="flower-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
+
+   <div id="flower-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
 
 <script>
-    const snowContainer = document.getElementById('snow-container');
+    const flowerContainer = document.getElementById('flower-container');
 
-    // Hàm tạo bông tuyết
-    function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake', 'absolute', 'rounded-full', 'bg-white', 'opacity-80'); // Sử dụng Tailwind CSS cho bông tuyết
+    // Hàm tạo hoa mai (Sử dụng icon Font Awesome)
+    function createFlower() {
+        const flower = document.createElement('div');
+        flower.classList.add('flower', 'absolute'); // Sử dụng lớp CSS để định hình và tạo hiệu ứng
+
+        // Nội dung icon hoa mai (Font Awesome)
+        flower.innerHTML = `
+            <i class="fas fa-flower"></i> <!-- Icon hoa mai từ Font Awesome -->
+        `;
 
         // Thiết lập vị trí, kích thước và tốc độ ngẫu nhiên
-        snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Vị trí ngẫu nhiên theo chiều ngang
-        snowflake.style.width = Math.random() * 5 + 5 + 'px'; // Kích thước: 5px - 10px
-        snowflake.style.height = snowflake.style.width; // Giữ tỷ lệ vuông cho hình tròn
-        snowflake.style.animationDuration = Math.random() * 5 + 3 + 's'; // Thời gian rơi: 3-8 giây
-        snowflake.style.animationDelay = Math.random() * 2 + 's'; // Trễ ngẫu nhiên
+        flower.style.left = Math.random() * window.innerWidth + 'px'; // Vị trí ngẫu nhiên theo chiều ngang
+        const size = Math.random() * 20 + 20; // Kích thước: 20px - 40px
+        flower.style.fontSize = size + 'px'; // Đặt kích thước cho icon
+        flower.style.animationDuration = Math.random() * 5 + 3 + 's'; // Thời gian rơi: 3-8 giây
+        flower.style.animationDelay = Math.random() * 2 + 's'; // Trễ ngẫu nhiên
 
-        // Thêm bông tuyết vào container
-        snowContainer.appendChild(snowflake);
+        // Thêm hoa mai vào container
+        flowerContainer.appendChild(flower);
 
-        // Loại bỏ bông tuyết sau khi hoạt hình kết thúc
-        snowflake.addEventListener('animationend', () => {
-            snowflake.remove();
+        // Loại bỏ hoa mai sau khi hoạt hình kết thúc
+        flower.addEventListener('animationend', () => {
+            flower.remove();
         });
     }
 
-    // Tạo bông tuyết ít hơn (5 bông mỗi lần)
-    let snowInterval = setInterval(() => {
-        for (let i = 0; i < 5; i++) { // Số lượng bông tuyết mỗi lần (ít hơn trước)
-            createSnowflake();
+    // Tạo hoa mai (ít hơn trước)
+    let flowerInterval = setInterval(() => {
+        for (let i = 0; i < 5; i++) { // Số lượng hoa mai mỗi lần
+            createFlower();
         }
-    }, 400); // Khoảng thời gian tạo bông tuyết
+    }, 400); // Khoảng thời gian tạo hoa mai
 
     // Ngừng hiệu ứng sau 5 giây
     setTimeout(() => {
-        clearInterval(snowInterval); // Dừng tạo bông tuyết mới
+        clearInterval(flowerInterval); // Dừng tạo hoa mai mới
     }, 5000); // 5 giây
-
 </script>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <style>
-    /* Tạo hiệu ứng rơi cho tuyết */
-    @keyframes fall {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(100vh) rotate(360deg);
-            opacity: 0.3; /* Độ mờ giảm dần khi rơi xuống */
-        }
+  /* Tạo hiệu ứng rơi cho hoa mai */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
     }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.5; /* Độ mờ giảm dần khi rơi xuống */
+    }
+}
 
-    /* Áp dụng animation cho các bông tuyết */
-    .snowflake {
-        animation: fall linear infinite;
-    }
+/* Áp dụng animation cho các hoa mai */
+.flower {
+    animation: fall linear infinite;
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none; /* Để không ảnh hưởng tới người dùng */
+}
+
 </style>
 
 

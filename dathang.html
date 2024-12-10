@@ -502,56 +502,78 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     <!-- GỬI QUÀ -->
 
-  <div class="bg-gray-50">
-    <section id="gift" class="py-16">
-      <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-4 tracking-wide custom-font">VUI LÒNG THANH TOÁN TRƯỚC KHI ĐẶT BÀN!</h2>
-  
-        <!-- Nút Fancybox thay bằng hình ảnh lớn hơn -->
-        <a href="#box-gift" data-fancybox class="block mt-6">
-            <img 
-              src="https://png.pngtree.com/png-clipart/20240101/original/pngtree-payment-icon-commerce-photo-png-image_13986635.png" 
-              alt="Nút Gửi Quà" 
-              class="w-36 h-36 mx-auto rounded-full hover:scale-110 transition-transform shadow-lg"
-            />
-          </a>
-          
-  
-        <!-- Nội dung Hộp Quà -->
-        <div id="box-gift" class="hidden">
-          <div class="gift-container flex flex-col items-center">
-            <!-- Hình ảnh QR -->
-            <div class="gift-card bg-white shadow-2xl rounded-lg p-6 max-w-sm">
-              <img 
-                src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t39.30808-6/469699328_1259566982032065_1303900558221711512_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=heBN2wzCcRUQ7kNvgHmLRB7&_nc_zt=23&_nc_ht=scontent.fsgn3-1.fna&_nc_gid=Al2wtUdGe3li-g9XrP4yHoF&oh=00_AYAr-YEb5rRU3iEFEdzmXqL2et_kKUOrxJGPhF389GfOHw&oe=675C1C8E" 
-                alt="QR Code" 
-                class="rounded-md max-w-full border border-gray-300"
-              />
-              <div class="gift-body mt-4 text-center">
-                <p class="text-lg font-medium">
-                  Quét mã QR để được duyệt đơn đặt nhé!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-    </section>
-    <style>
-      /* Cài đặt font chữ và màu nâu */
-      h2, p {
-        font-family: 'Playfair Display', serif;
-        color: #5F370E; /* Màu nâu */
-      }
-  
-      /* Hiệu ứng khi di chuột lên chữ */
-      h2:hover, p:hover {
-        color: #8A4B2F; /* Màu nâu sáng hơn */
-        transition: color 0.3s ease;
-      }
-    </style>
-  
+                    <div class="bg-gray-50">
+                        <section id="payment-notice" class="py-16">
+                          <div class="container mx-auto text-center">
+                            <h2 class="text-3xl font-bold mb-4 tracking-wide payment-font">VUI LÒNG THANH TOÁN TRƯỚC KHI ĐẶT BÀN!</h2>
+                      
+                            <!-- Nút Fancybox thay bằng hình ảnh lớn hơn -->
+                            <a href="#payment-box" data-fancybox class="block mt-6">
+                              <img 
+                                src="https://png.pngtree.com/png-clipart/20240101/original/pngtree-payment-icon-commerce-photo-png-image_13986635.png" 
+                                alt="Nút Thanh Toán" 
+                                class="w-36 h-36 mx-auto rounded-full hover:scale-110 transition-transform shadow-lg payment-btn-img"
+                              />
+                            </a>
+                      
+                            <!-- Nội dung Hộp Thanh Toán -->
+                            <div id="payment-box" class="hidden">
+                              <div class="payment-container flex flex-col items-center">
+                                <!-- Hình ảnh QR -->
+                                <div class="payment-card bg-white shadow-2xl rounded-lg p-6 max-w-sm">
+                                  <img 
+                                    src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t39.30808-6/469699328_1259566982032065_1303900558221711512_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=heBN2wzCcRUQ7kNvgHmLRB7&_nc_zt=23&_nc_ht=scontent.fsgn3-1.fna&_nc_gid=Al2wtUdGe3li-g9XrP4yHoF&oh=00_AYAr-YEb5rRU3iEFEdzmXqL2et_kKUOrxJGPhF389GfOHw&oe=675C1C8E" 
+                                    alt="QR Code" 
+                                    class="rounded-md max-w-full border border-gray-300"
+                                  />
+                                  <div class="payment-body mt-4 text-center">
+                                    <p class="text-lg font-medium">
+                                      Quét mã QR để được duyệt đơn đặt nhé!
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+<style>
+    /* Font chữ và màu nâu */
+.payment-font {
+  font-family: 'Playfair Display', serif;
+  color: #5F370E; /* Màu nâu */
+}
+
+.payment-font:hover {
+  color: #8A4B2F; /* Màu nâu sáng hơn */
+  transition: color 0.3s ease;
+}
+
+/* Hiệu ứng nút hình ảnh */
+.payment-btn-img {
+  transition: transform 0.3s ease;
+}
+
+.payment-btn-img:hover {
+  transform: scale(1.1);
+}
+
+/* Container hộp thanh toán */
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-card {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 400px;
+}
+
+</style>                      
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
   <!-- Thêm Google Fonts -->
