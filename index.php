@@ -607,7 +607,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <!-- Slideshow Container -->
     <!-- Slider chứa các ảnh -->
     <div class="slider">
-        <div><img src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/469584981_1259008418754588_3390551051780092373_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=th3_IDa5gcUQ7kNvgE5vhsl&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=AlvgttChi5DpdKhKI2S2mD_&oh=00_AYB0CmQzWiRMgAEqmwyDnGIuE1bB0XRmO1ur_p8gqDK4gw&oe=675B0506" alt="Image 1"></div>
+        <div><img src="http://127.0.0.1:5500/LuuAnh-main/LuuAnh-main/amthucphuongnam/Picture2.png" alt="Image 1"></div>
         <div><img src="img/N1.jpeg" alt="Image 2"></div>
         <div><img src="img/nen2.jpg" alt="Image 3"></div>
     </div>
