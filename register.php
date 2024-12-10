@@ -31,28 +31,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<form method="POST" action="register.php">
-    <label for="email">Email:</label>
-    <input type="email" name="email" required>
-    <br>
-    <label for="username">Tên người dùng:</label>
-    <input type="text" name="username" required>
-    <br>
-    <label for="password">Mật khẩu:</label>
-    <input type="password" name="password" required>
-    <br>
-    <button type="submit">Đăng ký</button>
-</form>
-<?php
-// Kiểm tra xem có thông báo gì không
-if (isset($_GET['status']) && $_GET['status'] === 'success') {
-    echo "<p>Đăng ký thành công! Bạn có thể đăng nhập ngay.</p>";
-}
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-xl p-10 max-w-lg w-full">
+        <h2 class="text-3xl font-extrabold text-center text-amber-700 mb-6 animate-fade-in-down">
+            Đăng ký tài khoản
+        </h2>
+        <form method="POST" action="register.php" class="space-y-6">
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-base font-medium text-amber-800">Email:</label>
+                <input type="email" name="email" id="email" required
+                    class="mt-2 block w-full px-4 py-2 border border-amber-300 rounded-lg shadow-sm focus:ring-amber-500 focus:border-amber-500 text-gray-700">
+            </div>
 
-<!-- Nội dung trang chủ -->
-<h1>Chào mừng đến với trang chủ!</h1>
-<p>Để đăng nhập, vui lòng nhập thông tin của bạn.</p>
+            <!-- Tên người dùng -->
+            <div>
+                <label for="username" class="block text-base font-medium text-amber-800">Tên người dùng:</label>
+                <input type="text" name="username" id="username" required
+                    class="mt-2 block w-full px-4 py-2 border border-amber-300 rounded-lg shadow-sm focus:ring-amber-500 focus:border-amber-500 text-gray-700">
+            </div>
 
-<!-- Link đến trang đăng nhập -->
-<a href="login.php">Đăng nhập</a>
+            <!-- Mật khẩu -->
+            <div>
+                <label for="password" class="block text-base font-medium text-amber-800">Mật khẩu:</label>
+                <input type="password" name="password" id="password" required
+                    class="mt-2 block w-full px-4 py-2 border border-amber-300 rounded-lg shadow-sm focus:ring-amber-500 focus:border-amber-500 text-gray-700">
+            </div>
+
+            <!-- Nút đăng ký -->
+            <div class="text-center">
+                <button type="submit"
+                    class="w-full px-4 py-2 bg-amber-600 text-white rounded-lg shadow-md hover:bg-amber-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    Đăng ký
+                </button>
+            </div>
+        </form>
+
+        <!-- Thông báo -->
+        <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
+            <p class="mt-6 text-center text-amber-700 font-semibold animate-bounce">
+                Đăng ký thành công! <br>
+                <span class="text-amber-900 font-medium">Chào mừng đến với trang chủ!</span>
+            </p>
+        <?php endif; ?>
+
+        <!-- Link đến trang đăng nhập -->
+        <div class="text-center mt-6">
+            <a href="login.php"
+                class="text-amber-600 font-semibold hover:text-amber-800 transition duration-300 underline">
+                Đăng nhập
+            </a>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fade-in-down {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-down {
+            animation: fade-in-down 1s ease-out;
+        }
+    </style>
+</body>
+</html>
+
+
