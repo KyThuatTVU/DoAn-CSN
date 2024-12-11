@@ -589,17 +589,6 @@
   </div>
 
   <script>
-    // Hover effect and animations
-    images.forEach(image => {
-      image.addEventListener("mouseenter", () => {
-        image.style.transform = "scale(1.1)";
-        image.style.transition = "transform 0.3s ease-in-out";
-      });
-
-      image.addEventListener("mouseleave", () => {
-        image.style.transform = "scale(1)";
-      });
-    });
 
     // Animation for titles using GSAP
     window.onload = () => {
@@ -613,107 +602,6 @@
     };
   </script>
 
-  <!-- Modal -->
-  <div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
-    <div class="relative">
-      <!-- Large image in the modal -->
-      <img id="modalImage" class="max-w-full max-h-screen" src="" alt="">
-
-      <!-- Close button -->
-      <span class="absolute top-2 right-4 text-white text-4xl cursor-pointer" onclick="closeModal()">×</span>
-
-      <!-- Previous button -->
-      <button id="prevButton"
-        class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white text-3xl p-2 rounded-full focus:outline-none"
-        onclick="prevImage()">‹</button>
-
-      <!-- Next button -->
-      <button id="nextButton"
-        class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white text-3xl p-2 rounded-full focus:outline-none"
-        onclick="nextImage()">›</button>
-    </div>
-  </div>
-
-  <script>
-    // Get all images with the album-image class
-    const images = Array.from(document.querySelectorAll('.album-image'));
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-
-    // Variable to store the current image index
-    let currentIndex = 0;
-
-    // Function to open the modal with the specific image
-    function openModal(imageSrc) {
-      currentIndex = images.findIndex(image => image.src.endsWith(imageSrc.split('/').pop()));  // Find the index of the clicked image
-      modalImg.src = imageSrc;
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';  // Disable scroll when modal is open
-    }
-
-    // Function to close the modal
-    function closeModal() {
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';  // Enable scroll again
-    }
-
-    // Function to go to the previous image in the modal
-    function prevImage() {
-      if (currentIndex > 0) {
-        currentIndex--;
-      } else {
-        currentIndex = images.length - 1;  // Loop back to the last image
-      }
-      modalImg.src = images[currentIndex].src;
-    }
-
-    // Function to go to the next image in the modal
-    function nextImage() {
-      if (currentIndex < images.length - 1) {
-        currentIndex++;
-      } else {
-        currentIndex = 0;  // Loop back to the first image
-      }
-      modalImg.src = images[currentIndex].src;
-    }
-
-    // Close modal when clicking outside the image
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-
-    // Close modal when pressing ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    // Hover effect to zoom in on image
-    images.forEach(image => {
-      image.addEventListener('mouseenter', () => {
-        image.style.transform = "scale(1.1)";
-        image.style.transition = "transform 0.3s ease-in-out";
-      });
-
-      image.addEventListener('mouseleave', () => {
-        image.style.transform = "scale(1)";
-      });
-    });
-
-    // Fade-in effect when page loads
-    window.onload = () => {
-      gsap.from(".album-image", {
-        opacity: 0,
-        y: 50,               // Move up effect
-        duration: 2,
-        stagger: 0.1,        // Apply staggered effect to each image
-        ease: "power2.out"   // Easing function
-      });
-    };
-  </script>
 
 
 
@@ -789,10 +677,22 @@
     </div>
   </footer>
 
-  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="max-w-4xl mx-auto p-4">
-      <img id="modalImage" src="" alt="" class="max-h-[90vh] max-w-full">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+    <div class="max-w-4xl mx-auto p-4 relative">
+      <img id="modalImage" src="" alt="" class="max-h-[80vh] max-w-full object-contain">
+      <!-- Nút điều hướng -->
+      <button id="prevButton"
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="nextButton"
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <!-- Nút đóng -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
   </div>
 
@@ -814,6 +714,65 @@
       });
   </script>
 
+  <script>
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll('.album-image');
+    const imageUrls = Array.from(images).map(img => img.src);
+
+    function openModal(imageSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+
+      currentImageIndex = imageUrls.indexOf(imageSrc);
+      modalImage.src = imageSrc;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      // Thêm sự kiện phím mũi tên
+      document.addEventListener('keydown', handleKeyPress);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+
+      // Xóa sự kiện phím mũi tên
+      document.removeEventListener('keydown', handleKeyPress);
+    }
+
+    function showPreviousImage() {
+      currentImageIndex = (currentImageIndex - 1 + imageUrls.length) % imageUrls.length;
+      document.getElementById('modalImage').src = imageUrls[currentImageIndex];
+    }
+
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+      document.getElementById('modalImage').src = imageUrls[currentImageIndex];
+    }
+
+    function handleKeyPress(e) {
+      if (e.key === 'ArrowLeft') {
+        showPreviousImage();
+      } else if (e.key === 'ArrowRight') {
+        showNextImage();
+      } else if (e.key === 'Escape') {
+        closeModal();
+      }
+    }
+
+    // Thêm sự kiện click cho các nút
+    document.getElementById('prevButton').addEventListener('click', showPreviousImage);
+    document.getElementById('nextButton').addEventListener('click', showNextImage);
+
+    // Đóng modal khi click bên ngoài ảnh
+    document.getElementById('imageModal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  </script>
 
 </body>
 
