@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết hóa đơn</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Đường dẫn CSS nếu bạn có -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details p {
+            margin: 8px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 8px 0;
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Chi tiết hóa đơn</h1>
+        <div id="invoice-details">
+            <!-- Nội dung chi tiết hóa đơn sẽ được chèn ở đây bằng JavaScript -->
+        </div>
+        <a href="hoadon.html" class="back-btn">Quay lại danh sách hóa đơn</a>
+    </div>
+
+    <script src="invoice-details.js"></script>
+
+    <script>
+        // Kiểm tra nếu có dữ liệu từ localStorage
+        const buyerInfo = JSON.parse(localStorage.getItem('buyerInfo'));
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let invoiceHistory = JSON.parse(localStorage.getItem('invoiceHistory')) || [];
+    
+        if (buyerInfo && cart.length > 0) {
+            // Tạo hóa đơn mới và lưu vào lịch sử
+            const newInvoice = {
+                id: `INV-${Date.now()}`, // Mã hóa đơn duy nhất
+                buyer: buyerInfo,
+                items: cart,
+                total: cart.reduce((sum, item) => sum + item.quantity * item.price, 0),
+                date: new Date().toISOString()
+            };
+    
+            invoiceHistory.push(newInvoice);
+            localStorage.setItem('invoiceHistory', JSON.stringify(invoiceHistory));
+    
+            // Xóa dữ liệu người mua và giỏ hàng
+            localStorage.removeItem('buyerInfo');
+            localStorage.removeItem('cart');
+    
+            // Chuyển hướng sang trang danh sách hóa đơn
+            window.location.href = 'invoice-list.html';
+        }
+    
+        // Hiển thị danh sách hóa đơn trên trang lưu hóa đơn
+        document.addEventListener('DOMContentLoaded', function () {
+            const invoiceList = document.getElementById('invoice-list');
+    
+            // Nếu không có hóa đơn nào
+            if (invoiceHistory.length === 0) {
+                invoiceList.innerHTML = '<li class="text-gray-500 italic">Không có hóa đơn nào.</li>';
+                return;
+            }
+    
+            // Hiển thị danh sách hóa đơn
+            invoiceHistory.forEach((invoice, index) => {
+                const li = document.createElement('li');
+                li.className = 'border p-4 mb-2 rounded-lg shadow-sm hover:bg-gray-50 cursor-pointer';
+    
+                li.innerHTML = `
+                    <span><strong>Hóa đơn:</strong> ${index + 1}</span><br>
+                    <span><strong>Mã hóa đơn:</strong> ${invoice.id}</span><br>
+                    <span><strong>Khách hàng:</strong> ${invoice.buyer.name}</span><br>
+                    <span><strong>Email:</strong> ${invoice.buyer.email}</span><br>
+                    <span><strong>Ngày:</strong> ${new Date(invoice.date).toLocaleString()}</span>
+                    <button class="view-invoice-btn bg-blue-500 text-white px-3 py-1 rounded-lg ml-4" data-index="${index}">
+                        Xem chi tiết
+                    </button>
+                `;
+    
+                invoiceList.appendChild(li);
+            });
+    
+            // Gắn sự kiện mở chi tiết hóa đơn
+            document.querySelectorAll('.view-invoice-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const index = this.getAttribute('data-index');
+                    localStorage.setItem('currentInvoice', index);
+                    window.location.href = 'invoice-details.html';
+                });
+            });
+        });
+   
+    </script>
+</body>
+</html>

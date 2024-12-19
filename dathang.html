@@ -89,17 +89,15 @@
         </div>
 
      <!-- Desktop Navigation Links -->
-    <div id="nav-links"
-    class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-    <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-    <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-    <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-    <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-    <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+     <div id="nav-links"
+     class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+     <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+     <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+     <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+     <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+     <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+ </div>
 
-
-</div>
- 
 <!-- Search Bar (Visible on Desktop) -->
 <div class="hidden sm:flex items-center space-x-4">
     <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
@@ -236,7 +234,20 @@
     <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
     <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
 
-  
+  <!-- Biểu tượng giỏ hàng -->
+  <a href="giohang.html" target="_self" class="hover:text-[#D8B899] flex items-center space-x-2">
+    <i class="fas fa-shopping-cart"></i>
+    <span>GIỎ HÀNG</span>
+</a>
+</div>
+<style>.fas.fa-shopping-cart {
+font-size: 1.5rem; /* Tăng kích thước biểu tượng */
+color: #000; /* Màu mặc định */
+}
+.fas.fa-shopping-cart:hover {
+color: #D8B899; /* Màu khi hover */
+text-align: center;
+}</style>
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -459,9 +470,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="bookingtime" class="block text-lg font-semibold">Thời gian</label>
-                                <input type="datetime-local" id="bookingtime" name="bookingtime" 
-                                       class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400">
+                                <input 
+                                    type="datetime-local" 
+                                    id="bookingtime" 
+                                    name="bookingtime" 
+                                    class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"
+                                    required
+                                >
+                                <p id="error-message" class="text-red-500 mt-1 hidden">Vui lòng nhập lại đúng cấu trúc ngày tháng!</p>
                             </div>
+              
                             
                             <div class="grid grid-cols-2 gap-6">
                                 <div>
@@ -492,7 +510,21 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <label for="phone" class="block text-lg font-semibold">Số điện thoại</label>
                                     <input type="tel" id="phone" name="phone" placeholder="Số điện thoại"
                                         class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400" required>
+                                    <p id="phone-error" class="text-red-500 text-sm mt-2 hidden">Số điện thoại phải gồm 10 chữ số.</p>
                                 </div>
+                                <script>
+                                    document.getElementById('phone').addEventListener('input', function () {
+                                        const phoneInput = this.value;
+                                        const errorMessage = document.getElementById('phone-error');
+                                
+                                        // Kiểm tra nếu số điện thoại không đúng 10 chữ số
+                                        if (!/^\d{10}$/.test(phoneInput)) {
+                                            errorMessage.classList.remove('hidden');
+                                        } else {
+                                            errorMessage.classList.add('hidden');
+                                        }
+                                    });
+                                </script>
                             </div>
                             <div class="mt-6">
                                 <label for="message" class="block text-lg font-semibold">Lưu ý</label>
@@ -505,7 +537,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="bg-gray-50">
                         <section id="payment-notice" class="py-16">
                           <div class="container mx-auto text-center">
-                            <h2 class="text-3xl font-bold mb-4 tracking-wide payment-font">VUI LÒNG THANH TOÁN TRƯỚC KHI ĐẶT BÀN!</h2>
+                            <h2 class="text-3xl font-bold mb-4 tracking-wide payment-font">VUI LÒNG CỌC TRƯỚC 200 NGHÌN ĐỂ ĐƯỢC DUYỆT ĐƠN ĐẶT BÀN!</h2>
                       
                             <!-- Nút Fancybox thay bằng hình ảnh lớn hơn -->
                             <a href="#payment-box" data-fancybox class="block mt-6">
@@ -522,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <!-- Hình ảnh QR -->
                                 <div class="payment-card bg-white shadow-2xl rounded-lg p-6 max-w-sm">
                                   <img 
-                                    src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t39.30808-6/469699328_1259566982032065_1303900558221711512_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=heBN2wzCcRUQ7kNvgHmLRB7&_nc_zt=23&_nc_ht=scontent.fsgn3-1.fna&_nc_gid=Al2wtUdGe3li-g9XrP4yHoF&oh=00_AYAr-YEb5rRU3iEFEdzmXqL2et_kKUOrxJGPhF389GfOHw&oe=675C1C8E" 
+                                    src="https://luuanh.vercel.app/amthucphuongnam/3.jpg" 
                                     alt="QR Code" 
                                     class="rounded-md max-w-full border border-gray-300"
                                   />
@@ -586,18 +618,106 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     </form>
                     
+                   
+                  
+                    <!-- Large Error Modal -->
+                    <div id="errorModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 text-center">
+                            <h2 id="errorMessage" class="text-xl font-semibold text-red-500"></h2>
+                            <button id="closeModal" class="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg">Đóng</button>
+                        </div>
+                    </div>
+                    
                     <script>
-                        function validateForm() {
-                            const phoneInput = document.getElementById("phone").value.trim();
-                            if (phoneInput === "") {
-                                alert("Vui lòng nhập số điện thoại.");
-                                return false;
-                            }
-                            return true;
-                        }
+                       const submitButton = document.getElementById("submitButton");
+const errorModal = document.getElementById("errorModal");
+const errorMessageElement = document.getElementById("errorMessage");
+const closeModalButton = document.getElementById("closeModal");
+
+// Function to validate the form
+function validateForm(event) {
+    const phoneInput = document.getElementById("phone").value.trim();
+    const dateInput = document.getElementById("bookingtime").value.trim();
+    const currentYear = new Date().getFullYear();
+
+    // Check if phone number is valid
+    if (!/^\d{10}$/.test(phoneInput)) {
+        errorMessageElement.textContent = "Số điện thoại phải gồm 10 chữ số!";
+        errorModal.classList.remove('hidden');
+        return false; // Prevent form submission
+    }
+
+    // Check if booking time is empty
+    if (dateInput === "") {
+        errorMessageElement.textContent = "Vui lòng nhập thời gian!";
+        errorModal.classList.remove('hidden');
+        return false; // Prevent form submission
+    }
+
+    // Check if the booking year is the current year
+    const inputYear = new Date(dateInput).getFullYear();
+    if (inputYear !== currentYear) {
+        errorMessageElement.textContent = "Năm phải là năm hiện tại!";
+        errorModal.classList.remove('hidden');
+        return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission
+}
+
+// Real-time validation for the datetime-local input
+document.getElementById('bookingtime').addEventListener('input', function (event) {
+    const input = event.target.value;
+    const currentYear = new Date().getFullYear();
+    const inputYear = input ? new Date(input).getFullYear() : null;
+
+    if (input === "") {
+        errorModal.classList.add('hidden');
+        return;
+    }
+
+    if (inputYear !== currentYear) {
+        errorMessageElement.textContent = "Năm phải là năm hiện tại!";
+        errorModal.classList.remove('hidden');
+        event.target.classList.add('border-red-500');
+        submitButton.disabled = true;
+    } else {
+        errorModal.classList.add('hidden');
+        event.target.classList.remove('border-red-500');
+        submitButton.disabled = false;
+    }
+});
+
+// Real-time validation for phone input
+document.getElementById('phone').addEventListener('input', function () {
+    const phoneInput = this.value.trim();
+
+    if (!/^\d{10}$/.test(phoneInput)) {
+        errorMessageElement.textContent = "Số điện thoại phải gồm 10 chữ số!";
+        errorModal.classList.remove('hidden');
+        this.classList.add('border-red-500');
+        submitButton.disabled = true;
+    } else {
+        errorModal.classList.add('hidden');
+        this.classList.remove('border-red-500');
+        submitButton.disabled = false;
+    }
+});
+
+// Listen for form submission
+document.querySelector("form").addEventListener("submit", function (event) {
+    if (!validateForm(event)) {
+        event.preventDefault(); // Prevent form submission
+    }
+});
+
+// Close the modal when the user clicks the close button
+closeModalButton.addEventListener('click', function () {
+    errorModal.classList.add('hidden');
+});
+
                     </script>
                     
-              
 
                 <div class="mt-8 text-center text-gray-500">
                     <p><em>Quý khách vui lòng đến trước thời gian đặt 15 phút để nhà hàng phục vụ quý khách được tốt nhất.</em></p>

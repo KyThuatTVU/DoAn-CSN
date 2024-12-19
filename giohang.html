@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
+     <!-- Tailwind CSS CDN -->
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+ 
+ 
+     <!-- Google Font: Audiowide -->
+     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+     <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style> /* Mobile Styles */
+        @media (max-width: 640px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        
+            .am_thuc_item {
+                width: 100%; /* Đảm bảo món ăn chiếm toàn bộ chiều rộng */
+                box-sizing: border-box;
+                margin-bottom: 20px;
+            }
+        
+            .am_thuc h2 {
+                font-size: 2em;
+            }
+        
+            .am_thuc_content h3 {
+                font-size: 1.2em;
+            }
+        
+            /* Đảm bảo các món ăn không bị lệch */
+            .flex {
+                flex-wrap: wrap;
+                gap: 20px; /* Thêm khoảng cách giữa các món ăn */
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .am_thuc_item {
+                width: 48%;
+            }
+        
+            .am_thuc h2 {
+                font-size: 2.2em;
+            }
+        
+            .am_thuc_content h3 {
+                font-size: 1.3em;
+            }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 1025px) {
+            .am_thuc_item {
+                width: 24%;
+            }
+        
+            .am_thuc h2 {
+                font-size: 2.5em;
+            }
+        
+            .am_thuc_content h3 {
+                font-size: 1.4em;
+            }
+        }
+        
+                /* Modal styles */
+                .modal {
+                    display: none;
+                    /* Hidden by default */
+                    position: fixed;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    background-color: rgba(0, 0, 0, 0.8);
+                }
+        
+                .modal-content {
+                    margin: auto;
+                    display: block;
+                    max-width: 80%;
+                    max-height: 80%;
+                }
+        
+                .close {
+                    position: absolute;
+                    top: 10px;
+                    right: 25px;
+                    color: white;
+                    font-size: 35px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+        
+                /* Custom styles for title */
+                .title {
+                    font-family: 'Audiowide', sans-serif;
+                    color: brown;
+                    /* Set color to brown */
+                }
+        
+                .custom-font {
+                    font-family: 'Audiowide', sans-serif;
+                }
+        
+                 /* Hiệu ứng nút */
+            .floating-btn {
+              position: relative;
+              width: 64px;
+              /* Kích thước nút */
+              height: 64px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(10px);
+              transition: all 0.3s ease-in-out;
+              animation: pulse 1.5s infinite;
+              /* Hiệu ứng chớp */
+            }
+        
+            .floating-btn:hover {
+              transform: scale(1.1);
+              box-shadow: 0 0 20px rgba(0, 205, 255, 0.8), 0 0 50px rgba(0, 205, 255, 0.5);
+            }
+        
+            /* Tooltip */
+            .tooltip {
+              position: absolute;
+              bottom: 80px;
+              /* Hiển thị phía trên nút */
+              opacity: 0;
+              visibility: hidden;
+              transform: translateY(10px);
+              transition: all 0.3s ease-in-out;
+            }
+        
+            .floating-btn:hover .tooltip {
+              opacity: 1;
+              visibility: visible;
+              transform: translateY(0);
+            }
+        
+            #logout-button {
+              position: fixed;
+              /* Đảm bảo nút luôn nổi */
+              bottom: 20px;
+              /* Đặt vị trí ở góc dưới cùng màn hình */
+              right: 20px;
+              /* Căn lề phải */
+              z-index: 9999;
+              /* Giá trị rất cao để không bị ảnh che */
+            }
+        
+            .album-image:hover {
+              z-index: 1;
+              /* Đảm bảo ảnh không tăng quá cao */
+            }
+        
+            .album-image {
+              position: relative;
+              /* Cần relative để z-index hoạt động */
+              z-index: 1;
+              /* Giá trị mặc định thấp */
+            }
+        
+            .album-image:hover {
+              z-index: 5;
+              /* Đủ cao để hiển thị nổi, nhưng thấp hơn nút logout */
+            }
+        
+            #buttons-container {
+              z-index: 50;
+              /* Tăng z-index cho container chứa các nút */
+            }
+        
+            .floating-btn {
+              z-index: 50;
+              /* Đảm bảo nút luôn hiển thị trên cùng */
+            }
+        
+            .album-image {
+              z-index: 1;
+              /* Giảm z-index của ảnh album */
+              position: relative;
+            }
+        
+            .album-image:hover {
+              z-index: 2;
+              /* Khi hover vẫn tăng lên nhưng thấp hơn các nút */
+            }</style>
+</head>
+<body>
+    <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
+        <div class="flex flex-col items-center">
+        <!-- Logo -->
+        <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+            <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+        </h1>
+        
+        <!-- Tên người dùng -->
+        <div id="auth-bar" class="hidden mt-4">
+            <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
+        </div>
+    </div>
+    
+    
+    <!-- User Authentication Bar -->
+    <!-- User Authentication Bar -->
+    
+    
+    
+    
+            <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
+            <div class="sm:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <!-- Hamburger Icon -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+    
+   <!-- Desktop Navigation Links -->
+<div id="nav-links"
+class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+<a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+<a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+<a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+<a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+<a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+
+ <!-- Biểu tượng giỏ hàng -->
+ <a href="giohang.html" target="_self" class="hover:text-[#D8B899] flex items-center space-x-2">
+    <i class="fas fa-shopping-cart"></i>
+    <span>GIỎ HÀNG</span>
+</a>
+</div>
+<style>.fas.fa-shopping-cart {
+font-size: 1.5rem; /* Tăng kích thước biểu tượng */
+color: #000; /* Màu mặc định */
+}
+.fas.fa-shopping-cart:hover {
+color: #D8B899; /* Màu khi hover */
+}</style>
+</div> 
+</div>
+
+<!-- Search Bar (Visible on Desktop) -->
+<div class="hidden sm:flex items-center space-x-4">
+<div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
+    <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+        class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
+    <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    </nav>
+        <!-- Containe nút -->
+    <div id="buttons-container" class="fixed bottom-5 right-5 flex flex-col items-center space-y-4">
+        <!-- Nút đăng nhập -->
+        <div id="login-button" class="relative group">
+            <a href="login.php" 
+               class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-700 text-white overflow-hidden">
+                <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Đăng nhập" class="button-image w-full h-full object-cover">
+            </a>
+            <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+                Mời bạn đăng nhập
+            </span>
+        </div>
+    
+        <!-- Nút đăng ký -->
+        <div id="signup-button" class="relative group">
+            <a href="register.php" 
+               class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-700 text-white overflow-hidden">
+                <img src="https://png.pngtree.com/png-clipart/20231118/original/pngtree-subscribe-icon-contract-photo-png-image_13614905.png" alt="Đăng ký" class="button-image w-full h-full object-cover">
+            </a>
+            <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+                Mời bạn đăng ký
+            </span>
+        </div>
+    
+        <!-- Nút đăng xuất -->
+        <div id="logout-button" class="relative group hidden">
+            <a href="index.php" 
+               class="floating-btn w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-red-500 to-red-700 text-white overflow-hidden">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828479.png" alt="Đăng xuất" class="button-image w-full h-full object-cover">
+            </a>
+            <span class="tooltip absolute bottom-full mb-2 px-3 py-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg whitespace-nowrap">
+                Đăng xuất
+            </span>
+        </div>
+    </div>
+    
+    <style>
+        
+    /* Hiệu ứng nút */
+    .floating-btn {
+        position: relative;
+        width: 64px; /* Kích thước nút */
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease-in-out;
+        animation: pulse 1.5s infinite; /* Hiệu ứng chớp */
+    }
+    
+    .floating-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 205, 255, 0.8), 0 0 50px rgba(0, 205, 255, 0.5);
+    }
+    
+    /* Tooltip */
+    .tooltip {
+        position: absolute;
+        bottom: 80px; /* Hiển thị phía trên nút */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .floating-btn:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginButton = document.getElementById('login-button');
+            const signupButton = document.getElementById('signup-button');
+            const logoutButton = document.getElementById('logout-button');
+    
+            // Kiểm tra trạng thái đăng nhập từ server
+            fetch('check.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isLoggedIn) {
+                        loginButton.classList.add('hidden');
+                        signupButton.classList.add('hidden');
+                        logoutButton.classList.remove('hidden');
+                    } else {
+                        loginButton.classList.remove('hidden');
+                        signupButton.classList.remove('hidden');
+                        logoutButton.classList.add('hidden');
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+                });
+        });
+    </script>
+    <link rel="stylesheet" href="styles.css">
+        <script defer src="script.js"></script>
+    
+    
+    <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
+    <div id="mobile-menu"
+        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
+    
+        <!-- Mobile Search Bar -->
+        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+            <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+                class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+            <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    
+        <!-- Mobile Navigation Links -->
+        <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+        <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+        <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+        <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+        <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+    
+      <!-- Biểu tượng giỏ hàng -->
+<a href="giohang.html" target="_self" class="hover:text-[#D8B899] flex items-center space-x-2 relative">
+    <i class="fas fa-shopping-cart"></i>
+    <span>GIỎ HÀNG</span>
+    <span id="cart-quantity" class="absolute top-0 right-0 text-xs bg-red-500 text-white rounded-full px-2 py-1 hidden">0</span>
+</a>
+
+</div>
+<style>.fas.fa-shopping-cart {
+font-size: 1.5rem; /* Tăng kích thước biểu tượng */
+color: #000; /* Màu mặc định */
+}
+.fas.fa-shopping-cart:hover {
+color: #D8B899; /* Màu khi hover */
+}</style>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Các phần tử DOM
+        const loginBtn = document.getElementById("login-button");
+        const signupBtn = document.getElementById("signup-button");
+        const logoutBtn = document.getElementById("logout-button");
+        const userNameDisplay = document.getElementById("ten-nguoi-dung");
+        const authBar = document.getElementById('auth-bar');
+        const logo = document.querySelector('h1');
+    
+        // Cập nhật giao diện dựa trên trạng thái đăng nhập
+        function updateAuthButtons(isLoggedIn, userName = '') {
+            if (isLoggedIn) {
+                // Nếu người dùng đã đăng nhập
+                userNameDisplay.textContent = userName; // Hiển thị tên người dùng
+                authBar.classList.remove('hidden');
+                logo.classList.add('mt-4'); // Dời logo xuống
+                loginBtn.classList.add("hidden");
+                signupBtn.classList.add("hidden");
+                logoutBtn.classList.remove("hidden");
+            } else {
+                // Nếu người dùng chưa đăng nhập
+                userNameDisplay.textContent = ''; // Ẩn tên người dùng
+                authBar.classList.add('hidden');
+                logo.classList.remove('mt-4');
+                loginBtn.classList.remove("hidden");
+                signupBtn.classList.remove("hidden");
+                logoutBtn.classList.add("hidden");
+            }
+        }
+    
+        // Gọi đến PHP để kiểm tra trạng thái đăng nhập
+        fetch('check.php')
+            .then(response => response.json())
+            .then(data => {
+                updateAuthButtons(data.isLoggedIn, data.username);
+            })
+            .catch(error => {
+                console.error("Lỗi khi kiểm tra trạng thái đăng nhập:", error);
+            });
+    
+        // Xử lý sự kiện nút đăng nhập
+        loginBtn.addEventListener("click", (e) => {
+            window.location.href = "login.php";
+        });
+    
+        // Xử lý sự kiện nút đăng ký
+        signupBtn.addEventListener("click", (e) => {
+            window.location.href = "register.php";
+        });
+    
+        // Xử lý sự kiện nút đăng xuất
+        logoutBtn.addEventListener("click", () => {
+            fetch('dangxuat.php', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Bạn đã thoát!");
+                        updateAuthButtons(false); // Cập nhật lại giao diện
+                    } else {
+                        alert("Có lỗi xảy ra khi đăng xuất. Vui lòng thử lại.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi khi thoát:", error);
+                });
+        });
+    });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    
+    <script>
+        window.addEventListener("load", function() {
+            // Hiệu ứng cho desktop navigation links khi trang tải
+            gsap.set("#nav-links a", { opacity: 0, y: 20 }); // Khởi tạo: ẩn và đẩy xuống dưới
+            gsap.to("#nav-links a", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.2, // Hiệu ứng theo thứ tự từng mục
+                ease: "power3.out",
+                delay: 0.5 // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng cho mobile menu khi hiển thị
+            gsap.set("#mobile-menu", { opacity: 0, y: -50 }); // Khởi tạo: ẩn và đẩy lên trên
+            gsap.to("#mobile-menu", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.3, // Đợi một chút rồi mới thực hiện
+            });
+    
+            // Hiệu ứng khi hover trên các liên kết menu
+            gsap.utils.toArray("#nav-links a").forEach(link => {
+                // Lấy màu sắc ban đầu của liên kết
+                const defaultColor = getComputedStyle(link).color;
+    
+                link.addEventListener("mouseenter", () => {
+                    gsap.to(link, {
+                        scale: 1.1,
+                        color: "#D8B899", // Thay đổi màu khi hover
+                        duration: 0.3
+                    });
+                });
+                link.addEventListener("mouseleave", () => {
+                    gsap.to(link, {
+                        scale: 1,
+                        color: defaultColor, // Trả lại màu ban đầu khi bỏ qua hover
+                        duration: 0.3
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <script>
+        // Toggle mobile menu visibility
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    <script>
+        function handleSearch(inputId) {
+            const query = document.getElementById(inputId).value.trim();
+            if (query) {
+                // Chuyển hướng đến trang PHP tìm kiếm với query string
+                window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+            } else {
+                alert("Vui lòng nhập từ khóa tìm kiếm!");
+            }
+        }
+    
+        // Xử lý sự kiện click nút tìm kiếm
+        document.getElementById('desktop-search-btn').addEventListener('click', function () {
+            handleSearch('desktop-search');
+        });
+    
+        document.getElementById('mobile-search-btn').addEventListener('click', function () {
+            handleSearch('mobile-search');
+        });
+    
+        // Xử lý sự kiện nhấn Enter
+        ['desktop-search', 'mobile-search'].forEach((id) => {
+            document.getElementById(id).addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    handleSearch(id);
+                }
+            });
+        });
+    </script>
+    <script>
+    
+        function handleSearch(inputId) {
+            const query = document.getElementById(inputId).value.trim();
+            if (query) {
+                // Redirect to PHP search page with query string
+                window.location.href = `KQSQL.php?keyword=${encodeURIComponent(query)}`;
+            } else {
+                alert("Vui lòng nhập từ khóa tìm kiếm!");
+            }
+        }
+    
+    
+        document.getElementById('desktop-search-btn').addEventListener('click', function () {
+            handleSearch('desktop-search');
+        });
+    
+        document.getElementById('mobile-search-btn').addEventListener('click', function () {
+            handleSearch('mobile-search');
+        });
+    
+        // Handle Enter key press
+        ['desktop-search', 'mobile-search'].forEach((id) => {
+            document.getElementById(id).addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    handleSearch(id);
+                }
+            });
+        });
+    
+    </script>
+  <div class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div id="cart" class="mt-8 bg-gray-50 border border-gray-300 shadow-lg rounded-xl p-12 w-full max-w-6xl">
+        <!-- Heading -->
+        <h2 class="text-5xl font-extrabold text-[#5a4036] tracking-wide border-b-4 border-[#5a4036] pb-4 mb-8">
+            🛒 Giỏ hàng của bạn
+        </h2>
+        
+        <!-- Cart Items -->
+        <ul id="cart-items" class="space-y-8">
+            <li class="text-xl text-gray-500 italic">Giỏ hàng đang trống</li>
+        </ul>
+        
+        <!-- Total Amount -->
+        <div class="mt-12 flex justify-between items-center">
+            <p class="text-3xl font-semibold text-[#5a4036]">Tổng tiền:</p>
+            <span id="cart-total" class="text-5xl font-bold text-[#5a4036]">0 VNĐ</span>
+        </div>
+        
+               <!-- Checkout Form -->
+               <form id="checkout-form" class="mt-12 space-y-6">
+                <div>
+                    <label class="block text-lg font-medium text-[#5a4036]" for="full-name">Họ và tên:</label>
+                    <input id="full-name" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-[#5a4036]" for="phone-number">Số điện thoại:</label>
+                    <input id="phone-number" type="tel" class="border border-gray-300 rounded-lg w-full p-4" required>
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-[#5a4036]" for="account-number">Số tài khoản:</label>
+                    <input id="account-number" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-[#5a4036]" for="email">Email:</label>
+                    <input id="email" type="email" class="border border-gray-300 rounded-lg w-full p-4" required>
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-[#5a4036]" for="address">Địa chỉ:</label>
+                    <input id="address" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <button 
+                        type="submit" 
+                        class="bg-[#5a4036] text-white py-4 px-8 rounded-xl font-medium text-2xl hover:bg-[#734f42] transition">
+                        Gửi
+                    </button>
+                </div>
+                <p class="text-center text-[#5a4036] text-sm mt-4">Vui lòng cọc trước 50% giá trị đơn hàng để được duyệt đơn.</p>
+            
+                <!-- Payment Section with QR Code (Always Visible) -->
+                <div id="payment-section" class="mt-12 text-center">
+                    <p class="text-lg font-medium text-[#5a4036]">Vui lòng thanh toán:</p>
+                    <div class="mt-4 bg-white p-6 rounded-lg shadow-xl max-w-xs mx-auto">
+                        <img 
+                            src="https://luuanh.vercel.app/amthucphuongnam/3.jpg" 
+                            alt="QR Code" 
+                            class="rounded-md max-w-full border border-gray-300"
+                        />
+                    </div>
+                </div>
+            </form>
+            
+           
+            
+        </div>
+    </div>
+    
+
+
+
+<script>
+    // Lấy giỏ hàng từ localStorage
+const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Hàm thêm sản phẩm vào giỏ hàng
+function addToCart(name, price) {
+    const existingProduct = cart.find(item => item.name === name);
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+
+    // Lưu giỏ hàng vào localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    updateCartUI();
+}
+
+// Hàm xóa sản phẩm khỏi giỏ hàng
+function removeFromCart(name) {
+    const index = cart.findIndex(item => item.name === name);
+    if (index !== -1) {
+        cart.splice(index, 1); // Loại bỏ sản phẩm khỏi giỏ hàng
+    }
+
+    // Lưu giỏ hàng cập nhật vào localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    updateCartUI();
+}
+
+// Hàm cập nhật giao diện giỏ hàng
+function updateCartUI() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    cartItems.innerHTML = ''; // Xóa các mục hiện tại trong giỏ hàng
+    let total = 0;
+
+    // Hiển thị sản phẩm trong giỏ hàng
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'flex justify-between items-center text-sm text-gray-600';
+        
+        li.innerHTML = `
+            <span>${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ</span>
+            <button onclick="removeFromCart('${item.name}')" class="text-red-500 hover:text-red-700">Xóa</button>
+        `;
+
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
+    });
+
+    // Nếu giỏ hàng trống
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<li class="text-lg text-gray-500 italic">Giỏ hàng đang trống</li>';
+    }
+
+    // Cập nhật tổng tiền
+    cartTotal.textContent = total.toLocaleString();
+}
+
+// Gọi hàm cập nhật giỏ hàng khi trang được tải
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+// Gắn sự kiện cho các nút "Thêm vào giỏ hàng"
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const productElement = event.target.closest('.product-item');
+        const name = productElement.getAttribute('data-name');
+        const price = parseInt(productElement.getAttribute('data-price'), 10);
+
+        addToCart(name, price);
+    });
+});
+// Hàm cập nhật giao diện giỏ hàng với nút xóa đẹp hơn
+function updateCartUI() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    cartItems.innerHTML = ''; // Xóa các mục hiện tại trong giỏ hàng
+    let total = 0;
+
+    // Hiển thị sản phẩm trong giỏ hàng
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'flex justify-between items-center text-sm text-gray-600';
+        
+        li.innerHTML = `
+            <span>${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ</span>
+            <button onclick="removeFromCart('${item.name}')" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg transition duration-200 transform hover:scale-110">
+                Xóa
+            </button>
+        `;
+
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
+    });
+
+    // Nếu giỏ hàng trống
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<li class="text-lg text-gray-500 italic">Giỏ hàng đang trống</li>';
+    }
+
+    // Cập nhật tổng tiền
+    cartTotal.textContent = total.toLocaleString();
+}
+
+
+document.getElementById('checkout-form').addEventListener('submit', function(event) {
+    const fullName = document.getElementById('full-name').value.trim();
+    const phoneNumber = document.getElementById('phone-number').value.trim();
+    const accountNumber = document.getElementById('account-number').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!fullName || !phoneNumber || !accountNumber || !email) {
+        event.preventDefault(); // Ngăn không cho gửi form
+        alert('Vui lòng điền đầy đủ thông tin trước khi gửi!');
+    } else {
+        alert('Form đã được gửi thành công!');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const invoiceList = document.getElementById('invoice-list');
+    let invoiceHistory = JSON.parse(localStorage.getItem('invoiceHistory')) || [];
+
+    console.log("Danh sách hóa đơn từ localStorage:", invoiceHistory);
+
+    // Nếu không có hóa đơn nào
+    if (invoiceHistory.length === 0) {
+        invoiceList.innerHTML = '<li class="text-gray-500 italic">Không có hóa đơn nào.</li>';
+        return;
+    }
+
+    // Hiển thị danh sách hóa đơn
+    invoiceHistory.forEach((invoice, index) => {
+        const li = document.createElement('li');
+        li.className = 'border p-4 mb-2 rounded-lg shadow-sm hover:bg-gray-50 cursor-pointer';
+
+        li.innerHTML = `
+            <span><strong>Hóa đơn:</strong> ${index + 1}</span><br>
+            <span><strong>Mã hóa đơn:</strong> ${invoice.id}</span><br>
+            <span><strong>Khách hàng:</strong> ${invoice.buyer.name}</span><br>
+            <span><strong>Email:</strong> ${invoice.buyer.email}</span><br>
+            <span><strong>Ngày:</strong> ${new Date(invoice.date).toLocaleString()}</span>
+            <button class="view-invoice-btn bg-blue-500 text-white px-3 py-1 rounded-lg ml-4" data-index="${index}">
+                Xem chi tiết
+            </button>
+        `;
+
+        invoiceList.appendChild(li);
+    });
+
+    // Gắn sự kiện mở chi tiết hóa đơn
+    document.querySelectorAll('.view-invoice-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            localStorage.setItem('currentInvoice', index);
+            window.location.href = 'invoice-details.html';
+        });
+    });
+});
+
+</script>
+ <!-- Thêm icon Twitter và YouTube vào footer -->
+ <footer class="bg-[#644741] text-white p-6">
+    <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
+        <!-- Cột 1: 1 div chiếm 50% chiều rộng -->
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">PHƯƠNG NAM – CƠM NGON TRÒN VỊ</h3>
+            <p>Hotline: 0904 816 145</p>
+            <p>Email: nhahangphuongnamn@gmail.com</p>
+            <p>Địa chỉ: 500 Võ Văn Kiệt, Thành phố Trà Vinh, Trà Vinh</p>
+            <p>(Có chỗ để xe ô tô)</p>
+        </div>
+
+        <!-- Cột 2: 2 div chia đều 50% còn lại -->
+        <div class="w-full md:w-1/2 flex flex-col md:flex-row text-center md:text-left mt-6 md:mt-0">
+            <!-- Div 1 trong cột 2 -->
+            <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Giờ mở cửa</h3>
+                <p>Sáng: 10h-14h</p>
+                <p>Chiều: 18h - 22h</p>
+                <p>Tất cả các ngày trong tuần</p>
+            </div>
+
+            <!-- Div 2 trong cột 2 -->
+            <div class="w-full md:w-1/2">
+                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Mạng xã hội</h3>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <!-- Icon Facebook -->
+                    <a href="https://www.facebook.com/Alodzo100tv" class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M22 12C22 5.372 17.627 1 11 1S1 5.372 1 12c0 5.296 3.688 9.683 8.437 10.729v-7.581H6.172v-3.148h3.265V9.398c0-3.18 1.895-4.927 4.774-4.927 1.385 0 2.837.25 2.837.25v3.121h-1.597c-1.575 0-2.068.978-2.068 1.979v2.359h3.513l-.561 3.148h-2.952v7.581C18.313 21.683 22 17.296 22 12z" />
+                        </svg>
+                    </a>
+                    <!-- Icon Instagram -->
+                    <a href="#instagram" class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.316 3.608 1.29.975.975 1.228 2.242 1.29 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.316 2.633-1.29 3.608-.975.975-2.242 1.228-3.608 1.29-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.316-3.608-1.29-.975-.975-1.228-2.242-1.29-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.849c.062-1.366.316-2.633 1.29-3.608.975-.975 2.242-1.228 3.608-1.29C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.688 0 8.287.014 7.052.072c-1.566.073-2.97.39-4.133 1.552C1.757 2.784 1.44 4.188 1.367 5.754.922 7.284.922 8.688.922 12s.014 4.287.072 5.522c.073 1.566.39 2.97 1.552 4.133 1.163 1.163 2.567 1.479 4.133 1.552 1.235.058 1.636.072 4.948.072s3.713-.014 4.948-.072c1.566-.073 2.97-.39 4.133-1.552 1.163-1.163 1.479-2.567 1.552-4.133.058-1.235.072-1.636.072-4.948s-.014-3.713-.072-4.948c-.073-1.566-.39-2.97-1.552-4.133C19.87.39 18.466.073 16.9.072 15.665.014 15.264 0 12 0z" />
+                            <path
+                                d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4.003 4.003 0 0 1 8 12a4.003 4.003 0 0 1 4-4 4.003 4.003 0 0 1 4 4 4.003 4.003 0 0 1-4 4zm6.406-10.845a1.44 1.44 0 1 1 0-2.879 1.44 1.44 0 0 1 0 2.879z" />
+                        </svg>
+                    </a>
+                    <!-- Icon Twitter -->
+                    <a href="#twitter" class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.35 1.84c-.35 0-.7-.02-1.04-.07A12.27 12.27 0 0 0 8 21c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56.83-.59 1.55-1.33 2.13-2.17z" />
+                        </svg>
+                    </a>
+                    <!-- Icon YouTube -->
+                    <!-- Sử dụng Font Awesome cho biểu tượng YouTube -->
+                    <a href="https://www.youtube.com/@pt-canh8129/featured"
+                        class="text-white text-2xl hover:text-[#dfc3aa]">
+                        <i class="fab fa-youtube h-8 w-8"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-6 border-[#6e4f45]">
+
+    <!-- Dòng bản quyền -->
+    <div class="text-center text-md">
+        <p>&copy; 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
+        <p>
+            <a href="#" class="hover:underline">Bảo mật thông tin</a> <span class="text-[#6e4f45]">|</span>
+            <a href="#" class="hover:underline">Liên hệ</a>
+        </p>
+    </div>
+</footer>
+<script>
+    // Function to open the modal and show the clicked image
+    function openModal(img) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImg.src = img.src;
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        var modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+    }
+</script>
+<script>
+
+// Animate about-image with infinite effect
+gsap.fromTo(".container", 
+          { opacity: 0, y: 50 }, 
+          { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
+            scrollTrigger: {
+              trigger: ".container",
+              start: "top 85%",
+              toggleActions: "play none none none",
+              onEnter: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
+              onLeaveBack: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+            }
+          });
+</script>
+
+</body>
+</html>

@@ -514,54 +514,98 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>
 <!-- Feedback Form -->
-<div class="min-h-screen bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center">
-    <div class="max-w-7xl w-full p-8 bg-white rounded-lg shadow-xl opacity-0" id="feedback-form">
-        <h1 class="text-4xl font-semibold text-center text-gray-800 mb-8" id="form-title">Gửi Đánh Giá</h1>
-        <form action="" method="POST" class="space-y-6">
-            <div>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="max-w-2xl w-full p-10 bg-white rounded-2xl shadow-lg">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6 uppercase tracking-wide">Liên Hệ</h1>
+        <p class="text-center text-gray-600 mb-8">
+            Hãy để lại thông tin, chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất.
+        </p>
+        <form id="contactForm" class="space-y-5">
+
+         <!-- Tên khách hàng -->
+         <div>
                 <label for="ten_khach_hang" class="block text-gray-700 font-medium mb-2">Tên khách hàng:</label>
                 <input type="text" id="ten_khach_hang" name="ten_khach_hang"
-                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    required>
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
+                    placeholder="Nhập tên của bạn" required>
             </div>
-
+            <!-- Số điện thoại -->
             <div>
                 <label for="so_dien_thoai" class="block text-gray-700 font-medium mb-2">Số điện thoại:</label>
                 <input type="text" id="so_dien_thoai" name="so_dien_thoai"
-                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
+                    placeholder="Nhập số điện thoại của bạn" required>
+                <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">Số điện thoại không hợp lệ! Vui lòng nhập lại.</p>
             </div>
 
+            <!-- Email -->
             <div>
                 <label for="email" class="block text-gray-700 font-medium mb-2">Email:</label>
                 <input type="email" id="email" name="email"
-                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
+                    placeholder="Nhập email của bạn" required>
+                <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Email không hợp lệ! Vui lòng nhập lại.</p>
             </div>
 
-            <div>
-                <label for="noi_dung_danh_gia" class="block text-gray-700 font-medium mb-2">Nội dung đánh giá:</label>
+             <!-- Nội dung đánh giá -->
+             <div>
+                <label for="noi_dung_danh_gia" class="block text-gray-700 font-medium mb-2">Nội dung liên hệ:</label>
                 <textarea id="noi_dung_danh_gia" name="noi_dung_danh_gia" rows="4"
-                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
+                    placeholder="Nhập nội dung liên hệ" required></textarea>
             </div>
 
-            <div>
-                <label for="diem_so" class="block text-gray-700 font-medium mb-2">Điểm số:</label>
-                <select id="diem_so" name="diem_so"
-                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-                    <option value="1">1 - Rất tệ</option>
-                    <option value="2">2 - Tệ</option>
-                    <option value="3">3 - Trung bình</option>
-                    <option value="4">4 - Tốt</option>
-                    <option value="5">5 - Rất tốt</option>
-                </select>
-            </div>
-
-            <button type="submit" name="submit"
-                class="w-full bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
-                Gửi đánh giá
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition duration-300 shadow-lg">
+                Gửi Liên Hệ
             </button>
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        // Lấy giá trị của số điện thoại và email
+        const phoneInput = document.getElementById('so_dien_thoai').value.trim();
+        const emailInput = document.getElementById('email').value.trim();
+
+        // Regular expressions để kiểm tra
+        const phoneRegex = /^[0-9]{10,11}$/; // Số điện thoại từ 10-11 chữ số
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email hợp lệ
+
+        // Lấy phần hiển thị lỗi
+        const phoneError = document.getElementById('phoneError');
+        const emailError = document.getElementById('emailError');
+
+        let isValid = true;
+
+        // Kiểm tra số điện thoại
+        if (!phoneRegex.test(phoneInput)) {
+            phoneError.classList.remove('hidden');
+            isValid = false;
+        } else {
+            phoneError.classList.add('hidden');
+        }
+
+        // Kiểm tra email
+        if (!emailRegex.test(emailInput)) {
+            emailError.classList.remove('hidden');
+            isValid = false;
+        } else {
+            emailError.classList.add('hidden');
+        }
+
+        // Nếu có lỗi, ngăn form gửi đi
+        if (!isValid) {
+            event.preventDefault(); // Ngăn gửi form
+            alert("Vui lòng nhập lại thông tin hợp lệ!");
+        }
+    });
+</script>
+
+
+
 
 <script>
     // GSAP Animation for form

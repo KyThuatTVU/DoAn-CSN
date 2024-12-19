@@ -247,6 +247,23 @@ class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 l
 <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
 <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
 <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+
+<!-- Biểu tượng giỏ hàng -->
+<a href="giohang.html" target="_self" class="hover:text-[#D8B899] flex items-center space-x-2 relative">
+    <i class="fas fa-shopping-cart"></i>
+    <span>GIỎ HÀNG</span>
+    <span id="cart-quantity" class="absolute top-0 right-0 text-xs bg-red-500 text-white rounded-full px-2 py-1 hidden">0</span>
+</a>
+
+</div>
+<style>.fas.fa-shopping-cart {
+font-size: 1.5rem; /* Tăng kích thước biểu tượng */
+color: #000; /* Màu mặc định */
+}
+.fas.fa-shopping-cart:hover {
+color: #D8B899; /* Màu khi hover */
+}</style>
+</div> 
 </div>
 
 <!-- Search Bar (Visible on Desktop) -->
@@ -259,14 +276,7 @@ class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 l
     </button>
 </div>
 
-<!-- Giỏ hàng (Cart Button) -->
-<div class="relative">
-    <!-- Link đến trang giỏ hàng -->
-    <a href="giohang.html" id="cart-btn" class="text-[#704539] hover:text-[#D8B899]">
-        <i class="fas fa-shopping-cart text-xl"></i>
-    </a>
-</div>
-</div>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     </nav>
@@ -393,7 +403,21 @@ class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 l
         <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
         <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
         <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
-    
+    <!-- Biểu tượng giỏ hàng -->
+<a href="giohang.html" target="_self" class="hover:text-[#D8B899] flex items-center space-x-2 relative">
+    <i class="fas fa-shopping-cart"></i>
+    <span>GIỎ HÀNG</span>
+    <span id="cart-quantity" class="absolute top-0 right-0 text-xs bg-red-500 text-white rounded-full px-2 py-1 hidden">0</span>
+</a>
+
+</div>
+<style>.fas.fa-shopping-cart {
+font-size: 1.5rem; /* Tăng kích thước biểu tượng */
+color: #000; /* Màu mặc định */
+}
+.fas.fa-shopping-cart:hover {
+color: #D8B899; /* Màu khi hover */
+}</style>
       
     </div>
     <script>
@@ -1093,69 +1117,125 @@ class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 l
             </div>
         </div>
     </div>
-
+<!-- Thông báo khi thêm sản phẩm vào giỏ hàng -->
+<div id="notification" class="hidden fixed top-4 left-1/2 transform -translate-x-1/2 p-4 bg-green-500 text-white text-center font-semibold rounded-lg shadow-lg transition-opacity duration-500 ease-in-out">
+    Bạn đã thêm sản phẩm vào giỏ hàng!
+</div>
+<script>// Hiển thị thông báo khi thêm sản phẩm vào giỏ hàng
+    function showNotification() {
+        const notification = document.getElementById('notification');
+    
+        // Show the notification with a smooth fade-in effect
+        notification.classList.remove('hidden');
+        notification.classList.add('opacity-0'); // Start with opacity 0 (hidden)
+    
+        // Use a small delay to ensure the opacity class is applied before fading in
+        setTimeout(() => {
+            notification.classList.remove('opacity-0'); // Make it visible by removing opacity-0
+            notification.classList.add('opacity-100'); // Fade in smoothly
+        }, 50);
+    
+        // Hide the notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('opacity-100'); // Start fading out
+            notification.classList.add('opacity-0'); // Fade out smoothly
+        }, 3000);
+    
+        // Hide it completely after fading out
+        setTimeout(() => {
+            notification.classList.add('hidden'); // Completely hide after fade-out
+        }, 3500);
+    }
+    </script>
           
-                <!-- Cart Section -->
-                <div id="cart" class="mt-6 bg-gray-100 p-4 rounded-lg shadow">
-                    <h2 class="text-xl font-bold text-[#5a4036]">Giỏ hàng</h2>
-                    <ul id="cart-items" class="mt-4">
-                        <li class="text-sm text-gray-600">Giỏ hàng đang trống</li>
-                    </ul>
-                    <div class="mt-4">
-                        <p class="text-lg font-semibold text-[#5a4036]">Tổng tiền: <span id="cart-total">0</span> VNĐ</p>
-                    </div>
-                </div>  
     <script>
-        const cart = [];
-    
-        // Hàm thêm sản phẩm vào giỏ hàng
-        function addToCart(name, price) {
-            // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-            const existingProduct = cart.find(item => item.name === name);
-    
-            if (existingProduct) {
-                existingProduct.quantity++;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-    
-            updateCartUI();
+      const cart = JSON.parse(localStorage.getItem('cart')) || []; // Lấy giỏ hàng từ localStorage, nếu không có thì khởi tạo giỏ hàng mới
+
+// Hàm thêm sản phẩm vào giỏ hàng
+function addToCart(name, price) {
+    const existingProduct = cart.find(item => item.name === name);
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+
+    // Lưu giỏ hàng vào localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Hiển thị thông báo
+    showNotification();
+
+    // Cập nhật giao diện giỏ hàng
+    updateCartUI();
+}
+
+// Hàm cập nhật giao diện giỏ hàng
+function updateCartUI() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ`;
+        li.className = 'text-sm text-gray-600';
+        cartItems.appendChild(li);
+
+        total += item.price * item.quantity;
+    });
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<li class="text-sm text-gray-600">Giỏ hàng đang trống</li>';
+    }
+
+    cartTotal.textContent = total.toLocaleString();
+}
+
+// Hiển thị thông báo khi thêm sản phẩm vào giỏ hàng
+function showNotification() {
+    const notification = document.getElementById('notification');
+    notification.classList.remove('hidden'); // Hiển thị thông báo
+
+    // Ẩn thông báo sau 3 giây
+    setTimeout(() => {
+        notification.classList.add('hidden');
+    }, 3000);
+}
+
+// Gắn sự kiện cho các nút "Thêm vào giỏ hàng"
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const productElement = event.target.closest('.product-item');
+        const name = productElement.getAttribute('data-name');
+        const price = parseInt(productElement.getAttribute('data-price'), 10);
+
+        addToCart(name, price);
+    });
+});
+
+
+  // Update cart quantity on the icon
+  function updateCartQuantity() {
+        const cartQuantity = document.getElementById('cart-quantity');
+        const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0); // Total items in cart
+
+        if (totalQuantity > 0) {
+            cartQuantity.textContent = totalQuantity; // Update the number
+            cartQuantity.classList.remove('hidden'); // Show the number
+        } else {
+            cartQuantity.classList.add('hidden'); // Hide if no items
         }
-    
-        // Hàm cập nhật giao diện giỏ hàng
-        function updateCartUI() {
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-    
-            cartItems.innerHTML = '';
-            let total = 0;
-    
-            cart.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ`;
-                li.className = 'text-sm text-gray-600';
-                cartItems.appendChild(li);
-    
-                total += item.price * item.quantity;
-            });
-    
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<li class="text-sm text-gray-600">Giỏ hàng đang trống</li>';
-            }
-    
-            cartTotal.textContent = total.toLocaleString();
-        }
-    
-        // Gắn sự kiện cho các nút "Thêm vào giỏ hàng"
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const productElement = event.target.closest('.product-item');
-                const name = productElement.getAttribute('data-name');
-                const price = parseInt(productElement.getAttribute('data-price'), 10);
-    
-                addToCart(name, price);
-            });
-        });
+    }
+
+    // Ensure cart quantity is updated on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCartQuantity(); // Update cart quantity when the page loads
+    });
+
     </script>
     
 

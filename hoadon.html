@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ẩm thực Phương Nam</title>
+    <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- Thêm thư viện tạo mã QR -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet"> <!-- Tailwind CSS -->
+    <style>
+        .qr-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .invoice-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Định dạng khi in */
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Cột tên món ăn và giá */
+        .invoice-table th, .invoice-table td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .invoice-table th {
+            background-color: #f3f3f3;
+            color: #5a4036;
+        }
+
+        .invoice-table td {
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="bg-gray-100 flex justify-center items-center min-h-screen">
+        <div id="invoice" class="mt-8 bg-gray-50 border border-gray-300 shadow-lg rounded-xl p-12 w-full max-w-6xl">
+            <!-- Heading -->
+            <h2 class="text-5xl font-extrabold text-[#5a4036] tracking-wide border-b-4 border-[#5a4036] pb-4 mb-8">
+                🧾 Hóa Đơn
+            </h2>
+    
+           <!-- Buyer Information -->
+<div class="mb-8">
+    <p><strong>Họ và tên:</strong> <span id="buyer-name"></span></p>
+    <p><strong>Số điện thoại:</strong> <span id="buyer-phone"></span></p>
+    <p><strong>Email:</strong> <span id="buyer-email"></span></p>
+    <p><strong>Số tài khoản:</strong> <span id="buyer-account"></span></p>
+    <p><strong>Địa chỉ:</strong> <span id="buyer-address"></span></p>
+</div>
+
+    
+            <!-- Cart Items -->
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr>
+                        <th class="border p-2">Tên Món</th>
+                        <th class="border p-2">Số Lượng</th>
+                        <th class="border p-2">Giá</th>
+                        <th class="border p-2">Tổng</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items"></tbody>
+            </table>
+    
+            <!-- Total Amount -->
+            <div class="mt-12 text-right">
+                <strong class="text-3xl">Tổng tiền: <span id="cart-total">0</span> VNĐ</strong>
+            </div>
+
+            <!-- Nút in hóa đơn -->
+       <div class="mt-8 text-center no-print">
+        <button 
+            onclick="window.print();" 
+            class="bg-blue-500 text-white py-4 px-10 rounded-xl font-medium text-3xl hover:bg-blue-600 transition duration-300">
+            In Hóa Đơn
+        </button>
+    </div>
+    <div class="flex space-x-4">
+        <button id="save-invoice" class="bg-blue-500 text-white px-4 py-2 rounded">
+            Lưu hóa đơn
+        </button>
+        <button id="delete-invoice" class="bg-red-500 text-white px-4 py-2 rounded">
+            Xóa hóa đơn
+        </button>
+    </div>
+    
+    
+        </div>
+        
+    </div>
+    
+    
+    <script>
+        // Lấy thông tin người mua từ localStorage
+        const buyerInfo = JSON.parse(localStorage.getItem('buyerInfo'));
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const invoiceHistory = JSON.parse(localStorage.getItem('invoiceHistory')) || [];
+    
+        // Hiển thị thông tin người mua
+        document.getElementById('buyer-name').textContent = buyerInfo?.name || '';
+        document.getElementById('buyer-phone').textContent = buyerInfo?.phone || '';
+        document.getElementById('buyer-email').textContent = buyerInfo?.email || '';
+        document.getElementById('buyer-account').textContent = buyerInfo?.account || '';
+        document.getElementById('buyer-address').textContent = buyerInfo?.address || '';
+    
+        // Hiển thị giỏ hàng
+        const cartItems = document.getElementById('cart-items');
+        let total = 0;
+    
+        cart.forEach(item => {
+            const tr = document.createElement('tr');
+            const itemTotal = item.quantity * item.price;
+    
+            tr.innerHTML = `
+                <td class="border p-2">${item.name}</td>
+                <td class="border p-2">${item.quantity}</td>
+                <td class="border p-2">${item.price.toLocaleString()} VNĐ</td>
+                <td class="border p-2">${itemTotal.toLocaleString()} VNĐ</td>
+            `;
+    
+            cartItems.appendChild(tr);
+            total += itemTotal;
+        });
+    
+        // Hiển thị tổng tiền
+        document.getElementById('cart-total').textContent = total.toLocaleString();
+    
+        // Lưu hóa đơn vào lịch sử
+        document.getElementById('save-invoice').addEventListener('click', () => {
+            const newInvoice = {
+                id: `INV-${Date.now()}`, // Mã hóa đơn duy nhất
+                buyer: buyerInfo,
+                items: cart,
+                total: total,
+                date: new Date().toISOString()
+            };
+    
+            // Thêm hóa đơn mới vào danh sách lịch sử
+            invoiceHistory.push(newInvoice);
+            localStorage.setItem('invoiceHistory', JSON.stringify(invoiceHistory));
+    
+            // Xóa giỏ hàng và hiển thị thông báo
+            localStorage.removeItem('cart');
+            alert('Hóa đơn đã được lưu và giỏ hàng đã được xóa.');
+    
+            // Reload lại trang (tùy ý)
+            location.reload();
+        });
+    
+        // Xóa hóa đơn hiện tại
+        document.getElementById('delete-invoice').addEventListener('click', () => {
+            // Xóa thông tin người mua và giỏ hàng
+            localStorage.removeItem('buyerInfo');
+            localStorage.removeItem('cart');
+    
+            alert('Đã xóa hóa đơn và giỏ hàng.');
+    
+            // Reload lại trang
+            location.reload();
+        });
+
+
+        
+    </script>
+    
+    
+</body>
+</html>
