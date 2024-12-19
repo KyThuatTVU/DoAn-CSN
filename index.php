@@ -708,18 +708,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Tạo bông tuyết mỗi 200ms
+    // Tạo bông tuyết mỗi 500ms (giảm tốc độ tạo bông tuyết)
     let snowInterval = setInterval(() => {
-        for (let i = 0; i < 5; i++) { // Số lượng bông tuyết mỗi lần
+        for (let i = 0; i < 2; i++) { // Giảm số lượng bông tuyết mỗi lần (tạo 2 bông tuyết thay vì 5)
             createSnowflake();
         }
-    }, 200); // Khoảng thời gian tạo bông tuyết
+    }, 500); // Khoảng thời gian tạo bông tuyết (500ms thay vì 200ms)
 
     // Ngừng hiệu ứng sau 10 giây
     setTimeout(() => {
         clearInterval(snowInterval); // Dừng tạo bông tuyết mới
     }, 10000); // 10 giây
 </script>
+
 <style>
       /* Tạo hiệu ứng tuyết rơi */
       @keyframes fall {
@@ -758,6 +759,7 @@ document.addEventListener("DOMContentLoaded", function () {
             z-index: 9999;
         }
 </style>
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -854,21 +856,21 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="slick-3 flex gap-8 justify-center items-center">
                 <!-- Hình ảnh 1 -->
                 <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
-                    <a href="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/468445613_122131874612511615_463748523128431631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHVvR6bNCp57g_qMVZjZPPvwbQky0szm1LBtCTLSzObUqusSExRpMseMTU5jicVLbDQE_NDWALf8Eq5g6LTVWV-&_nc_ohc=l0ISzUyTT6sQ7kNvgE_EEYL&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AKkO-mhaT86sILJunqJy0_i&oh=00_AYBVaHR9H8ucRIhq67fBCT1ENeqvZRo00_lpHJ7WXQXPrg&oe=6750AE9C"
+                    <a href="https://luuanh.vercel.app/amthucphuongnam/2.jpg"
                        data-lightbox="restaurant-gallery" data-title="Không gian nhà hàng 1">
-                        <img class="w-full rounded-[25px]" src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/466258720_122126510462511615_3148896874661387414_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=nlhbTF2PGOoQ7kNvgFQAcUv&_nc_zt=23&_nc_ht=scontent.fsgn2-4.fna&_nc_gid=AxCu1DGMsaa-EneHu7edzyi&oh=00_AYCxOLpsaVvoFzylXqOvVi89NH1AxJL_LAnVoWsuved6Qg&oe=675AFD3C" alt="Không gian nhà hàng 1">
+                        <img class="w-full rounded-[25px]" src="https://luuanh.vercel.app/amthucphuongnam/2.jpg" alt="Không gian nhà hàng 1">
                     </a>
                 </div>
                 <!-- Hình ảnh 2 -->
                 <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
-                    <a href="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/468518645_122131874138511615_8325878476265256575_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9YczvM2ekKlJLs2L9aiThWnSR40kG7PRadJHjSQbs9IGnTlRQfPV9TirCqfqfJS_C6hm9l3gPP1cdQcYFvkWl&_nc_ohc=6skGkGCwqFUQ7kNvgFz151w&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=AMCN9bE5a9Doen_6gEHPCwd&oh=00_AYDhvj4dDiBlHdJDeTuojb_nyO7U0aXEJTme1CF0rrjNEg&oe=6750AC8F"
+                    <a href="https://luuanh.vercel.app/amthucphuongnam/Kg1.jpg"
                        data-lightbox="restaurant-gallery" data-title="Không gian nhà hàng 2">
                         <img class="w-full rounded-[25px]" src="https://luuanh.vercel.app/amthucphuongnam/Kg1.jpg" alt="Không gian nhà hàng 2">
                     </a>
                 </div>
                 <!-- Hình ảnh 3 -->
                 <div class="slick-3-item border-8 border-[#0000001a] rounded-[25px] p-2">
-                    <a href="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/465914579_122125272914511615_6009958091425179677_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEM82cV946zSviTeudJX6yiWE6gWbmXFe9YTqBZuZcV7w3LEclpEmLta-4luR7M845xx02OwSDudvDn0gw_FaRK&_nc_ohc=VumScNXP_PsQ7kNvgE368dY&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=AhSpLSA6QPz5FGAD6-IKSFr&oh=00_AYBVaHR9H8ucRIhq67fBCT1ENeqvZRo00_lpHJ7WXQXPrg&oe=67508D6E"
+                    <a href="https://luuanh.vercel.app/amthucphuongnam/Kg2.jpg"
                        data-lightbox="restaurant-gallery" data-title="Không gian nhà hàng 3">
                         <img class="w-full rounded-[25px]" src="https://luuanh.vercel.app/amthucphuongnam/Kg2.jpg" alt="Không gian nhà hàng 3">
                     </a>
