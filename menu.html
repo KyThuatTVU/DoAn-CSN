@@ -246,6 +246,16 @@
             <span>GIỎ HÀNG</span>
             <span id="cart-quantity" class="absolute top-0 right-0 text-xs bg-red-500 text-white rounded-full px-2 py-1 hidden">0</span>
         </a>
+    
+        <style>
+            .fas.fa-shopping-cart {
+                font-size: 1.5rem; /* Tăng kích thước biểu tượng */
+                color: #000; /* Màu mặc định */
+            }
+            .fas.fa-shopping-cart:hover {
+                color: #D8B899; /* Màu khi hover */
+            }
+        </style>
         </div>
       
         <!-- Search Bar (Visible on Desktop) -->
@@ -256,10 +266,7 @@
             <button id="desktop-search-btn" class="ml-2 text-[#704539]">
               <i class="fas fa-search"></i>
             </button>
-
-
           </div>
-          
         </div>
       </nav>
       
@@ -1111,121 +1118,139 @@ color: #D8B899; /* Màu khi hover */
                   
   
   
-    <!-- Product 2 -->
-    <div class="block product-item" data-name="Lẩu thái" data-price="220000">
-        <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-            <a href="lauthai.html" target="_self">
+   <!-- Product 2 -->
+<div class="block product-item" data-name="Lẩu thái" data-price="220000">
+    <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+        <a href="lauthai.html" target="_self">
             <img class="w-full h-60 object-cover" src="https://luuanh.vercel.app/amthucphuongnam/lauthai.jpg" alt="Lẩu thái">
-            </a>
-            <div class="p-4">
-                <span class="text-xs bg-[#a0522d] text-white px-3 py-1 rounded-full">
-                    Ẩm thực Phương Nam
-                </span>
-                <h3 class="mt-3 text-lg font-semibold text-[#5a4036] hover:text-[#a0522d] transition duration-200">
-                    Lẩu thái
-                </h3>
-                <p class="text-sm text-[#8a6e5a] mt-2">Giá: 220k</p>
-                <button class="add-to-cart-btn bg-[#a0522d] text-white px-3 py-2 rounded mt-3 hover:bg-[#7a3d1e] transition duration-200">
-                    Thêm vào giỏ hàng
-                </button>
-            </div>
+        </a>
+        <div class="p-4">
+            <span class="text-xs bg-[#a0522d] text-white px-3 py-1 rounded-full">
+                Ẩm thực Phương Nam
+            </span>
+            <h3 class="mt-3 text-lg font-semibold text-[#5a4036] hover:text-[#a0522d] transition duration-200">
+                Lẩu thái
+            </h3>
+            <p class="text-sm text-[#8a6e5a] mt-2">Giá: 220k</p>
+            <button class="add-to-cart-btn bg-[#a0522d] text-white px-3 py-2 rounded mt-3 hover:bg-[#7a3d1e] transition duration-200">
+                Thêm vào giỏ hàng
+            </button>
         </div>
     </div>
-  
-            </div>
-        </div>
-    </div>
+</div>
+
 <!-- Thông báo khi thêm sản phẩm vào giỏ hàng -->
 <div id="notification" class="hidden fixed top-4 left-1/2 transform -translate-x-1/2 p-4 bg-green-500 text-white text-center font-semibold rounded-lg shadow-lg transition-opacity duration-500 ease-in-out">
     Bạn đã thêm sản phẩm vào giỏ hàng!
 </div>
+
 <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || []; // Lấy giỏ hàng từ localStorage, nếu không có thì khởi tạo giỏ hàng mới
-
     // Hiển thị thông báo khi thêm sản phẩm vào giỏ hàng
-    function showNotification() {
-        const notification = document.getElementById('notification');
-        notification.classList.remove('hidden'); // Hiển thị thông báo
-
-        // Ẩn thông báo sau 3 giây
-        setTimeout(() => {
-            notification.classList.add('hidden');
-        }, 3000);
+function showNotification() {
+    const notification = document.getElementById('notification');
+    if (!notification) {
+        console.error('Phần tử thông báo không tìm thấy!');
+        return;
     }
 
+    // Hiển thị thông báo
+    notification.classList.remove('hidden', 'opacity-0');
+    notification.classList.add('opacity-100');
+
+    // Tự động ẩn sau 3 giây
+    setTimeout(() => {
+        notification.classList.remove('opacity-100');
+        notification.classList.add('opacity-0');
+    }, 3000);
+
+    // Ẩn hoàn toàn sau khi hiệu ứng ẩn kết thúc
+    setTimeout(() => {
+        notification.classList.add('hidden');
+    }, 3500);
+}
+
+    
     // Hàm thêm sản phẩm vào giỏ hàng
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
     function addToCart(name, price) {
         const existingProduct = cart.find(item => item.name === name);
-
+    
         if (existingProduct) {
-            existingProduct.quantity++;
+            existingProduct.quantity += 1;
         } else {
             cart.push({ name, price, quantity: 1 });
         }
-
+    
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-
+    
+        // Cập nhật số lượng trên biểu tượng giỏ hàng
+        updateCartQuantity();
+    
         // Hiển thị thông báo
         showNotification();
-
+    
         // Cập nhật giao diện giỏ hàng
         updateCartUI();
     }
-
+    
     // Hàm cập nhật giao diện giỏ hàng
     function updateCartUI() {
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
-
+    
         cartItems.innerHTML = '';
         let total = 0;
-
+    
         cart.forEach(item => {
             const li = document.createElement('li');
             li.textContent = `${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ`;
             li.className = 'text-sm text-gray-600';
             cartItems.appendChild(li);
-
+    
             total += item.price * item.quantity;
         });
-
+    
         if (cart.length === 0) {
             cartItems.innerHTML = '<li class="text-sm text-gray-600">Giỏ hàng đang trống</li>';
         }
-
+    
         cartTotal.textContent = total.toLocaleString();
     }
-
+    
+    // Cập nhật số lượng trên biểu tượng giỏ hàng
+    function updateCartQuantity() {
+        const cartQuantity = document.getElementById('cart-quantity');
+        const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+    
+        if (totalQuantity > 0) {
+            cartQuantity.textContent = totalQuantity;
+            cartQuantity.classList.remove('hidden');
+        } else {
+            cartQuantity.classList.add('hidden');
+        }
+    }
+    
     // Gắn sự kiện cho các nút "Thêm vào giỏ hàng"
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         button.addEventListener('click', (event) => {
             const productElement = event.target.closest('.product-item');
             const name = productElement.getAttribute('data-name');
             const price = parseInt(productElement.getAttribute('data-price'), 10);
-
+    
             addToCart(name, price);
         });
     });
-
-    // Update cart quantity on the icon
-    function updateCartQuantity() {
-        const cartQuantity = document.getElementById('cart-quantity');
-        const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0); // Total items in cart
-
-        if (totalQuantity > 0) {
-            cartQuantity.textContent = totalQuantity; // Update the number
-            cartQuantity.classList.remove('hidden'); // Show the number
-        } else {
-            cartQuantity.classList.add('hidden'); // Hide if no items
-        }
-    }
-
-    // Ensure cart quantity is updated on page load
+    
+    // Đảm bảo số lượng giỏ hàng được cập nhật khi tải trang
     document.addEventListener('DOMContentLoaded', () => {
-        updateCartQuantity(); // Update cart quantity when the page loads
+        updateCartQuantity();
+        updateCartUI();
     });
-</script>
+
+    
+    </script>
+    
     
 
 
