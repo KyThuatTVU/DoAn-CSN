@@ -82,60 +82,70 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
     </style>
   </head>
   <body>
-  <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4">
-    <div class="flex flex-col items-center">
-    <!-- Logo -->
-    <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-        <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
-    </h1>
-    
-    <!-- Tên người dùng -->
-    <div id="auth-bar" class="hidden mt-4">
-        <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
-    </div>
-</div>
-
-
-<!-- User Authentication Bar -->
-<!-- User Authentication Bar -->
-
-
-
-
+  <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4 fixed top-0 left-0 w-full z-50 shadow-lg">
+        <div class="flex flex-col items-center">
+          <!-- Logo -->
+          <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
+            <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
+          </h1>
+      
+          <!-- Tên người dùng -->
+          <div id="auth-bar" class="hidden mt-4">
+            <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
+          </div>
+        </div>
+      
         <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
         <div class="sm:hidden">
-            <button id="menu-btn" class="text-white focus:outline-none">
-                <!-- Hamburger Icon -->
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+          <button id="menu-btn" class="text-white focus:outline-none">
+            <!-- Hamburger Icon -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
-
-     <!-- Desktop Navigation Links -->
-    <div id="nav-links"
-    class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-    <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-    <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-    <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-    <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-    <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-
-
-</div>
- 
-<!-- Search Bar (Visible on Desktop) -->
-<div class="hidden sm:flex items-center space-x-4">
-    <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;"> <!-- Chiều rộng cụ thể -->
-        <input id="desktop-search" type="text" placeholder="Tìm kiếm"
-            class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
-        <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+      
+        <!-- Desktop Navigation Links -->
+        <div id="nav-links"
+          class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
+          <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
+          <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
+          <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
+          <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
+          <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
+        </div>
+      
+        <!-- Search Bar (Visible on Desktop) -->
+        <div class="hidden sm:flex items-center space-x-4">
+          <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;">
+            <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+              class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
+            <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu"
+        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg fixed top-16 left-0 w-full z-40 text-lg font-bold custom-font text-center">
+        <!-- Mobile Search Bar -->
+        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+          <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+            class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+          <button id="mobile-search-btn" class="ml-2 text-[#704539]">
             <i class="fas fa-search"></i>
-        </button>
-    </div>
-</div>
-
-</nav>
+          </button>
+        </div>
+      
+        <!-- Mobile Navigation Links -->
+        <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+        <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+        <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+        <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+        <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+      </div>
     <!-- Containe nút -->
 <div id="buttons-container" class="fixed bottom-5 right-5 flex flex-col items-center space-y-4">
     <!-- Nút đăng nhập -->
