@@ -600,337 +600,378 @@ color: #D8B899; /* Màu khi hover */
         });
     
     </script>
-  <div class="bg-gray-100 flex justify-center items-center min-h-screen">
+ <div class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div id="cart" class="mt-8 bg-gray-50 border border-gray-300 shadow-lg rounded-xl p-12 w-full max-w-6xl">
         <!-- Heading -->
         <h2 class="text-5xl font-extrabold text-[#5a4036] tracking-wide border-b-4 border-[#5a4036] pb-4 mb-8">
             🛒 Giỏ hàng của bạn
         </h2>
-        
+
         <!-- Cart Items -->
         <ul id="cart-items" class="space-y-8">
             <li class="text-xl text-gray-500 italic">Giỏ hàng đang trống</li>
         </ul>
-        
+
         <!-- Total Amount -->
         <div class="mt-12 flex justify-between items-center">
             <p class="text-3xl font-semibold text-[#5a4036]">Tổng tiền:</p>
             <span id="cart-total" class="text-5xl font-bold text-[#5a4036]">0 VNĐ</span>
         </div>
-        
-               <!-- Checkout Form -->
-               <form id="checkout-form" class="mt-12 space-y-6">
-                <div>
-                    <label class="block text-lg font-medium text-[#5a4036]" for="full-name">Họ và tên:</label>
-                    <input id="full-name" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
-                </div>
-                <div>
-                    <label class="block text-lg font-medium text-[#5a4036]" for="phone-number">Số điện thoại:</label>
-                    <input id="phone-number" type="tel" class="border border-gray-300 rounded-lg w-full p-4" required>
-                </div>
-                <div>
-                    <label class="block text-lg font-medium text-[#5a4036]" for="account-number">Số tài khoản:</label>
-                    <input id="account-number" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
-                </div>
-                <div>
-                    <label class="block text-lg font-medium text-[#5a4036]" for="email">Email:</label>
-                    <input id="email" type="email" class="border border-gray-300 rounded-lg w-full p-4" required>
-                </div>
-                <div>
-                    <label class="block text-lg font-medium text-[#5a4036]" for="address">Địa chỉ:</label>
-                    <input id="address" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
-                </div>
-                <div class="mt-8 flex justify-center">
-                    <button 
-                        type="submit" 
-                        class="bg-[#5a4036] text-white py-4 px-8 rounded-xl font-medium text-2xl hover:bg-[#734f42] transition">
-                        Gửi
-                    </button>
-                </div>
-                <p class="text-center text-[#5a4036] text-sm mt-4">Vui lòng cọc trước 50% giá trị đơn hàng để được duyệt đơn.</p>
-            
-                <!-- Payment Section with QR Code (Always Visible) -->
-                <div id="payment-section" class="mt-12 text-center">
-                    <p class="text-lg font-medium text-[#5a4036]">Vui lòng thanh toán:</p>
-                    <div class="mt-4 bg-white p-6 rounded-lg shadow-xl max-w-xs mx-auto">
-                        <img 
-                            src="https://luuanh.vercel.app/amthucphuongnam/3.jpg" 
-                            alt="QR Code" 
-                            class="rounded-md max-w-full border border-gray-300"
-                        />
-                    </div>
-                </div>
-            </form>
-            
+
+        <!-- Checkout Form -->
+        <form id="checkout-form" class="mt-12 space-y-6">
+            <div>
+                <label class="block text-lg font-medium text-[#5a4036]" for="full-name">Họ và tên:</label>
+                <input id="full-name" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
+            </div>
+            <div>
+                <label class="block text-lg font-medium text-[#5a4036]" for="phone-number">Số điện thoại:</label>
+                <input id="phone-number" type="tel" class="border border-gray-300 rounded-lg w-full p-4" required>
+            </div>
            
+            <div>
+                <label class="block text-lg font-medium text-[#5a4036]" for="email">Email:</label>
+                <input id="email" type="email" class="border border-gray-300 rounded-lg w-full p-4" required>
+            </div>
+            <div>
+                <label class="block text-lg font-medium text-[#5a4036]" for="address">Địa chỉ:</label>
+                <input id="address" type="text" class="border border-gray-300 rounded-lg w-full p-4" required>
+            </div>
             
-        </div>
+            <input type="hidden" id="payment-status" name="paymentStatus" value="false">
+            <input type="hidden" id="payment-method" name="paymentMethod" value="none">
+             <input type="hidden" id="bank-name" name="bankName" value="none">
+               <!-- Payment Section with QR Code (Always Visible) -->
+                 <div id="payment-section" class="mt-12 text-center">
+                    <p class="text-lg font-medium text-[#5a4036]">Vui lòng thanh toán:</p>
+                    
+                     <div class="mt-4 flex justify-center space-x-4">
+                         <button type="button" id="bank-card-button"
+                            class="bg-blue-500 text-white py-2 px-4 rounded-xl font-medium hover:bg-blue-600 transition duration-300">Thẻ
+                            ngân hàng</button>
+                         <button type="button" id="momo-button"
+                            class="bg-pink-500 text-white py-2 px-4 rounded-xl font-medium hover:bg-pink-600 transition duration-300">Ví
+                            Momo</button>
+                     </div>
+                     <div id="payment-details" class="mt-6 hidden">
+                     </div>
+                </div>
+            <div class="mt-8 flex justify-center">
+                <button type="submit"
+                    class="bg-[#5a4036] text-white py-4 px-8 rounded-xl font-medium text-2xl hover:bg-[#734f42] transition">
+                    Gửi
+                </button>
+            </div>
+             
+              <div id="loading-message" class="mt-8 text-center text-2xl font-semibold text-green-600 hidden">
+                Vui lòng chờ... Chúng tôi sẽ liên hệ với bạn sớm!
+             </div>
+               <p class="text-center text-[#5a4036] text-sm mt-4">Vui lòng cọc trước 50% giá trị đơn hàng để được duyệt đơn.</p>
+        </form>
+
     </div>
-    
-
-
+</div>
 
 <script>// Lấy giỏ hàng từ localStorage
+ 
+    // Lấy giỏ hàng từ localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
+
     // Hàm thêm sản phẩm vào giỏ hàng
     function addToCart(name, price) {
         const existingProduct = cart.find(item => item.name === name);
-    
+
         if (existingProduct) {
             existingProduct.quantity++;
         } else {
             cart.push({ name, price, quantity: 1 });
         }
-    
+
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-    
+
         updateCartUI();
     }
-    
+
     // Hàm xóa sản phẩm khỏi giỏ hàng
     function removeFromCart(name) {
         const index = cart.findIndex(item => item.name === name);
         if (index !== -1) {
             cart.splice(index, 1); // Loại bỏ sản phẩm khỏi giỏ hàng
         }
-    
+
         // Lưu giỏ hàng cập nhật vào localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-    
+
         updateCartUI();
     }
-    
+
     // Hàm cập nhật giao diện giỏ hàng
     function updateCartUI() {
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
-    
+
         cartItems.innerHTML = ''; // Xóa các mục hiện tại trong giỏ hàng
         let total = 0;
-    
+
         // Hiển thị sản phẩm trong giỏ hàng
         cart.forEach(item => {
             const li = document.createElement('li');
             li.className = 'flex justify-between items-center text-sm text-gray-600';
-    
+
             li.innerHTML = `
-                <span>${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ</span>
-                <button onclick="removeFromCart('${item.name}')" class="text-red-500 hover:text-red-700">Xóa</button>
-            `;
-    
+        <span>${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ</span>
+        <button onclick="removeFromCart('${item.name}')" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg transition duration-200 transform hover:scale-110">
+            Xóa
+        </button>
+    `;
+
             cartItems.appendChild(li);
             total += item.price * item.quantity;
         });
-    
+
         // Nếu giỏ hàng trống
         if (cart.length === 0) {
             cartItems.innerHTML = '<li class="text-lg text-gray-500 italic">Giỏ hàng đang trống</li>';
         }
-    
+
         // Cập nhật tổng tiền
         cartTotal.textContent = total.toLocaleString();
     }
-    
+
     // Gọi hàm cập nhật giỏ hàng khi trang được tải
     document.addEventListener('DOMContentLoaded', updateCartUI);
-    
+
     // Gắn sự kiện cho các nút "Thêm vào giỏ hàng"
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         button.addEventListener('click', (event) => {
             const productElement = event.target.closest('.product-item');
             const name = productElement.getAttribute('data-name');
             const price = parseInt(productElement.getAttribute('data-price'), 10);
-    
+
             addToCart(name, price);
         });
     });
-    
-    // Hàm cập nhật giao diện giỏ hàng với nút xóa đẹp hơn
+     // Hàm cập nhật giao diện giỏ hàng với nút xóa đẹp hơn
     function updateCartUI() {
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
-    
+
         cartItems.innerHTML = ''; // Xóa các mục hiện tại trong giỏ hàng
         let total = 0;
-    
+
         // Hiển thị sản phẩm trong giỏ hàng
         cart.forEach(item => {
             const li = document.createElement('li');
             li.className = 'flex justify-between items-center text-sm text-gray-600';
-    
+
             li.innerHTML = `
-                <span>${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ</span>
-                <button onclick="removeFromCart('${item.name}')" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg transition duration-200 transform hover:scale-110">
-                    Xóa
-                </button>
-            `;
-    
+            <span>${item.name} - ${item.quantity} x ${item.price.toLocaleString()} VNĐ</span>
+            <button onclick="removeFromCart('${item.name}')" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg transition duration-200 transform hover:scale-110">
+                Xóa
+            </button>
+        `;
+
             cartItems.appendChild(li);
             total += item.price * item.quantity;
         });
-    
+
         // Nếu giỏ hàng trống
         if (cart.length === 0) {
             cartItems.innerHTML = '<li class="text-lg text-gray-500 italic">Giỏ hàng đang trống</li>';
         }
-    
+
         // Cập nhật tổng tiền
         cartTotal.textContent = total.toLocaleString();
     }
-    
-    // Xử lý sự kiện gửi form đặt hàng
-    document.getElementById('checkout-form').addEventListener('submit', function(event) {
-        const fullName = document.getElementById('full-name').value.trim();
-        const phoneNumber = document.getElementById('phone-number').value.trim();
-        const accountNumber = document.getElementById('account-number').value.trim();
-        const email = document.getElementById('email').value.trim();
-    
-        if (!fullName || !phoneNumber || !accountNumber || !email) {
-            event.preventDefault(); // Ngăn không cho gửi form
-            alert('Vui lòng điền đầy đủ thông tin trước khi gửi!');
-        } else {
-            alert('Form đã được gửi thành công!');
-        }
-    });
-    
-   // Xử lý sự kiện gửi form đặt hàng
-document.getElementById('checkout-form').addEventListener('submit', function(event) {
-    const fullName = document.getElementById('full-name').value.trim();
-    const phoneNumber = document.getElementById('phone-number').value.trim();
-    const accountNumber = document.getElementById('account-number').value.trim();
-    const email = document.getElementById('email').value.trim();
+   let paymentMade = false;
+    const bankList = [
+        "ACB", "BIDV", "Vietcombank (VCB)", "Techcombank", "Agribank", "Sacombank", "VPBank", "MBBank", "TPBank",
+        "HDBank", "Eximbank", "SHB", "OCB", "VIB", "LienVietPostBank", "MSB", "SeABank", "Bac A Bank", "NCB",
+        "ABBANK", "PG Bank", "VietABank", "GPBank", "Kienlongbank", "DongA Bank", "Nam A Bank", "BaoVietBank",
+        "CB", "Indovina Bank", "Woori Bank", "CIMB", "Shinhan Bank", "Public Bank", "Hong Leong Bank",
+         "Standard Chartered", "HSBC", "ANZ", "CitiBank"
+     
+    ];
 
-    // Kiểm tra thông tin người dùng đã đầy đủ chưa
-    if (!fullName || !phoneNumber || !accountNumber || !email) {
-        event.preventDefault(); // Ngăn không cho gửi form
-        alert('Vui lòng điền đầy đủ thông tin trước khi gửi!');
-    } else {
-        // Lưu thông tin vào localStorage
-        const buyerInfo = {
-            name: fullName,
-            phone: phoneNumber,
-            account: accountNumber,
-            email: email,
-            address: document.getElementById('address').value // Thêm địa chỉ vào đối tượng
+    const bankLinks = {
+    "ACB": "https://www.acb.com.vn/vn/thanh-toan-online",
+    "BIDV": "https://www.bidv.com.vn/vn/thanh-toan-hoa-don-online",
+     "Vietcombank (VCB)": "https://www.vietcombank.com.vn/thanh-toan-truc-tuyen",
+      "Techcombank": "https://www.techcombank.com.vn/khach-hang-ca-nhan/thanh-toan-hoa-don-truc-tuyen",
+     "Agribank": "https://www.agribank.com.vn/vn/thanh-toan-truc-tuyen",
+       "Sacombank": "https://www.sacombank.com.vn/khachhangcanhan/Pages/thanh-toan-online.aspx",
+       "VPBank": "https://www.vpbank.com.vn/thanh-toan-truc-tuyen",
+       "MBBank": "https://www.mbbank.com.vn/thanh-toan-hoa-don-online",
+       "TPBank": "https://tpb.vn/thanh-toan-hoa-don-online",
+        "HDBank": "https://hdbank.com.vn/thanh-toan-truc-tuyen",
+       "Eximbank": "https://eximbank.com.vn/thanh-toan-truc-tuyen",
+        "SHB": "https://www.shb.com.vn/thanh-toan-truc-tuyen",
+        "OCB": "https://www.ocb.com.vn/thanh-toan-truc-tuyen",
+        "VIB": "https://www.vib.com.vn/thanh-toan-truc-tuyen",
+         "LienVietPostBank": "https://www.lienvietpostbank.com.vn/thanh-toan-truc-tuyen",
+         "MSB": "https://www.msb.com.vn/thanh-toan-truc-tuyen",
+        "SeABank": "https://www.seabank.com.vn/thanh-toan-truc-tuyen",
+         "Bac A Bank": "https://www.baca-bank.vn/thanh-toan-truc-tuyen",
+          "NCB": "https://www.ncb-bank.vn/thanh-toan-truc-tuyen",
+         "ABBANK": "https://www.abbank.vn/thanh-toan-truc-tuyen",
+          "PG Bank": "https://www.pgbank.com.vn/thanh-toan-truc-tuyen",
+          "VietABank": "https://www.vietabank.com.vn/thanh-toan-truc-tuyen",
+           "GPBank": "https://www.gpbank.com.vn/thanh-toan-truc-tuyen",
+           "Kienlongbank": "https://www.kienlongbank.com/thanh-toan-truc-tuyen",
+          "DongA Bank": "https://www.dongabank.com.vn/thanh-toan-truc-tuyen",
+         "Nam A Bank": "https://www.namabank.com.vn/thanh-toan-truc-tuyen",
+         "BaoVietBank": "https://www.baovietbank.vn/thanh-toan-truc-tuyen",
+           "CB": "https://www.cbbank.vn/thanh-toan-truc-tuyen",
+           "Indovina Bank": "https://www.indovinabank.com.vn/thanh-toan-truc-tuyen",
+           "Woori Bank": "https://www.wooribank.com.vn/thanh-toan-truc-tuyen",
+           "CIMB": "https://www.cimbbank.com.vn/thanh-toan-truc-tuyen",
+           "Shinhan Bank": "https://www.shinhan.com.vn/thanh-toan-truc-tuyen",
+           "Public Bank": "https://www.publicbank.com.vn/thanh-toan-truc-tuyen",
+           "Hong Leong Bank": "https://www.hlbank.com.vn/thanh-toan-truc-tuyen",
+          "Standard Chartered": "https://www.sc.com/vn/thanh-toan-truc-tuyen",
+           "HSBC": "https://www.hsbc.com.vn/thanh-toan-truc-tuyen",
+          "ANZ": "https://www.anz.com.vn/thanh-toan-truc-tuyen",
+          "CitiBank": "https://www.citibank.com.vn/thanh-toan-truc-tuyen"
         };
-    
-        localStorage.setItem('buyerInfo', JSON.stringify(buyerInfo));
-    
-        // Lưu giỏ hàng vào localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-    
-        // Chuyển hướng sang trang hóa đơn
-        window.location.href = 'hoadon.html';
-    }
-});
 
-    </script>
- <!-- Thêm icon Twitter và YouTube vào footer -->
- <footer class="bg-[#644741] text-white p-6">
-    <div class="container mx-auto flex flex-wrap justify-center md:justify-between">
-        <!-- Cột 1: 1 div chiếm 50% chiều rộng -->
-        <div class="w-full md:w-1/2 text-center md:text-left">
-            <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">PHƯƠNG NAM – CƠM NGON TRÒN VỊ</h3>
-            <p>Hotline: 0904 816 145</p>
-            <p>Email: nhahangphuongnamn@gmail.com</p>
-            <p>Địa chỉ: 500 Võ Văn Kiệt, Thành phố Trà Vinh, Trà Vinh</p>
-            <p>(Có chỗ để xe ô tô)</p>
-        </div>
+     document.getElementById('bank-card-button').addEventListener('click', () => {
+        document.getElementById('payment-method').value = 'bank-card';
+        const paymentDetailsDiv = document.getElementById('payment-details');
+        let bankOptions = '';
+         bankList.forEach(bank => {
+            bankOptions += `<option value="${bank}">${bank}</option>`
+        });
 
-        <!-- Cột 2: 2 div chia đều 50% còn lại -->
-        <div class="w-full md:w-1/2 flex flex-col md:flex-row text-center md:text-left mt-6 md:mt-0">
-            <!-- Div 1 trong cột 2 -->
-            <div class="w-full md:w-1/2 mb-4 md:mb-0">
-                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Giờ mở cửa</h3>
-                <p>Sáng: 10h-14h</p>
-                <p>Chiều: 18h - 22h</p>
-                <p>Tất cả các ngày trong tuần</p>
+        paymentDetailsDiv.innerHTML = `
+            <div class="space-y-4">
+               <label class="block text-lg font-medium text-[#5a4036]" for="bank-name">Ngân hàng:</label>
+               <select id="bank-name" name="bankName" class="border border-gray-300 rounded-lg w-full p-2" required>
+                    ${bankOptions}
+               </select>
+                 <button type="button" id="confirm-card-payment" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-xl font-medium hover:bg-blue-600 transition duration-300">Xác nhận</button>
+               
             </div>
-
-            <!-- Div 2 trong cột 2 -->
-            <div class="w-full md:w-1/2">
-                <h3 class="font-[800] text-2xl mb-2 text-[#dfc3aa]">Mạng xã hội</h3>
-                <div class="flex justify-center md:justify-start space-x-4">
-                    <!-- Icon Facebook -->
-                    <a href="https://www.facebook.com/Alodzo100tv" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M22 12C22 5.372 17.627 1 11 1S1 5.372 1 12c0 5.296 3.688 9.683 8.437 10.729v-7.581H6.172v-3.148h3.265V9.398c0-3.18 1.895-4.927 4.774-4.927 1.385 0 2.837.25 2.837.25v3.121h-1.597c-1.575 0-2.068.978-2.068 1.979v2.359h3.513l-.561 3.148h-2.952v7.581C18.313 21.683 22 17.296 22 12z" />
-                        </svg>
-                    </a>
-                    <!-- Icon Instagram -->
-                    <a href="#instagram" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.316 3.608 1.29.975.975 1.228 2.242 1.29 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.316 2.633-1.29 3.608-.975.975-2.242 1.228-3.608 1.29-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.316-3.608-1.29-.975-.975-1.228-2.242-1.29-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.849c.062-1.366.316-2.633 1.29-3.608.975-.975 2.242-1.228 3.608-1.29C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.688 0 8.287.014 7.052.072c-1.566.073-2.97.39-4.133 1.552C1.757 2.784 1.44 4.188 1.367 5.754.922 7.284.922 8.688.922 12s.014 4.287.072 5.522c.073 1.566.39 2.97 1.552 4.133 1.163 1.163 2.567 1.479 4.133 1.552 1.235.058 1.636.072 4.948.072s3.713-.014 4.948-.072c1.566-.073 2.97-.39 4.133-1.552 1.163-1.163 1.479-2.567 1.552-4.133.058-1.235.072-1.636.072-4.948s-.014-3.713-.072-4.948c-.073-1.566-.39-2.97-1.552-4.133C19.87.39 18.466.073 16.9.072 15.665.014 15.264 0 12 0z" />
-                            <path
-                                d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4.003 4.003 0 0 1 8 12a4.003 4.003 0 0 1 4-4 4.003 4.003 0 0 1 4 4 4.003 4.003 0 0 1-4 4zm6.406-10.845a1.44 1.44 0 1 1 0-2.879 1.44 1.44 0 0 1 0 2.879z" />
-                        </svg>
-                    </a>
-                    <!-- Icon Twitter -->
-                    <a href="#twitter" class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M22.46 6c-.77.35-1.61.59-2.46.69.89-.53 1.58-1.37 1.91-2.37-.84.49-1.78.84-2.78 1.03a4.33 4.33 0 0 0-7.59 3.93c-3.6-.18-6.79-1.91-8.92-4.53A4.33 4.33 0 0 0 3.55 9c-.17 1.4.35 2.78 1.31 3.73-.69-.02-1.34-.21-1.9-.52v.05c0 1.96 1.39 3.64 3.27 4.02-.66.18-1.36.22-2.06.08.58 1.83 2.25 3.16 4.23 3.19a8.68 8.68 0 0 1-5.35 1.84c-.35 0-.7-.02-1.04-.07A12.27 12.27 0 0 0 8 21c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.37-.02-.56.83-.59 1.55-1.33 2.13-2.17z" />
-                        </svg>
-                    </a>
-                    <!-- Icon YouTube -->
-                    <!-- Sử dụng Font Awesome cho biểu tượng YouTube -->
-                    <a href="https://www.youtube.com/@pt-canh8129/featured"
-                        class="text-white text-2xl hover:text-[#dfc3aa]">
-                        <i class="fab fa-youtube h-8 w-8"></i>
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr class="my-6 border-[#6e4f45]">
-
-    <!-- Dòng bản quyền -->
-    <div class="text-center text-md">
-        <p>&copy; 2024 <span class="font-bold">Phương Nam - Cơm ngon tròn vị</span>. All rights reserved.</p>
-        <p>
-            <a href="#" class="hover:underline">Bảo mật thông tin</a> <span class="text-[#6e4f45]">|</span>
-            <a href="#" class="hover:underline">Liên hệ</a>
-        </p>
-    </div>
-</footer>
-<script>
-    // Function to open the modal and show the clicked image
-    function openModal(img) {
-        var modal = document.getElementById("imageModal");
-        var modalImg = document.getElementById("modalImage");
-        modal.style.display = "block";
-        modalImg.src = img.src;
-    }
-
-    // Function to close the modal
-    function closeModal() {
-        var modal = document.getElementById("imageModal");
-        modal.style.display = "none";
-    }
-</script>
-<script>
-
-// Animate about-image with infinite effect
-gsap.fromTo(".container", 
-          { opacity: 0, y: 50 }, 
-          { opacity: 1, y: 0, duration: 2, ease: "power2.out", 
-            scrollTrigger: {
-              trigger: ".container",
-              start: "top 85%",
-              toggleActions: "play none none none",
-              onEnter: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }), // Reset animation on enter
-              onLeaveBack: () => gsap.fromTo(".container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2, ease: "power2.out" }) // Reset animation when scrolling back
+        `;
+        paymentDetailsDiv.classList.remove('hidden');
+        document.getElementById('momo-button').disabled = true;
+            const confirmCardPaymentBtn = document.getElementById('confirm-card-payment');
+         confirmCardPaymentBtn.addEventListener('click', ()=>{
+            const bankName = document.getElementById('bank-name').value;
+            if(bankName){
+                     document.getElementById('payment-status').value = 'true';
+                       document.getElementById('bank-name').value = bankName;
+                     paymentDetailsDiv.classList.add('hidden');
             }
-          });
+         });
+      });
+      document.getElementById('momo-button').addEventListener('click', () => {
+          document.getElementById('payment-method').value = 'momo';
+        const paymentDetailsDiv = document.getElementById('payment-details');
+        paymentDetailsDiv.innerHTML = `
+            <div class="space-y-4">
+               <label class="block text-lg font-medium text-[#5a4036]" for="momo-phone">Số điện thoại Momo:</label>
+                <input type="text" id="momo-phone" name="momoPhone" class="border border-gray-300 rounded-lg w-full p-2" placeholder="Nhập số điện thoại Momo" required>
+                <button type="button" id="confirm-momo-payment" class="mt-4 bg-pink-500 text-white py-2 px-4 rounded-xl font-medium hover:bg-pink-600 transition duration-300">Xác nhận</button>
+            </div>
+        `;
+         paymentDetailsDiv.classList.remove('hidden');
+          document.getElementById('bank-card-button').disabled = true;
+             const confirmMomoPaymentBtn = document.getElementById('confirm-momo-payment');
+           confirmMomoPaymentBtn.addEventListener('click', () => {
+            const momoPhone = document.getElementById('momo-phone').value;
+               if(momoPhone){
+                      document.getElementById('payment-status').value = 'true';
+                       paymentDetailsDiv.classList.add('hidden');
+                   }
+             });
+    });
+
+    document.getElementById('checkout-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+         const loadingMessage = document.getElementById('loading-message');
+        loadingMessage.classList.remove('hidden');
+
+        // Lấy thông tin người mua
+       const buyerInfo = {
+            name: document.getElementById('full-name').value.trim(),
+            phone: document.getElementById('phone-number').value.trim(),
+             email: document.getElementById('email').value.trim(),
+            address: document.getElementById('address').value.trim()
+        };
+
+         // Kiểm tra thông tin
+        if (!buyerInfo.name || !buyerInfo.phone || !buyerInfo.email || !buyerInfo.address) {
+             loadingMessage.classList.add('hidden');
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        // Lấy giỏ hàng hiện tại
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+         if (cart.length === 0) {
+            loadingMessage.classList.add('hidden');
+            alert('Giỏ hàng đang trống!');
+            return;
+        }
+
+        // Tính tổng tiền
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+          const paymentMethod = document.getElementById('payment-method').value;
+           const paymentStatus = document.getElementById('payment-status').value === 'true';
+        const bankName = document.getElementById('bank-name').value;
+           let paymentLink ='';
+            if(paymentMethod === 'bank-card'){
+                if(bankName){
+                   paymentLink = bankLinks[bankName];
+                } else{
+                   loadingMessage.classList.add('hidden');
+                    alert('Vui lòng chọn ngân hàng!')
+                  return;
+                }
+            } else if(paymentMethod === 'momo'){
+               paymentLink = "https://momo.vn/";
+             }
+       
+
+        // Create a new invoice object
+         const newInvoice = {
+            id: `INV-${Date.now()}`,
+            buyer: buyerInfo,
+            items: cart,
+            total: total,
+            date: new Date().toISOString(),
+             paymentStatus: paymentStatus,
+             paymentMethod: paymentMethod,
+             bankName: bankName
+        };
+
+        // Get existing invoice history and add the new invoice
+        const invoiceHistory = JSON.parse(localStorage.getItem('invoiceHistory')) || [];
+        invoiceHistory.push(newInvoice);
+       
+        // Store data into local storage
+        localStorage.setItem('buyerInfo', JSON.stringify(buyerInfo));
+        localStorage.setItem('invoiceHistory', JSON.stringify(invoiceHistory));
+         localStorage.removeItem('cart');
+
+            
+        if(paymentLink){
+            window.location.href = paymentLink;
+             }
+
+       setTimeout(()=>{
+              loadingMessage.classList.add('hidden');
+             window.location.href = 'hoadon.html';
+        },3000)
+       
+    });
+
+    // Cập nhật hiển thị giỏ hàng khi trang được tải
+   document.addEventListener('DOMContentLoaded', function () {
+            updateCartUI();
+        });
+
 </script>
 
 </body>

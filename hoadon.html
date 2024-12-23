@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ẩm thực Phương Nam</title>
+    <title>Ẩm thực Phương Nam - Hóa Đơn</title>
     <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- Thêm thư viện tạo mã QR -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet"> <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .qr-container {
             text-align: center;
@@ -14,171 +14,192 @@
         }
 
         .invoice-container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+             max-width: 1000px;
+             margin: 0 auto;
+             padding: 20px;
+             background-color: #f9f9f9;
+             border: 1px solid #e2e8f0;
+             border-radius: 8px;
+             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
-        /* Định dạng khi in */
         @media print {
             .no-print {
                 display: none;
             }
+            #invoice-details-container {
+                display: block !important;
+                position: relative;
+            }
+            #invoice-history-section{
+                 display: none !important;
+            }
+            body{
+                 background-color: white !important;
+            }
         }
 
-        /* Cột tên món ăn và giá */
-        .invoice-table th, .invoice-table td {
+         .invoice-table {
+            width: 100%; /* Set the table to take full width */
+             border-collapse: collapse; /* Collapse borders for a cleaner look */
+         }
+
+         .invoice-table th, .invoice-table td {
             padding: 12px;
-            text-align: left;
-        }
+            text-align: left; /* Align text to the left */
+         }
 
         .invoice-table th {
             background-color: #f3f3f3;
-            color: #5a4036;
-        }
+             color: #5a4036;
+         }
+         .invoice-table td {
+             border-top: 1px solid #ddd;
+         }
 
-        .invoice-table td {
-            border-top: 1px solid #ddd;
-        }
+        .invoice-item:hover {
+             background-color: #f0f0f0;
+            cursor: pointer;
+         }
+
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
 
-    <div class="bg-gray-100 flex justify-center items-center min-h-screen">
-        <div id="invoice" class="mt-8 bg-gray-50 border border-gray-300 shadow-lg rounded-xl p-12 w-full max-w-6xl">
-            <!-- Heading -->
-            <h2 class="text-5xl font-extrabold text-[#5a4036] tracking-wide border-b-4 border-[#5a4036] pb-4 mb-8">
-                🧾 Hóa Đơn
-            </h2>
-    
-           <!-- Buyer Information -->
-<div class="mb-8">
-    <p><strong>Họ và tên:</strong> <span id="buyer-name"></span></p>
-    <p><strong>Số điện thoại:</strong> <span id="buyer-phone"></span></p>
-    <p><strong>Email:</strong> <span id="buyer-email"></span></p>
-    <p><strong>Số tài khoản:</strong> <span id="buyer-account"></span></p>
-    <p><strong>Địa chỉ:</strong> <span id="buyer-address"></span></p>
-</div>
+    <div class="bg-gray-50 flex justify-center items-start min-h-screen py-10">
 
-    
-            <!-- Cart Items -->
-            <table class="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr>
-                        <th class="border p-2">Tên Món</th>
-                        <th class="border p-2">Số Lượng</th>
-                        <th class="border p-2">Giá</th>
-                        <th class="border p-2">Tổng</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items"></tbody>
-            </table>
-    
-            <!-- Total Amount -->
-            <div class="mt-12 text-right">
-                <strong class="text-3xl">Tổng tiền: <span id="cart-total">0</span> VNĐ</strong>
-            </div>
-
-            <!-- Nút in hóa đơn -->
-       <div class="mt-8 text-center no-print">
-        <button 
-            onclick="window.print();" 
-            class="bg-blue-500 text-white py-4 px-10 rounded-xl font-medium text-3xl hover:bg-blue-600 transition duration-300">
-            In Hóa Đơn
-        </button>
-    </div>
-    <div class="flex space-x-4">
-        <button id="save-invoice" class="bg-blue-500 text-white px-4 py-2 rounded">
-            Lưu hóa đơn
-        </button>
-        <button id="delete-invoice" class="bg-red-500 text-white px-4 py-2 rounded">
-            Xóa hóa đơn
-        </button>
-    </div>
-    
-    
+        <!-- Invoice History Section -->
+        <div id="invoice-history-section" class="mt-8 bg-white border border-gray-200 shadow-md rounded-xl p-8 w-full max-w-3xl">
+             <h3 class="text-3xl font-semibold mb-6 text-gray-800">Lịch Sử Hóa Đơn</h3>
+             <ul id="invoice-list" class="mt-4 space-y-4"></ul>
         </div>
-        
+
+        <!-- Invoice Details Container (Initially hidden) -->
+        <div id="invoice-details-container" class="hidden mt-8 bg-white border border-gray-200 shadow-md rounded-xl p-8 w-full max-w-3xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Chi tiết hóa đơn</h2>
+                 <button onclick="window.print();" class="no-print bg-blue-500 text-white py-2 px-4 rounded-md font-medium hover:bg-blue-600 transition duration-300">In hóa đơn</button>
+            </div>
+            <div id="invoice-details"></div>
+             <button onclick="document.getElementById('invoice-details-container').classList.add('hidden'); document.getElementById('invoice-history-section').classList.remove('hidden');" class="mt-6 bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 transition duration-300">Quay lại</button>
+        </div>
     </div>
-    
-    
+
+
     <script>
-        // Lấy thông tin người mua từ localStorage
-        const buyerInfo = JSON.parse(localStorage.getItem('buyerInfo'));
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Lấy  lịch sử hóa đơn từ localStorage
         const invoiceHistory = JSON.parse(localStorage.getItem('invoiceHistory')) || [];
-    
-        // Hiển thị thông tin người mua
-        document.getElementById('buyer-name').textContent = buyerInfo?.name || '';
-        document.getElementById('buyer-phone').textContent = buyerInfo?.phone || '';
-        document.getElementById('buyer-email').textContent = buyerInfo?.email || '';
-        document.getElementById('buyer-account').textContent = buyerInfo?.account || '';
-        document.getElementById('buyer-address').textContent = buyerInfo?.address || '';
-    
-        // Hiển thị giỏ hàng
-        const cartItems = document.getElementById('cart-items');
-        let total = 0;
-    
-        cart.forEach(item => {
-            const tr = document.createElement('tr');
-            const itemTotal = item.quantity * item.price;
-    
-            tr.innerHTML = `
-                <td class="border p-2">${item.name}</td>
-                <td class="border p-2">${item.quantity}</td>
-                <td class="border p-2">${item.price.toLocaleString()} VNĐ</td>
-                <td class="border p-2">${itemTotal.toLocaleString()} VNĐ</td>
-            `;
-    
-            cartItems.appendChild(tr);
-            total += itemTotal;
-        });
-    
-        // Hiển thị tổng tiền
-        document.getElementById('cart-total').textContent = total.toLocaleString();
-    
-        // Lưu hóa đơn vào lịch sử
-        document.getElementById('save-invoice').addEventListener('click', () => {
-            const newInvoice = {
-                id: `INV-${Date.now()}`, // Mã hóa đơn duy nhất
-                buyer: buyerInfo,
-                items: cart,
-                total: total,
-                date: new Date().toISOString()
-            };
-    
-            // Thêm hóa đơn mới vào danh sách lịch sử
-            invoiceHistory.push(newInvoice);
-            localStorage.setItem('invoiceHistory', JSON.stringify(invoiceHistory));
-    
-            // Xóa giỏ hàng và hiển thị thông báo
-            localStorage.removeItem('cart');
-            alert('Hóa đơn đã được lưu và giỏ hàng đã được xóa.');
-    
-            // Reload lại trang (tùy ý)
-            location.reload();
-        });
-    
-        // Xóa hóa đơn hiện tại
-        document.getElementById('delete-invoice').addEventListener('click', () => {
-            // Xóa thông tin người mua và giỏ hàng
-            localStorage.removeItem('buyerInfo');
-            localStorage.removeItem('cart');
-    
-            alert('Đã xóa hóa đơn và giỏ hàng.');
-    
-            // Reload lại trang
-            location.reload();
-        });
-
-
         
+         // Function to display invoice details
+          function displayInvoiceDetails(invoice) {
+            const detailsContainer = document.getElementById('invoice-details-container');
+            const detailsDiv = document.getElementById('invoice-details');
+            detailsDiv.innerHTML = '';
+            
+            const buyerInfo = invoice.buyer;
+
+            // Display buyer details
+            detailsDiv.innerHTML += `
+            <h4 class="text-xl font-semibold mb-4 text-gray-700">Thông tin người mua</h4>
+            <p class="text-lg mb-1"><strong>Họ và tên:</strong> <span class="font-medium text-gray-800">${buyerInfo?.name || ''}</span></p>
+            <p class="text-lg mb-1"><strong>Số điện thoại:</strong> <span class="font-medium text-gray-800">${buyerInfo?.phone || ''}</span></p>
+            <p class="text-lg mb-1"><strong>Email:</strong> <span class="font-medium text-gray-800">${buyerInfo?.email || ''}</span></p>
+            <p class="text-lg mb-4"><strong>Địa chỉ:</strong> <span class="font-medium text-gray-800">${buyerInfo?.address || ''}</span></p>
+            <h4 class="text-xl font-semibold mb-4 mt-4 text-gray-700">Các món đã mua</h4>
+            `;
+
+            //Display cart items
+            const table = document.createElement('table');
+            table.classList.add('w-full', 'border-collapse', 'border', 'border-gray-300', 'invoice-table')
+            table.innerHTML = `
+           <thead>
+               <tr class="bg-gray-100">
+                   <th class="border p-2 text-left text-gray-700">Tên Món</th>
+                   <th class="border p-2 text-left text-gray-700">Số Lượng</th>
+                   <th class="border p-2 text-left text-gray-700">Giá</th>
+                   <th class="border p-2 text-left text-gray-700">Tổng</th>
+               </tr>
+           </thead>
+           <tbody id="detail-cart-items"></tbody>`
+
+            const cartItemTbody = table.querySelector('#detail-cart-items');
+
+            invoice.items.forEach(item => {
+                const tr = document.createElement('tr');
+                const itemTotal = item.quantity * item.price;
+
+                tr.innerHTML = `
+                   <td class="border p-2 text-gray-700">${item.name}</td>
+                   <td class="border p-2 text-gray-700">${item.quantity}</td>
+                   <td class="border p-2 text-gray-700">${item.price.toLocaleString()} VNĐ</td>
+                   <td class="border p-2 text-gray-700">${itemTotal.toLocaleString()} VNĐ</td>
+                    `;
+                cartItemTbody.appendChild(tr);
+            })
+
+            detailsDiv.appendChild(table);
+
+            //Display total and payment status
+            const invoiceDate = new Date(invoice.date);
+             const formattedTime = invoiceDate.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+             detailsDiv.innerHTML += `<div class="mt-6 flex justify-between items-center">
+                <div>
+                   <strong class="text-2xl text-gray-700">Tổng tiền: <span >${invoice.total.toLocaleString()} VNĐ</span></strong>
+                 <br>
+                  <span class="text-gray-600 text-sm">Thời gian: ${new Date(invoice.date).toLocaleDateString()} ${formattedTime}</span>
+                   </div>
+                   <div>
+                     <span class="font-bold text-lg ${invoice.paymentStatus ? 'text-green-600' : 'text-red-500'}">${invoice.paymentStatus ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
+                  <br>
+                    <span class="text-gray-600 text-sm">Phương thức thanh toán: ${invoice.paymentMethod === "bank-card" ? "Thẻ ngân hàng" : (invoice.paymentMethod === "momo" ? "Ví Momo" : "Chưa chọn")}</span>
+                  </div>
+                </div>`;
+            detailsContainer.classList.remove('hidden');
+            document.getElementById('invoice-history-section').classList.add('hidden');
+        }
+
+        // Function to delete an invoice
+         function deleteInvoice(invoiceId) {
+              // Filter out the invoice to delete
+             const updatedHistory = invoiceHistory.filter(invoice => invoice.id !== invoiceId);
+            // Update localStorage with the filtered history
+             localStorage.setItem('invoiceHistory', JSON.stringify(updatedHistory));
+           // Reload the page to reflect changes
+            location.reload();
+        }
+
+        // Display invoice history
+        const invoiceList = document.getElementById('invoice-list');
+        invoiceList.innerHTML = '';
+        invoiceHistory.forEach(invoice => {
+             const listItem = document.createElement('li');
+              const invoiceDate = new Date(invoice.date);
+              const formattedTime = invoiceDate.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+            listItem.classList.add('invoice-item', 'bg-white','shadow-sm', 'border','border-gray-200', 'rounded-md', 'p-4', 'cursor-pointer','flex','justify-between', 'items-center');
+            listItem.innerHTML = `
+            <div class="text-gray-700">
+                <span class="font-medium text-lg">ID: ${invoice.id}</span>
+                <br>
+                 <span class="text-gray-600 text-sm">Ngày: ${new Date(invoice.date).toLocaleDateString()} ${formattedTime}</span>
+                <br>
+                <span class="text-gray-600 text-sm">Tổng tiền: ${invoice.total.toLocaleString()} VNĐ</span>
+                  <br>
+                   <span class="font-bold text-sm ${invoice.paymentStatus ? 'text-green-600' : 'text-red-500'}">${invoice.paymentStatus ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
+                    <br>
+                    <span class="text-gray-600 text-sm">Phương thức thanh toán: ${invoice.paymentMethod === "bank-card" ? "Thẻ ngân hàng" : (invoice.paymentMethod === "momo" ? "Ví Momo": "Chưa chọn")}</span>
+                    
+            </div>
+             <button class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition duration-300 no-print">Xóa</button>
+            `;
+           
+            listItem.querySelector('div').addEventListener('click', () => displayInvoiceDetails(invoice));
+
+           listItem.querySelector('button').addEventListener('click', (event)=>{
+                event.stopPropagation();
+                deleteInvoice(invoice.id);
+           })
+            invoiceList.appendChild(listItem);
+        });
     </script>
-    
-    
+
 </body>
 </html>
