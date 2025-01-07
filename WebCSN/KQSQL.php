@@ -82,39 +82,26 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
     </style>
   </head>
   <body>
-  <nav class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4 fixed top-0 left-0 w-full z-50 shadow-lg">
-        <div class="flex flex-col items-center">
-          <!-- Logo -->
-          <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-            <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
-          </h1>
-      
-          <!-- Tên người dùng -->
-          <div id="auth-bar" class="hidden mt-4">
-            <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
-          </div>
+ <!-- Navigation Bar -->
+ <nav class="bg-[#704539] text-white flex flex-wrap sm:flex-nowrap items-center justify-between px-4 sm:px-6 py-4">
+        <!-- Logo -->
+        <div class="w-full sm:w-auto flex justify-center sm:justify-start mb-4 sm:mb-0">
+            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font"><a href="trangchu.html" target="_blank" class="hover:underline"></a>PHƯƠNG NAM</h1>
         </div>
-      
-        <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
-        <div class="sm:hidden">
-          <button id="menu-btn" class="text-white focus:outline-none">
-            <!-- Hamburger Icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-      
-        <!-- Desktop Navigation Links -->
-        <div id="nav-links"
-          class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-          <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-          <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-          <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-          <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-          <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-        </div>
-      
+
+       <!-- Navigation Links -->
+       <ul class="w-full sm:w-auto flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-center sm:text-left text-lg font-bold custom-font">
+        <li><a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a></li>
+        <li><a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a></li>
+        <li><a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a></li>
+        <li><a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a></li>
+        <li><a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a></li>
+    </ul>
+
+
+        
+
+        
         <!-- Search Bar (Visible on Desktop) -->
         <div class="hidden sm:flex items-center space-x-4">
           <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;">
@@ -219,6 +206,8 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
     visibility: visible;
     transform: translateY(0);
 }
+
+
 </style>
 
 <script>

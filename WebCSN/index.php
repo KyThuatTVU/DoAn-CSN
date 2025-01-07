@@ -616,11 +616,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <!-- Slideshow Container -->
     <!-- Slider chứa các ảnh -->
-    <div class="slider">
-        <div><img src="https://luuanh.vercel.app/amthucphuongnam/Picture2.png" alt="Image 1"></div>
-        <div><img src="https://luuanh.vercel.app/amthucphuongnam/ran.png" alt="Image 2"></div>
-        <div><img src="img/nen2.jpg" alt="Image 3"></div>
-    </div>
+    <!-- Slideshow Container -->
+<!-- Slider chứa các ảnh -->
+<div class="slider" style="margin-top: 74px">
+    <div><img src="https://luuanh.vercel.app/amthucphuongnam/Picture2.png" alt="Image 1"></div>
+    <div><img src="https://luuanh.vercel.app/amthucphuongnam/ran.png" alt="Image 2"></div>
+    <div><img src="img/nen2.jpg" alt="Image 3"></div>
+</div>
 
     <!-- Thêm thư viện jQuery và Slick Slider -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -685,91 +687,86 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     </script>
    
-   <div id="flower-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
-   <div id="flower-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
+   <script src="https://cdn.jsdelivr.net/npm/fireworks-js@latest/dist/fireworks.js"></script>
 
-   <div id="flower-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"></div>
-
-<!-- Container chứa tuyết rơi -->
-<div id="snow-container"></div>
-
-<script>
-    const snowContainer = document.getElementById('snow-container');
-
-    // Hàm tạo bông tuyết
-    function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake'); // Sử dụng lớp CSS để tạo hiệu ứng tuyết rơi
-
-        // Thiết lập vị trí, kích thước và tốc độ ngẫu nhiên
-        snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Vị trí ngẫu nhiên theo chiều ngang
-        const size = Math.random() * 10 + 10; // Kích thước: 10px - 20px
-        snowflake.style.width = size + 'px';
-        snowflake.style.height = size + 'px';
-        snowflake.style.animationDuration = Math.random() * 5 + 3 + 's'; // Thời gian rơi: 3-8 giây
-        snowflake.style.animationDelay = Math.random() * 2 + 's'; // Trễ ngẫu nhiên
-
-        // Thêm bông tuyết vào container
-        snowContainer.appendChild(snowflake);
-
-        // Loại bỏ bông tuyết sau khi hoạt hình kết thúc
-        snowflake.addEventListener('animationend', () => {
-            snowflake.remove();
-        });
-    }
-
-    // Tạo bông tuyết mỗi 500ms (giảm tốc độ tạo bông tuyết)
-    let snowInterval = setInterval(() => {
-        for (let i = 0; i < 2; i++) { // Giảm số lượng bông tuyết mỗi lần (tạo 2 bông tuyết thay vì 5)
-            createSnowflake();
-        }
-    }, 500); // Khoảng thời gian tạo bông tuyết (500ms thay vì 200ms)
-
-    // Ngừng hiệu ứng sau 10 giây
-    setTimeout(() => {
-        clearInterval(snowInterval); // Dừng tạo bông tuyết mới
-    }, 10000); // 10 giây
-</script>
-
+</head>
 <style>
-      /* Tạo hiệu ứng tuyết rơi */
-      @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg); /* Tuyết rơi xoay tròn */
-                opacity: 0; /* Độ mờ giảm dần khi rơi xuống */
-            }
-        }
+  /* Các style khác giữ nguyên */
 
-        /* Áp dụng animation cho các bông tuyết */
-        .snowflake {
-            position: absolute;
-            top: -10px; /* Bắt đầu từ trên cùng */
-            background-color: white; /* Màu trắng cho bông tuyết */
-            border-radius: 50%; /* Tạo hình tròn */
-            width: 1px; /* Kích thước bông tuyết nhỏ */
-            height: 1px;
-            opacity: 0.9;
-            z-index: 9999;
-            animation: fall linear infinite;
-            pointer-events: none; /* Để bông tuyết không can thiệp vào tương tác của người dùng */
-        }
-
-        /* Thiết lập cho container chứa bông tuyết */
-        #snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
+  /* Container cho pháo hoa */
+  #firework-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+  }
 </style>
 
+<body>
+    
+
+    <div id="firework-container"></div>
+
+    <script>
+        const container = document.getElementById('firework-container')
+        const fireworks = new Fireworks(container, {
+            // options tùy chỉnh
+            autoresize: true,
+            opacity: 0.8,
+            acceleration: 1.05,
+            friction: 0.97,
+            gravity: 1.5,
+            particles: 100,
+            traceLength: 3,
+            traceSpeed: 10,
+            explosion: 6,
+            intensity: 30,
+            flickering: 50,
+            lineStyle: 'round',
+            hue: {
+                min: 0,
+                max: 360
+            },
+            delay: {
+                min: 30,
+                max: 60
+            },
+            rocketsPoint: {
+                min: 50,
+                max: 50
+            },
+            lineWidth: {
+                explosion: {
+                    min: 1,
+                    max: 3
+                },
+                trace: {
+                    min: 1,
+                    max: 2
+                }
+            },
+            brightness: {
+                min: 50,
+                max: 80
+            },
+            decay: {
+                min: 0.015,
+                max: 0.03
+            },
+            mouse: {
+                click: false,
+                move: false,
+                max: 1
+            }
+        })
+        fireworks.start()
+        setTimeout(() => {
+            fireworks.stop()
+        }, 10000); // 7 giây
+    </script>
 
 
 <link rel="stylesheet" href="styles.css">
