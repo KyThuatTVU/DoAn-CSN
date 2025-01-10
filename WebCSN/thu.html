@@ -1,456 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ẩm thực Phương Nam</title>
-    <meta name="description"
-        content="Nhà hàng Ẩm thực Phương Nam cung cấp các món ăn đặc trưng miền Nam, với không gian ấm cúng và phục vụ tận tình.">
-    <meta name="keywords"
-        content="Ẩm thực Phương Nam, nhà hàng Trà Vinh, món ăn miền Nam, nhà hàng đặc sản, đặt bàn Trà Vinh">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Album - Nhà Hàng Phương Nam</title>
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Font: Audiowide -->
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
-    <!-- Link to Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'audiowide': ['Audiowide', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
 
-    <link rel="icon" type="image/x-icon" href="img/ẩM THỰC.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('menu-btn').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden'); // Toggle class 'hidden' để ẩn/hiện menu
+      });
+    });
+  </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Thêm CSS cho Slick Slider -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
-</head>
-<style>
-    .about-content h1 {
-        font-family: 'Playfair Display', serif;
+  <style>
+    /* Áp dụng font Audiowide cho h1 */
+    h1 {
+      font-family: 'Audiowide', sans-serif;
     }
 
-    .about-content h2,
-    .about-content p {
-        font-family: 'Roboto Slab', serif;
-    }
-
-    /* Add custom font for the navbar text */
     .custom-font {
-        font-family: 'Audiowide', sans-serif;
+      font-family: 'Audiowide', sans-serif;
     }
-
-
-
-    /* Đặt kích thước và kiểu dáng cho slider */
-    .slider {
-        width: 100%;
-        margin: 0px;
-    }
-
-    .slider img {
-        width: 100%;
-        height: auto;
-
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 640px) {
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .am_thuc_item {
-            width: 100%;
-            /* Đảm bảo món ăn chiếm toàn bộ chiều rộng */
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-
-        .am_thuc h2 {
-            font-size: 2em;
-        }
-
-        .am_thuc_content h3 {
-            font-size: 1.2em;
-        }
-
-        /* Đảm bảo các món ăn không bị lệch */
-        .flex {
-            flex-wrap: wrap;
-            gap: 20px;
-            /* Thêm khoảng cách giữa các món ăn */
-        }
-    }
-
-    /* Tablet Styles */
-    @media (min-width: 641px) and (max-width: 1024px) {
-        .am_thuc_item {
-            width: 48%;
-        }
-
-        .am_thuc h2 {
-            font-size: 2.2em;
-        }
-
-        .am_thuc_content h3 {
-            font-size: 1.3em;
-        }
-    }
-
-    /* Desktop Styles */
-    @media (min-width: 1025px) {
-        .am_thuc_item {
-            width: 24%;
-        }
-
-        .am_thuc h2 {
-            font-size: 2.5em;
-        }
-
-        .am_thuc_content h3 {
-            font-size: 1.4em;
-        }
-    }
-
-    /* Custom styling cho các thiết bị khác nhau */
-    @media (max-width: 767px) {
-        /* Mobile */
-        .slick-3 {
-            flex-direction: column;
-            /* Hình ảnh sắp xếp thành hàng dọc */
-        }
-
-        .slick-3-item {
-            width: 100%;
-            /* Hình ảnh chiếm toàn bộ chiều rộng */
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-        /* Máy tính bảng */
-        .slick-3-item {
-            width: 48%;
-            /* Hình ảnh chiếm 48% chiều rộng trên tablet */
-        }
-    }
-
-    @media (min-width: 1024px) {
-        /* PC */
-        .slick-3-item {
-            width: 30%;
-            /* Hình ảnh chiếm 30% chiều rộng trên PC */
-        }
-    }
-
-    .custom-title-h2 {
-        font-family: 'iCielBC Downtown', sans-serif;
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-        color: #6e453b;
-    }
-
-    /* Định dạng cho máy tính bảng (Tablet) */
-    @media (min-width: 768px) {
-        .row {
-            display: flex;
-            align-items: center;
-        }
-
-        .col-lg-6 {
-            flex: 1;
-        }
-
-        /* Chỉnh lại kích thước cho phần văn bản */
-        .about-content {
-            width: 50%;
-            margin-right: 2rem;
-        }
-
-        /* Chỉnh lại kích thước hình ảnh cho máy tính bảng */
-        .about-image {
-            width: 50%;
-        }
-    }
-
-    /* Định dạng cho PC (màn hình lớn) */
-    @media (min-width: 1024px) {
-        /* Tăng kích thước chữ và độ rộng container */
-        .about-content {
-            width: 45%;
-            /* Nhỏ hơn máy tính bảng */
-        }
-
-        .about-image {
-            width: 55%;
-        }
-    }
-
-    /* Custom font */
-    @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
-
-    /* Class for custom title font */
-    .custom-title {
-        font-family: 'Bungee Inline', cursive !important;
-        color: #6e453b;
-        /* Màu nâu */
-    }
-
-    /* Media Queries for Mobile, Tablet, PC */
-    /* Mobile */
-    @media only screen and (max-width: 640px) {
-        .custom-title {
-            font-size: 1.5rem;
-        }
-
-        .video-icon {
-            font-size: 3rem;
-        }
-    }
-
-    /* Tablet */
-    @media only screen and (min-width: 641px) and (max-width: 1024px) {
-        .custom-title {
-            font-size: 2.5rem;
-        }
-
-        .video-icon {
-            font-size: 3.5rem;
-        }
-    }
-
-    /* PC */
-    @media only screen and (min-width: 1025px) {
-        .custom-title {
-            font-size: 4rem;
-        }
-
-        .video-icon {
-            font-size: 4rem;
-        }
-    }
-
-    /* Vị trí container */
-    #buttons-container {
-        position: fixed;
-        bottom: 20px;
-        /* Cách lề dưới */
-        right: 20px;
-        /* Cách lề phải */
-        z-index: 9999;
-        /* Đảm bảo luôn nổi trên các phần tử khác */
-    }
-    .branch {
-  position: relative;
-  width: 60px;
-  height: 40px;
-}
-
-/* Cành chính */
-.branch::before {
-  content: "";
-  position: absolute;
-  width: 50px;
-  height: 4px;
-  background-color: black;
-  top: 20px;
-  left: 0;
-  transform: rotate(-30deg);
-  transform-origin: left;
-}
-
-/* Cành phụ */
-.branch::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 4px;
-  background-color: black;
-  top: 15px;
-  left: 15px;
-  transform: rotate(20deg);
-  transform-origin: left;
-}
-/* Hoa */
-.branch::before,
-.branch::after {
-  content: "";
-  position: absolute;
-  width: 50px;
-  height: 4px;
-  background-color: black;
-  top: 20px;
-  left: 0;
-  transform: rotate(-30deg);
-  transform-origin: left;
-}
-
-/* Cành phụ */
-.branch::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 4px;
-  background-color: black;
-  top: 15px;
-  left: 15px;
-  transform: rotate(20deg);
-  transform-origin: left;
-}
-.branch > div {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #000000;
-    border-radius: 50%;
-}
-/* Tùy chỉnh vị trí từng bông hoa */
-.branch > div:nth-child(1) {
-    top: 4px;
-    left: 26px;
-}
-
-.branch > div:nth-child(2) {
-    top: 11px;
-    left: 12px;
-}
-
-.branch > div:nth-child(3) {
-    top: 13px;
-    left: 41px;
-}
-
-.branch > div:nth-child(4) {
-    top: 27px;
-    left: 26px;
-}
-
-.branch > div:nth-child(5) {
-    top: 24px;
-    left: 44px;
-}
-</style>
+  </style>
+</head>
 
 <body>
-    <nav
-        class="bg-[#704539] text-white flex items-center justify-between px-4 sm:px-6 py-4 fixed top-0 left-0 w-full z-50 shadow-lg">
-        <div class="flex flex-col items-center">
-            <!-- Logo -->
-            <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font">
-                <a href="index.php" target="_self" class="hover:underline">PHƯƠNG NAM</a>
-            </h1>
-   <!-- Nhánh hoa đào -->
-   <img src="link_to_your_image.png" alt="Nhành hoa đào" class="h-10 ml-4">
+  <nav
+    class="fixed top-0 w-full z-50 bg-[#704539] text-white flex flex-wrap sm:flex-nowrap items-center justify-between px-4 sm:px-6 py-4">
 
-            <!-- Tên người dùng -->
-            <div id="auth-bar" class="hidden mt-4">
-                <p id="ten-nguoi-dung" class="text-white text-sm sm:text-base"></p>
-            </div>
-        </div>
-
-        <!-- Hamburger Menu Button (Visible on Mobile and Tablet) -->
-        <div class="sm:hidden">
-            <button id="menu-btn" class="text-white focus:outline-none">
-                <!-- Hamburger Icon -->
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Desktop Navigation Links -->
-        <div id="nav-links"
-            class="hidden sm:flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-lg font-bold custom-font">
-            <a href="gioithieu.html" target="_self" class="hover:text-[#D8B899]">GIỚI THIỆU</a>
-            <a href="menu.html" target="_self" class="hover:text-[#D8B899]">THỰC ĐƠN</a>
-            <a href="dathang.html" target="_self" class="hover:text-[#D8B899]">ĐẶT BÀN</a>
-            <a href="album.html" target="_self" class="hover:text-[#D8B899]">ALBUM ẢNH</a>
-            <a href="lienhe.php" target="_self" class="hover:text-[#D8B899]">LIÊN HỆ</a>
-        </div>
-
-        <!-- Search Bar (Visible on Desktop) -->
-        <div class="hidden sm:flex items-center space-x-4">
-            <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;">
-                <input id="desktop-search" type="text" placeholder="Tìm kiếm"
-                    class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
-                <button id="desktop-search-btn" class="ml-2 text-[#704539]">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu"
-        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg fixed top-16 left-0 w-full z-40 text-lg font-bold custom-font text-center">
-        <!-- Mobile Search Bar -->
-        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
-            <input id="mobile-search" type="text" placeholder="Tìm kiếm"
-                class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-            <button id="mobile-search-btn" class="ml-2 text-[#704539]">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Navigation Links -->
-        <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
-        <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
-        <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
-        <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
-        <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+    <!-- Logo -->
+    <div class="w-full sm:w-auto flex justify-center sm:justify-start mb-4 sm:mb-0 order-2 sm:order-1">
+      <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#D8B899] custom-font"><a href="trangchu.html"
+          target="_blank" class="hover:underline"></a>PHƯƠNG NAM</h1>
     </div>
-    <!-- Mobile Dropdown Menu (Visible when Hamburger Menu is clicked) -->
-    <div id="mobile-menu"
-        class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg mx-4 mt-2 text-lg font-bold custom-font text-center">
 
-        <!-- Mobile Search Bar -->
-        <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
-            <input id="mobile-search" type="text" placeholder="Tìm kiếm"
-                class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
-            <button id="mobile-search-btn" class="ml-2 text-[#704539]">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+    <!-- Hamburger Menu Button (Visible on Mobile) -->
+    <div class="absolute top-4 right-4 sm:hidden flex items-center order-1 sm:order-2">
+      <button id="menu-btn" class="text-white focus:outline-none">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
 
-        <!-- Mobile Navigation Links -->
-        <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
-        <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
-        <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
-        <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
-        <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
-        <!-- Thêm thư viện jQuery và Slick Slider -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <!-- Navigation Links (HIDDEN ON MOBILE)-->
+    <ul id="nav-links"
+      class="hidden sm:flex w-full sm:w-auto flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-center sm:text-left text-lg font-bold custom-font order-3">
+      <li><a href="gioithieu.html" target="_blank" class="hover:text-[#D8B899]">GIỚI THIỆU</a></li>
+      <li><a href="menu.html" target="_blank" class="hover:text-[#D8B899]">THỰC ĐƠN</a></li>
+      <li><a href="dathang.html" target="_blank" class="hover:text-[#D8B899]">ĐẶT BÀN</a></li>
+      <li><a href="album.html" target="_blank" class="hover:text-[#D8B899]">ALBUM ẢNH</a></li>
+      <li><a href="lienhe.html" target="_blank" class="hover:text-[#D8B899]">LIÊN HỆ</a></li>
+    </ul>
 
-        <!-- Mã JavaScript kích hoạt slider -->
-        <script>
-            $(document).ready(function () {
-                $('.slider').slick({
-                    dots: false,             // Hiển thị chấm định vị dưới slider
-                    infinite: true,         // Vòng lặp vô hạn
-                    speed: 500,             // Thời gian chuyển ảnh (500ms)
-                    slidesToShow: 1,        // Hiển thị 1 ảnh tại một thời điểm
-                    slidesToScroll: 1,      // Di chuyển qua lại từng ảnh
-                    autoplay: true,         // Tự động chuyển ảnh
-                    autoplaySpeed: 3000,    // Thời gian giữa các lần chuyển (3000ms = 3 giây)
-                    arrows: true,           // Hiển thị mũi tên qua lại
-                    adaptiveHeight: true    // Tự điều chỉnh chiều cao theo nội dung ảnh
-                });
-            });
-
-        </script>
+    <!-- Search Bar (Visible on Desktop) -->
+    <div class="hidden sm:flex items-center space-x-4 order-4">
+      <div class="bg-[#D8B899] rounded-md px-4 py-1 flex items-center" style="width: 200px;">
+        <input id="desktop-search" type="text" placeholder="Tìm kiếm"
+          class="bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font w-full">
+        <button id="desktop-search-btn" class="ml-2 text-[#704539]">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
 
     </div>
-    <!-- Slideshow Container -->
-  
- 
+  </nav>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu"
+    class="sm:hidden hidden bg-[#704539] text-white py-4 space-y-2 rounded-lg shadow-lg fixed left-0 w-full z-40 text-lg font-bold custom-font text-center">
+    <!-- Mobile Search Bar -->
+    <div class="bg-[#D8B899] rounded-md px-4 py-2 mx-4 flex items-center">
+      <input id="mobile-search" type="text" placeholder="Tìm kiếm"
+        class="w-full bg-transparent text-[#704539] placeholder-[#704539] focus:outline-none custom-font">
+      <button id="mobile-search-btn" class="ml-2 text-[#704539]">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <a href="gioithieu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">GIỚI THIỆU</a>
+    <a href="menu.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">THỰC ĐƠN</a>
+    <a href="dathang.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ĐẶT BÀN</a>
+    <a href="album.html" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">ALBUM ẢNH</a>
+    <a href="lienhe.php" target="_self" class="block px-4 py-2 hover:bg-[#D8B899] rounded">LIÊN HỆ</a>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nav = document.querySelector('nav'); // Lấy phần tử nav
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mainContent = document.querySelector('.pt-28'); // Lấy phần tử nội dung chính
+      const navHeight = nav.offsetHeight; // Lấy chiều cao của nav
+
+      // Điều chỉnh top của menu mobile
+      mobileMenu.style.top = `${navHeight}px`;
+
+      // Thêm padding-top cho phần nội dung chính
+      mainContent.style.paddingTop = `${navHeight + 35}px`; // 16px là khoảng cách thêm
+    });
+  </script>
+  <div class="pt-28 container mx-auto p-4 fade">
+    <h2 class="custom-title text-center text-5xl font-bold tracking-wide mb-6">
+      <span class="block text-[#a0522d] font-[Cinzel]">CÁ TAI TƯỢNG </span>
+      <span class="block text-lg font-[Poppins] text-[#5a4036] uppercase">CHIÊN XÙ</span>
+    </h2>
+
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+        <img alt="A dish of grilled chicken in bamboo tube served on a plate with vegetables and sauces"
+          class="rounded-lg shadow-lg image-hover w-full h-[500px]"
+          src="https://luuanh.vercel.app/amthucphuongnam/cataituong.jpg" width="800" />
+      </div>
+
+      <div class="w-full sm:w-1/2 lg:w-2/3 pl-8 slide-in">
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Mô tả món ăn
+        </h2>
+        <p class="mb-4 text-[#000000]">
+          Món cá tai tượng chiên xù sẽ được đầu bếp chiên với nhiệt độ cao sẽ làm cho từng thớ thịt cá giòn tan ngay trong
+          miệng, cá bắt lên còn tươi sống sơ chế kĩ lưỡng qua tay nghề của đầu bếp, sẽ cho ra món cá hấp dẫn. </p>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Nguyên liệu
+        </h2>
+        <ul class="list-disc list-inside mb-4 text-[#000000]">
+          <li><span class="font-bold text-[#a0522d]">Cá tươi</span></li>
+          <li><span class="font-bold text-[#a0522d]">Gia vị</span>: tỏi, ớt, tiêu, ngũ vị hương, hành lá, đậu phộng</li>
+          <li><span class="font-bold text-[#a0522d]">Dầu</span></li>
+          <li><span class="font-bold text-[#a0522d]">Rau sống</span>: xà lách, rau thơm, bánh tráng ăn kèm</li>
+          <li><span class="font-bold text-[#a0522d]">Chấm mắm nêm</span></li>
+        </ul>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Cách chế biến
+        </h2>
+        <ol class="list-decimal list-inside mb-4 text-[#000000]">
+          <li>Chuẩn bị cá.</li>
+          <li>Đặt cá vào trong chảo dầu nóng, chiêncho đến khi thịt chín vàng.</li>
+          <li>Chế biến rau sống và mắm để ăn kèm.</li>
+          <li>Thưởng thức món ăn khi còn nóng, vị thơm ngon và đậm đà.</li>
+        </ol>
+        <h2 class="text-2xl font-bold mb-2 text-[#5a4036]">
+          Giá
+        </h2>
+        <p class="text-[#8a6e5a]">Giá: 220k</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nav = document.querySelector('nav'); // Lấy phần tử nav
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mainContent = document.querySelector('.pt-28'); // Lấy phần tử nội dung chính
+      const navHeight = nav.offsetHeight; // Lấy chiều cao của nav
+
+      // Điều chỉnh top của menu mobile
+      mobileMenu.style.top = `${navHeight}px`;
+
+      // Thêm padding-top cho phần nội dung chính
+      mainContent.style.paddingTop = `${navHeight + 35}px`; // 16px là khoảng cách thêm
+    });
+  </script>
 </body>
 
 </html>
