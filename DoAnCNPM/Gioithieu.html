@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - Văn Học Việt Nam</title>
+    <!-- Tailwind CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-700, 
+        .dark-mode .text-gray-800 {
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-600 {
+            color: #cbd5e0;
+        }
+        .dark-mode .bg-gray-50 {
+            background-color: #1a202c;
+        }
+        .dark-mode .bg-gray-200 {
+            background-color: #4a5568;
+        }
+        .dark-mode .text-gray-500 {
+            color: #a0aec0;
+        }
+        .dark-mode .border-gray-700 {
+            border-color: #4a5568;
+        }
+        .dark-mode .shadow-lg, 
+        .dark-mode .shadow-md,
+        .dark-mode .shadow-xl {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .bg-indigo-100 {
+            background-color: #434190;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <!-- Phần import Google Fonts (có thể đặt trong <head>) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@300&display=swap" rel="stylesheet" />
+
+    <header class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+            <!-- Tiêu đề chính -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
+                Kho Tàng Văn Học Việt Nam
+            </h1>
+            
+            <!-- Đoạn mô tả -->
+            <p class="text-xl md:text-2xl mt-4 font-light opacity-90" style="font-family: 'Merriweather', serif;">
+                Khám phá tinh hoa văn chương Việt qua các thời kỳ
+            </p>
+            
+            <!-- Nút kêu gọi hành động (CTA) -->
+            <div class="flex justify-center mt-10">
+                <a href="#muc-dich" class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300 px-8 py-4 rounded-full font-medium shadow-md" style="font-family: 'Merriweather', serif;">
+                    Tìm hiểu thêm
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-semibold text-indigo-800">Văn Học Việt</div>
+                
+                <!-- Search Bar (Desktop) -->
+                <div class="hidden md:flex flex-1 mx-10">
+                    <div class="relative w-full max-w-xl mx-auto">
+                        <input id="search-input" type="text" placeholder="Tìm kiếm tác phẩm, tác giả..." class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <button id="search-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Login/Register Buttons (Desktop) -->
+                <div class="hidden md:flex items-center space-x-4 mr-8">
+                    <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition duration-300">Đăng nhập</button>
+                    <button id="register-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="text-gray-600 hover:text-indigo-600 transition duration-300">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <!-- Search Button -->
+                    <button id="mobile-search-btn" class="text-gray-500 hover:text-indigo-700 focus:outline-none">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <!-- Login Button -->
+                    <button id="mobile-login-btn" class="text-gray-500 hover:text-indigo-700 focus:outline-none">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="mobile-dark-mode-toggle" class="text-gray-600 hover:text-indigo-600 transition duration-300">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Menu Button -->
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-indigo-700 focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Search Bar (Hidden by default) -->
+            <div id="mobile-search" class="md:hidden hidden pb-4">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Tìm kiếm tác phẩm, tác giả..." class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (Hidden by default) -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <a href="#gioi-thieu" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Giới Thiệu</a>
+                <a href="#tac-pham" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Tác Phẩm</a>
+                <a href="#tac-gia" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Tác Giả</a>
+                <a href="#lich-su" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Lịch Sử</a>
+                <a href="#tai-nguyen" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Tài Nguyên</a>
+                <!-- Login/Register for mobile -->
+                <div class="pt-2 mt-2 border-t border-gray-200">
+                    <button class="block w-full text-left py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Đăng nhập</button>
+                    <button class="block w-full text-left py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Đăng ký</button>
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 justify-center">
+                <a href="#gioi-thieu" class="text-gray-600 hover:text-indigo-600 transition duration-300">Giới Thiệu</a>
+                <a href="#tac-pham" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tác Phẩm</a>
+                <a href="#tac-gia" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tác Giả</a>
+                <a href="#lich-su" class="text-gray-600 hover:text-indigo-600 transition duration-300">Lịch Sử</a>
+                <a href="#tai-nguyen" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tài Nguyên</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Introduction Section -->
+        <section id="gioi-thieu" class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">Giới Thiệu Về Kho Tàng Văn Học Việt Nam</h2>
+                
+                <div class="prose lg:prose-xl mx-auto text-gray-700 leading-relaxed">
+                    <p class="mb-6">
+                        Chào mừng bạn đến với <strong>Kho Tàng Văn Học Việt Nam</strong> - nơi lưu giữ và lan tỏa những giá trị quý báu của nền văn học dân tộc từ truyền thống đến hiện đại. Đây là không gian trực tuyến dành cho những người yêu thích, nghiên cứu và học tập về văn học Việt Nam.
+                    </p>
+                    
+                    <p class="mb-6">
+                        Trang web được xây dựng với mong muốn giới thiệu một cách có hệ thống về các tác phẩm văn học tiêu biểu, cuộc đời và sự nghiệp của các tác giả nổi tiếng, cũng như lịch sử phát triển của nền văn học nước nhà qua các thời kỳ.
+                    </p>
+                    
+                    <p class="mb-6">
+                        Với giao diện thân thiện, nội dung chính xác và phong phú, chúng tôi hy vọng trang web sẽ trở thành người bạn đồng hành đáng tin cậy trên hành trình khám phá kho tàng văn học Việt Nam của bạn.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Purpose Section -->
+        <section id="muc-dich" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">Mục Đích Của Trang Web</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-book text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Bảo tồn di sản văn học</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Lưu giữ và giới thiệu các tác phẩm văn học giá trị của Việt Nam qua nhiều thời kỳ lịch sử, góp phần bảo tồn di sản văn hóa quý báu của dân tộc.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Giáo dục và phổ biến kiến thức</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Cung cấp thông tin chi tiết, chính xác về tác phẩm, tác giả và bối cảnh lịch sử văn học Việt Nam, hỗ trợ việc học tập và nghiên cứu.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-heart text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Khơi dậy tình yêu văn học</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Truyền cảm hứng, tạo hứng thú cho người dùng, đặc biệt là thế hệ trẻ, đối với kho tàng văn học dân tộc thông qua cách trình bày hấp dẫn và dễ tiếp cận.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-comments text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Tạo diễn đàn trao đổi</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Xây dựng cộng đồng yêu văn học, tạo môi trường thảo luận và chia sẻ về các tác phẩm văn học Việt Nam, kết nối những người có cùng đam mê.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Features Section -->
+        <section id="tinh-nang" class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">Nội Dung Chính Của Trang Web</h2>
+                
+                <div class="space-y-12">
+                    <!-- Tác phẩm tiêu biểu -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start">
+                        <div class="w-full md:w-1/3 mb-6 md:mb-0 md:mr-8">
+                            <div class="bg-indigo-100 p-6 rounded-lg">
+                                <img src="https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/truyen-kieu-cover.jpg" alt="Truyện Kiều" class="w-full h-auto rounded-lg shadow-md">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Tác Phẩm Tiêu Biểu</h3>
+                            <p class="text-gray-700 mb-4">
+                                Mục tác phẩm giới thiệu các kiệt tác văn học Việt Nam qua các thời kỳ, được phân loại theo:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li><strong>Văn học cổ điển</strong>: Truyện Kiều, Số Đỏ và các tác phẩm truyền thống khác</li>
+                                <li><strong>Văn học hiện đại</strong>: Tắt Đèn, Chí Phèo, Nhật Ký Trong Tù và các tác phẩm tiêu biểu của thế kỷ 20</li>
+                                <li><strong>Văn học đương đại</strong>: Chiếc Thuyền Ngoài Xa và các tác phẩm gần đây</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                Mỗi tác phẩm được giới thiệu chi tiết với thông tin về tác giả, năm sáng tác, tóm tắt nội dung và giá trị văn học, nghệ thuật. Người dùng có thể dễ dàng tìm kiếm và lọc tác phẩm theo thể loại, thời kỳ hoặc chủ đề.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tác giả tiêu biểu -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start">
+                        <div class="w-full md:w-1/3 mb-6 md:mb-0 md:mr-8 md:order-last">
+                            <div class="bg-indigo-100 p-6 rounded-lg">
+                                <img src="https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/nguyen-du-portrait.jpg" alt="Nguyễn Du" class="w-full h-auto rounded-lg shadow-md">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Tác Giả Tiêu Biểu</h3>
+                            <p class="text-gray-700 mb-4">
+                                Giới thiệu các nhà văn, nhà thơ tiêu biểu của Việt Nam qua các thời kỳ, bao gồm:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li><strong>Nguyễn Du</strong> (1766-1820): Đại thi hào dân tộc, tác giả của kiệt tác "Truyện Kiều"</li>
+                                <li><strong>Nam Cao</strong> (1917-1951): Nhà văn hiện thực xuất sắc với các tác phẩm như "Chí Phèo", "Lão Hạc"</li>
+                                <li><strong>Vũ Trọng Phụng</strong> (1912-1939): Nhà văn nổi tiếng với các tác phẩm phê phán xã hội</li>
+                                <li><strong>Nguyễn Nhật Ánh</strong> (1955-nay): Nhà văn đương đại nổi tiếng với các tác phẩm về tuổi học trò</li>
+                                <li><strong>Nguyễn Ngọc Tư</strong> (1976-nay): Nhà văn nữ đương đại với phong cách viết đậm chất Nam Bộ</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                Mỗi tác giả được giới thiệu với tiểu sử, phong cách sáng tác và danh sách các tác phẩm tiêu biểu, giúp người đọc hiểu rõ hơn về những đóng góp của họ cho nền văn học Việt Nam.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Lịch sử văn học -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start">
+                        <div class="w-full md:w-1/3 mb-6 md:mb-0 md:mr-8">
+                            <div class="bg-indigo-100 p-6 rounded-lg">
+                                <img src="https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/timeline-literature.jpg" alt="Lịch sử văn học" class="w-full h-auto rounded-lg shadow-md">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Lịch Sử Văn Học Việt Nam</h3>
+                            <p class="text-gray-700 mb-4">
+                                Trình bày tiến trình phát triển của văn học Việt Nam qua các giai đoạn lịch sử:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li><strong>Văn học dân gian</strong>: Hình thành từ thời kỳ đầu dựng nước với ca dao, tục ngữ, truyện cổ tích</li>
+                                <li><strong>Văn học trung đại</strong> (thế kỷ X-XIX): Giai đoạn văn học chữ Hán, chữ Nôm</li>
+                                <li><strong>Văn học hiện đại</strong> (1900-1945): Giai đoạn chịu ảnh hưởng của văn học phương Tây</li>
+                                <li><strong>Văn học 1945-1975</strong>: Giai đoạn văn học cách mạng và kháng chiến</li>
+                                <li><strong>Văn học đương đại</strong> (1975-nay): Giai đoạn đổi mới với đa dạng thể loại và phong cách</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                Mỗi giai đoạn được trình bày với đặc điểm nổi bật, bối cảnh lịch sử - xã hội và các tác giả, tác phẩm tiêu biểu, giúp người đọc hiểu rõ về sự phát triển của văn học Việt Nam trong dòng chảy lịch sử.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tài nguyên -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start">
+                        <div class="w-full md:w-1/3 mb-6 md:mb-0 md:mr-8 md:order-last">
+                            <div class="bg-indigo-100 p-6 rounded-lg">
+                                <img src="https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/resources-library.jpg" alt="Tài nguyên" class="w-full h-auto rounded-lg shadow-md">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Tài Nguyên & Tham Khảo</h3>
+                            <p class="text-gray-700 mb-4">
+                                Cung cấp các nguồn tài liệu, thông tin hữu ích cho việc nghiên cứu, tìm hiểu về văn học Việt Nam:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                                <li><strong>Thư viện trực tuyến</strong>: Liên kết đến các thư viện số, kho sách điện tử về văn học Việt Nam</li>
+                                <li><strong>Sách nghiên cứu</strong>: Giới thiệu các sách nghiên cứu về lịch sử, lý luận văn học Việt Nam</li>
+                                <li><strong>Tài liệu đa phương tiện</strong>: Phim tài liệu, podcast, khóa học trực tuyến về văn học Việt Nam</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                Mục tài nguyên được cập nhật thường xuyên với những nguồn tài liệu mới, đáng tin cậy, giúp người dùng có thể mở rộng kiến thức và đào sâu nghiên cứu về văn học Việt Nam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section id="huong-dan" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">Cách Sử Dụng Trang Web</h2>
+                
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Tìm Kiếm Thông Tin</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Tìm kiếm cơ bản</h4>
+                            <p class="text-gray-700 mb-2">
+                                Sử dụng thanh tìm kiếm ở đầu trang để tìm kiếm nhanh tác phẩm, tác giả theo từ khóa.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Nhập tên tác phẩm, tác giả hoặc từ khóa liên quan để hiển thị kết quả phù hợp.
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Tìm kiếm nâng cao</h4>
+                            <p class="text-gray-700 mb-2">
+                                Sử dụng mục "Tìm Kiếm Nâng Cao" để lọc thông tin chi tiết theo nhiều tiêu chí.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Lọc theo tên tác phẩm, tác giả, thời kỳ, thể loại và chủ đề để có kết quả chính xác hơn.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Khám Phá Tác Phẩm</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Lọc theo thời kỳ</h4>
+                            <p class="text-gray-700 mb-2">
+                                Sử dụng các nút lọc để hiển thị tác phẩm theo từng giai đoạn văn học.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Chọn giữa "Tất Cả", "Văn Học Cổ Điển", "Văn Học Hiện Đại" hoặc "Văn Học Đương Đại".
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Xem chi tiết tác phẩm</h4>
+                            <p class="text-gray-700 mb-2">
+                                Nhấn nút "Xem Thêm" trên thẻ tác phẩm để đọc thông tin chi tiết.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Xem tên tác phẩm, tác giả, năm sáng tác, tóm tắt nội dung và giá trị văn học.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Tính Năng Khác</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Chế độ tối (Dark Mode)</h4>
+                            <p class="text-gray-700 mb-2">
+                                Chuyển đổi giữa giao diện sáng và tối để tạo trải nghiệm đọc thoải mái hơn.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Nhấn vào biểu tượng mặt trăng/mặt trời ở góc trên bên phải để chuyển đổi.
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Đăng nhập/Đăng ký</h4>
+                            <p class="text-gray-700 mb-2">
+                                Tạo tài khoản để lưu trữ tác phẩm yêu thích và tham gia thảo luận.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Nhấn vào "Đăng nhập" hoặc "Đăng ký" ở góc trên bên phải.
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">Điều hướng</h4>
+                            <p class="text-gray-700 mb-2">
+                                Sử dụng menu chính để di chuyển nhanh đến các phần khác nhau của trang web.
+                            </p>
+                            <div class="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> Chọn giữa "Giới Thiệu", "Tác Phẩm", "Tác Giả", "Lịch Sử" và "Tài Nguyên".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">Câu Hỏi Thường Gặp</h2>
+                
+                <div class="space-y-6">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="flex items-center justify-between w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none">
+                            <span class="text-lg font-semibold text-gray-800">Trang web này có miễn phí không?</span>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="px-6 py-4 bg-gray-50">
+                            <p class="text-gray-700">
+                                Có, trang web Kho Tàng Văn Học Việt Nam hoàn toàn miễn phí. Mọi người dùng đều có thể truy cập và sử dụng tất cả các chức năng cơ bản mà không phải trả phí. Một số tính năng nâng cao có thể yêu cầu đăng ký tài khoản, nhưng việc này cũng hoàn toàn miễn phí.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="flex items-center justify-between w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none">
+                            <span class="text-lg font-semibold text-gray-800">Làm thế nào để đóng góp nội dung cho trang web?</span>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="px-6 py-4 bg-gray-50">
+                            <p class="text-gray-700">
+                                Chúng tôi rất hoan nghênh sự đóng góp từ cộng đồng. Bạn có thể gửi bài viết, đánh giá tác phẩm hoặc thông tin về tác giả thông qua mẫu liên hệ hoặc email trực tiếp đến ban biên tập. Tất cả các đóng góp sẽ được xem xét và biên tập trước khi xuất bản.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="flex items-center justify-between w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none">
+                            <span class="text-lg font-semibold text-gray-800">Tôi có thể tải về các tác phẩm văn học để đọc offline không?</span>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="px-6 py-4 bg-gray-50">
+                            <p class="text-gray-700">
+                                Đối với các tác phẩm đã thuộc về công sản hoặc được cấp phép, chúng tôi có cung cấp chức năng tải về ở định dạng PDF, EPUB hoặc MOBI để đọc offline. Tuy nhiên, một số tác phẩm có bản quyền chỉ có thể đọc trực tuyến hoặc trích đoạn. Mọi việc sử dụng tài liệu cần tuân thủ quy định về bản quyền và chỉ phục vụ mục đích nghiên cứu, học tập.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="flex items-center justify-between w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none">
+                            <span class="text-lg font-semibold text-gray-800">Thông tin trên trang web có được cập nhật thường xuyên không?</span>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="px-6 py-4 bg-gray-50">
+                            <p class="text-gray-700">
+                                Có, nội dung trên trang web được cập nhật định kỳ. Chúng tôi thường xuyên bổ sung tác phẩm mới, cập nhật thông tin về tác giả và các nghiên cứu mới về văn học Việt Nam. Chúng tôi cũng tiếp nhận phản hồi từ người dùng để cải thiện độ chính xác và đầy đủ của thông tin.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="flex items-center justify-between w-full px-6 py-4 text-left bg-white hover:bg-gray-50 focus:outline-none">
+                            <span class="text-lg font-semibold text-gray-800">Trang web có phiên bản trên điện thoại di động không?</span>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="px-6 py-4 bg-gray-50">
+                            <p class="text-gray-700">
+                                Trang web của chúng tôi được thiết kế với giao diện đáp ứng (responsive), tương thích với mọi thiết bị, từ máy tính để bàn đến máy tính bảng và điện thoại di động. Bạn có thể truy cập và sử dụng đầy đủ tính năng của trang web trên mọi thiết bị một cách thuận tiện.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-16 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Khám Phá Kho Tàng Văn Học Việt Nam Ngay Hôm Nay</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">
+                    Hãy tham gia cùng chúng tôi trong hành trình khám phá và lan tỏa giá trị của nền văn học dân tộc - di sản quý báu của người Việt.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="#tac-pham" class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300 px-6 py-3 rounded-full font-medium shadow-md">
+                        Khám Phá Tác Phẩm
+                    </a>
+                    <a href="#tac-gia" class="bg-transparent text-white border border-white hover:bg-white hover:text-indigo-700 transition duration-300 px-6 py-3 rounded-full font-medium">
+                        Tìm Hiểu Tác Giả
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Văn Học Việt Nam</h3>
+                    <p class="text-gray-400">Trang web giới thiệu các tác phẩm văn học Việt Nam qua các thời kỳ, góp phần lan tỏa giá trị văn hóa dân tộc.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liên Kết</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#gioi-thieu" class="hover:text-white transition duration-300">Giới Thiệu</a></li>
+                        <li><a href="#tac-pham" class="hover:text-white transition duration-300">Tác Phẩm</a></li>
+                        <li><a href="#tac-gia" class="hover:text-white transition duration-300">Tác Giả</a></li>
+                        <li><a href="#lich-su" class="hover:text-white transition duration-300">Lịch Sử</a></li>
+                        <li><a href="#tai-nguyen" class="hover:text-white transition duration-300">Tài Nguyên</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liên Hệ</h3>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abc2c5cdc4ebddcac5c3c4c8ddc2cedf85ddc5">[email&#160;protected]</a></p>
+                    <p class="text-gray-400 mb-4"><i class="fas fa-phone-alt mr-2"></i> (84) 123 456 789</p>
+                    <div class="flex mt-4 space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Văn Học Việt Nam. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileSearchButton = document.getElementById('mobile-search-btn');
+        const mobileSearch = document.getElementById('mobile-search');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Close search if it's open
+            if (!mobileSearch.classList.contains('hidden')) {
+                mobileSearch.classList.add('hidden');
+            }
+        });
+        
+        mobileSearchButton.addEventListener('click', () => {
+            mobileSearch.classList.toggle('hidden');
+            // Close menu if it's open
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Update icons
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            mobileDarkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+        
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
+        
+        // FAQ accordions
+        const faqButtons = document.querySelectorAll('#faq button');
+        
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle content visibility
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

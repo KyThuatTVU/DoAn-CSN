@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Văn Học Việt Nam</title>
+    <!-- Tailwind CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-700, 
+        .dark-mode .text-gray-800 {
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-600 {
+            color: #cbd5e0;
+        }
+        .dark-mode .bg-gray-50 {
+            background-color: #1a202c;
+        }
+        .dark-mode .bg-gray-200 {
+            background-color: #4a5568;
+        }
+        .dark-mode .text-gray-500 {
+            color: #a0aec0;
+        }
+        .dark-mode .border-gray-700 {
+            border-color: #4a5568;
+        }
+        .dark-mode .shadow-lg, 
+        .dark-mode .shadow-md,
+        .dark-mode .shadow-xl {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .bg-indigo-100 {
+            background-color: #434190;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <!-- Phần import Google Fonts (có thể đặt trong <head>) -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@300&display=swap"
+  rel="stylesheet"
+/>
+
+<header class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white">
+  <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+    <!-- Tiêu đề chính -->
+    <h1 class="text-5xl md:text-7xl font-bold mb-6"
+        style="font-family: 'Playfair Display', serif;">
+      Kho Tàng Văn Học Việt Nam
+    </h1>
+    
+    <!-- Đoạn mô tả -->
+    <p class="text-xl md:text-2xl mt-4 font-light opacity-90"
+       style="font-family: 'Merriweather', serif;">
+      Khám phá tinh hoa văn chương Việt qua các thời kỳ
+    </p>
+    
+    <!-- Nút kêu gọi hành động (CTA) -->
+    <div class="flex justify-center mt-10">
+      <a href="#tac-pham"
+         class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300
+                px-8 py-4 rounded-full font-medium shadow-md"
+         style="font-family: 'Merriweather', serif;">
+        Khám phá ngay
+      </a>
+    </div>
+  </div>
+</header>
+
+
+    <!-- Navigation Menu -->
+ <!-- Thanh Nav -->
+ <nav class="bg-white shadow-lg sticky top-0 z-30">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Logo / Brand -->
+      <div class="text-2xl font-bold text-indigo-700">
+        Văn Học Việt
+      </div>
+  
+      <!-- Menu Desktop -->
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="#gioi-thieu" class="text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a></li>
+        <li><a href="#tac-pham" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a></li>
+        <li><a href="#tac-gia" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a></li>
+        <li><a href="#lich-su" class="text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a></li>
+        <li><a href="#tai-nguyen" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a></li>
+      </ul>
+  
+      <!-- Các nút Login/Register Desktop -->
+      <div class="hidden md:flex items-center space-x-4">
+        <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition duration-300">Đăng nhập</button>
+        <button id="register-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+      </div>
+  
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu (ẩn theo mặc định) -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-4 pt-2 pb-4 space-y-1">
+        <a href="#gioi-thieu" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a>
+        <a href="#tac-pham" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a>
+        <a href="#tac-gia" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a>
+        <a href="#lich-su" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a>
+        <a href="#tai-nguyen" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a>
+        <div class="mt-2 border-t pt-2">
+          <button onclick="openLoginModal()" class="w-full text-left text-gray-700 hover:text-indigo-700">Đăng nhập</button>
+          <button onclick="openRegisterModal()" class="w-full text-left text-gray-700 hover:text-indigo-700 mt-1">Đăng ký</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Thanh Tìm Kiếm Riêng Dưới Nav -->
+  <div class="bg-indigo-50 py-4 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="max-w-xl mx-auto relative">
+        <input id="search-input" type="text" placeholder="Tìm kiếm tác phẩm, tác giả..." class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button id="search-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- JavaScript cho tìm kiếm & Mobile Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Xử lý tìm kiếm:
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const loginBtn = document.getElementById('login-btn');
+      const registerBtn = document.getElementById('register-btn');
+      const authModal = document.getElementById('auth-modal');
+      const closeAuthModal = document.getElementById('close-auth-modal');
+      const authModalTitle = document.getElementById('auth-modal-title');
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const switchToRegister = document.getElementById('switch-to-register');
+      const switchToLogin = document.getElementById('switch-to-login');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+    
+      // Xử lý đăng nhập/đăng ký
+      function openLoginModal() {
+        authModalTitle.textContent = 'Đăng nhập';
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        authModal.classList.remove('hidden');
+      }
+    
+      function openRegisterModal() {
+        authModalTitle.textContent = 'Đăng ký';
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        authModal.classList.remove('hidden');
+      }
+    
+      // Thêm event listeners cho các nút
+      loginBtn.addEventListener('click', openLoginModal);
+      registerBtn.addEventListener('click', openRegisterModal);
+    
+      // Đóng modal khi click nút close
+      closeAuthModal.addEventListener('click', () => {
+        authModal.classList.add('hidden');
+      });
+    
+      // Đóng modal khi click bên ngoài
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) {
+          authModal.classList.add('hidden');
+        }
+      });
+    
+      // Chuyển đổi giữa form đăng nhập và đăng ký
+      switchToRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        openRegisterModal();
+      });
+    
+      switchToLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLoginModal();
+      });
+    
+      // Xử lý tìm kiếm
+      function redirectToResults() {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.location.href = `results.html?q=${encodeURIComponent(query)}`;
+        }
+      }
+    
+      searchBtn.addEventListener('click', redirectToResults);
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          redirectToResults();
+        }
+      });
+    
+      // Xử lý mobile menu
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    });
+
+    // Khai báo hàm toàn cục để có thể gọi từ mọi nơi
+    window.openLoginModal = function() {
+        const authModal = document.getElementById('auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        authModalTitle.textContent = 'Đăng nhập';
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        authModal.classList.remove('hidden');
+    }
+
+    window.openRegisterModal = function() {
+        const authModal = document.getElementById('auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        authModalTitle.textContent = 'Đăng ký';
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        authModal.classList.remove('hidden');
+    }
+  </script>
+  
+    <!-- Login/Register Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="auth-modal-title" class="text-2xl font-bold text-gray-800">Đăng nhập</h3>
+                    <button id="close-auth-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="login-form">
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                        <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng nhập</button>
+                    <div class="mt-4 text-center text-gray-600">
+                        Chưa có tài khoản? <a href="#" id="switch-to-register" class="text-indigo-600 hover:text-indigo-800">Đăng ký ngay</a>
+                    </div>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="register-form" class="hidden">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 mb-2">Họ tên</label>
+                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Họ tên của bạn">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reg-email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="reg-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reg-password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                        <input type="password" id="reg-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                    </div>
+                    <div class="mb-6">
+                        <label for="confirm-password" class="block text-gray-700 mb-2">Xác nhận mật khẩu</label>
+                        <input type="password" id="confirm-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nhập lại mật khẩu">
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+                    <div class="mt-4 text-center text-gray-600">
+                        Đã có tài khoản? <a href="#" id="switch-to-login" class="text-indigo-600 hover:text-indigo-800">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Introduction Section -->
+        <section id="gioi-thieu" class="py-16" style="background-color: #f7eee2;">
+            <div class="container mx-auto px-4">
+              <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+                Văn Học Việt Nam - Di Sản Quý Báu
+              </h2>
+              <div class="max-w-4xl mx-auto">
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                  Văn học Việt Nam là một kho tàng quý báu, đã trải qua nhiều giai đoạn phát triển với những đặc trưng riêng biệt. Từ các tác phẩm văn học dân gian, văn học cổ điển đến văn học hiện đại, mỗi giai đoạn đều để lại những dấu ấn sâu sắc trong lòng người Việt và thế giới.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                  Trải qua hàng nghìn năm lịch sử, văn học Việt Nam vừa mang đậm bản sắc dân tộc vừa tiếp thu tinh hoa văn hóa thế giới, tạo nên một diện mạo văn học đa dạng và phong phú. Những tác phẩm văn học Việt Nam không chỉ có giá trị nghệ thuật mà còn phản ánh chân thực đời sống xã hội, tâm tư, tình cảm, ước mơ và khát vọng của con người qua các thời kỳ lịch sử.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Những sử thi, truyền thuyết, ca dao tục ngữ cho đến các áng thơ văn, tiểu thuyết hiện đại đều góp phần làm nên một bức tranh văn học đa sắc màu, góp phần gìn giữ và phát huy bản sắc văn hóa dân tộc, đồng thời tạo nên những giá trị nhân văn sâu sắc vượt qua biên giới quốc gia.
+                </p>
+              </div>
+            </div>
+          </section>
+          
+          
+
+        <!-- Advanced Search Section -->
+        <section id="tim-kiem-nang-cao" class="py-10" style="background-color: #F4F1EA;">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Tìm Kiếm Nâng Cao</h2>
+                <div class="max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-md p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="advanced-title" class="block text-gray-700 mb-2">Tên tác phẩm</label>
+                            <input type="text" id="advanced-title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nhập tên tác phẩm...">
+                        </div>
+                        <div>
+                            <label for="advanced-author" class="block text-gray-700 mb-2">Tác giả</label>
+                            <input type="text" id="advanced-author" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nhập tên tác giả...">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label for="advanced-period" class="block text-gray-700 mb-2">Thời kỳ</label>
+                            <select id="advanced-period" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Tất cả thời kỳ</option>
+                                <option value="co-dien">Văn học cổ điển</option>
+                                <option value="hien-dai">Văn học hiện đại</option>
+                                <option value="duong-dai">Văn học đương đại</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="advanced-genre" class="block text-gray-700 mb-2">Thể loại</label>
+                            <select id="advanced-genre" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Tất cả thể loại</option>
+                                <option value="tho">Thơ</option>
+                                <option value="truyen-ngan">Truyện ngắn</option>
+                                <option value="tieu-thuyet">Tiểu thuyết</option>
+                                <option value="ky">Ký</option>
+                                <option value="khac">Khác</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="advanced-theme" class="block text-gray-700 mb-2">Chủ đề</label>
+                            <select id="advanced-theme" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Tất cả chủ đề</option>
+                                <option value="yeu-nuoc">Yêu nước</option>
+                                <option value="tinh-yeu">Tình yêu</option>
+                                <option value="nong-thon">Nông thôn</option>
+                                <option value="xa-hoi">Xã hội</option>
+                                <option value="chien-tranh">Chiến tranh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-2">
+                        <button id="advanced-search-btn" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition duration-300">
+                            <i class="fas fa-search mr-2"></i>Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tac-pham" class="py-16 bg-[#f9f4ef]">
+            <div class="container mx-auto px-4">
+              <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">TÁC PHẨM TIÊU BIỂU</h2>
+          
+              <!-- Filter Buttons -->
+              <div class="flex flex-wrap justify-center mb-8 gap-2">
+                <button class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300" data-filter="all">Tất Cả</button>
+                <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-300" data-filter="co-dien">Văn Học Cổ Điển</button>
+                <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-300" data-filter="hien-dai">Văn Học Hiện Đại</button>
+                <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-300" data-filter="duong-dai">Văn Học Đương Đại</button>
+              </div>
+          
+              <!-- Literary Works Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Truyện Kiều -->
+                <div class="book-card co-dien max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                  <div class="h-64 overflow-hidden">
+                    <img src="img/TuyemKieu.jpg" alt="Truyện Kiều" class="w-full h-full object-contain object-center">
+                  </div>
+                  <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Truyện Kiều</h3>
+                    <p class="text-gray-600 mb-2">Tác giả: Nguyễn Du</p>
+                    <p class="text-gray-600 mb-4">Thời kỳ: Thế kỷ 19</p>
+                    <p class="text-gray-700 mb-4">Tác phẩm kinh điển của văn học Việt Nam, được viết bằng thể thơ lục bát, kể về cuộc đời đầy bi kịch của nàng Kiều.</p>
+                    <button class="view-more-btn px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-300" data-id="truyenkieu">Xem Thêm</button>
+                  </div>
+                </div>
+          
+                <!-- Số Đỏ -->
+                <div class="book-card co-dien max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                  <div class="h-64 overflow-hidden">
+                    <img src="img/sodo.jpeg" alt="Số Đỏ" class="w-full h-full object-contain object-center">
+                  </div>
+                  <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Số Đỏ</h3>
+                    <p class="text-gray-600 mb-2">Tác giả: Vũ Trọng Phụng</p>
+                    <p class="text-gray-600 mb-4">Thời kỳ: 1936</p>
+                    <p class="text-gray-700 mb-4">Tiểu thuyết trào phúng xuất sắc phản ánh xã hội Việt Nam thời kỳ Pháp thuộc qua nhân vật Xuân Tóc Đỏ.</p>
+                    <button class="view-more-btn px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-300" data-id="sodo">Xem Thêm</button>
+                  </div>
+                </div>
+          
+                <!-- Tắt Đèn -->
+                <div class="book-card hien-dai max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                  <div class="h-64 overflow-hidden">
+                    <img src="img/Tắt_đèn-Nhã_Nam.jpeg" alt="Tắt Đèn" class="w-full h-full object-contain object-center">
+                  </div>
+                  <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Tắt Đèn</h3>
+                    <p class="text-gray-600 mb-2">Tác giả: Ngô Tất Tố</p>
+                    <p class="text-gray-600 mb-4">Thời kỳ: 1939</p>
+                    <p class="text-gray-700 mb-4">Tác phẩm phản ánh hiện thực đen tối của nông thôn Việt Nam dưới ách thống trị của thực dân Pháp.</p>
+                    <button class="view-more-btn px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-300" data-id="tatden">Xem Thêm</button>
+                  </div>
+                </div>
+          
+                <!-- Chí Phèo -->
+                <div class="book-card hien-dai max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                  <div class="h-64 overflow-hidden">
+                    <img src="img/chi-pheo_72e3f1370e484cf49b0fc94ee4ce0f80_master.webp" alt="Chí Phèo" class="w-full h-full object-contain object-center">
+                  </div>
+                  <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Chí Phèo</h3>
+                    <p class="text-gray-600 mb-2">Tác giả: Nam Cao</p>
+                    <p class="text-gray-600 mb-4">Thời kỳ: 1941</p>
+                    <p class="text-gray-700 mb-4">Truyện ngắn nổi tiếng với nhân vật Chí Phèo – biểu tượng cho số phận bi thảm của người nông dân Việt Nam.</p>
+                    <button class="view-more-btn px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-300" data-id="chipheo">Xem Thêm</button>
+                  </div>
+                </div>
+          
+                <!-- Nhật Ký Trong Tù -->
+                <div class="book-card hien-dai max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                  <div class="h-64 overflow-hidden">
+                    <img src="img/nhat-ky-trong-tu-1.u5429.d20170802.t160640.645336.jpg" alt="Nhật Ký Trong Tù" class="w-full h-full object-contain object-center">
+                  </div>
+                  <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nhật Ký Trong Tù</h3>
+                    <p class="text-gray-600 mb-2">Tác giả: Hồ Chí Minh</p>
+                    <p class="text-gray-600 mb-4">Thời kỳ: 1942–1943</p>
+                    <p class="text-gray-700 mb-4">Tập thơ chữ Hán ghi lại cảm xúc, suy nghĩ của Bác Hồ trong thời gian bị giam cầm ở Trung Quốc.</p>
+                    <button class="view-more-btn px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-300" data-id="nhatky">Xem Thêm</button>
+                  </div>
+                </div>
+          
+                <!-- Chiếc Thuyền Ngoài Xa -->
+                <div class="book-card hien-dai max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                  <div class="h-64 overflow-hidden">
+                    <img src="img/chiec_thuyen_ngoai_xa__nguyen_minh_chau.jpg" alt="Chiếc Thuyền Ngoài Xa" class="w-full h-full object-contain object-center">
+                  </div>
+                  <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Chiếc Thuyền Ngoài Xa</h3>
+                    <p class="text-gray-600 mb-2">Tác giả: Nguyễn Minh Châu</p>
+                    <p class="text-gray-600 mb-4">Thời kỳ: 1983</p>
+                    <p class="text-gray-700 mb-4">Tác phẩm sâu sắc về nghệ thuật và cuộc sống, phản ánh hiện thực xã hội và thân phận con người qua góc nhìn của một nhiếp ảnh gia.</p>
+                    <button class="view-more-btn px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-300" data-id="chiecthuyen">Xem Thêm</button>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          </section>
+          
+        <!-- Authors Section -->
+        <section id="tac-gia" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">TÁC GIẢ TIÊU BIỂU</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Nguyen Du -->
+                    <div class="author-card max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-56 overflow-hidden flex items-center justify-center bg-white">
+                          <img src="img/Tượng_đài_cụ_Nguyễn_Du.jpg" alt="Nguyễn Du" class="w-full h-full object-contain object-center">
+                        </div>
+                        <div class="p-6 text-center">
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Nguyễn Du (1766–1820)</h3>
+                          <p class="text-gray-700 mb-4">Đại thi hào dân tộc, tác giả của kiệt tác "Truyện Kiều". Ông được UNESCO công nhận là Danh nhân văn hóa thế giới.</p>
+                          <div class="text-gray-600 text-left">
+                            <p class="mb-1 font-semibold">Tác phẩm tiêu biểu:</p>
+                            <ul class="list-disc pl-5">
+                              <li>Truyện Kiều</li>
+                              <li>Văn chiêu hồn</li>
+                              <li>Thanh Hiên thi tập</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    <!-- Nam Cao -->
+                    <div class="author-card max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-56 overflow-hidden flex items-center justify-center bg-white">
+                          <img src="img/Nam-Cao.jpg" alt="Nam Cao" class="w-full h-full object-contain object-center">
+                        </div>
+                        <div class="p-6 text-center">
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Nam Cao (1917–1951)</h3>
+                          <p class="text-gray-700 mb-4">Nhà văn hiện thực xuất sắc thời kỳ đầu thế kỷ 20, với phong cách viết sâu sắc về số phận con người.</p>
+                          <div class="text-gray-600 text-left">
+                            <p class="mb-1 font-semibold">Tác phẩm tiêu biểu:</p>
+                            <ul class="list-disc pl-5">
+                              <li>Chí Phèo</li>
+                              <li>Lão Hạc</li>
+                              <li>Đời thừa</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    <!-- Nguyen Nhat Anh -->
+                    <div class="author-card max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-56 overflow-hidden flex items-center justify-center bg-white">
+                          <img src="img/nguyen-nhat-anh.jpg" alt="Nguyễn Nhật Ánh" class="w-full h-full object-contain object-center">
+                        </div>
+                        <div class="p-6 text-center">
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Nguyễn Nhật Ánh (1955–nay)</h3>
+                          <p class="text-gray-700 mb-4">Nhà văn đương đại nổi tiếng với các tác phẩm về tuổi học trò, tuổi thơ đầy trong sáng và hồn nhiên.</p>
+                          <div class="text-gray-600 text-left">
+                            <p class="mb-1 font-semibold">Tác phẩm tiêu biểu:</p>
+                            <ul class="list-disc pl-5">
+                              <li>Mắt biếc</li>
+                              <li>Tôi thấy hoa vàng trên cỏ xanh</li>
+                              <li>Cho tôi xin một vé đi tuổi thơ</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                    <!-- Vu Trong Phung -->
+                    <div class="author-card max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-56 overflow-hidden flex items-center justify-center bg-white">
+                          <img src="img/images.jpg" alt="Vũ Trọng Phụng" class="w-full h-full object-contain object-center">
+                        </div>
+                        <div class="p-6 text-center">
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Vũ Trọng Phụng (1912–1939)</h3>
+                          <p class="text-gray-700 mb-4">Nhà văn nổi tiếng với những tác phẩm phê phán xã hội sâu sắc và mang tính trào phúng cao.</p>
+                          <div class="text-gray-600 text-left">
+                            <p class="mb-1 font-semibold">Tác phẩm tiêu biểu:</p>
+                            <ul class="list-disc pl-5">
+                              <li>Số Đỏ</li>
+                              <li>Giông Tố</li>
+                              <li>Vỡ Đê</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    <!-- Xuan Dieu -->
+                    <div class="author-card max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-56 overflow-hidden flex items-center justify-center bg-white">
+                          <img src="img/images-1-1728377434.jpeg" alt="Xuân Diệu" class="w-full h-full object-contain object-center">
+                        </div>
+                        <div class="p-6 text-center">
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Xuân Diệu (1916–1985)</h3>
+                          <p class="text-gray-700 mb-4">Nhà thơ nổi tiếng của phong trào Thơ Mới với những vần thơ lãng mạn, đầy cảm xúc.</p>
+                          <div class="text-gray-600 text-left">
+                            <p class="mb-1 font-semibold">Tác phẩm tiêu biểu:</p>
+                            <ul class="list-disc pl-5">
+                              <li>Thơ Thơ</li>
+                              <li>Gửi Hương Cho Gió</li>
+                              <li>Phấn Thông Vàng</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    <!-- Nguyen Ngoc Tu -->
+                    <div class="author-card max-w-xs mx-auto bg-[#D2B48C] rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-56 overflow-hidden flex items-center justify-center bg-white">
+                          <img src="img/Nguyen--Ngoc-Tu-d.jpg" alt="Nguyễn Ngọc Tư" class="w-full h-full object-contain object-center">
+                        </div>
+                        <div class="p-6 text-center">
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Nguyễn Ngọc Tư (1976–nay)</h3>
+                          <p class="text-gray-700 mb-4">Nhà văn nữ đương đại với phong cách viết đậm chất Nam Bộ, giàu tính nhân văn.</p>
+                          <div class="text-gray-600 text-left">
+                            <p class="mb-1 font-semibold">Tác phẩm tiêu biểu:</p>
+                            <ul class="list-disc pl-5">
+                              <li>Cánh Đồng Bất Tận</li>
+                              <li>Ngày Xưa Có Một Chuyện Tình</li>
+                              <li>Sông</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                </div>
+            </div>
+        </section>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              // Select elements specifically within the #tac-pham section
+              const filterButtons = document.querySelectorAll('#tac-pham .filter-btn');
+              const bookCards = document.querySelectorAll('#tac-pham .book-card');
+      
+              filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                  const filterValue = button.getAttribute('data-filter');
+      
+                  // --- Update Button Styles ---
+                  // 1. Remove active state from all buttons
+                  filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700'); // Add back inactive styles
+                  });
+      
+                  // 2. Add active state to the clicked button
+                  button.classList.add('active', 'bg-indigo-600', 'text-white');
+                  button.classList.remove('bg-gray-200', 'text-gray-700'); // Remove inactive styles
+      
+                  // --- Filter Cards ---
+                  bookCards.forEach(card => {
+                    // Check if the filter is 'all' OR if the card has the specific filter class
+                    const shouldShow = filterValue === 'all' || card.classList.contains(filterValue);
+      
+                    if (shouldShow) {
+                      // Make card visible (remove Tailwind's 'hidden' class)
+                      card.classList.remove('hidden');
+                      // If you were using flex/grid directly on card, might need card.style.display = 'block' or 'flex' etc.
+                      // But since it's inside a grid container, removing 'hidden' usually works.
+                    } else {
+                      // Hide card (add Tailwind's 'hidden' class)
+                      card.classList.add('hidden');
+                    }
+                  });
+                });
+              });
+            });
+
+
+            
+          </script>
+          
+       <!-- Timeline Section -->
+<section id="lich-su" class="py-16 bg-blue-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+        LỊCH SỬ VĂN HỌC VIỆT NAM
+      </h2>
+  
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-1 bg-indigo-200"></div>
+  
+        <!-- Item 1: Left on Desktop -->
+        <div class="timeline-item mb-12 md:mb-0">
+          <div class="md:flex md:items-center">
+            <div class="hidden md:block md:w-1/2 md:pr-8">
+              <div class="bg-white rounded-lg shadow-md p-4 text-right">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học dân gian</h3>
+                <p class="text-gray-700">Hình thành và phát triển từ thời kỳ đầu dựng nước đến thế kỷ X, bao gồm truyện cổ tích, ca dao, tục ngữ...</p>
+              </div>
+            </div>
+  
+            <div class="hidden md:flex md:w-auto md:items-center md:justify-center relative">
+              <div class="absolute bg-indigo-600 rounded-full h-5 w-5 z-10 ring-2 ring-white"></div>
+            </div>
+  
+            <div class="md:hidden bg-white rounded-lg shadow-md p-4 mb-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học dân gian</h3>
+              <p class="text-gray-700">Hình thành và phát triển từ thời kỳ đầu dựng nước đến thế kỷ X, bao gồm truyện cổ tích, ca dao, tục ngữ...</p>
+            </div>
+  
+            <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+          </div>
+        </div>
+  
+        <!-- Item 2: Right on Desktop -->
+        <div class="timeline-item mb-12 md:mb-0 md:pt-16">
+          <div class="md:flex md:items-center">
+            <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+  
+            <div class="hidden md:flex md:w-auto md:items-center md:justify-center relative">
+              <div class="absolute bg-indigo-600 rounded-full h-5 w-5 z-10 ring-2 ring-white"></div>
+            </div>
+  
+            <div class="hidden md:block md:w-1/2 md:pl-8">
+              <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học trung đại (thế kỷ X - XIX)</h3>
+                <p class="text-gray-700">Giai đoạn phát triển với các tác phẩm chữ Hán, chữ Nôm. Nổi bật với các tác phẩm như "Truyện Kiều", "Chinh phụ ngâm"...</p>
+              </div>
+            </div>
+  
+            <div class="md:hidden bg-white rounded-lg shadow-md p-4 mb-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học trung đại (thế kỷ X - XIX)</h3>
+              <p class="text-gray-700">Giai đoạn phát triển với các tác phẩm chữ Hán, chữ Nôm. Nổi bật với các tác phẩm như "Truyện Kiều", "Chinh phụ ngâm"...</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Item 3: Left on Desktop -->
+        <div class="timeline-item mb-12 md:mb-0 md:pt-16">
+          <div class="md:flex md:items-center">
+            <div class="hidden md:block md:w-1/2 md:pr-8">
+              <div class="bg-white rounded-lg shadow-md p-4 text-right">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học hiện đại (1900-1945)</h3>
+                <p class="text-gray-700">Giai đoạn chuyển mình với ảnh hưởng của văn học phương Tây, xuất hiện báo chí, tiểu thuyết hiện đại với các tác giả như Vũ Trọng Phụng, Nam Cao, Ngô Tất Tố...</p>
+              </div>
+            </div>
+  
+            <div class="hidden md:flex md:w-auto md:items-center md:justify-center relative">
+              <div class="absolute bg-indigo-600 rounded-full h-5 w-5 z-10 ring-2 ring-white"></div>
+            </div>
+  
+            <div class="md:hidden bg-white rounded-lg shadow-md p-4 mb-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học hiện đại (1900-1945)</h3>
+              <p class="text-gray-700">Giai đoạn chuyển mình với ảnh hưởng của văn học phương Tây, xuất hiện báo chí, tiểu thuyết hiện đại với các tác giả như Vũ Trọng Phụng, Nam Cao, Ngô Tất Tố...</p>
+            </div>
+  
+            <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+          </div>
+        </div>
+  
+        <!-- Item 4: Right on Desktop -->
+        <div class="timeline-item mb-12 md:mb-0 md:pt-16">
+          <div class="md:flex md:items-center">
+            <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+  
+            <div class="hidden md:flex md:w-auto md:items-center md:justify-center relative">
+              <div class="absolute bg-indigo-600 rounded-full h-5 w-5 z-10 ring-2 ring-white"></div>
+            </div>
+  
+            <div class="hidden md:block md:w-1/2 md:pl-8">
+              <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học 1945-1975</h3>
+                <p class="text-gray-700">Giai đoạn văn học cách mạng và kháng chiến với các tác giả như Tố Hữu, Nguyễn Tuân, Nguyễn Huy Tưởng...</p>
+              </div>
+            </div>
+  
+            <div class="md:hidden bg-white rounded-lg shadow-md p-4 mb-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học 1945-1975</h3>
+              <p class="text-gray-700">Giai đoạn văn học cách mạng và kháng chiến với các tác giả như Tố Hữu, Nguyễn Tuân, Nguyễn Huy Tưởng...</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Item 5: Left on Desktop -->
+        <div class="timeline-item md:pt-16">
+          <div class="md:flex md:items-center">
+            <div class="hidden md:block md:w-1/2 md:pr-8">
+              <div class="bg-white rounded-lg shadow-md p-4 text-right">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học đương đại (1975-nay)</h3>
+                <p class="text-gray-700">Giai đoạn đổi mới với đa dạng thể loại, phong cách và chủ đề. Các tác giả tiêu biểu như Nguyễn Huy Thiệp, Bảo Ninh, Nguyễn Nhật Ánh, Nguyễn Ngọc Tư...</p>
+              </div>
+            </div>
+  
+            <div class="hidden md:flex md:w-auto md:items-center md:justify-center relative">
+              <div class="absolute bg-indigo-600 rounded-full h-5 w-5 z-10 ring-2 ring-white"></div>
+            </div>
+  
+            <div class="md:hidden bg-white rounded-lg shadow-md p-4">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Văn học đương đại (1975-nay)</h3>
+              <p class="text-gray-700">Giai đoạn đổi mới với đa dạng thể loại, phong cách và chủ đề. Các tác giả tiêu biểu như Nguyễn Huy Thiệp, Bảo Ninh, Nguyễn Nhật Ánh, Nguyễn Ngọc Tư...</p>
+            </div>
+  
+            <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+        <!-- Resources Section -->
+        <section id="tai-nguyen" class="py-16 bg-blue-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
+                    Tài Nguyên & Tham Khảo
+                </h2>
+        
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+                    <!-- Card 1: Thư Viện Trực Tuyến -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-book text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Thư Viện Trực Tuyến</h3>
+                        </div>
+                        <ul class="list-disc pl-8 text-gray-700 space-y-2">
+                            <li>Thư viện Quốc gia Việt Nam</li>
+                            <li>Thư viện số Văn học Việt Nam</li>
+                            <li>Kho tài liệu văn học mở</li>
+                            <li>Trang web Vietwriter</li>
+                            <li>Thư viện sách điện tử Việt</li>
+                        </ul>
+                    </div>
+        
+                    <!-- Card 2: Sách Nghiên Cứu -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Sách Nghiên Cứu</h3>
+                        </div>
+                        <ul class="list-disc pl-8 text-gray-700 space-y-2">
+                            <li>Lịch sử văn học Việt Nam (Nhiều tác giả)</li>
+                            <li>Từ điển văn học</li>
+                            <li>Đại cương văn học Việt Nam</li>
+                            <li>Tiến trình văn học Việt Nam</li>
+                            <li>Văn học Việt Nam từ gốc rễ đến hiện đại</li>
+                        </ul>
+                    </div>
+        
+                    <!-- Card 3: Tài Liệu Đa Phương Tiện (Spanning 2 columns) -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition duration-300 md:col-span-2">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-video text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Tài Liệu Đa Phương Tiện</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <ul class="list-disc pl-8 text-gray-700 space-y-2">
+                                <li>Phim tài liệu về các nhà văn Việt Nam</li>
+                                <li>Kênh YouTube Văn Học Việt Nam</li>
+                                <li>Podcast về văn học dân tộc</li>
+                            </ul>
+                            <ul class="list-disc pl-8 text-gray-700 space-y-2">
+                                <li>Bộ sưu tập âm thanh đọc tác phẩm văn học</li>
+                                <li>Các khóa học trực tuyến về văn học Việt Nam</li>
+                                <li>Trang web đánh giá, phân tích tác phẩm văn học</li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section>
+        
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Văn Học Việt Nam</h3>
+                    <p class="text-gray-400">Trang web giới thiệu các tác phẩm văn học Việt Nam qua các thời kỳ, góp phần lan tỏa giá trị văn hóa dân tộc.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liên Kết</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#gioi-thieu" class="hover:text-white transition duration-300">Giới Thiệu</a></li>
+                        <li><a href="#tac-pham" class="hover:text-white transition duration-300">Tác Phẩm</a></li>
+                        <li><a href="#tac-gia" class="hover:text-white transition duration-300">Tác Giả</a></li>
+                        <li><a href="#lich-su" class="hover:text-white transition duration-300">Lịch Sử</a></li>
+                        <li><a href="#tai-nguyen" class="hover:text-white transition duration-300">Tài Nguyên</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liên Hệ</h3>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1264737c7a7d71647b77667c737f52757f737b7e3c717d7f">[email&#160;protected]</a></p>
+                    <p class="text-gray-400 mb-4"><i class="fas fa-phone-alt mr-2"></i> (84) 123 456 789</p>
+                    <div class="flex mt-4 space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Văn Học Việt Nam. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Book Detail Modal -->
+    <div id="book-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileSearchButton = document.getElementById('mobile-search-btn');
+        const mobileSearch = document.getElementById('mobile-search');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Close search if it's open
+            if (!mobileSearch.classList.contains('hidden')) {
+                mobileSearch.classList.add('hidden');
+            }
+        });
+        
+        mobileSearchButton.addEventListener('click', () => {
+            mobileSearch.classList.toggle('hidden');
+            // Close menu if it's open
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        
+        // Login/Register Modal
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const mobileLoginBtn = document.getElementById('mobile-login-btn');
+        const authModal = document.getElementById('auth-modal');
+        const closeAuthModal = document.getElementById('close-auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+        
+        // Open login modal
+        function openLoginModal() {
+            authModalTitle.textContent = 'Đăng nhập';
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            authModal.classList.remove('hidden');
+        }
+        
+        // Open register modal
+        function openRegisterModal() {
+            authModalTitle.textContent = 'Đăng ký';
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            authModal.classList.remove('hidden');
+        }
+        
+        loginBtn.addEventListener('click', openLoginModal);
+        mobileLoginBtn.addEventListener('click', openLoginModal);
+        registerBtn.addEventListener('click', openRegisterModal);
+        
+        // Close modal
+        closeAuthModal.addEventListener('click', () => {
+            authModal.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.classList.add('hidden');
+            }
+        });
+        
+        // Switch between login and register forms
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            openRegisterModal();
+        });
+        
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLoginModal();
+        });
+        
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Update icons
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            mobileDarkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+        
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
+        
+        // Filter Books
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const bookCards = document.querySelectorAll('.book-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-indigo-600', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Show/hide book cards based on filter
+                bookCards.forEach(card => {
+                    if (filter === 'all' || card.classList.contains(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        const mobileSearchInput = document.querySelector('#mobile-search input');
+        const advancedSearchBtn = document.getElementById('advanced-search-btn');
+        
+        function performSearch(query) {
+            query = query.toLowerCase().trim();
+            if (query === '') {
+                // If search is empty, show all books
+                bookCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                return;
+            }
+            
+            // Hide all books first
+            bookCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const author = card.querySelector('p:nth-of-type(1)').textContent.toLowerCase();
+                const period = card.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+                const description = card.querySelector('p:nth-of-type(3)').textContent.toLowerCase();
+                
+                if (title.includes(query) || author.includes(query) || period.includes(query) || description.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Reset filter buttons to "All"
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-indigo-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+                if (btn.getAttribute('data-filter') === 'all') {
+                    btn.classList.add('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                }
+            });
+        }
+        
+        // Search on input for desktop
+        searchInput.addEventListener('input', () => {
+            performSearch(searchInput.value);
+        });
+        
+        // Search on input for mobile
+        mobileSearchInput.addEventListener('input', () => {
+            performSearch(mobileSearchInput.value);
+        });
+        
+        // Advanced search
+        advancedSearchBtn.addEventListener('click', () => {
+            const title = document.getElementById('advanced-title').value.toLowerCase().trim();
+            const author = document.getElementById('advanced-author').value.toLowerCase().trim();
+            const period = document.getElementById('advanced-period').value;
+            const genre = document.getElementById('advanced-genre').value;
+            const theme = document.getElementById('advanced-theme').value;
+            
+            // Hide all books first
+            bookCards.forEach(card => {
+                const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+                const cardAuthor = card.querySelector('p:nth-of-type(1)').textContent.toLowerCase();
+                const cardPeriod = card.classList.contains(period);
+                // For this demo, we're checking only title and author and period class
+                
+                let shouldShow = true;
+                
+                if (title && !cardTitle.includes(title)) {
+                    shouldShow = false;
+                }
+                
+                if (author && !cardAuthor.includes(author)) {
+                    shouldShow = false;
+                }
+                
+                if (period && !cardPeriod) {
+                    shouldShow = false;
+                }
+                
+                // For genre and theme, in a real application, you would add these attributes to your cards
+                // and check them here
+                
+                if (shouldShow) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Scroll to books section
+            document.getElementById('tac-pham').scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset filter buttons to "All"
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-indigo-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+                if (btn.getAttribute('data-filter') === 'all') {
+                    btn.classList.add('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                }
+            });
+        });
+        
+        // Book Detail Modal
+        const modal = document.getElementById('book-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
+        const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+        
+        // Close modal when clicking the close button
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside the modal content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        
+        // Book details data
+        const bookDetails = {
+            truyenkieu: {
+                title: "Truyện Kiều",
+                author: "Nguyễn Du",
+                year: "Đầu thế kỷ 19",
+                image: "img/TuyemKieu.jpg",
+                content: `
+                  
+
+                    <p class="mb-4">Truyện Kiều là kiệt tác của đại thi hào Nguyễn Du, được viết vào đầu thế kỷ 19. Tác phẩm gồm 3254 câu thơ lục bát, kể về cuộc đời của nàng Thúy Kiều - một người con gái tài sắc vẹn toàn nhưng gặp nhiều bất hạnh trong cuộc đời.</p>
+                    
+                    <p class="mb-4">Nàng Kiều đã phải bán mình để cứu cha và em trai khỏi tù tội. Từ đó, nàng trải qua 15 năm lưu lạc với nhiều biến cố, trở thành kỹ nữ, bị lừa gạt, bị ép làm thiếp, làm vợ lẽ, và cuối cùng xuất gia đi tu. Sau cùng, nàng đoàn tụ với gia đình và người yêu Kim Trọng, nhưng chỉ còn là mối tình tri kỷ.</p>
+                    
+                    <p class="mb-4">Truyện Kiều không chỉ là một câu chuyện tình yêu đau khổ mà còn là bức tranh xã hội phong kiến với đầy rẫy bất công. Tác phẩm thể hiện quan niệm nhân sinh, triết lý nhân quả của Phật giáo và tư tưởng nhân đạo sâu sắc của Nguyễn Du.</p>
+                    
+                    <p class="mb-4">Một số câu thơ nổi tiếng trong Truyện Kiều:</p>
+                    
+                    <blockquote class="italic border-l-4 border-indigo-300 pl-4 py-2 mb-4">
+                        "Trăm năm trong cõi người ta,<br>
+                        Chữ tài chữ mệnh khéo là ghét nhau."
+                    </blockquote>
+                    
+                    <blockquote class="italic border-l-4 border-indigo-300 pl-4 py-2 mb-4">
+                        "Đau đớn thay phận đàn bà,<br>
+                        Lời rằng bạc mệnh cũng là lời chung."
+                    </blockquote>
+                `
+            },
+            sodo: {
+                title: "Số Đỏ",
+                author: "Vũ Trọng Phụng",
+                year: "1936",
+                image: "https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/so-do.jpg",
+                content: `
+                   
+                    <p class="mb-4">Số Đỏ là tiểu thuyết trào phúng xuất sắc của nhà văn Vũ Trọng Phụng, xuất bản năm 1936. Tác phẩm kể về hành trình của Xuân Tóc Đỏ - một kẻ lưu manh, vô học nhưng nhờ sự trớ trêu của số phận và sự xu nịnh, đã thăng tiến trong xã hội Việt Nam thời Pháp thuộc.</p>
+                    
+                    <p class="mb-4">Qua nhân vật Xuân, tác giả phơi bày và châm biếm những thói hư tật xấu, sự giả dối, lố bịch của tầng lớp tư sản, tiểu tư sản thành thị đang chạy theo lối sống văn minh kiểu Tây mà quên đi bản sắc dân tộc.</p>
+                    
+                    <p class="mb-4">Các nhân vật trong Số Đỏ như ông Văn Minh, bà Phó Đoan, cụ Hồng, Josephine... đều là những điển hình của một xã hội đang trong thời kỳ chuyển giao văn hóa với đầy rẫy những mâu thuẫn và vấn đề.</p>
+                    
+                    <p class="mb-4">Số Đỏ được coi là một trong những tác phẩm hiện thực phê phán sắc bén nhất của văn học Việt Nam, với lối viết hài hước, châm biếm đặc trưng của Vũ Trọng Phụng. Tác phẩm đã được chuyển thể thành phim và kịch nhiều lần.</p>
+                `
+            },
+            tatden: {
+                title: "Tắt Đèn",
+                author: "Ngô Tất Tố",
+                year: "1939",
+                image: "https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/tat-den.jpg",
+                content: `
+                
+                    <p class="mb-4">Tắt Đèn là tiểu thuyết của nhà văn Ngô Tất Tố, xuất bản năm 1939. Tác phẩm miêu tả chân thực cuộc sống cơ cực của người nông dân Việt Nam dưới ách thống trị của thực dân Pháp và phong kiến tay sai đầu thế kỷ 20.</p>
+                    
+                    <p class="mb-4">Nhân vật chính của tác phẩm là chị Dậu - một người phụ nữ nghèo khổ nhưng kiên cường, nhẫn nhục và sẵn sàng hy sinh tất cả vì chồng con. Câu chuyện kể về nỗi khổ cực của gia đình chị trong việc đóng thuế thân cho chồng và con trai.</p>
+                    
+                    <p class="mb-4">Qua hình ảnh chị Dậu và gia đình chị, tác giả đã vạch trần tội ác của bọn thực dân, phong kiến, đồng thời ca ngợi phẩm chất cao đẹp của người phụ nữ Việt Nam. Tác phẩm được viết với lối văn giản dị nhưng chứa đựng nhiều giá trị nhân văn sâu sắc.</p>
+                    
+                    <p class="mb-4">Tắt Đèn đã trở thành một trong những tác phẩm kinh điển của văn học Việt Nam hiện đại, là tài liệu quý báu phản ánh hiện thực xã hội Việt Nam thời kỳ đầu thế kỷ 20.</p>
+                `
+            },
+            chipheo: {
+                title: "Chí Phèo",
+                author: "Nam Cao",
+                year: "1941",
+                image: "https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/chi-pheo.jpg",
+                content: `
+                    <p class="mb-4">Chí Phèo là truyện ngắn nổi tiếng của nhà văn Nam Cao, được đăng lần đầu trên tạp chí Văn Hóa năm 1941. Tác phẩm kể về cuộc đời bi kịch của Chí Phèo - một nông dân lương thiện bị hãm hại, trở thành kẻ lưu manh, rồi cuối cùng khát khao trở lại cuộc sống lương thiện nhưng không thể.</p>
+                    
+                    <p class="mb-4">Chí Phèo bị bỏ rơi từ nhỏ, lớn lên làm canh điền cho Bá Kiến - một cường hào trong làng. Vì không chịu làm việc bẩn thỉu cho Bá Kiến, Chí bị vu oan và bỏ tù. Ra tù, Chí trở thành con quỷ dữ của làng Vũ Đại, sống bằng nghề đâm thuê chém mướn cho Bá Kiến.</p>
+                    
+                    <p class="mb-4">Cuộc gặp gỡ với Thị Nở - người phụ nữ xấu xí nhưng tốt bụng - đã đánh thức khát vọng hoàn lương trong Chí. Nhưng xã hội đã không cho Chí cơ hội đó. Bị Bá Kiến từ chối và bị làng xã ruồng bỏ, Chí đã giết Bá Kiến rồi tự sát.</p>
+                    
+                    <p class="mb-4">Qua nhân vật Chí Phèo, Nam Cao đã phê phán gay gắt xã hội phong kiến, thực dân đã biến một con người lương thiện thành con quỷ dữ, đồng thời thể hiện niềm tin vào bản chất tốt đẹp tiềm ẩn trong con người.</p>
+                `
+            },
+            nhatky: {
+                title: "Nhật Ký Trong Tù",
+                author: "Hồ Chí Minh",
+                year: "1942-1943",
+                image: "https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/nhat-ky-trong-tu.jpg",
+                content: `
+                   
+                    <p class="mb-4">Nhật Ký Trong Tù là tập thơ chữ Hán của Chủ tịch Hồ Chí Minh, viết trong thời gian Người bị giam cầm tại các nhà tù ở Trung Quốc từ năm 1942 đến 1943. Tập thơ gồm 134 bài, phần lớn là thơ thất ngôn tứ tuyệt.</p>
+                    
+                    <p class="mb-4">Trong hoàn cảnh tù đày khắc nghiệt, Bác Hồ đã sáng tác những vần thơ giàu tính nhân văn, thể hiện tinh thần lạc quan cách mạng, niềm tin vào tương lai, lòng yêu nước, thương dân sâu sắc và ý chí kiên cường không gục ngã trước mọi thử thách, gian nan.</p>
+                    
+                    <p class="mb-4">Thơ trong Nhật Ký Trong Tù vừa mang đậm phong cách cổ điển của thơ Đường, vừa có sự đổi mới, sáng tạo. Ngôn ngữ thơ giản dị, trong sáng nhưng chứa đựng nhiều tầng ý nghĩa sâu sắc.</p>
+                    
+                    <p class="mb-4">Một số bài thơ tiêu biểu trong tập như: "Xuân về", "Cảnh tù", "Học tiếng Trung Quốc", "Không đề", "Tự do"... đã trở thành những áng thơ bất hủ trong kho tàng văn học Việt Nam.</p>
+                    
+                    <blockquote class="italic border-l-4 border-indigo-300 pl-4 py-2 mb-4">
+                        "Thân thể ở trong lao<br>
+                        Tinh thần ở ngoài lao<br>
+                        Muốn nên sự nghiệp lớn<br>
+                        Phải từ trong gian lao"
+                    </blockquote>
+                `
+            },
+            mekong: {
+                title: "Ngày Xưa Ở Mê Kông",
+                author: "Nguyễn Ngọc Tư",
+                year: "2007",
+                image: "https://cdn.jsdelivr.net/gh/hungtp1996vn/literary-images@main/ngay-xua-o-me-kong.jpg",
+                content: `
+                    
+                    <p class="mb-4">Ngày Xưa Ở Mê Kông là tập truyện ngắn của nhà văn Nguyễn Ngọc Tư, xuất bản năm 2007. Tập truyện gồm 14 truyện ngắn, phản ánh cuộc sống, văn hóa và con người miền Tây Nam Bộ với những nét đặc trưng riêng biệt.</p>
+                    
+                    <p class="mb-4">Các truyện ngắn trong tập như "Biển Người Mênh Mông", "Ngày Xưa Có Một Chuyện Tình", "Cánh Đồng Bất Tận"... đều mang đậm hơi thở của sông nước miền Tây, với những nhân vật giản dị, mộc mạc nhưng có số phận đầy bi kịch.</p>
+                    
+                    <p class="mb-4">Ngôn ngữ trong tác phẩm của Nguyễn Ngọc Tư giản dị, gần gũi nhưng đầy tính thơ, vừa mang đặc trưng của vùng đất Nam Bộ, vừa chứa đựng những suy tư, triết lý sâu sắc về cuộc đời, về số phận con người.</p>
+                    
+                    <p class="mb-4">Tập truyện đã giúp Nguyễn Ngọc Tư được biết đến rộng rãi và trở thành một trong những cây bút tiêu biểu của văn học Việt Nam đương đại. Truyện ngắn "Cánh Đồng Bất Tận" trong tập đã được trao giải thưởng văn học ASEAN năm 2008.</p>
+                `
+            }
+        };
+        
+        // Open modal with book details
+        viewMoreButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const bookId = button.getAttribute('data-id');
+                const book = bookDetails[bookId];
+                
+                if (book) {
+                    modalTitle.textContent = book.title;
+                    modalContent.innerHTML = `
+                        <p class="text-gray-600 mb-4"><strong>Tác giả:</strong> ${book.author} | <strong>Năm:</strong> ${book.year}</p>
+                        <div class="text-gray-700">${book.content}</div>
+                    `;
+                    modal.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
