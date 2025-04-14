@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh Sách Tác Phẩm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Định dạng tỷ lệ khung hình 16:9 */
+    .aspect-w-16 {
+      position: relative;
+      padding-bottom: 56.25%;
+    }
+    .aspect-w-16 > * {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen p-8">
+  <h1 class="text-4xl font-bold text-center mb-10">Danh Sách Tác Phẩm</h1>
+
+  <div class="max-w-3xl mx-auto mb-8">
+    <input id="searchInput" type="text" placeholder="Tìm kiếm tên tác phẩm, tác giả, thể loại..."
+           class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+  </div>
+
+  <div id="productContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <p id="loadingMessage" class="text-center text-gray-500 col-span-full">Đang tải dữ liệu...</p>
+  </div>
+
+  <script>
+    const API_BASE_URL = 'http://localhost:3000'; // Địa chỉ backend của bạn
+
+    // Sử dụng ảnh placeholder được đặt từ backend (đảm bảo file 'placeholder.png' nằm trong thư mục 'images')
+    const placeholderImageUrl = `${API_BASE_URL}/img/placeholder.png`;
+
+    const productContainer = document.getElementById('productContainer');
+    const loadingMessage = document.getElementById('loadingMessage');
+    const searchInput = document.getElementById('searchInput');
+
+    async function fetchProducts(query = '') {
+      if (loadingMessage) loadingMessage.style.display = 'block';
+      productContainer.innerHTML = '';
+      if (loadingMessage) productContainer.appendChild(loadingMessage);
+
+      try {
+        const url = query
+          ? `${API_BASE_URL}/api/tacpham?q=${encodeURIComponent(query)}`
+          : `${API_BASE_URL}/api/tacpham`;
+        console.log(`Đang gọi API: ${url}`);
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error(`Lỗi API: Status ${response.status}, Phản hồi: ${errorText}`);
+          throw new Error(`Lỗi kết nối API (${response.status})`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          const responseText = await response.text();
+          console.error("API không trả về JSON:", responseText);
+          throw new Error(`Định dạng phản hồi không đúng: ${contentType}`);
+        }
+
+        const products = await response.json();
+        console.log("Dữ liệu tác phẩm nhận được:", products);
+        displayProducts(products);
+      } catch (error) {
+        console.error('Có lỗi xảy ra khi lấy dữ liệu:', error);
+        if (loadingMessage) loadingMessage.style.display = 'none';
+        productContainer.innerHTML =
+          `<p class="text-red-600 text-center col-span-full p-4 bg-red-100 rounded border border-red-300">
+             Không thể tải dữ liệu tác phẩm. Lý do: ${error.message}.<br/>
+             Vui lòng kiểm tra:
+             <ul>
+               <li>- Backend server (Port ${API_BASE_URL.split(':')[2]}) có đang chạy không?</li>
+               <li>- Kết nối mạng và CORS phía backend.</li>
+               <li>- Console (F12) trong trình duyệt để xem chi tiết lỗi.</li>
+             </ul>
+           </p>`;
+      } finally {
+         if (loadingMessage) loadingMessage.style.display = 'none';
+      }
+    }
+
+    function displayProducts(products) {
+      productContainer.innerHTML = '';
+
+      if (!Array.isArray(products)) {
+        console.error("Lỗi hiển thị: Dữ liệu không phải là mảng:", products);
+        productContainer.innerHTML = '<p class="text-center text-red-500 col-span-full">Lỗi: Dữ liệu nhận được có định dạng không hợp lệ.</p>';
+        return;
+      }
+
+      if (products.length === 0) {
+        productContainer.innerHTML = '<p class="text-center text-gray-500 col-span-full">Không tìm thấy tác phẩm nào phù hợp.</p>';
+        return;
+      }
+
+      products.forEach((product, index) => {
+        const imageUrlFromApi = product.HinhAnh;
+        console.log(`Sản phẩm ${index} (${product.TenTP}): HinhAnh từ API =`, imageUrlFromApi);
+
+        const imageUrl = (imageUrlFromApi && typeof imageUrlFromApi === 'string' && imageUrlFromApi.trim().startsWith('http'))
+                           ? imageUrlFromApi.trim()
+                           : placeholderImageUrl;
+
+        if (imageUrl === placeholderImageUrl && imageUrlFromApi && imageUrlFromApi.trim()) {
+            console.warn(`Sản phẩm ${index} (${product.TenTP}): Dùng placeholder vì giá trị HinhAnh "${imageUrlFromApi}" không hợp lệ.`);
+        } else if (imageUrl !== placeholderImageUrl) {
+             console.log(`Sản phẩm ${index} (${product.TenTP}): Đặt src ảnh =`, imageUrl);
+        }
+
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg hover:border-blue-300 flex flex-col';
+
+        card.innerHTML = `
+          <div class="aspect-w-16">
+            <img
+              src="${imageUrl}"
+              alt="Bìa sách ${product.TenTP || 'Tác phẩm'}"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              onerror="console.error('Lỗi tải ảnh:', this.src); this.onerror=null; this.src='${placeholderImageUrl}';"
+            >
+          </div>
+          <div class="p-4 flex flex-col flex-grow">
+            <h2 class="text-xl font-semibold mb-2 text-blue-700">
+              ${product.TenTP || 'Chưa có tên'} 
+              <span class="text-sm text-gray-500 font-normal">
+                (${product.NamXuatBan || 'N/A'})
+              </span>
+            </h2>
+            <p class="mb-3 text-sm text-gray-600 italic flex-grow">
+              ${product.MoTaTacPham || product.MoTa || 'Chưa có mô tả.'}
+            </p>
+            <div class="text-xs text-gray-800 mt-auto">
+              <p><strong>Tác giả:</strong> ${product.TenTacGia || product.MaTG || 'N/A'}</p>
+              <p><strong>Thể loại:</strong> ${product.TenTheLoai || product.MaTL || 'N/A'}</p>
+            </div>
+          </div>
+        `;
+        productContainer.appendChild(card);
+      });
+    }
+
+    // Hàm debounce để hạn chế số lần gọi API khi người dùng gõ tìm kiếm
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), wait);
+      };
+    }
+
+    searchInput.addEventListener('input', debounce((e) => {
+      fetchProducts(e.target.value);
+    }, 350));
+
+    window.onload = () => {
+      fetchProducts();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tác Giả Văn Học Việt Nam</title>
+  <!-- Tailwind CSS qua CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    /* Cải tiến hiệu ứng nền gradient cho toàn trang */
+    body {
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    }
+    /* Hiệu ứng shadow cho card tăng dần theo hover */
+    .author-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .author-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="text-gray-800 min-h-screen p-8">
+
+  <header class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold text-blue-700">Tác Giả Văn Học Việt Nam</h1>
+    <p class="text-lg text-gray-600 mt-2">Khám phá những cây bút tiêu biểu</p>
+  </header>
+
+  <main>
+    <!-- Container hiển thị danh sách tác giả -->
+    <div id="authorsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <p class="text-center text-gray-500 col-span-full">Đang tải danh sách tác giả...</p>
+    </div>
+  </main>
+
+  <footer class="text-center mt-12 text-gray-500 text-sm">
+    <p>Website giới thiệu tác giả văn học</p>
+  </footer>
+
+  <script>
+    // --- Dữ liệu mẫu về tác giả (5 cũ + 20 mới = 25 tác giả) ---
+    const authorData = [
+      {
+        id: 1,
+        name: "Nguyễn Du",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Nguy%E1%BB%85n_Du_portrait.jpg/200px-Nguy%E1%BB%85n_Du_portrait.jpg",
+        shortDescription: "Đại thi hào dân tộc, tác giả Truyện Kiều bất hủ.",
+        birthYear: 1765,
+        deathYear: 1820,
+        hometown: "Hà Nội",
+        works: "Truyện Kiều"
+      },
+      {
+        id: 2,
+        name: "Nam Cao",
+        image: "https://cdn.britannica.com/09/184509-050-0B0F6F1D/Nam-Cao.jpg",
+        shortDescription: "Nhà văn hiện thực với tác phẩm về người nông dân và trí thức nghèo.",
+        birthYear: 1917,
+        deathYear: 1951,
+        hometown: "Hà Nội",
+        works: "Chí Phèo, Lão Hạc"
+      },
+      {
+        id: 3,
+        name: "Hồ Xuân Hương",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/H%E1%BB%93_Xu%C3%A2n_H%C6%B0%C6%A1ng.jpg/220px-H%E1%BB%93_Xu%C3%A2n_H%C6%B0%C6%A1ng.jpg",
+        shortDescription: "\"Bà chúa thơ Nôm\" với những vần thơ độc đáo và trào phúng.",
+        birthYear: 1772,
+        deathYear: 1822,
+        hometown: "Thanh Hóa",
+        works: "Thơ Nôm"
+      },
+      {
+        id: 4,
+        name: "Tô Hoài",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/T%C3%B4_Ho%C3%A0i.jpg/220px-T%C3%B4_Ho%C3%A0i.jpg",
+        shortDescription: "Nhà văn của tuổi thơ với tác phẩm 'Dế Mèn phiêu lưu ký'.",
+        birthYear: 1920,
+        deathYear: 2014,
+        hometown: "Hà Nội",
+        works: "Dế Mèn phiêu lưu ký"
+      },
+      {
+        id: 5,
+        name: "Xuân Diệu",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Xu%C3%A2n_Di%E1%BB%87u.jpg/200px-Xu%C3%A2n_Di%E1%BB%87u.jpg",
+        shortDescription: "\"Ông hoàng thơ tình\" với vần thơ nồng cháy, tha thiết.",
+        birthYear: 1916,
+        deathYear: 1985,
+        hometown: "Hà Nội",
+        works: "Thơ tình"
+      },
+      // --- 20 tác giả mới (sử dụng dữ liệu mẫu) ---
+      {
+        id: 6,
+        name: "Vũ Trọng Phụng",
+        image: "https://placehold.co/100x100/eee/ccc?text=V%C5%A9+Tr%E1%BB%8Dng+Ph%E1%BB%A7ng",
+        shortDescription: "Nhà văn châm biếm, tác giả của 'Số đỏ'.",
+        birthYear: 1912,
+        deathYear: 1939,
+        hometown: "Hà Nội",
+        works: "Số đỏ"
+      },
+      {
+        id: 7,
+        name: "Nguyễn Khuyến",
+        image: "https://placehold.co/100x100/eee/ccc?text=Nguy%E1%BB%85n+Khuy%E1%BB%81n",
+        shortDescription: "Nhà thơ trữ tình với tâm hồn chan chứa dân tộc.",
+        birthYear: 1835,
+        deathYear: 1909,
+        hometown: "Nghệ An",
+        works: "Bài thơ và ca dao"
+      },
+      {
+        id: 8,
+        name: "Chế Lan Viên",
+        image: "https://placehold.co/100x100/eee/ccc?text=Ch%E1%BA%A3+Lan+Vi%C3%AAn",
+        shortDescription: "Nhà thơ hiện đại với phong cách tự do, bay bổng.",
+        birthYear: 1937,
+        deathYear: 1998,
+        hometown: "Hà Nội",
+        works: "Bài thơ hiện đại"
+      },
+      {
+        id: 9,
+        name: "Hoàng Cầm",
+        image: "https://placehold.co/100x100/eee/ccc?text=Ho%C3%A0ng+C%E1%BA%A7m",
+        shortDescription: "Nhà thơ ưu tư, tâm hồn cảm thông.",
+        birthYear: 1922,
+        deathYear: 2010,
+        hometown: "Hà Nội",
+        works: "Thơ ưu tư"
+      },
+      {
+        id: 10,
+        name: "Nhất Linh",
+        image: "https://placehold.co/100x100/eee/ccc?text=Nh%E1%BA%A5t+Linh",
+        shortDescription: "Biểu tượng văn học hiện đại, bút sắc bén châm biếm.",
+        birthYear: 1902,
+        deathYear: 1963,
+        hometown: "Hà Nội",
+        works: "Văn học hiện đại"
+      },
+      {
+        id: 11,
+        name: "Ngô Tất Tố",
+        image: "https://placehold.co/100x100/eee/ccc?text=Ng%C3%B4+T%E1%BA%A5t+T%E1%BB%91",
+        shortDescription: "Nhà văn nhân văn với tác phẩm để đời.",
+        birthYear: 1897,
+        deathYear: 1942,
+        hometown: "Hà Nội",
+        works: "Lá phiếu thuốc"
+      },
+      {
+        id: 12,
+        name: "Tản Đà",
+        image: "https://placehold.co/100x100/eee/ccc?text=T%E1%BA%A3n+%C4%90%C3%A0",
+        shortDescription: "Nhà thơ lãng mạn, tự do và mộc mạc.",
+        birthYear: 1889,
+        deathYear: 1939,
+        hometown: "Hà Nội",
+        works: "Tản Đà thơ"
+      },
+      {
+        id: 13,
+        name: "Nguyễn Tuân",
+        image: "https://placehold.co/100x100/eee/ccc?text=Nguy%E1%BB%85n+Tu%C3%A2n",
+        shortDescription: "Trí thức văn chương, chữ như vàng ròng.",
+        birthYear: 1910,
+        deathYear: 1996,
+        hometown: "Hà Nội",
+        works: "Chữ như vàng ròng"
+      },
+      {
+        id: 14,
+        name: "Bùi Giáng",
+        image: "https://placehold.co/100x100/eee/ccc?text=B%C3%B9i+Gi%C3%A1ng",
+        shortDescription: "Nhà thơ giã từ với âm vang của tâm hồn.",
+        birthYear: 1925,
+        deathYear: 1988,
+        hometown: "Hà Nội",
+        works: "Tiếng lòng của Bùi Giáng"
+      },
+      {
+        id: 15,
+        name: "Quang Dũng",
+        image: "https://placehold.co/100x100/eee/ccc?text=Quang+D%C5%A9ng",
+        shortDescription: "Nhà thơ triết lý, câu chữ bồi hồi tâm hồn.",
+        birthYear: 1920,
+        deathYear: 1990,
+        hometown: "Hà Nội",
+        works: "Thơ và Triết lý"
+      },
+      {
+        id: 16,
+        name: "Huyền Diệu",
+        image: "https://placehold.co/100x100/eee/ccc?text=Huy%E1%BB%87n+Di%E1%BB%87u",
+        shortDescription: "Tác giả đương đại với phong cách phá cách, trẻ trung.",
+        birthYear: 1980,
+        deathYear: "", // Còn sống
+        hometown: "TP. Hồ Chí Minh",
+        works: "Thơ đương đại"
+      },
+      {
+        id: 17,
+        name: "Minh Châu",
+        image: "https://placehold.co/100x100/eee/ccc?text=Minh+Ch%C3%A2u",
+        shortDescription: "Nhà văn tinh tế, khám phá chiều sâu của tâm hồn.",
+        birthYear: 1985,
+        deathYear: "",
+        hometown: "Đà Nẵng",
+        works: "Văn học đa sắc"
+      },
+      {
+        id: 18,
+        name: "Lâm Anh",
+        image: "https://placehold.co/100x100/eee/ccc?text=L%C3%A2m+Anh",
+        shortDescription: "Tác giả đam mê kể chuyện sống động, chạm tim người đọc.",
+        birthYear: 1990,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Truyện kể hiện đại"
+      },
+      {
+        id: 19,
+        name: "Trần Quý",
+        image: "https://placehold.co/100x100/eee/ccc?text=Tr%E1%BA%A7n+Quy%C3%A2y",
+        shortDescription: "Nhà văn giản dị, chất thơ về cuộc sống.",
+        birthYear: 1950,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Văn chương giản dị"
+      },
+      {
+        id: 20,
+        name: "Phạm Minh",
+        image: "https://placehold.co/100x100/eee/ccc?text=Ph%E1%BA%A3m+Minh",
+        shortDescription: "Tác giả đổi mới, cái nhìn tươi mới về xã hội.",
+        birthYear: 1970,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Hiện thực xã hội"
+      },
+      {
+        id: 21,
+        name: "Hà Hùng",
+        image: "https://placehold.co/100x100/eee/ccc?text=H%C3%A0+H%C6%B0ng",
+        shortDescription: "Nhà văn trẻ, khát khao sáng tạo bứt phá.",
+        birthYear: 1995,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Sáng tác trẻ"
+      },
+      {
+        id: 22,
+        name: "Song Lâm",
+        image: "https://placehold.co/100x100/eee/ccc?text=Song+L%C3%A2m",
+        shortDescription: "Tác giả với tâm hồn lãng mạn, nhạy cảm.",
+        birthYear: 1988,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Thi ca mộc mạc"
+      },
+      {
+        id: 23,
+        name: "Vũ Minh",
+        image: "https://placehold.co/100x100/eee/ccc?text=V%C5%A9+Minh",
+        shortDescription: "Nhà văn sắc sảo, hé lộ góc khuất xã hội.",
+        birthYear: 1960,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Châm biếm xã hội"
+      },
+      {
+        id: 24,
+        name: "Đỗ Anh",
+        image: "https://placehold.co/100x100/eee/ccc?text=%C4%90%E1%BB%97+Anh",
+        shortDescription: "Tác giả nghệ thuật, cảm xúc sống động.",
+        birthYear: 1975,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Văn chương cảm xúc"
+      },
+      {
+        id: 25,
+        name: "Dương Trí",
+        image: "https://placehold.co/100x100/eee/ccc?text=D%C6%B0%C6%A1ng+Tr%C3%AD",
+        shortDescription: "Nhà văn đam mê chinh phục thử thách cuộc đời.",
+        birthYear: 1982,
+        deathYear: "",
+        hometown: "Hà Nội",
+        works: "Truyện ngắn tâm đắc"
+      }
+    ];
+
+    // --- Hàm hiển thị danh sách tác giả ---
+    function displayAuthors(authors) {
+      const container = document.getElementById('authorsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (!authors || authors.length === 0) {
+        container.innerHTML = '<p class="text-center text-red-500 col-span-full">Không có dữ liệu tác giả để hiển thị.</p>';
+        return;
+      }
+
+      authors.forEach(author => {
+        const card = document.createElement('div');
+        card.className = 'author-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row items-start p-6 border border-gray-200';
+        card.setAttribute('data-author-id', author.id);
+
+        card.innerHTML = `
+          <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+            <img src="${author.image || 'https://placehold.co/100x100/eee/ccc?text=Ảnh'}"
+                 alt="Ảnh ${author.name}"
+                 class="w-24 h-24 md:w-28 md:h-28 object-cover rounded-full border-2 border-gray-300"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://placehold.co/100x100/eee/ccc?text=Lỗi+Ảnh';">
+          </div>
+          <div class="flex-grow">
+            <h2 class="text-3xl font-bold text-blue-600 mb-2">${author.name}</h2>
+            <p class="text-gray-700 text-base mb-3 short-desc">${author.shortDescription}</p>
+            <div class="details-section hidden text-gray-700 text-sm mb-3">
+              <p><strong>Năm sinh - Năm mất:</strong> ${author.birthYear} ${author.deathYear ? "- " + author.deathYear : ""}</p>
+              <p><strong>Quê quán:</strong> ${author.hometown}</p>
+              <p><strong>Các tác phẩm tiêu biểu:</strong> ${author.works}</p>
+            </div>
+            <button class="read-more-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded transition-colors duration-200">
+              Xem thêm
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // --- Xử lý sự kiện click nút "Xem thêm" ---
+    function setupReadMore() {
+      const container = document.getElementById('authorsContainer');
+      if (!container) return;
+      container.addEventListener('click', function(event) {
+        if (event.target.classList.contains('read-more-btn')) {
+          const button = event.target;
+          const card = button.closest('.author-card');
+          if (!card) return;
+          const shortDesc = card.querySelector('.short-desc');
+          const details = card.querySelector('.details-section');
+          if (!shortDesc || !details) return;
+          const isHidden = details.classList.contains('hidden');
+          if (isHidden) {
+            details.classList.remove('hidden');
+            shortDesc.classList.add('hidden');
+            button.textContent = 'Ẩn bớt';
+            button.classList.replace('bg-blue-500', 'bg-gray-500');
+            button.classList.replace('hover:bg-blue-600', 'hover:bg-gray-600');
+          } else {
+            details.classList.add('hidden');
+            shortDesc.classList.remove('hidden');
+            button.textContent = 'Xem thêm';
+            button.classList.replace('bg-gray-500', 'bg-blue-500');
+            button.classList.replace('hover:bg-gray-600', 'hover:bg-blue-600');
+          }
+        }
+      });
+    }
+
+    // --- Hiệu ứng GSAP cho các card tác giả khi load trang ---
+    function animateCards() {
+      // Lấy tất cả thẻ card, rồi chạy animation từ dưới lên với fade in
+      gsap.from(".author-card", {
+        opacity: 0,
+        y: 50,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+    }
+
+    // --- Khởi chạy khi trang tải xong ---
+    window.onload = () => {
+      displayAuthors(authorData);
+      setupReadMore();
+      animateCards();
+    };
+  </script>
+
+</body>
+</html>
