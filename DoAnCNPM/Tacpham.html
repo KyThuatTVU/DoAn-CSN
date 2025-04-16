@@ -3,45 +3,345 @@
 <head>
   <meta charset="UTF-8">
   <title>Danh Sách Tác Phẩm</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Định dạng tỷ lệ khung hình 16:9 */
+    /* Custom CSS */
+
+    /* Định dạng tỷ lệ khung hình 16:9 cho ảnh */
     .aspect-w-16 {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 56.25%; /* 9/16 = 0.5625 */
     }
-    .aspect-w-16 > * {
+    .aspect-w-16 > img {
       position: absolute;
       height: 100%;
       width: 100%;
       top: 0;
       left: 0;
-      object-fit: cover;
+      object-fit: contain; /* Hiển thị ảnh đầy đủ, không bị cắt hay co dãn */
+      background-color: #f0f0f0; /* Màu nền nhạt cho khung ảnh */
     }
+
+    /* Đảm bảo thông báo tải dữ liệu chiếm toàn bộ chiều rộng */
+    #loadingMessage {
+      grid-column: 1 / -1;
+    }
+
+    body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-700, 
+        .dark-mode .text-gray-800 {
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-600 {
+            color: #cbd5e0;
+        }
+        .dark-mode .bg-gray-50 {
+            background-color: #1a202c;
+        }
+        .dark-mode .bg-gray-200 {
+            background-color: #4a5568;
+        }
+        .dark-mode .text-gray-500 {
+            color: #a0aec0;
+        }
+        .dark-mode .border-gray-700 {
+            border-color: #4a5568;
+        }
+        .dark-mode .shadow-lg, 
+        .dark-mode .shadow-md,
+        .dark-mode .shadow-xl {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .bg-indigo-100 {
+            background-color: #434190;
+        }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 min-h-screen p-8">
-  <h1 class="text-4xl font-bold text-center mb-10">Danh Sách Tác Phẩm</h1>
+<body>
+  <header class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white">
+    <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+      <!-- Tiêu đề chính -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6"
+          style="font-family: 'Playfair Display', serif;">
+        Kho Tàng Văn Học Việt Nam
+      </h1>
+      
+      <!-- Đoạn mô tả -->
+      <p class="text-xl md:text-2xl mt-4 font-light opacity-90"
+         style="font-family: 'Merriweather', serif;">
+        Khám phá tinh hoa văn chương Việt qua các thời kỳ
+      </p>
+      
+      <!-- Nút kêu gọi hành động (CTA) -->
+      <div class="flex justify-center mt-10">
+        <a href="#tac-pham"
+           class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300
+                  px-8 py-4 rounded-full font-medium shadow-md"
+           style="font-family: 'Merriweather', serif;">
+          Khám phá ngay
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  
+      <!-- Navigation Menu -->
+   <!-- Thanh Nav -->
+   <nav class="bg-white shadow-lg sticky top-0 z-30">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <!-- Logo / Brand -->
+        <div class="text-2xl font-bold text-indigo-700">
+          Văn Học Việt
+        </div>
+    
+        <!-- Menu Desktop -->
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="index.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Trang Chủ</a></li>
+          <li><a href="Gioithieu.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a></li>
+          <li><a href="Tacpham.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a></li>
+          <li><a href="#tac-gia" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a></li>
+          <li><a href="#lich-su" class="text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a></li>
+          <li><a href="#tai-nguyen" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a></li>
+        </ul>
+    
+        <!-- Các nút Login/Register Desktop -->
+        <div class="hidden md:flex items-center space-x-4">
+          <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition duration-300">Đăng nhập</button>
+          <button id="register-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+        </div>
+    
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    
+      <!-- Mobile Menu (ẩn theo mặc định) -->
+      <div id="mobile-menu" class="md:hidden hidden">
+        <div class="px-4 pt-2 pb-4 space-y-1">
+          <a href="#gioi-thieu" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a>
+          <a href="#tac-pham" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a>
+          <a href="#tac-gia" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a>
+          <a href="#lich-su" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a>
+          <a href="#tai-nguyen" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a>
+          <div class="mt-2 border-t pt-2">
+            <button onclick="openLoginModal()" class="w-full text-left text-gray-700 hover:text-indigo-700">Đăng nhập</button>
+            <button onclick="openRegisterModal()" class="w-full text-left text-gray-700 hover:text-indigo-700 mt-1">Đăng ký</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Xử lý tìm kiếm:
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const authModal = document.getElementById('auth-modal');
+        const closeAuthModal = document.getElementById('close-auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+      
+        // Xử lý đăng nhập/đăng ký
+        function openLoginModal() {
+          authModalTitle.textContent = 'Đăng nhập';
+          loginForm.classList.remove('hidden');
+          registerForm.classList.add('hidden');
+          authModal.classList.remove('hidden');
+        }
+      
+        function openRegisterModal() {
+          authModalTitle.textContent = 'Đăng ký';
+          loginForm.classList.add('hidden');
+          registerForm.classList.remove('hidden');
+          authModal.classList.remove('hidden');
+        }
+      
+        // Thêm event listeners cho các nút
+        loginBtn.addEventListener('click', openLoginModal);
+        registerBtn.addEventListener('click', openRegisterModal);
+      
+        // Đóng modal khi click nút close
+        closeAuthModal.addEventListener('click', () => {
+          authModal.classList.add('hidden');
+        });
+      
+        // Đóng modal khi click bên ngoài
+        authModal.addEventListener('click', (e) => {
+          if (e.target === authModal) {
+            authModal.classList.add('hidden');
+          }
+        });
+      
+        // Chuyển đổi giữa form đăng nhập và đăng ký
+        switchToRegister.addEventListener('click', (e) => {
+          e.preventDefault();
+          openRegisterModal();
+        });
+      
+        switchToLogin.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLoginModal();
+        });
+      
+        // Xử lý tìm kiếm
+        function redirectToResults() {
+          const query = searchInput.value.trim();
+          if (query) {
+            window.location.href = `results.html?q=${encodeURIComponent(query)}`;
+          }
+        }
+      
+        searchBtn.addEventListener('click', redirectToResults);
+        searchInput.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            redirectToResults();
+          }
+        });
+      
+        // Xử lý mobile menu
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      });
+  
+      // Khai báo hàm toàn cục để có thể gọi từ mọi nơi
+      window.openLoginModal = function() {
+          const authModal = document.getElementById('auth-modal');
+          const authModalTitle = document.getElementById('auth-modal-title');
+          const loginForm = document.getElementById('login-form');
+          const registerForm = document.getElementById('register-form');
+  
+          authModalTitle.textContent = 'Đăng nhập';
+          loginForm.classList.remove('hidden');
+          registerForm.classList.add('hidden');
+          authModal.classList.remove('hidden');
+      }
+  
+      window.openRegisterModal = function() {
+          const authModal = document.getElementById('auth-modal');
+          const authModalTitle = document.getElementById('auth-modal-title');
+          const loginForm = document.getElementById('login-form');
+          const registerForm = document.getElementById('register-form');
+  
+          authModalTitle.textContent = 'Đăng ký';
+          loginForm.classList.add('hidden');
+          registerForm.classList.remove('hidden');
+          authModal.classList.remove('hidden');
+      }
+    </script>
+    
+      <!-- Login/Register Modal -->
+      <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+          <div class="bg-white rounded-lg max-w-md w-full">
+              <div class="p-6">
+                  <div class="flex justify-between items-center mb-6">
+                      <h3 id="auth-modal-title" class="text-2xl font-bold text-gray-800">Đăng nhập</h3>
+                      <button id="close-auth-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                          <i class="fas fa-times text-xl"></i>
+                      </button>
+                  </div>
+                  
+                  <!-- Login Form -->
+                  <div id="login-form">
+                      <div class="mb-4">
+                          <label for="email" class="block text-gray-700 mb-2">Email</label>
+                          <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                      </div>
+                      <div class="mb-6">
+                          <label for="password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                          <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                      </div>
+                      <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng nhập</button>
+                      <div class="mt-4 text-center text-gray-600">
+                          Chưa có tài khoản? <a href="#" id="switch-to-register" class="text-indigo-600 hover:text-indigo-800">Đăng ký ngay</a>
+                      </div>
+                  </div>
+                  
+                  <!-- Register Form -->
+                  <div id="register-form" class="hidden">
+                      <div class="mb-4">
+                          <label for="name" class="block text-gray-700 mb-2">Họ tên</label>
+                          <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Họ tên của bạn">
+                      </div>
+                      <div class="mb-4">
+                          <label for="reg-email" class="block text-gray-700 mb-2">Email</label>
+                          <input type="email" id="reg-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                      </div>
+                      <div class="mb-4">
+                          <label for="reg-password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                          <input type="password" id="reg-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                      </div>
+                      <div class="mb-6">
+                          <label for="confirm-password" class="block text-gray-700 mb-2">Xác nhận mật khẩu</label>
+                          <input type="password" id="confirm-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nhập lại mật khẩu">
+                      </div>
+                      <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+                      <div class="mt-4 text-center text-gray-600">
+                          Đã có tài khoản? <a href="#" id="switch-to-login" class="text-indigo-600 hover:text-indigo-800">Đăng nhập</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div><br>
+  <h1 class="text-4xl font-bold text-center mb-10 text-gray-700">Danh Sách Tác Phẩm</h1>
 
+  <!-- Search Bar -->
   <div class="max-w-3xl mx-auto mb-8">
     <input id="searchInput" type="text" placeholder="Tìm kiếm tên tác phẩm, tác giả, thể loại..."
-           class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+           class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition duration-200 ease-in-out">
   </div>
 
-  <div id="productContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <p id="loadingMessage" class="text-center text-gray-500 col-span-full">Đang tải dữ liệu...</p>
+  <!-- Product Grid Container -->
+  <div id="productContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Loading Message -->
+    <p id="loadingMessage" class="text-center text-gray-500 col-span-full py-10 text-lg">
+      Đang tải dữ liệu...
+    </p>
   </div>
 
   <script>
     const API_BASE_URL = 'http://localhost:3000'; // Địa chỉ backend của bạn
-
-    // Sử dụng ảnh placeholder được đặt từ backend (đảm bảo file 'placeholder.png' nằm trong thư mục 'images')
-    const placeholderImageUrl = `${API_BASE_URL}/img/placeholder.png`;
+    // Đảm bảo đường dẫn placeholder đúng với cấu hình backend
+    const placeholderImageUrl = `${API_BASE_URL}/images/placeholder.png`;
 
     const productContainer = document.getElementById('productContainer');
     const loadingMessage = document.getElementById('loadingMessage');
     const searchInput = document.getElementById('searchInput');
 
+    /**
+     * Lấy dữ liệu tác phẩm từ API dựa trên từ khóa tìm kiếm.
+     * @param {string} [query=''] - Từ khóa tìm kiếm.
+     */
     async function fetchProducts(query = '') {
       if (loadingMessage) loadingMessage.style.display = 'block';
       productContainer.innerHTML = '';
@@ -51,97 +351,116 @@
         const url = query
           ? `${API_BASE_URL}/api/tacpham?q=${encodeURIComponent(query)}`
           : `${API_BASE_URL}/api/tacpham`;
-        console.log(`Đang gọi API: ${url}`);
+        console.log(`Fetching API: ${url}`);
 
         const response = await fetch(url);
         if (!response.ok) {
           const errorText = await response.text();
-          console.error(`Lỗi API: Status ${response.status}, Phản hồi: ${errorText}`);
+          console.error(`API Error: Status ${response.status}, Response: ${errorText}`);
           throw new Error(`Lỗi kết nối API (${response.status})`);
         }
 
         const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
           const responseText = await response.text();
-          console.error("API không trả về JSON:", responseText);
-          throw new Error(`Định dạng phản hồi không đúng: ${contentType}`);
+          console.error("API did not return JSON. Response:", responseText);
+          throw new Error(`Định dạng phản hồi không đúng từ API: ${contentType || 'Không xác định'}`);
         }
 
         const products = await response.json();
-        console.log("Dữ liệu tác phẩm nhận được:", products);
+        console.log("Received product data:", products);
         displayProducts(products);
       } catch (error) {
-        console.error('Có lỗi xảy ra khi lấy dữ liệu:', error);
-        if (loadingMessage) loadingMessage.style.display = 'none';
+        console.error('Error fetching or processing data:', error);
         productContainer.innerHTML =
-          `<p class="text-red-600 text-center col-span-full p-4 bg-red-100 rounded border border-red-300">
-             Không thể tải dữ liệu tác phẩm. Lý do: ${error.message}.<br/>
-             Vui lòng kiểm tra:
-             <ul>
-               <li>- Backend server (Port ${API_BASE_URL.split(':')[2]}) có đang chạy không?</li>
-               <li>- Kết nối mạng và CORS phía backend.</li>
-               <li>- Console (F12) trong trình duyệt để xem chi tiết lỗi.</li>
+          `<div class="col-span-full p-6 bg-red-100 text-red-800 rounded-lg border border-red-300 shadow-md">
+             <h3 class="font-semibold text-xl mb-2">Rất tiếc, không thể tải dữ liệu tác phẩm!</h3>
+             <p class="mb-3">Đã xảy ra lỗi: ${error.message}.</p>
+             <p class="font-medium text-base">Vui lòng kiểm tra:</p>
+             <ul class="list-disc list-inside ml-4 text-base mt-1">
+               <li>Máy chủ backend tại <code class="bg-red-200 px-1 rounded text-xs">${API_BASE_URL}</code> có đang hoạt động không?</li>
+               <li>Đường dẫn API <code class="bg-red-200 px-1 rounded text-xs">/api/tacpham</code> có chính xác không?</li>
+               <li>Kết nối mạng ổn định?</li>
+               <li>Kiểm tra Console (F12) để xem lỗi chi tiết.</li>
              </ul>
-           </p>`;
+           </div>`;
       } finally {
-         if (loadingMessage) loadingMessage.style.display = 'none';
+         setTimeout(() => {
+            if (loadingMessage) loadingMessage.style.display = 'none';
+         }, 0);
       }
     }
 
+    /**
+     * Hiển thị các tác phẩm lên trang.
+     * @param {Array} products - Mảng đối tượng sản phẩm.
+     */
     function displayProducts(products) {
       productContainer.innerHTML = '';
 
       if (!Array.isArray(products)) {
-        console.error("Lỗi hiển thị: Dữ liệu không phải là mảng:", products);
-        productContainer.innerHTML = '<p class="text-center text-red-500 col-span-full">Lỗi: Dữ liệu nhận được có định dạng không hợp lệ.</p>';
+        console.error("Display Error: Data received is not an array:", products);
+        productContainer.innerHTML = '<p class="text-center text-red-600 col-span-full py-10">Lỗi: Dữ liệu nhận được không hợp lệ.</p>';
         return;
       }
 
       if (products.length === 0) {
-        productContainer.innerHTML = '<p class="text-center text-gray-500 col-span-full">Không tìm thấy tác phẩm nào phù hợp.</p>';
+        productContainer.innerHTML = '<p class="text-center text-gray-500 col-span-full py-10">Không tìm thấy tác phẩm nào phù hợp.</p>';
         return;
       }
 
       products.forEach((product, index) => {
         const imageUrlFromApi = product.HinhAnh;
-        console.log(`Sản phẩm ${index} (${product.TenTP}): HinhAnh từ API =`, imageUrlFromApi);
+        console.log(`Product ${index} (${product.TenTP}): HinhAnh from API =`, imageUrlFromApi);
 
-        const imageUrl = (imageUrlFromApi && typeof imageUrlFromApi === 'string' && imageUrlFromApi.trim().startsWith('http'))
-                           ? imageUrlFromApi.trim()
-                           : placeholderImageUrl;
-
-        if (imageUrl === placeholderImageUrl && imageUrlFromApi && imageUrlFromApi.trim()) {
-            console.warn(`Sản phẩm ${index} (${product.TenTP}): Dùng placeholder vì giá trị HinhAnh "${imageUrlFromApi}" không hợp lệ.`);
-        } else if (imageUrl !== placeholderImageUrl) {
-             console.log(`Sản phẩm ${index} (${product.TenTP}): Đặt src ảnh =`, imageUrl);
+        let imageUrl = placeholderImageUrl;
+        if (imageUrlFromApi && typeof imageUrlFromApi === 'string' && imageUrlFromApi.trim()) {
+          const potentialUrl = imageUrlFromApi.trim();
+          try {
+            if (potentialUrl.startsWith('http://') || potentialUrl.startsWith('https://')) {
+              new URL(potentialUrl);
+              imageUrl = potentialUrl;
+            } else if (potentialUrl.startsWith('/')) {
+              imageUrl = `${API_BASE_URL}${potentialUrl}`;
+            } else {
+              imageUrl = `${API_BASE_URL}/images/${potentialUrl}`;
+            }
+            console.log(`Product ${index} (${product.TenTP}): Resolved image URL =`, imageUrl);
+          } catch (e) {
+            console.warn(`Product ${index} (${product.TenTP}): Invalid URL format for HinhAnh "${potentialUrl}". Using placeholder.`);
+            imageUrl = placeholderImageUrl;
+          }
+        } else {
+          console.warn(`Product ${index} (${product.TenTP}): HinhAnh is missing or invalid. Using placeholder.`);
         }
 
         const card = document.createElement('div');
-        card.className = 'bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg hover:border-blue-300 flex flex-col';
+        // Tăng kích thước nội dung trong khung: padding tăng, font size lớn hơn
+        card.className = 'bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-all duration-300 ease-in-out flex flex-col p-6';
 
         card.innerHTML = `
-          <div class="aspect-w-16">
+          <div class="aspect-w-16 bg-gray-200 mb-4">
             <img
               src="${imageUrl}"
               alt="Bìa sách ${product.TenTP || 'Tác phẩm'}"
-              class="w-full h-full object-cover"
+              class="w-full h-full"
               loading="lazy"
-              onerror="console.error('Lỗi tải ảnh:', this.src); this.onerror=null; this.src='${placeholderImageUrl}';"
+              onerror="this.onerror=null; this.src='${placeholderImageUrl}';"
             >
           </div>
-          <div class="p-4 flex flex-col flex-grow">
-            <h2 class="text-xl font-semibold mb-2 text-blue-700">
-              ${product.TenTP || 'Chưa có tên'} 
-              <span class="text-sm text-gray-500 font-normal">
-                (${product.NamXuatBan || 'N/A'})
+          <div class="flex flex-col flex-grow">
+            <h2 class="text-2xl font-bold mb-3 text-blue-800">
+              ${product.TenTP || 'Chưa có tên'}
+              <span class="text-lg text-gray-500 font-normal ml-2">
+                (${(product.NamXuatBan && product.NamXuatBan !== '0') ? product.NamXuatBan : 'N/A'})
               </span>
             </h2>
-            <p class="mb-3 text-sm text-gray-600 italic flex-grow">
-              ${product.MoTaTacPham || product.MoTa || 'Chưa có mô tả.'}
+            <p class="mb-4 text-lg text-gray-700 flex-grow leading-relaxed">
+              ${product.MoTaTacPham || product.MoTa || 'Chưa có mô tả chi tiết cho tác phẩm này.'}
             </p>
-            <div class="text-xs text-gray-800 mt-auto">
-              <p><strong>Tác giả:</strong> ${product.TenTacGia || product.MaTG || 'N/A'}</p>
-              <p><strong>Thể loại:</strong> ${product.TenTheLoai || product.MaTL || 'N/A'}</p>
+            <div class="text-base text-gray-600 mt-auto border-t border-gray-200 pt-4">
+              <p><strong class="font-medium text-gray-800">Tác giả:</strong> ${product.TenTacGia || product.MaTG || 'Chưa rõ'}</p>
+              <p><strong class="font-medium text-gray-800">Thể loại:</strong> ${product.TenTheLoai || product.MaTL || 'Chưa rõ'}</p>
             </div>
           </div>
         `;
@@ -149,7 +468,7 @@
       });
     }
 
-    // Hàm debounce để hạn chế số lần gọi API khi người dùng gõ tìm kiếm
+    // Hàm debounce để giới hạn số lần gọi API khi người dùng gõ tìm kiếm
     function debounce(func, wait) {
       let timeout;
       return function(...args) {
@@ -159,7 +478,7 @@
     }
 
     searchInput.addEventListener('input', debounce((e) => {
-      fetchProducts(e.target.value);
+      fetchProducts(e.target.value.trim());
     }, 350));
 
     window.onload = () => {

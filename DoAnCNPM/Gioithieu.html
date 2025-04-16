@@ -63,139 +63,262 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+      <!-- Header Section -->
     <!-- Phần import Google Fonts (có thể đặt trong <head>) -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@300&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@300&display=swap"
+  rel="stylesheet"
+/>
 
-    <header class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white">
-        <div class="container mx-auto px-4 py-16 md:py-24 text-center">
-            <!-- Tiêu đề chính -->
-            <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
-                Kho Tàng Văn Học Việt Nam
-            </h1>
-            
-            <!-- Đoạn mô tả -->
-            <p class="text-xl md:text-2xl mt-4 font-light opacity-90" style="font-family: 'Merriweather', serif;">
-                Khám phá tinh hoa văn chương Việt qua các thời kỳ
-            </p>
-            
-            <!-- Nút kêu gọi hành động (CTA) -->
-            <div class="flex justify-center mt-10">
-                <a href="#muc-dich" class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300 px-8 py-4 rounded-full font-medium shadow-md" style="font-family: 'Merriweather', serif;">
-                    Tìm hiểu thêm
-                </a>
-            </div>
-        </div>
-    </header>
+<header class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white">
+  <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+    <!-- Tiêu đề chính -->
+    <h1 class="text-5xl md:text-7xl font-bold mb-6"
+        style="font-family: 'Playfair Display', serif;">
+      Kho Tàng Văn Học Việt Nam
+    </h1>
+    
+    <!-- Đoạn mô tả -->
+    <p class="text-xl md:text-2xl mt-4 font-light opacity-90"
+       style="font-family: 'Merriweather', serif;">
+      Khám phá tinh hoa văn chương Việt qua các thời kỳ
+    </p>
+    
+    <!-- Nút kêu gọi hành động (CTA) -->
+    <div class="flex justify-center mt-10">
+      <a href="#tac-pham"
+         class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300
+                px-8 py-4 rounded-full font-medium shadow-md"
+         style="font-family: 'Merriweather', serif;">
+        Khám phá ngay
+      </a>
+    </div>
+  </div>
+</header>
+
 
     <!-- Navigation Menu -->
-    <nav class="bg-white shadow-md sticky top-0 z-10">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="text-xl font-semibold text-indigo-800">Văn Học Việt</div>
+ <!-- Thanh Nav -->
+ <nav class="bg-white shadow-lg sticky top-0 z-30">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Logo / Brand -->
+      <div class="text-2xl font-bold text-indigo-700">
+        Văn Học Việt
+      </div>
+  
+      <!-- Menu Desktop -->
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="index.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Trang Chủ</a></li>
+        <li><a href="Gioithieu.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a></li>
+        <li><a href="Tacpham.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a></li>
+        <li><a href="#tac-gia" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a></li>
+        <li><a href="#lich-su" class="text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a></li>
+        <li><a href="#tai-nguyen" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a></li>
+      </ul>
+  
+      <!-- Các nút Login/Register Desktop -->
+      <div class="hidden md:flex items-center space-x-4">
+        <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition duration-300">Đăng nhập</button>
+        <button id="register-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+      </div>
+  
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu (ẩn theo mặc định) -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-4 pt-2 pb-4 space-y-1">
+        <a href="#gioi-thieu" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a>
+        <a href="#tac-pham" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a>
+        <a href="#tac-gia" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a>
+        <a href="#lich-su" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a>
+        <a href="#tai-nguyen" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a>
+        <div class="mt-2 border-t pt-2">
+          <button onclick="openLoginModal()" class="w-full text-left text-gray-700 hover:text-indigo-700">Đăng nhập</button>
+          <button onclick="openRegisterModal()" class="w-full text-left text-gray-700 hover:text-indigo-700 mt-1">Đăng ký</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Thanh Tìm Kiếm Riêng Dưới Nav -->
+  <div class="bg-indigo-50 py-4 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="max-w-xl mx-auto relative">
+        <input id="search-input" type="text" placeholder="Tìm kiếm tác phẩm, tác giả..." class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button id="search-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- JavaScript cho tìm kiếm & Mobile Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Xử lý tìm kiếm:
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const loginBtn = document.getElementById('login-btn');
+      const registerBtn = document.getElementById('register-btn');
+      const authModal = document.getElementById('auth-modal');
+      const closeAuthModal = document.getElementById('close-auth-modal');
+      const authModalTitle = document.getElementById('auth-modal-title');
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const switchToRegister = document.getElementById('switch-to-register');
+      const switchToLogin = document.getElementById('switch-to-login');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+    
+      // Xử lý đăng nhập/đăng ký
+      function openLoginModal() {
+        authModalTitle.textContent = 'Đăng nhập';
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        authModal.classList.remove('hidden');
+      }
+    
+      function openRegisterModal() {
+        authModalTitle.textContent = 'Đăng ký';
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        authModal.classList.remove('hidden');
+      }
+    
+      // Thêm event listeners cho các nút
+      loginBtn.addEventListener('click', openLoginModal);
+      registerBtn.addEventListener('click', openRegisterModal);
+    
+      // Đóng modal khi click nút close
+      closeAuthModal.addEventListener('click', () => {
+        authModal.classList.add('hidden');
+      });
+    
+      // Đóng modal khi click bên ngoài
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) {
+          authModal.classList.add('hidden');
+        }
+      });
+    
+      // Chuyển đổi giữa form đăng nhập và đăng ký
+      switchToRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        openRegisterModal();
+      });
+    
+      switchToLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLoginModal();
+      });
+    
+      // Xử lý tìm kiếm
+      function redirectToResults() {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.location.href = `results.html?q=${encodeURIComponent(query)}`;
+        }
+      }
+    
+      searchBtn.addEventListener('click', redirectToResults);
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          redirectToResults();
+        }
+      });
+    
+      // Xử lý mobile menu
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    });
+
+    // Khai báo hàm toàn cục để có thể gọi từ mọi nơi
+    window.openLoginModal = function() {
+        const authModal = document.getElementById('auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        authModalTitle.textContent = 'Đăng nhập';
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        authModal.classList.remove('hidden');
+    }
+
+    window.openRegisterModal = function() {
+        const authModal = document.getElementById('auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        authModalTitle.textContent = 'Đăng ký';
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        authModal.classList.remove('hidden');
+    }
+  </script>
+  
+    <!-- Login/Register Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="auth-modal-title" class="text-2xl font-bold text-gray-800">Đăng nhập</h3>
+                    <button id="close-auth-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
                 
-                <!-- Search Bar (Desktop) -->
-                <div class="hidden md:flex flex-1 mx-10">
-                    <div class="relative w-full max-w-xl mx-auto">
-                        <input id="search-input" type="text" placeholder="Tìm kiếm tác phẩm, tác giả..." class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <button id="search-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
-                            <i class="fas fa-search"></i>
-                        </button>
+                <!-- Login Form -->
+                <div id="login-form">
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                        <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng nhập</button>
+                    <div class="mt-4 text-center text-gray-600">
+                        Chưa có tài khoản? <a href="#" id="switch-to-register" class="text-indigo-600 hover:text-indigo-800">Đăng ký ngay</a>
                     </div>
                 </div>
                 
-                <!-- Login/Register Buttons (Desktop) -->
-                <div class="hidden md:flex items-center space-x-4 mr-8">
-                    <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition duration-300">Đăng nhập</button>
-                    <button id="register-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng ký</button>
-                    <!-- Dark Mode Toggle -->
-                    <button id="dark-mode-toggle" class="text-gray-600 hover:text-indigo-600 transition duration-300">
-                        <i class="fas fa-moon"></i>
-                    </button>
+                <!-- Register Form -->
+                <div id="register-form" class="hidden">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 mb-2">Họ tên</label>
+                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Họ tên của bạn">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reg-email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="reg-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reg-password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                        <input type="password" id="reg-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                    </div>
+                    <div class="mb-6">
+                        <label for="confirm-password" class="block text-gray-700 mb-2">Xác nhận mật khẩu</label>
+                        <input type="password" id="confirm-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nhập lại mật khẩu">
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+                    <div class="mt-4 text-center text-gray-600">
+                        Đã có tài khoản? <a href="#" id="switch-to-login" class="text-indigo-600 hover:text-indigo-800">Đăng nhập</a>
+                    </div>
                 </div>
-                
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center space-x-4">
-                    <!-- Search Button -->
-                    <button id="mobile-search-btn" class="text-gray-500 hover:text-indigo-700 focus:outline-none">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    
-                    <!-- Login Button -->
-                    <button id="mobile-login-btn" class="text-gray-500 hover:text-indigo-700 focus:outline-none">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    
-                    <!-- Dark Mode Toggle -->
-                    <button id="mobile-dark-mode-toggle" class="text-gray-600 hover:text-indigo-600 transition duration-300">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    
-                    <!-- Menu Button -->
-                    <button id="mobile-menu-button" class="text-gray-500 hover:text-indigo-700 focus:outline-none">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Search Bar (Hidden by default) -->
-            <div id="mobile-search" class="md:hidden hidden pb-4">
-                <div class="relative w-full">
-                    <input type="text" placeholder="Tìm kiếm tác phẩm, tác giả..." class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu (Hidden by default) -->
-            <div id="mobile-menu" class="md:hidden hidden pb-4">
-                <a href="#gioi-thieu" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Giới Thiệu</a>
-                <a href="#tac-pham" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Tác Phẩm</a>
-                <a href="#tac-gia" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Tác Giả</a>
-                <a href="#lich-su" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Lịch Sử</a>
-                <a href="#tai-nguyen" class="block py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Tài Nguyên</a>
-                <!-- Login/Register for mobile -->
-                <div class="pt-2 mt-2 border-t border-gray-200">
-                    <button class="block w-full text-left py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Đăng nhập</button>
-                    <button class="block w-full text-left py-2 text-gray-600 hover:text-indigo-600 transition duration-300">Đăng ký</button>
-                </div>
-            </div>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 justify-center">
-                <a href="#gioi-thieu" class="text-gray-600 hover:text-indigo-600 transition duration-300">Giới Thiệu</a>
-                <a href="#tac-pham" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tác Phẩm</a>
-                <a href="#tac-gia" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tác Giả</a>
-                <a href="#lich-su" class="text-gray-600 hover:text-indigo-600 transition duration-300">Lịch Sử</a>
-                <a href="#tai-nguyen" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tài Nguyên</a>
             </div>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Introduction Section -->
-        <section id="gioi-thieu" class="py-16 bg-white">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">Giới Thiệu Về Kho Tàng Văn Học Việt Nam</h2>
-                
-                <div class="prose lg:prose-xl mx-auto text-gray-700 leading-relaxed">
-                    <p class="mb-6">
-                        Chào mừng bạn đến với <strong>Kho Tàng Văn Học Việt Nam</strong> - nơi lưu giữ và lan tỏa những giá trị quý báu của nền văn học dân tộc từ truyền thống đến hiện đại. Đây là không gian trực tuyến dành cho những người yêu thích, nghiên cứu và học tập về văn học Việt Nam.
-                    </p>
-                    
-                    <p class="mb-6">
-                        Trang web được xây dựng với mong muốn giới thiệu một cách có hệ thống về các tác phẩm văn học tiêu biểu, cuộc đời và sự nghiệp của các tác giả nổi tiếng, cũng như lịch sử phát triển của nền văn học nước nhà qua các thời kỳ.
-                    </p>
-                    
-                    <p class="mb-6">
-                        Với giao diện thân thiện, nội dung chính xác và phong phú, chúng tôi hy vọng trang web sẽ trở thành người bạn đồng hành đáng tin cậy trên hành trình khám phá kho tàng văn học Việt Nam của bạn.
-                    </p>
-                </div>
-            </div>
-        </section>
+    </div>
 
         <!-- Purpose Section -->
         <section id="muc-dich" class="py-16 bg-gray-50">

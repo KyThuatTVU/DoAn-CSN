@@ -10,9 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <style>
     /* Cải tiến hiệu ứng nền gradient cho toàn trang */
-    body {
-      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    }
+
     /* Hiệu ứng shadow cho card tăng dần theo hover */
     .author-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -21,15 +19,297 @@
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
     }
+    /* Ensure images don't distort */
+    .author-card img {
+        object-fit: cover; /* or contain, depending on desired cropping */
+    }
+    body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-700, 
+        .dark-mode .text-gray-800 {
+            color: #e2e8f0;
+        }
+        .dark-mode .text-gray-600 {
+            color: #cbd5e0;
+        }
+        .dark-mode .bg-gray-50 {
+            background-color: #1a202c;
+        }
+        .dark-mode .bg-gray-200 {
+            background-color: #4a5568;
+        }
+        .dark-mode .text-gray-500 {
+            color: #a0aec0;
+        }
+        .dark-mode .border-gray-700 {
+            border-color: #4a5568;
+        }
+        .dark-mode .shadow-lg, 
+        .dark-mode .shadow-md,
+        .dark-mode .shadow-xl {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .bg-indigo-100 {
+            background-color: #434190;
+        }
   </style>
 </head>
-<body class="text-gray-800 min-h-screen p-8">
+<body>
 
-  <header class="text-center mb-12">
-    <h1 class="text-4xl md:text-5xl font-bold text-blue-700">Tác Giả Văn Học Việt Nam</h1>
-    <p class="text-lg text-gray-600 mt-2">Khám phá những cây bút tiêu biểu</p>
+  <header class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white">
+    <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+      <!-- Tiêu đề chính -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6"
+          style="font-family: 'Playfair Display', serif;">
+        Kho Tàng Văn Học Việt Nam
+      </h1>
+      
+      <!-- Đoạn mô tả -->
+      <p class="text-xl md:text-2xl mt-4 font-light opacity-90"
+         style="font-family: 'Merriweather', serif;">
+        Khám phá tinh hoa văn chương Việt qua các thời kỳ
+      </p>
+      
+      <!-- Nút kêu gọi hành động (CTA) -->
+      <div class="flex justify-center mt-10">
+        <a href="#tac-pham"
+           class="bg-white text-indigo-700 hover:bg-indigo-100 transition duration-300
+                  px-8 py-4 rounded-full font-medium shadow-md"
+           style="font-family: 'Merriweather', serif;">
+          Khám phá ngay
+        </a>
+      </div>
+    </div>
   </header>
-
+  
+  
+      <!-- Navigation Menu -->
+   <!-- Thanh Nav -->
+   <nav class="bg-white shadow-lg sticky top-0 z-30">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <!-- Logo / Brand -->
+        <div class="text-2xl font-bold text-indigo-700">
+          Văn Học Việt
+        </div>
+    
+        <!-- Menu Desktop -->
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="index.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Trang Chủ</a></li>
+          <li><a href="Gioithieu.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a></li>
+          <li><a href="Tacpham.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a></li>
+          <li><a href="Tacgia.html" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a></li>
+          <li><a href="#lich-su" class="text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a></li>
+          <li><a href="#tai-nguyen" class="text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a></li>
+        </ul>
+    
+        <!-- Các nút Login/Register Desktop -->
+        <div class="hidden md:flex items-center space-x-4">
+          <button id="login-btn" class="text-indigo-600 hover:text-indigo-800 transition duration-300">Đăng nhập</button>
+          <button id="register-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+        </div>
+    
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    
+      <!-- Mobile Menu (ẩn theo mặc định) -->
+      <div id="mobile-menu" class="md:hidden hidden">
+        <div class="px-4 pt-2 pb-4 space-y-1">
+          <a href="#gioi-thieu" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Giới Thiệu</a>
+          <a href="#tac-pham" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Phẩm</a>
+          <a href="#tac-gia" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tác Giả</a>
+          <a href="#lich-su" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Lịch Sử</a>
+          <a href="#tai-nguyen" class="block text-gray-700 hover:text-indigo-700 transition duration-300">Tài Nguyên</a>
+          <div class="mt-2 border-t pt-2">
+            <button onclick="openLoginModal()" class="w-full text-left text-gray-700 hover:text-indigo-700">Đăng nhập</button>
+            <button onclick="openRegisterModal()" class="w-full text-left text-gray-700 hover:text-indigo-700 mt-1">Đăng ký</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Xử lý tìm kiếm:
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const authModal = document.getElementById('auth-modal');
+        const closeAuthModal = document.getElementById('close-auth-modal');
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+      
+        // Xử lý đăng nhập/đăng ký
+        function openLoginModal() {
+          authModalTitle.textContent = 'Đăng nhập';
+          loginForm.classList.remove('hidden');
+          registerForm.classList.add('hidden');
+          authModal.classList.remove('hidden');
+        }
+      
+        function openRegisterModal() {
+          authModalTitle.textContent = 'Đăng ký';
+          loginForm.classList.add('hidden');
+          registerForm.classList.remove('hidden');
+          authModal.classList.remove('hidden');
+        }
+      
+        // Thêm event listeners cho các nút
+        loginBtn.addEventListener('click', openLoginModal);
+        registerBtn.addEventListener('click', openRegisterModal);
+      
+        // Đóng modal khi click nút close
+        closeAuthModal.addEventListener('click', () => {
+          authModal.classList.add('hidden');
+        });
+      
+        // Đóng modal khi click bên ngoài
+        authModal.addEventListener('click', (e) => {
+          if (e.target === authModal) {
+            authModal.classList.add('hidden');
+          }
+        });
+      
+        // Chuyển đổi giữa form đăng nhập và đăng ký
+        switchToRegister.addEventListener('click', (e) => {
+          e.preventDefault();
+          openRegisterModal();
+        });
+      
+        switchToLogin.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLoginModal();
+        });
+      
+        // Xử lý tìm kiếm
+        function redirectToResults() {
+          const query = searchInput.value.trim();
+          if (query) {
+            window.location.href = `results.html?q=${encodeURIComponent(query)}`;
+          }
+        }
+      
+        searchBtn.addEventListener('click', redirectToResults);
+        searchInput.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            redirectToResults();
+          }
+        });
+      
+        // Xử lý mobile menu
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      });
+  
+      // Khai báo hàm toàn cục để có thể gọi từ mọi nơi
+      window.openLoginModal = function() {
+          const authModal = document.getElementById('auth-modal');
+          const authModalTitle = document.getElementById('auth-modal-title');
+          const loginForm = document.getElementById('login-form');
+          const registerForm = document.getElementById('register-form');
+  
+          authModalTitle.textContent = 'Đăng nhập';
+          loginForm.classList.remove('hidden');
+          registerForm.classList.add('hidden');
+          authModal.classList.remove('hidden');
+      }
+  
+      window.openRegisterModal = function() {
+          const authModal = document.getElementById('auth-modal');
+          const authModalTitle = document.getElementById('auth-modal-title');
+          const loginForm = document.getElementById('login-form');
+          const registerForm = document.getElementById('register-form');
+  
+          authModalTitle.textContent = 'Đăng ký';
+          loginForm.classList.add('hidden');
+          registerForm.classList.remove('hidden');
+          authModal.classList.remove('hidden');
+      }
+    </script>
+    
+      <!-- Login/Register Modal -->
+      <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+          <div class="bg-white rounded-lg max-w-md w-full">
+              <div class="p-6">
+                  <div class="flex justify-between items-center mb-6">
+                      <h3 id="auth-modal-title" class="text-2xl font-bold text-gray-800">Đăng nhập</h3>
+                      <button id="close-auth-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                          <i class="fas fa-times text-xl"></i>
+                      </button>
+                  </div>
+                  
+                  <!-- Login Form -->
+                  <div id="login-form">
+                      <div class="mb-4">
+                          <label for="email" class="block text-gray-700 mb-2">Email</label>
+                          <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                      </div>
+                      <div class="mb-6">
+                          <label for="password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                          <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                      </div>
+                      <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng nhập</button>
+                      <div class="mt-4 text-center text-gray-600">
+                          Chưa có tài khoản? <a href="#" id="switch-to-register" class="text-indigo-600 hover:text-indigo-800">Đăng ký ngay</a>
+                      </div>
+                  </div>
+                  
+                  <!-- Register Form -->
+                  <div id="register-form" class="hidden">
+                      <div class="mb-4">
+                          <label for="name" class="block text-gray-700 mb-2">Họ tên</label>
+                          <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Họ tên của bạn">
+                      </div>
+                      <div class="mb-4">
+                          <label for="reg-email" class="block text-gray-700 mb-2">Email</label>
+                          <input type="email" id="reg-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Email của bạn">
+                      </div>
+                      <div class="mb-4">
+                          <label for="reg-password" class="block text-gray-700 mb-2">Mật khẩu</label>
+                          <input type="password" id="reg-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Mật khẩu của bạn">
+                      </div>
+                      <div class="mb-6">
+                          <label for="confirm-password" class="block text-gray-700 mb-2">Xác nhận mật khẩu</label>
+                          <input type="password" id="confirm-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nhập lại mật khẩu">
+                      </div>
+                      <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Đăng ký</button>
+                      <div class="mt-4 text-center text-gray-600">
+                          Đã có tài khoản? <a href="#" id="switch-to-login" class="text-indigo-600 hover:text-indigo-800">Đăng nhập</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div><br>
+      <h1 class="text-4xl font-bold text-center mb-10 text-gray-700">Một số Tác giả tiêu biểu của nền văn học Việt Nam</h1>
   <main>
     <!-- Container hiển thị danh sách tác giả -->
     <div id="authorsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -47,261 +327,262 @@
       {
         id: 1,
         name: "Nguyễn Du",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Nguy%E1%BB%85n_Du_portrait.jpg/200px-Nguy%E1%BB%85n_Du_portrait.jpg",
+        image: "img/NguyenDu.jpg",
         shortDescription: "Đại thi hào dân tộc, tác giả Truyện Kiều bất hủ.",
         birthYear: 1765,
         deathYear: 1820,
-        hometown: "Hà Nội",
+        hometown: "Hà Nội", // Note: Often cited as Nghi Xuân, Hà Tĩnh, but sources vary. Using Hà Nội for consistency with original data.
         works: "Truyện Kiều"
       },
       {
         id: 2,
         name: "Nam Cao",
-        image: "https://cdn.britannica.com/09/184509-050-0B0F6F1D/Nam-Cao.jpg",
+        image: "img/Nam-Cao.jpg", // This might be broken or restricted
         shortDescription: "Nhà văn hiện thực với tác phẩm về người nông dân và trí thức nghèo.",
-        birthYear: 1917,
+        birthYear: 1917, // Some sources say 1915
         deathYear: 1951,
-        hometown: "Hà Nội",
-        works: "Chí Phèo, Lão Hạc"
+        hometown: "Hà Nam", // Originally Lý Nhân, Hà Nam
+        works: "Chí Phèo, Lão Hạc, Đời thừa"
       },
       {
         id: 3,
         name: "Hồ Xuân Hương",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/H%E1%BB%93_Xu%C3%A2n_H%C6%B0%C6%A1ng.jpg/220px-H%E1%BB%93_Xu%C3%A2n_H%C6%B0%C6%A1ng.jpg",
+        image: "img/HXH.jpg",
         shortDescription: "\"Bà chúa thơ Nôm\" với những vần thơ độc đáo và trào phúng.",
         birthYear: 1772,
         deathYear: 1822,
-        hometown: "Thanh Hóa",
-        works: "Thơ Nôm"
+        hometown: "Nghệ An / Thăng Long", // Birthplace debated
+        works: "Thơ Nôm truyền tụng"
       },
       {
         id: 4,
         name: "Tô Hoài",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/T%C3%B4_Ho%C3%A0i.jpg/220px-T%C3%B4_Ho%C3%A0i.jpg",
+        image: "img/Nha-van-To-Hoai-13.jpg",
         shortDescription: "Nhà văn của tuổi thơ với tác phẩm 'Dế Mèn phiêu lưu ký'.",
         birthYear: 1920,
         deathYear: 2014,
         hometown: "Hà Nội",
-        works: "Dế Mèn phiêu lưu ký"
+        works: "Dế Mèn phiêu lưu ký, Vợ chồng A Phủ"
       },
       {
         id: 5,
         name: "Xuân Diệu",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Xu%C3%A2n_Di%E1%BB%87u.jpg/200px-Xu%C3%A2n_Di%E1%BB%87u.jpg",
+        image: "img/Xuandieu.jpg",
         shortDescription: "\"Ông hoàng thơ tình\" với vần thơ nồng cháy, tha thiết.",
         birthYear: 1916,
         deathYear: 1985,
-        hometown: "Hà Nội",
-        works: "Thơ tình"
+        hometown: "Bình Định / Hà Tĩnh", // Born Bình Định, quê Hà Tĩnh
+        works: "Thơ thơ, Gửi hương cho gió"
       },
-      // --- 20 tác giả mới (sử dụng dữ liệu mẫu) ---
-      {
-        id: 6,
-        name: "Vũ Trọng Phụng",
-        image: "https://placehold.co/100x100/eee/ccc?text=V%C5%A9+Tr%E1%BB%8Dng+Ph%E1%BB%A7ng",
-        shortDescription: "Nhà văn châm biếm, tác giả của 'Số đỏ'.",
-        birthYear: 1912,
-        deathYear: 1939,
-        hometown: "Hà Nội",
-        works: "Số đỏ"
-      },
-      {
-        id: 7,
-        name: "Nguyễn Khuyến",
-        image: "https://placehold.co/100x100/eee/ccc?text=Nguy%E1%BB%85n+Khuy%E1%BB%81n",
-        shortDescription: "Nhà thơ trữ tình với tâm hồn chan chứa dân tộc.",
-        birthYear: 1835,
-        deathYear: 1909,
-        hometown: "Nghệ An",
-        works: "Bài thơ và ca dao"
-      },
-      {
-        id: 8,
-        name: "Chế Lan Viên",
-        image: "https://placehold.co/100x100/eee/ccc?text=Ch%E1%BA%A3+Lan+Vi%C3%AAn",
-        shortDescription: "Nhà thơ hiện đại với phong cách tự do, bay bổng.",
-        birthYear: 1937,
-        deathYear: 1998,
-        hometown: "Hà Nội",
-        works: "Bài thơ hiện đại"
-      },
-      {
-        id: 9,
-        name: "Hoàng Cầm",
-        image: "https://placehold.co/100x100/eee/ccc?text=Ho%C3%A0ng+C%E1%BA%A7m",
-        shortDescription: "Nhà thơ ưu tư, tâm hồn cảm thông.",
-        birthYear: 1922,
-        deathYear: 2010,
-        hometown: "Hà Nội",
-        works: "Thơ ưu tư"
-      },
-      {
-        id: 10,
-        name: "Nhất Linh",
-        image: "https://placehold.co/100x100/eee/ccc?text=Nh%E1%BA%A5t+Linh",
-        shortDescription: "Biểu tượng văn học hiện đại, bút sắc bén châm biếm.",
-        birthYear: 1902,
-        deathYear: 1963,
-        hometown: "Hà Nội",
-        works: "Văn học hiện đại"
-      },
-      {
-        id: 11,
-        name: "Ngô Tất Tố",
-        image: "https://placehold.co/100x100/eee/ccc?text=Ng%C3%B4+T%E1%BA%A5t+T%E1%BB%91",
-        shortDescription: "Nhà văn nhân văn với tác phẩm để đời.",
-        birthYear: 1897,
-        deathYear: 1942,
-        hometown: "Hà Nội",
-        works: "Lá phiếu thuốc"
-      },
-      {
-        id: 12,
-        name: "Tản Đà",
-        image: "https://placehold.co/100x100/eee/ccc?text=T%E1%BA%A3n+%C4%90%C3%A0",
-        shortDescription: "Nhà thơ lãng mạn, tự do và mộc mạc.",
-        birthYear: 1889,
-        deathYear: 1939,
-        hometown: "Hà Nội",
-        works: "Tản Đà thơ"
-      },
-      {
-        id: 13,
-        name: "Nguyễn Tuân",
-        image: "https://placehold.co/100x100/eee/ccc?text=Nguy%E1%BB%85n+Tu%C3%A2n",
-        shortDescription: "Trí thức văn chương, chữ như vàng ròng.",
-        birthYear: 1910,
-        deathYear: 1996,
-        hometown: "Hà Nội",
-        works: "Chữ như vàng ròng"
-      },
-      {
-        id: 14,
-        name: "Bùi Giáng",
-        image: "https://placehold.co/100x100/eee/ccc?text=B%C3%B9i+Gi%C3%A1ng",
-        shortDescription: "Nhà thơ giã từ với âm vang của tâm hồn.",
-        birthYear: 1925,
-        deathYear: 1988,
-        hometown: "Hà Nội",
-        works: "Tiếng lòng của Bùi Giáng"
-      },
-      {
-        id: 15,
-        name: "Quang Dũng",
-        image: "https://placehold.co/100x100/eee/ccc?text=Quang+D%C5%A9ng",
-        shortDescription: "Nhà thơ triết lý, câu chữ bồi hồi tâm hồn.",
-        birthYear: 1920,
-        deathYear: 1990,
-        hometown: "Hà Nội",
-        works: "Thơ và Triết lý"
-      },
-      {
-        id: 16,
-        name: "Huyền Diệu",
-        image: "https://placehold.co/100x100/eee/ccc?text=Huy%E1%BB%87n+Di%E1%BB%87u",
-        shortDescription: "Tác giả đương đại với phong cách phá cách, trẻ trung.",
-        birthYear: 1980,
-        deathYear: "", // Còn sống
-        hometown: "TP. Hồ Chí Minh",
-        works: "Thơ đương đại"
-      },
-      {
-        id: 17,
-        name: "Minh Châu",
-        image: "https://placehold.co/100x100/eee/ccc?text=Minh+Ch%C3%A2u",
-        shortDescription: "Nhà văn tinh tế, khám phá chiều sâu của tâm hồn.",
-        birthYear: 1985,
-        deathYear: "",
-        hometown: "Đà Nẵng",
-        works: "Văn học đa sắc"
-      },
-      {
-        id: 18,
-        name: "Lâm Anh",
-        image: "https://placehold.co/100x100/eee/ccc?text=L%C3%A2m+Anh",
-        shortDescription: "Tác giả đam mê kể chuyện sống động, chạm tim người đọc.",
-        birthYear: 1990,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Truyện kể hiện đại"
-      },
-      {
-        id: 19,
-        name: "Trần Quý",
-        image: "https://placehold.co/100x100/eee/ccc?text=Tr%E1%BA%A7n+Quy%C3%A2y",
-        shortDescription: "Nhà văn giản dị, chất thơ về cuộc sống.",
-        birthYear: 1950,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Văn chương giản dị"
-      },
-      {
-        id: 20,
-        name: "Phạm Minh",
-        image: "https://placehold.co/100x100/eee/ccc?text=Ph%E1%BA%A3m+Minh",
-        shortDescription: "Tác giả đổi mới, cái nhìn tươi mới về xã hội.",
-        birthYear: 1970,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Hiện thực xã hội"
-      },
-      {
-        id: 21,
-        name: "Hà Hùng",
-        image: "https://placehold.co/100x100/eee/ccc?text=H%C3%A0+H%C6%B0ng",
-        shortDescription: "Nhà văn trẻ, khát khao sáng tạo bứt phá.",
-        birthYear: 1995,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Sáng tác trẻ"
-      },
-      {
-        id: 22,
-        name: "Song Lâm",
-        image: "https://placehold.co/100x100/eee/ccc?text=Song+L%C3%A2m",
-        shortDescription: "Tác giả với tâm hồn lãng mạn, nhạy cảm.",
-        birthYear: 1988,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Thi ca mộc mạc"
-      },
-      {
-        id: 23,
-        name: "Vũ Minh",
-        image: "https://placehold.co/100x100/eee/ccc?text=V%C5%A9+Minh",
-        shortDescription: "Nhà văn sắc sảo, hé lộ góc khuất xã hội.",
-        birthYear: 1960,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Châm biếm xã hội"
-      },
-      {
-        id: 24,
-        name: "Đỗ Anh",
-        image: "https://placehold.co/100x100/eee/ccc?text=%C4%90%E1%BB%97+Anh",
-        shortDescription: "Tác giả nghệ thuật, cảm xúc sống động.",
-        birthYear: 1975,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Văn chương cảm xúc"
-      },
-      {
-        id: 25,
-        name: "Dương Trí",
-        image: "https://placehold.co/100x100/eee/ccc?text=D%C6%B0%C6%A1ng+Tr%C3%AD",
-        shortDescription: "Nhà văn đam mê chinh phục thử thách cuộc đời.",
-        birthYear: 1982,
-        deathYear: "",
-        hometown: "Hà Nội",
-        works: "Truyện ngắn tâm đắc"
-      }
-    ];
+      // --- Placeholder data for others ---
+       
+        {
+    id: 6,
+    name: "Vũ Trọng Phụng",
+    image: "img/logo-vu-trong-phung.jpg",
+    shortDescription: "Nhà văn hiện thực trào phúng bậc thầy, tác giả của 'Số đỏ'.",
+    birthYear: 1912,
+    deathYear: 1939,
+    hometown: "Hà Nội",
+    works: "Số đỏ, Giông tố, Vỡ đê"
+  },
+  {
+    id: 7,
+    name: "Nguyễn Khuyến",
+    image: "img/NK.jpg",
+    shortDescription: "Nhà thơ của làng cảnh Việt Nam, tam nguyên Yên Đổ.",
+    birthYear: 1835,
+    deathYear: 1909,
+    hometown: "Hà Nam",
+    works: "Thu điếu, Thu ẩm, Thu vịnh"
+  },
+  {
+    id: 8,
+    name: "Chế Lan Viên",
+    image: "img/Che-Lan-Vien-vanvn.jpg",
+    shortDescription: "Nhà thơ lớn của thơ ca hiện đại, phong cách trí tuệ, suy tưởng.",
+    birthYear: 1920,
+    deathYear: 1989,
+    hometown: "Quảng Trị",
+    works: "Điêu tàn, Ánh sáng và phù sa, Hoa ngày thường - Chim báo bão"
+  },
+  {
+    id: 9,
+    name: "Hoàng Cầm",
+    image: "img/nha-tho-hoang-cam.jpg",
+    shortDescription: "Nhà thơ độc đáo với màu sắc Kinh Bắc.",
+    birthYear: 1922,
+    deathYear: 2010,
+    hometown: "Bắc Ninh",
+    works: "Bên kia sông Đuống, Lá diêu bông"
+  },
+  {
+    id: 10,
+    name: "Nhất Linh",
+    image: "img/Linh.webp",
+    shortDescription: "Chủ soái Tự Lực văn đoàn, nhà văn lãng mạn.",
+    birthYear: 1906,
+    deathYear: 1963,
+    hometown: "Hải Dương / Hà Nội",
+    works: "Đoạn tuyệt, Lạnh lùng, Bướm trắng"
+  },
+  {
+    id: 11,
+    name: "Ngô Tất Tố",
+    image: "img/NTT.jpg",
+    shortDescription: "Nhà văn hiện thực phê phán, nhà báo, nhà nghiên cứu.",
+    birthYear: 1894,
+    deathYear: 1954,
+    hometown: "Bắc Ninh / Hà Nội",
+    works: "Tắt đèn, Lều chõng, Việc làng"
+  },
+  {
+    id: 12,
+    name: "Tản Đà",
+    image: "img/TD.webp",
+    shortDescription: "\"Gạch nối\" giữa thơ cũ và thơ mới, hồn thơ phóng khoáng.",
+    birthYear: 1889,
+    deathYear: 1939,
+    hometown: "Hà Nội (Sơn Tây cũ)",
+    works: "Khối tình con I, II; Thề non nước"
+  },
+  {
+    id: 13,
+    name: "Nguyễn Tuân",
+    image: "img/Tuân_Nguyễn.jpg",
+    shortDescription: "Nhà văn tài hoa, uyên bác, bậc thầy về ngôn ngữ.",
+    birthYear: 1910,
+    deathYear: 1987,
+    hometown: "Hà Nội",
+    works: "Vang bóng một thời, Sông Đà, Chữ người tử tù"
+  },
+  {
+    id: 14,
+    name: "Hàn Mặc Tử",
+    image: "img/HMT.jpg",
+    shortDescription: "Nhà thơ với thế giới thơ độc đáo, đau thương và siêu thực.",
+    birthYear: 1912,
+    deathYear: 1940,
+    hometown: "Quảng Bình / Bình Định",
+    works: "Gái quê, Thơ Điên (Đau thương)"
+  },
+  {
+    id: 15,
+    name: "Quang Dũng",
+    image: "img/Quangdung1.jpg",
+    shortDescription: "Nhà thơ hào hoa, lãng mạn của xứ Đoài.",
+    birthYear: 1921,
+    deathYear: 1988,
+    hometown: "Hà Nội (Hà Tây cũ)",
+    works: "Tây Tiến, Mắt người Sơn Tây, Đôi bờ"
+  },
+  {
+    id: 16,
+    name: "Thạch Lam",
+    image: "img/TL.jpg",
+    shortDescription: "Thành viên Tự Lực văn đoàn, giọng văn nhẹ nhàng, tinh tế.",
+    birthYear: 1910,
+    deathYear: 1942,
+    hometown: "Hải Dương / Hà Nội",
+    works: "Gió đầu mùa, Nắng trong vườn, Hà Nội băm sáu phố phường"
+  },
+  {
+    id: 17,
+    name: "Nguyễn Công Hoan",
+    image: "img/Nguyen-Cong-Hoan.jpg",
+    shortDescription: "Bậc thầy truyện ngắn trào phúng Việt Nam.",
+    birthYear: 1903,
+    deathYear: 1977,
+    hometown: "Hưng Yên",
+    works: "Kép Tư Bền, Bước đường cùng"
+  },
+  {
+    id: 18,
+    name: "Huy Cận",
+    image: "img/Nhà_thơ_Huy_Cận.jpg",
+    shortDescription: "Nhà thơ lớn, phong cách hàm súc, suy tư về vũ trụ, nhân sinh.",
+    birthYear: 1919,
+    deathYear: 2005,
+    hometown: "Hà Tĩnh",
+    works: "Lửa thiêng, Vũ trụ ca, Trời mỗi ngày lại sáng"
+  },
+  {
+    id: 19,
+    name: "Tố Hữu",
+    image: "img/HuyCan.jpg",
+    shortDescription: "Lá cờ đầu của thơ ca cách mạng Việt Nam.",
+    birthYear: 1920,
+    deathYear: 2002,
+    hometown: "Thừa Thiên Huế",
+    works: "Từ ấy, Việt Bắc, Gió lộng, Máu và Hoa"
+  },
+  {
+    id: 20,
+    name: "Nguyễn Minh Châu",
+    image: "img/NMC.jpg",
+    shortDescription: "Nhà văn tiêu biểu thời kỳ Đổi mới, trăn trở về số phận con người.",
+    birthYear: 1930,
+    deathYear: 1989,
+    hometown: "Nghệ An",
+    works: "Dấu chân người lính, Bến quê, Chiếc thuyền ngoài xa"
+  },
+  {
+    id: 21,
+    name: "Kim Lân",
+    image: "img/KL.jpg",
+    shortDescription: "Nhà văn của nông thôn và người nông dân Việt Nam.",
+    birthYear: 1920,
+    deathYear: 2007,
+    hometown: "Bắc Ninh",
+    works: "Vợ nhặt, Làng"
+  },
+  {
+    id: 22,
+    name: "Nguyễn Huy Tưởng",
+    image: "img/NHT.webp",
+    shortDescription: "Nhà văn, nhà viết kịch lịch sử nổi tiếng.",
+    birthYear: 1912,
+    deathYear: 1960,
+    hometown: "Hà Nội",
+    works: "Vũ Như Tô, Sống mãi với thủ đô, Lá cờ thêu sáu chữ vàng"
+  },
+  {
+    id: 23,
+    name: "Vũ Bằng",
+    image: "img/Vũ_Bằng.jpg",
+    shortDescription: "Nhà văn, nhà báo nổi tiếng với tùy bút về Hà Nội và ẩm thực.",
+    birthYear: 1913,
+    deathYear: 1984,
+    hometown: "Hà Nội",
+    works: "Thương nhớ mười hai, Miếng ngon Hà Nội"
+  },
+  {
+    id: 24,
+    name: "Nguyễn Đình Thi",
+    image: "img/Nguyen_Dinh_Thi.jpg",
+    shortDescription: "Nghệ sĩ đa tài: nhà văn, nhà thơ, nhạc sĩ.",
+    birthYear: 1924,
+    deathYear: 2003,
+    hometown: "Hà Nội / Lào",
+    works: "Đất nước (thơ), Người Hà Nội (nhạc), Xung kích (tiểu thuyết)"
+  },
+  {
+    id: 25,
+    name: "Lưu Quang Vũ",
+    image: "img/LQV.jpg",
+    shortDescription: "Nhà viết kịch, nhà thơ tài hoa bạc mệnh.",
+    birthYear: 1948,
+    deathYear: 1988,
+    hometown: "Phú Thọ / Đà Nẵng",
+    works: "Hồn Trương Ba, da hàng thịt; Tôi và chúng ta; Lời thề thứ 9"
+  }
+];
 
     // --- Hàm hiển thị danh sách tác giả ---
     function displayAuthors(authors) {
       const container = document.getElementById('authorsContainer');
       if (!container) return;
-      container.innerHTML = '';
+      container.innerHTML = ''; // Clear previous content or loading message
 
       if (!authors || authors.length === 0) {
         container.innerHTML = '<p class="text-center text-red-500 col-span-full">Không có dữ liệu tác giả để hiển thị.</p>';
@@ -310,24 +591,30 @@
 
       authors.forEach(author => {
         const card = document.createElement('div');
-        card.className = 'author-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row items-start p-6 border border-gray-200';
+        // **** UPDATED CLASS LIST ****
+        card.className = 'author-card bg-white rounded-lg shadow-md overflow-hidden flex items-start p-6 border border-gray-200';
         card.setAttribute('data-author-id', author.id);
 
+        // Use placeholder if image is empty, otherwise use the author image
+        const imageUrl = author.image || `https://placehold.co/100x100/eee/ccc?text=${encodeURIComponent('Ảnh')}`;
+        // Fallback placeholder text
+        const errorPlaceholder = `https://placehold.co/100x100/eee/ccc?text=${encodeURIComponent('Lỗi Ảnh')}`;
+
         card.innerHTML = `
-          <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
-            <img src="${author.image || 'https://placehold.co/100x100/eee/ccc?text=Ảnh'}"
+          <div class="flex-shrink-0 mr-6"> <!-- Image Container with margin -->
+            <img src="${imageUrl}"
                  alt="Ảnh ${author.name}"
-                 class="w-24 h-24 md:w-28 md:h-28 object-cover rounded-full border-2 border-gray-300"
+                 class="w-24 h-24 object-cover rounded-full border-2 border-gray-300"
                  loading="lazy"
-                 onerror="this.onerror=null; this.src='https://placehold.co/100x100/eee/ccc?text=Lỗi+Ảnh';">
+                 onerror="this.onerror=null; this.src='${errorPlaceholder}';">
           </div>
-          <div class="flex-grow">
-            <h2 class="text-3xl font-bold text-blue-600 mb-2">${author.name}</h2>
+          <div class="flex-grow"> <!-- Text Content takes remaining space -->
+            <h2 class="text-2xl font-bold text-blue-600 mb-2">${author.name}</h2> <!-- Reduced font size -->
             <p class="text-gray-700 text-base mb-3 short-desc">${author.shortDescription}</p>
-            <div class="details-section hidden text-gray-700 text-sm mb-3">
-              <p><strong>Năm sinh - Năm mất:</strong> ${author.birthYear} ${author.deathYear ? "- " + author.deathYear : ""}</p>
-              <p><strong>Quê quán:</strong> ${author.hometown}</p>
-              <p><strong>Các tác phẩm tiêu biểu:</strong> ${author.works}</p>
+            <div class="details-section hidden text-gray-700 text-sm mb-4 space-y-1"> <!-- Added space-y-1 for details -->
+              <p><strong>Năm sinh - Năm mất:</strong> ${author.birthYear}${author.deathYear ? " - " + author.deathYear : " - nay"}</p>
+              <p><strong>Quê quán:</strong> ${author.hometown || 'Không rõ'}</p>
+              <p><strong>Tác phẩm tiêu biểu:</strong> ${author.works || 'Không rõ'}</p>
             </div>
             <button class="read-more-btn bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded transition-colors duration-200">
               Xem thêm
@@ -336,30 +623,45 @@
         `;
         container.appendChild(card);
       });
+
+      // Re-run animation after appending cards
+      animateCards();
     }
 
     // --- Xử lý sự kiện click nút "Xem thêm" ---
     function setupReadMore() {
       const container = document.getElementById('authorsContainer');
       if (!container) return;
+
+      // Use event delegation for dynamically added elements
       container.addEventListener('click', function(event) {
         if (event.target.classList.contains('read-more-btn')) {
           const button = event.target;
-          const card = button.closest('.author-card');
+          const card = button.closest('.author-card'); // Find the parent card
           if (!card) return;
+
           const shortDesc = card.querySelector('.short-desc');
           const details = card.querySelector('.details-section');
-          if (!shortDesc || !details) return;
+
+          if (!shortDesc || !details) return; // Make sure elements exist
+
           const isHidden = details.classList.contains('hidden');
+
           if (isHidden) {
+            // Show details, hide short description
+            gsap.to(shortDesc, { height: 0, opacity: 0, duration: 0.3, onComplete: () => shortDesc.classList.add('hidden') });
             details.classList.remove('hidden');
-            shortDesc.classList.add('hidden');
+            gsap.fromTo(details, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.3 });
+
             button.textContent = 'Ẩn bớt';
             button.classList.replace('bg-blue-500', 'bg-gray-500');
             button.classList.replace('hover:bg-blue-600', 'hover:bg-gray-600');
           } else {
-            details.classList.add('hidden');
+            // Hide details, show short description
+             gsap.to(details, { height: 0, opacity: 0, duration: 0.3, onComplete: () => details.classList.add('hidden') });
             shortDesc.classList.remove('hidden');
+             gsap.fromTo(shortDesc, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.3 });
+
             button.textContent = 'Xem thêm';
             button.classList.replace('bg-gray-500', 'bg-blue-500');
             button.classList.replace('hover:bg-gray-600', 'hover:bg-blue-600');
@@ -368,24 +670,28 @@
       });
     }
 
+
     // --- Hiệu ứng GSAP cho các card tác giả khi load trang ---
     function animateCards() {
-      // Lấy tất cả thẻ card, rồi chạy animation từ dưới lên với fade in
-      gsap.from(".author-card", {
-        opacity: 0,
-        y: 50,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
+      // Ensure container exists and has children before animating
+       const cards = document.querySelectorAll(".author-card");
+        if (cards.length > 0) {
+            gsap.from(cards, {
+                opacity: 0,
+                y: 50, // Start 50px below final position
+                duration: 0.6, // Animation duration
+                stagger: 0.1, // Delay between each card animation
+                ease: "power2.out" // Easing function
+            });
+        }
     }
 
     // --- Khởi chạy khi trang tải xong ---
-    window.onload = () => {
+    document.addEventListener('DOMContentLoaded', () => { // Use DOMContentLoaded for faster script execution
       displayAuthors(authorData);
       setupReadMore();
-      animateCards();
-    };
+      // Animation is called inside displayAuthors after cards are added
+    });
   </script>
 
 </body>
